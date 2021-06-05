@@ -1,0 +1,28 @@
+.grid-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 10% 40% 15% 35%;
+  gap: 0 0;
+  align-items: center;
+}
+
+.place {
+  font-weight: bold;
+}
+
+.delay {
+  color: red;
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
+}
+
+.intermediateStops {
+  text-decoration: underline;
+}
+
+.map {
+  grid-column: 2 / 5;
+}

@@ -1,0 +1,12 @@
+<dravelopsefafrontend-journey-list-outward
+  *ngIf='!selectedOutwardJourney'
+  (journeySelectedEvent)='handleOutwardJourneySelectedEvent($event)'>
+
+</dravelopsefafrontend-journey-list-outward>
+
+<dravelopsefafrontend-journey-list-backward
+  *ngIf='selectedOutwardJourney'
+  [selectedOutwardJourney]='selectedOutwardJourney'
+  (journeySelectedEvent)='handleBackwardJourneySelectedEvent($event)'>
+
+</dravelopsefafrontend-journey-list-backward>

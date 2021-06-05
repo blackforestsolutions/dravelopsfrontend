@@ -1,0 +1,103 @@
+<mat-divider></mat-divider>
+<div class='grid-container'>
+
+  <!-- first row -->
+  <div>
+    <mat-icon>trip_origin</mat-icon>
+  </div>
+  <div class='place'>
+    {{ leg.departure.name }}
+  </div>
+  <div>
+    {{ leg.departure.departureTime | date: 'shortTime' }}
+  </div>
+  <div>
+    <ng-container *ngIf='leg.departure.platform.length > 0'>
+      Gleis: {{ leg.departure.platform }}
+    </ng-container>
+  </div>
+
+  <!-- second row -->
+  <div>
+    <mat-icon>arrow_downward</mat-icon>
+    <mat-icon>{{ leg.vehicleType | vehicleType }}</mat-icon>
+  </div>
+  <div class='flex-container'>
+    <ng-container *ngIf='leg.vehicleType === "WALK" && leg.waypoints.length > 0'>
+      <span class='footpath' (click)='toggleFootpathMap()'>
+        {{ leg.distanceInKilometers }} km
+      </span>
+      <button id="footpathMapToggleButton" mat-icon-button (click)='toggleFootpathMap()'>
+        <mat-icon>{{ showFootpathMap ? 'expand_more' : 'chevron_left' }}</mat-icon>
+      </button>
+    </ng-container>
+    <ng-container *ngIf='leg.vehicleType !== "WALK"'>
+      <ng-container *ngIf='leg.intermediateStops.length > 0'>
+      <span class='intermediateStops' (click)='toggleIntermediateStops()'>
+        {{ leg.intermediateStops.length }} Zwischenhalte
+      </span>
+        <button mat-icon-button (click)='toggleIntermediateStops()'>
+          <mat-icon>{{ showIntermediateStops ? 'expand_more' : 'chevron_left' }}</mat-icon>
+        </button>
+      </ng-container>
+    </ng-container>
+  </div>
+  <div>
+    {{ leg.departure.departureTime | duration: leg.arrival.arrivalTime }}
+  </div>
+  <div class='flex-container'>
+    <ng-container *ngIf='leg.vehicleNumber.length > 0 || leg.vehicleName.length > 0'>
+      <mat-chip-list id='chip-list'>
+        <mat-chip color='accent' [disableRipple]='true' selected>
+          <dravelopsefafrontend-vehicle-type [key]='leg.vehicleType'></dravelopsefafrontend-vehicle-type>
+          &nbsp;{{ leg.vehicleNumber }}
+        </mat-chip>
+      </mat-chip-list>
+    </ng-container>
+  </div>
+
+  <!-- possible third row -->
+  <ng-container *ngIf='showIntermediateStops'>
+    <ng-container *ngFor='let intermediateStop of leg.intermediateStops'>
+      <div>
+        <mat-icon>arrow_downward</mat-icon>
+      </div>
+      <div id='intermediateStopName'>{{ intermediateStop.name }}</div>
+      <div id='intermediateStopArrivalTime'>
+        {{ intermediateStop.arrivalTime | date: 'shortTime' }}
+        <span *ngIf='leg.delayInMinutes > 0' class='delay'> +{{ leg.delayInMinutes }} min</span>
+      </div>
+      <div>
+
+      </div>
+    </ng-container>
+  </ng-container>
+
+  <!-- possible third row -> map-->
+  <ng-container *ngIf='showFootpathMap'>
+    <div>
+      <mat-icon>map</mat-icon>
+    </div>
+    <div class='map'>
+      <dravelopsefafrontend-footpath-map [waypoints]='leg.waypoints'></dravelopsefafrontend-footpath-map>
+    </div>
+  </ng-container>
+
+
+  <!-- fourth row -->
+  <div>
+    <mat-icon>stop_circle</mat-icon>
+  </div>
+  <div class='place'>
+    {{ leg.arrival.name }}
+  </div>
+  <div>
+    {{ leg.arrival.arrivalTime | date: "shortTime" }}
+    <span *ngIf='leg.delayInMinutes > 0' class='delay'> +{{ leg.delayInMinutes }} min</span>
+  </div>
+  <div>
+    <ng-container *ngIf='leg.arrival.platform.length > 0'>{{ leg.arrival.platform }}</ng-container>
+  </div>
+
+</div>
+<mat-divider></mat-divider>
