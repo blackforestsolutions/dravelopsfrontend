@@ -6,6 +6,7 @@ import {PreloadAllModules, Route, RouterModule} from '@angular/router';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {registerLocaleData} from "@angular/common";
 import localeDe from '@angular/common/locales/de';
+import {HttpClientModule} from "@angular/common/http";
 
 
 const routes: Route[] = [
@@ -27,7 +28,8 @@ const routes: Route[] = [
       initialNavigation: 'enabled',
       preloadingStrategy: PreloadAllModules
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [
     {

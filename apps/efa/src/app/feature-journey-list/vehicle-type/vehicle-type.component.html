@@ -1,0 +1,15 @@
+<ng-container [ngSwitch]='key'>
+  <ng-container *ngSwitchCase='VehicleType.WALK'>zu Fuß</ng-container>
+  <ng-container *ngSwitchCase='VehicleType.TRANSIT'>Transit</ng-container>
+  <ng-container *ngSwitchCase='VehicleType.BICYCLE'>Fahrrad</ng-container>
+  <ng-container *ngSwitchCase='VehicleType.CAR'>Auto</ng-container>
+  <ng-container *ngSwitchCase='VehicleType.TRAM'>Straßenbahn</ng-container>
+  <ng-container *ngSwitchCase='VehicleType.FUNICULAR'>Seilbahn</ng-container>
+  <ng-container *ngSwitchCase='VehicleType.CABLE_CAR'>Straßenbahn</ng-container>
+  <ng-container *ngSwitchCase='VehicleType.SUBWAY'>U-Bahn</ng-container>
+  <ng-container *ngSwitchCase='VehicleType.RAIL'>Zug</ng-container>
+  <ng-container *ngSwitchCase='VehicleType.BUS'>Bus</ng-container>
+  <ng-container *ngSwitchCase='VehicleType.FERRY'>Fähre</ng-container>
+  <ng-container *ngSwitchCase='VehicleType.GONDOLA'>Gondelboot</ng-container>
+  <ng-container *ngSwitchCase='VehicleType.AIRPLANE'>Flug</ng-container>
+</ng-container>

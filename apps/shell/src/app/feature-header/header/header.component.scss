@@ -1,0 +1,46 @@
+@import "libs/shared-styles/src/assets/styles/variables";
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.logo {
+  max-width: 33%;
+  height: auto;
+}
+
+.title, .material-icons {
+  font-weight: normal;
+}
+
+.material-icons {
+  font-size: 3.3rem;
+  margin-right: 1.6rem;
+}
+
+.menu-title {
+  font-size: 1.8rem;
+  font-weight: normal;
+}
+
+.title {
+  display: none;
+}
+
+@media (min-width: $tablet) {
+  .menu-title {
+    display: none;
+  }
+
+  .title, .material-icons {
+    font-size: 4.1rem;
+  }
+
+  .logo {
+    max-width: 16%;
+  }
+
+  .title {
+    display: unset;
+  }
+}

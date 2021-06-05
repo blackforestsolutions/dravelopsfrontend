@@ -1,0 +1,11 @@
+<ng-container *ngFor='let leg of legs; last as isLast; index as index'>
+    <dravelopsefafrontend-leg-list-item [leg]='leg'></dravelopsefafrontend-leg-list-item>
+    <div *ngIf='!isLast && leg.vehicleType !== VehicleType.WALK && legs[index + 1].vehicleType !== VehicleType.WALK' class='grid-container'>
+      <div>
+        <mat-icon>access_time</mat-icon>
+      </div>
+      <div>
+        {{ leg.arrival.arrivalTime | duration: legs[index + 1].departure.departureTime }} Wartezeit
+      </div>
+   </div>
+</ng-container>

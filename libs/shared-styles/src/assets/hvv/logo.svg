@@ -1,0 +1,1544 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   version="1.1"
+   width="1013.3858"
+   height="223.22835"
+   viewBox="0 0 1013.3857 223.22835"
+   id="HVV-Logo"
+   xml:space="preserve"><defs
+   id="defs431" />
+<polygon
+   points="0,207.68 866.416,207.68 859.457,217.896 0,217.896 "
+   transform="translate(2.9259706,3.1378985)"
+   id="Linie-rot"
+   style="fill:#d4011d" />
+<polygon
+   points="1007.524,0 982.804,36.504 503.405,36.504 398.57,197.333 0,197.333 0,160.829 378.779,160.829 484.202,0 "
+   transform="translate(2.9259706,3.1378985)"
+   id="Linie-blau"
+   style="fill:#004a99" />
+<g
+   transform="translate(2.9259706,3.1378985)"
+   id="V2">
+	<polyline
+   id="Kern_1_"
+   points="815.368,56.441 865.857,56.441 865.857,138.126 917.336,56.437 969.16,56.437    873.261,197.523 815.368,197.523 815.368,56.441  "
+   style="fill:#d4011d" />
+	<polyline
+   id="Kante-U_1_"
+   points="817.836,194.615 872.572,194.615 873.261,197.523 815.368,197.523    817.836,194.615  "
+   style="fill:#831014" />
+	<polyline
+   id="Kante-MR_1_"
+   points="917.73,61.128 864.132,146.714 865.857,138.126 917.336,56.437 917.73,61.128     "
+   style="fill:#ea9879" />
+	<g
+   id="Schatten-Kante-MR_1_">
+		<defs
+   id="defs10">
+			<polygon
+   points="864.132,146.714 917.73,61.128 917.336,56.437 865.857,138.126 "
+   id="SVGID_1_" />
+		</defs>
+		<clipPath
+   id="SVGID_2_">
+			<use
+   id="use14"
+   style="overflow:visible"
+   x="0"
+   y="0"
+   width="1007.524"
+   height="217.896"
+   xlink:href="#SVGID_1_" />
+		</clipPath>
+		<g
+   clip-path="url(#SVGID_2_)"
+   id="g16">
+			<line
+   stroke-miterlimit="3.864"
+   x1="866.745"
+   y1="131.41499"
+   x2="863.68799"
+   y2="148.077"
+   id="line18"
+   style="fill:none;stroke:#831014;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="867.09198"
+   y1="131.17599"
+   x2="864.276"
+   y2="147.437"
+   id="line20"
+   style="fill:none;stroke:#8a1a18;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="867.43799"
+   y1="130.936"
+   x2="864.82098"
+   y2="146.793"
+   id="line22"
+   style="fill:none;stroke:#92231b;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="867.78497"
+   y1="130.69901"
+   x2="865.36499"
+   y2="146.151"
+   id="line24"
+   style="fill:none;stroke:#992b20;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="868.12799"
+   y1="130.45599"
+   x2="865.90601"
+   y2="145.511"
+   id="line26"
+   style="fill:none;stroke:#a13425;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="868.52197"
+   y1="130.215"
+   x2="866.45001"
+   y2="144.867"
+   id="line28"
+   style="fill:none;stroke:#a83e2b;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="868.87"
+   y1="129.979"
+   x2="866.995"
+   y2="144.231"
+   id="line30"
+   style="fill:none;stroke:#b04732;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="869.21198"
+   y1="129.742"
+   x2="867.53497"
+   y2="143.59"
+   id="line32"
+   style="fill:none;stroke:#b85239;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="869.55902"
+   y1="129.49899"
+   x2="868.12799"
+   y2="142.94901"
+   id="line34"
+   style="fill:none;stroke:#c05c42;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="869.90601"
+   y1="129.258"
+   x2="868.67297"
+   y2="142.308"
+   id="line36"
+   style="fill:none;stroke:#c8674b;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="870.25403"
+   y1="129.02"
+   x2="869.21198"
+   y2="141.66499"
+   id="line38"
+   style="fill:none;stroke:#d17355;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="870.59601"
+   y1="128.783"
+   x2="869.758"
+   y2="141.02299"
+   id="line40"
+   style="fill:none;stroke:#d97e60;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="870.94202"
+   y1="128.54201"
+   x2="870.302"
+   y2="140.383"
+   id="line42"
+   style="fill:none;stroke:#e18b6c;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="871.33801"
+   y1="128.306"
+   x2="870.841"
+   y2="139.73599"
+   id="line44"
+   style="fill:none;stroke:#ea9879;stroke-miterlimit:3.86400008" />
+		</g>
+	</g>
+	<polyline
+   id="Kante-R_1_"
+   clip-rule="evenodd"
+   points="872.572,194.615 962.878,61.128    962.878,61.128 969.16,56.437 873.261,197.523 872.572,194.615  "
+   style="fill:#831014;fill-rule:evenodd" />
+	<polyline
+   id="Kante-ML_1_"
+   points="864.132,146.714 864.132,60.504 865.857,56.441 865.857,138.126    864.132,146.714  "
+   style="fill:#831014" />
+	<polyline
+   id="Kante-L_1_"
+   points="817.836,60.504 817.836,194.619 815.368,197.523 815.368,56.437 817.836,60.504     "
+   style="fill:#ea9879" />
+	<g
+   id="Schatten-Kante-L_1_">
+		<defs
+   id="defs50">
+			<polyline
+   id="SVGID_3_"
+   points="815.368,197.523 817.836,194.615 817.836,60.509 815.368,56.437 815.368,197.523    " />
+		</defs>
+		<clipPath
+   id="SVGID_4_">
+			<use
+   id="use54"
+   style="overflow:visible"
+   x="0"
+   y="0"
+   width="1007.524"
+   height="217.896"
+   xlink:href="#SVGID_3_" />
+		</clipPath>
+		<g
+   clip-path="url(#SVGID_4_)"
+   id="g56">
+			<line
+   stroke-miterlimit="3.864"
+   x1="811.16998"
+   y1="198.82001"
+   x2="819.90802"
+   y2="195.202"
+   id="line58"
+   style="fill:none;stroke:#941017;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="811.271"
+   y1="198.336"
+   x2="820.15399"
+   y2="194.655"
+   id="line60"
+   style="fill:none;stroke:#9a1c1a;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="811.367"
+   y1="197.84399"
+   x2="820.35199"
+   y2="194.118"
+   id="line62"
+   style="fill:none;stroke:#a0261e;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="811.46899"
+   y1="197.35899"
+   x2="820.54999"
+   y2="193.56799"
+   id="line64"
+   style="fill:none;stroke:#a62e22;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="811.565"
+   y1="196.87"
+   x2="820.74701"
+   y2="193.026"
+   id="line66"
+   style="fill:none;stroke:#ac3827;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="811.66602"
+   y1="196.383"
+   x2="820.94397"
+   y2="192.479"
+   id="line68"
+   style="fill:none;stroke:#b3412d;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="811.763"
+   y1="195.895"
+   x2="821.14301"
+   y2="191.935"
+   id="line70"
+   style="fill:none;stroke:#b94b34;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="811.81201"
+   y1="195.405"
+   x2="821.388"
+   y2="191.38901"
+   id="line72"
+   style="fill:none;stroke:#c0553c;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="811.91199"
+   y1="194.92"
+   x2="821.586"
+   y2="190.84"
+   id="line74"
+   style="fill:none;stroke:#c75f44;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="812.00897"
+   y1="194.435"
+   x2="821.78302"
+   y2="190.29601"
+   id="line76"
+   style="fill:none;stroke:#ce694d;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="812.10999"
+   y1="193.944"
+   x2="821.98102"
+   y2="189.74899"
+   id="line78"
+   style="fill:none;stroke:#d57557;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="812.20599"
+   y1="193.455"
+   x2="822.17902"
+   y2="189.207"
+   id="line80"
+   style="fill:none;stroke:#db8061;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="812.30798"
+   y1="192.972"
+   x2="822.42401"
+   y2="188.662"
+   id="line82"
+   style="fill:none;stroke:#e28c6d;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="812.40302"
+   y1="192.479"
+   x2="822.62299"
+   y2="188.119"
+   id="line84"
+   style="fill:none;stroke:#ea9879;stroke-miterlimit:3.86400008" />
+		</g>
+	</g>
+	<g
+   id="Kante-OL">
+		<defs
+   id="defs87">
+			<polygon
+   points="864.132,60.504 865.857,56.441 815.368,56.437 817.836,60.504 "
+   id="SVGID_5_" />
+		</defs>
+		<clipPath
+   id="SVGID_6_">
+			<use
+   id="use91"
+   style="overflow:visible"
+   x="0"
+   y="0"
+   width="1007.524"
+   height="217.896"
+   xlink:href="#SVGID_5_" />
+		</clipPath>
+		<rect
+   width="51.929001"
+   height="2.8940001"
+   x="814.68701"
+   y="56.437"
+   clip-path="url(#SVGID_6_)"
+   id="rect93"
+   style="fill:#f1b9a1" />
+		<rect
+   width="51.929001"
+   height="1.27"
+   x="814.68701"
+   y="58.061001"
+   clip-path="url(#SVGID_6_)"
+   id="rect95"
+   style="fill:#e58060" />
+		<rect
+   width="51.929001"
+   height="0.639"
+   x="814.68701"
+   y="58.692001"
+   clip-path="url(#SVGID_6_)"
+   id="rect97"
+   style="fill:#dc5137" />
+		<rect
+   width="51.929001"
+   height="0.090999998"
+   x="814.68701"
+   y="57.334999"
+   clip-path="url(#SVGID_6_)"
+   id="rect99"
+   style="fill:#f7d8c8" />
+	</g>
+	<g
+   id="Kante-OR">
+		<defs
+   id="defs102">
+			<polygon
+   points="962.878,61.128 962.878,61.128 969.16,56.437 917.336,56.437 917.73,61.128 "
+   id="SVGID_7_" />
+		</defs>
+		<clipPath
+   id="SVGID_8_">
+			<use
+   id="use106"
+   style="overflow:visible"
+   x="0"
+   y="0"
+   width="1007.524"
+   height="217.896"
+   xlink:href="#SVGID_7_" />
+		</clipPath>
+		<rect
+   width="53.056999"
+   height="2.8940001"
+   x="916.69299"
+   y="56.437"
+   clip-path="url(#SVGID_8_)"
+   id="rect108"
+   style="fill:#f1b9a1" />
+		<rect
+   width="53.056999"
+   height="1.27"
+   x="916.69299"
+   y="58.061001"
+   clip-path="url(#SVGID_8_)"
+   id="rect110"
+   style="fill:#e58060" />
+		<rect
+   width="53.056999"
+   height="0.639"
+   x="916.69299"
+   y="58.692001"
+   clip-path="url(#SVGID_8_)"
+   id="rect112"
+   style="fill:#dc5137" />
+		<rect
+   width="53.056999"
+   height="0.090999998"
+   x="916.69299"
+   y="57.334999"
+   clip-path="url(#SVGID_8_)"
+   id="rect114"
+   style="fill:#f7d8c8" />
+	</g>
+</g>
+<g
+   transform="translate(2.9259706,3.1378985)"
+   id="V1">
+	<polyline
+   id="Kern_3_"
+   points="657.052,56.441 707.541,56.441 707.541,138.126 759.02,56.437 810.844,56.437    714.944,197.523 657.052,197.523 657.052,56.441  "
+   style="fill:#d4011d" />
+	<polyline
+   id="Kante-U_2_"
+   points="659.52,194.615 714.256,194.615 714.944,197.523 657.052,197.523 659.52,194.615     "
+   style="fill:#831014" />
+	<polyline
+   id="Kante-MR_2_"
+   points="759.414,61.128 705.815,146.714 707.541,138.126 759.02,56.437 759.414,61.128     "
+   style="fill:#ea9879" />
+	<g
+   id="Schatten-Kante-MR_2_">
+		<defs
+   id="defs121">
+			<polygon
+   points="705.815,146.714 759.414,61.128 759.02,56.437 707.541,138.126 "
+   id="SVGID_9_" />
+		</defs>
+		<clipPath
+   id="SVGID_10_">
+			<use
+   id="use125"
+   style="overflow:visible"
+   x="0"
+   y="0"
+   width="1007.524"
+   height="217.896"
+   xlink:href="#SVGID_9_" />
+		</clipPath>
+		<g
+   clip-path="url(#SVGID_10_)"
+   id="g127">
+			<line
+   stroke-miterlimit="3.864"
+   x1="708.42902"
+   y1="131.41499"
+   x2="705.37201"
+   y2="148.077"
+   id="line129"
+   style="fill:none;stroke:#831014;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="708.77502"
+   y1="131.17599"
+   x2="705.96002"
+   y2="147.437"
+   id="line131"
+   style="fill:none;stroke:#8a1a18;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="709.12201"
+   y1="130.936"
+   x2="706.505"
+   y2="146.793"
+   id="line133"
+   style="fill:none;stroke:#92231b;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="709.46899"
+   y1="130.69901"
+   x2="707.04901"
+   y2="146.151"
+   id="line135"
+   style="fill:none;stroke:#992b20;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="709.81201"
+   y1="130.45599"
+   x2="707.59003"
+   y2="145.511"
+   id="line137"
+   style="fill:none;stroke:#a13425;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="710.20599"
+   y1="130.215"
+   x2="708.13397"
+   y2="144.867"
+   id="line139"
+   style="fill:none;stroke:#a83e2b;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="710.55402"
+   y1="129.979"
+   x2="708.67902"
+   y2="144.231"
+   id="line141"
+   style="fill:none;stroke:#b04732;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="710.896"
+   y1="129.742"
+   x2="709.21899"
+   y2="143.59"
+   id="line143"
+   style="fill:none;stroke:#b85239;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="711.242"
+   y1="129.49899"
+   x2="709.81201"
+   y2="142.94901"
+   id="line145"
+   style="fill:none;stroke:#c05c42;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="711.59003"
+   y1="129.258"
+   x2="710.35602"
+   y2="142.308"
+   id="line147"
+   style="fill:none;stroke:#c8674b;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="711.93799"
+   y1="129.02"
+   x2="710.896"
+   y2="141.66499"
+   id="line149"
+   style="fill:none;stroke:#d17355;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="712.27899"
+   y1="128.783"
+   x2="711.44098"
+   y2="141.02299"
+   id="line151"
+   style="fill:none;stroke:#d97e60;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="712.62598"
+   y1="128.54201"
+   x2="711.98499"
+   y2="140.383"
+   id="line153"
+   style="fill:none;stroke:#e18b6c;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="713.021"
+   y1="128.306"
+   x2="712.52399"
+   y2="139.73599"
+   id="line155"
+   style="fill:none;stroke:#ea9879;stroke-miterlimit:3.86400008" />
+		</g>
+	</g>
+	<polyline
+   id="Kante-R_3_"
+   clip-rule="evenodd"
+   points="714.256,194.615 804.562,61.128    804.562,61.128 810.844,56.437 714.944,197.523 714.256,194.615  "
+   style="fill:#831014;fill-rule:evenodd" />
+	<polyline
+   id="Kante-ML_2_"
+   points="705.815,146.714 705.815,60.504 707.541,56.441 707.541,138.126    705.815,146.714  "
+   style="fill:#831014" />
+	<polyline
+   id="Kante-L_3_"
+   points="659.52,60.504 659.52,194.619 657.052,197.523 657.052,56.437 659.52,60.504  "
+   style="fill:#ea9879" />
+	<g
+   id="Schatten-Kante-L_3_">
+		<defs
+   id="defs161">
+			<polyline
+   id="SVGID_11_"
+   points="657.052,197.523 659.52,194.615 659.52,60.509 657.052,56.437 657.052,197.523    " />
+		</defs>
+		<clipPath
+   id="SVGID_12_">
+			<use
+   id="use165"
+   style="overflow:visible"
+   x="0"
+   y="0"
+   width="1007.524"
+   height="217.896"
+   xlink:href="#SVGID_11_" />
+		</clipPath>
+		<g
+   clip-path="url(#SVGID_12_)"
+   id="g167">
+			<line
+   stroke-miterlimit="3.864"
+   x1="652.854"
+   y1="198.82001"
+   x2="661.59198"
+   y2="195.202"
+   id="line169"
+   style="fill:none;stroke:#941017;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="652.95502"
+   y1="198.336"
+   x2="661.83801"
+   y2="194.655"
+   id="line171"
+   style="fill:none;stroke:#9a1c1a;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="653.05103"
+   y1="197.84399"
+   x2="662.03497"
+   y2="194.118"
+   id="line173"
+   style="fill:none;stroke:#a0261e;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="653.15198"
+   y1="197.35899"
+   x2="662.23297"
+   y2="193.56799"
+   id="line175"
+   style="fill:none;stroke:#a62e22;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="653.24902"
+   y1="196.87"
+   x2="662.43103"
+   y2="193.026"
+   id="line177"
+   style="fill:none;stroke:#ac3827;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="653.34998"
+   y1="196.383"
+   x2="662.62799"
+   y2="192.479"
+   id="line179"
+   style="fill:none;stroke:#b3412d;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="653.44598"
+   y1="195.895"
+   x2="662.82599"
+   y2="191.935"
+   id="line181"
+   style="fill:none;stroke:#b94b34;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="653.495"
+   y1="195.405"
+   x2="663.07098"
+   y2="191.38901"
+   id="line183"
+   style="fill:none;stroke:#c0553c;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="653.59601"
+   y1="194.92"
+   x2="663.27002"
+   y2="190.84"
+   id="line185"
+   style="fill:none;stroke:#c75f44;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="653.69202"
+   y1="194.435"
+   x2="663.46698"
+   y2="190.29601"
+   id="line187"
+   style="fill:none;stroke:#ce694d;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="653.79401"
+   y1="193.944"
+   x2="663.66498"
+   y2="189.74899"
+   id="line189"
+   style="fill:none;stroke:#d57557;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="653.89001"
+   y1="193.455"
+   x2="663.862"
+   y2="189.207"
+   id="line191"
+   style="fill:none;stroke:#db8061;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="653.99103"
+   y1="192.972"
+   x2="664.10699"
+   y2="188.662"
+   id="line193"
+   style="fill:none;stroke:#e28c6d;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="654.08698"
+   y1="192.479"
+   x2="664.30701"
+   y2="188.119"
+   id="line195"
+   style="fill:none;stroke:#ea9879;stroke-miterlimit:3.86400008" />
+		</g>
+	</g>
+	<g
+   id="Kante-OL_3_">
+		<defs
+   id="defs198">
+			<polygon
+   points="705.815,60.504 707.541,56.441 657.052,56.437 659.52,60.504 "
+   id="SVGID_13_" />
+		</defs>
+		<clipPath
+   id="SVGID_14_">
+			<use
+   id="use202"
+   style="overflow:visible"
+   x="0"
+   y="0"
+   width="1007.524"
+   height="217.896"
+   xlink:href="#SVGID_13_" />
+		</clipPath>
+		<rect
+   width="51.929001"
+   height="2.8940001"
+   x="656.37"
+   y="56.437"
+   clip-path="url(#SVGID_14_)"
+   id="rect204"
+   style="fill:#f1b9a1" />
+		<rect
+   width="51.929001"
+   height="1.27"
+   x="656.37"
+   y="58.061001"
+   clip-path="url(#SVGID_14_)"
+   id="rect206"
+   style="fill:#e58060" />
+		<rect
+   width="51.929001"
+   height="0.639"
+   x="656.37"
+   y="58.692001"
+   clip-path="url(#SVGID_14_)"
+   id="rect208"
+   style="fill:#dc5137" />
+		<rect
+   width="51.929001"
+   height="0.090999998"
+   x="656.37"
+   y="57.334999"
+   clip-path="url(#SVGID_14_)"
+   id="rect210"
+   style="fill:#f7d8c8" />
+	</g>
+	<g
+   id="Kante-OR_3_">
+		<defs
+   id="defs213">
+			<polygon
+   points="804.562,61.128 804.562,61.128 810.844,56.437 759.02,56.437 759.414,61.128 "
+   id="SVGID_15_" />
+		</defs>
+		<clipPath
+   id="SVGID_16_">
+			<use
+   id="use217"
+   style="overflow:visible"
+   x="0"
+   y="0"
+   width="1007.524"
+   height="217.896"
+   xlink:href="#SVGID_15_" />
+		</clipPath>
+		<rect
+   width="53.056999"
+   height="2.8940001"
+   x="758.37701"
+   y="56.437"
+   clip-path="url(#SVGID_16_)"
+   id="rect219"
+   style="fill:#f1b9a1" />
+		<rect
+   width="53.056999"
+   height="1.27"
+   x="758.37701"
+   y="58.061001"
+   clip-path="url(#SVGID_16_)"
+   id="rect221"
+   style="fill:#e58060" />
+		<rect
+   width="53.056999"
+   height="0.639"
+   x="758.37701"
+   y="58.692001"
+   clip-path="url(#SVGID_16_)"
+   id="rect223"
+   style="fill:#dc5137" />
+		<rect
+   width="53.056999"
+   height="0.090999998"
+   x="758.37701"
+   y="57.334999"
+   clip-path="url(#SVGID_16_)"
+   id="rect225"
+   style="fill:#f7d8c8" />
+	</g>
+</g>
+<g
+   transform="translate(2.9259706,3.1378985)"
+   id="H">
+	<polygon
+   points="551.85,104.722 568.02,56.447 518.257,56.447 470.726,197.389 520.807,197.389 537.851,146.507 572.064,146.507 554.905,197.389 604.984,197.389 652.198,56.447 602.436,56.447 586.155,104.722 "
+   id="Kern_2_"
+   style="fill:#d4011d" />
+	<polyline
+   id="Kante-L_2_"
+   points="470.726,197.389 474.872,194.591 519.789,60.504 518.257,56.447 470.726,197.389     "
+   style="fill:#ea9879" />
+	<polygon
+   points="647.938,60.504 602.72,194.591 604.984,197.389 652.198,56.447 "
+   id="Kante-R_2_"
+   style="fill:#831014" />
+	<polygon
+   points="518.542,194.591 520.807,197.389 470.726,197.389 474.872,194.591 "
+   id="Kante-UL"
+   style="fill:#831014" />
+	<polygon
+   points="554.905,197.389 559.051,194.591 602.72,194.591 604.984,197.389 "
+   id="Kante-UR"
+   style="fill:#831014" />
+	<polygon
+   points="588.031,108.077 586.155,104.722 602.436,56.447 603.968,60.504 "
+   id="Kante-MOR"
+   style="fill:#ea9879" />
+	<polygon
+   points="551.85,104.722 568.02,56.447 563.761,60.504 547.717,108.077 "
+   id="Kante-MOL"
+   style="fill:#831014" />
+	<g
+   id="Schatten-Kante-L_2_">
+		<defs
+   id="defs236">
+			<polyline
+   id="SVGID_17_"
+   points="470.726,197.389 474.872,194.591 519.789,60.504 518.257,56.447 470.726,197.389    " />
+		</defs>
+		<clipPath
+   id="SVGID_18_">
+			<use
+   id="use240"
+   style="overflow:visible"
+   x="0"
+   y="0"
+   width="1007.524"
+   height="217.896"
+   xlink:href="#SVGID_17_" />
+		</clipPath>
+		<g
+   clip-path="url(#SVGID_18_)"
+   id="g242">
+			<line
+   stroke-miterlimit="3.864"
+   x1="469.09799"
+   y1="197.52299"
+   x2="477.836"
+   y2="193.91"
+   id="line244"
+   style="fill:none;stroke:#941017;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="469.198"
+   y1="197.034"
+   x2="478.082"
+   y2="193.36099"
+   id="line246"
+   style="fill:none;stroke:#9a1c1a;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="469.29501"
+   y1="196.55"
+   x2="478.27899"
+   y2="192.819"
+   id="line248"
+   style="fill:none;stroke:#a0261e;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="469.39099"
+   y1="196.061"
+   x2="478.47699"
+   y2="192.272"
+   id="line250"
+   style="fill:none;stroke:#a62e22;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="469.49301"
+   y1="195.57401"
+   x2="478.67401"
+   y2="191.728"
+   id="line252"
+   style="fill:none;stroke:#ac3827;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="469.59399"
+   y1="195.08501"
+   x2="478.867"
+   y2="191.17599"
+   id="line254"
+   style="fill:none;stroke:#b3412d;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="469.642"
+   y1="194.595"
+   x2="479.07001"
+   y2="190.633"
+   id="line256"
+   style="fill:none;stroke:#b94b34;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="469.73801"
+   y1="194.11301"
+   x2="479.315"
+   y2="190.09399"
+   id="line258"
+   style="fill:none;stroke:#c0553c;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="469.84"
+   y1="193.62399"
+   x2="479.51401"
+   y2="189.54601"
+   id="line260"
+   style="fill:none;stroke:#c75f44;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="469.936"
+   y1="193.13499"
+   x2="479.711"
+   y2="189.004"
+   id="line262"
+   style="fill:none;stroke:#ce694d;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="470.03699"
+   y1="192.646"
+   x2="479.909"
+   y2="188.455"
+   id="line264"
+   style="fill:none;stroke:#d57557;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="470.134"
+   y1="192.161"
+   x2="480.10199"
+   y2="187.908"
+   id="line266"
+   style="fill:none;stroke:#db8061;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="470.23001"
+   y1="191.66901"
+   x2="480.30399"
+   y2="187.36501"
+   id="line268"
+   style="fill:none;stroke:#e28c6d;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="470.332"
+   y1="191.186"
+   x2="480.49701"
+   y2="186.821"
+   id="line270"
+   style="fill:none;stroke:#ea9879;stroke-miterlimit:3.86400008" />
+		</g>
+	</g>
+	<g
+   id="Kante-MUR">
+		<defs
+   id="defs273">
+			<polygon
+   points="576.282,143.152 572.064,146.507 554.905,197.389 559.051,194.591 "
+   id="SVGID_19_" />
+		</defs>
+		<clipPath
+   id="SVGID_20_">
+			<use
+   id="use277"
+   style="overflow:visible"
+   x="0"
+   y="0"
+   width="1007.524"
+   height="217.896"
+   xlink:href="#SVGID_19_" />
+		</clipPath>
+		<polygon
+   points="579.658,197.108 565.541,140.52 536.173,147.776 550.29,204.442 "
+   clip-path="url(#SVGID_20_)"
+   id="polygon279"
+   style="fill:#ea9879" />
+		<polyline
+   clip-path="url(#SVGID_20_)"
+   points="583.114,196.249 568.997,139.662 565.344,140.57 579.461,197.162     583.114,196.249   "
+   id="polyline281"
+   style="fill:#e47b5b" />
+		<polyline
+   clip-path="url(#SVGID_20_)"
+   points="586.565,195.386 572.453,138.799 568.8,139.715 582.912,196.3     586.565,195.386   "
+   id="polyline283"
+   style="fill:#de5d40" />
+		<polyline
+   clip-path="url(#SVGID_20_)"
+   points="590.021,194.527 575.903,137.935 572.202,138.848 586.319,195.438     590.021,194.527   "
+   id="polyline285"
+   style="fill:#d93d2c" />
+		<g
+   clip-path="url(#SVGID_20_)"
+   id="g287">
+			<g
+   id="g289">
+				
+					<line
+   stroke-miterlimit="3.864"
+   x1="553.30701"
+   y1="197.52299"
+   x2="562.04498"
+   y2="193.91"
+   id="line291"
+   style="fill:none;stroke:#941017;stroke-width:0.85879999;stroke-miterlimit:3.86400008" />
+				
+					<line
+   stroke-miterlimit="3.864"
+   x1="553.40802"
+   y1="197.034"
+   x2="562.29102"
+   y2="193.36099"
+   id="line293"
+   style="fill:none;stroke:#9a1c1a;stroke-width:0.85879999;stroke-miterlimit:3.86400008" />
+				
+					<line
+   stroke-miterlimit="3.864"
+   x1="553.50403"
+   y1="196.55"
+   x2="562.48798"
+   y2="192.819"
+   id="line295"
+   style="fill:none;stroke:#a0261e;stroke-width:0.85879999;stroke-miterlimit:3.86400008" />
+				
+					<line
+   stroke-miterlimit="3.864"
+   x1="553.60101"
+   y1="196.061"
+   x2="562.68597"
+   y2="192.272"
+   id="line297"
+   style="fill:none;stroke:#a62e22;stroke-width:0.85879999;stroke-miterlimit:3.86400008" />
+				
+					<line
+   stroke-miterlimit="3.864"
+   x1="553.70203"
+   y1="195.57401"
+   x2="562.88397"
+   y2="191.728"
+   id="line299"
+   style="fill:none;stroke:#ac3827;stroke-width:0.85879999;stroke-miterlimit:3.86400008" />
+				
+					<line
+   stroke-miterlimit="3.864"
+   x1="553.80298"
+   y1="195.08501"
+   x2="563.07703"
+   y2="191.17599"
+   id="line301"
+   style="fill:none;stroke:#b3412d;stroke-width:0.85879999;stroke-miterlimit:3.86400008" />
+				
+					<line
+   stroke-miterlimit="3.864"
+   x1="553.85101"
+   y1="194.595"
+   x2="563.27802"
+   y2="190.633"
+   id="line303"
+   style="fill:none;stroke:#b94b34;stroke-width:0.85879999;stroke-miterlimit:3.86400008" />
+				
+					<line
+   stroke-miterlimit="3.864"
+   x1="553.94702"
+   y1="194.11301"
+   x2="563.52399"
+   y2="190.09399"
+   id="line305"
+   style="fill:none;stroke:#c0553c;stroke-width:0.85879999;stroke-miterlimit:3.86400008" />
+				
+					<line
+   stroke-miterlimit="3.864"
+   x1="554.04797"
+   y1="193.62399"
+   x2="563.72302"
+   y2="189.54601"
+   id="line307"
+   style="fill:none;stroke:#c75f44;stroke-width:0.85879999;stroke-miterlimit:3.86400008" />
+				
+					<line
+   stroke-miterlimit="3.864"
+   x1="554.146"
+   y1="193.13499"
+   x2="563.91998"
+   y2="189.004"
+   id="line309"
+   style="fill:none;stroke:#ce694d;stroke-width:0.85879999;stroke-miterlimit:3.86400008" />
+				
+					<line
+   stroke-miterlimit="3.864"
+   x1="554.24701"
+   y1="192.646"
+   x2="564.117"
+   y2="188.455"
+   id="line311"
+   style="fill:none;stroke:#d57557;stroke-width:0.85879999;stroke-miterlimit:3.86400008" />
+				
+					<line
+   stroke-miterlimit="3.864"
+   x1="554.34302"
+   y1="192.161"
+   x2="564.31097"
+   y2="187.908"
+   id="line313"
+   style="fill:none;stroke:#db8061;stroke-width:0.85879999;stroke-miterlimit:3.86400008" />
+				
+					<line
+   stroke-miterlimit="3.864"
+   x1="554.43799"
+   y1="191.66901"
+   x2="564.51398"
+   y2="187.36501"
+   id="line315"
+   style="fill:none;stroke:#e28c6d;stroke-width:0.85879999;stroke-miterlimit:3.86400008" />
+				
+					<line
+   stroke-miterlimit="3.864"
+   x1="554.53998"
+   y1="191.186"
+   x2="564.70502"
+   y2="186.821"
+   id="line317"
+   style="fill:none;stroke:#ea9879;stroke-width:0.85879999;stroke-miterlimit:3.86400008" />
+			</g>
+		</g>
+	</g>
+	<g
+   id="Kante-MUL">
+		<defs
+   id="defs320">
+			<polygon
+   points="518.542,194.591 520.807,197.389 537.851,146.507 535.889,143.152 "
+   id="SVGID_21_" />
+		</defs>
+		<clipPath
+   id="SVGID_22_">
+			<use
+   id="use324"
+   style="overflow:visible"
+   x="0"
+   y="0"
+   width="1007.524"
+   height="217.896"
+   xlink:href="#SVGID_21_" />
+		</clipPath>
+		<g
+   clip-path="url(#SVGID_22_)"
+   id="g326">
+			<polyline
+   points="540.173,143.967 517.861,196.525 522.402,198.461 544.713,145.894 540.173,143.967    "
+   id="polyline328"
+   style="fill:#b60b1a" />
+			<polyline
+   points="535.681,142.06 513.369,194.619 517.91,196.55 540.221,143.99 535.681,142.06    "
+   id="polyline330"
+   style="fill:#ac0d19" />
+		</g>
+	</g>
+	<g
+   id="Kante-MU">
+		<defs
+   id="defs333">
+			<polygon
+   points="537.851,146.507 535.889,143.152 576.282,143.152 572.064,146.507 "
+   id="SVGID_23_" />
+		</defs>
+		<clipPath
+   id="SVGID_24_">
+			<use
+   id="use337"
+   style="overflow:visible"
+   x="0"
+   y="0"
+   width="1007.524"
+   height="217.896"
+   xlink:href="#SVGID_23_" />
+		</clipPath>
+		<rect
+   width="43.612"
+   height="1.174"
+   x="533.70502"
+   y="143.067"
+   clip-path="url(#SVGID_24_)"
+   id="rect339"
+   style="fill:#ac0d19" />
+		<rect
+   width="43.612"
+   height="1.187"
+   x="533.70502"
+   y="144.192"
+   clip-path="url(#SVGID_24_)"
+   id="rect341"
+   style="fill:#980f17" />
+		<rect
+   width="43.612"
+   height="1.181"
+   x="533.70502"
+   y="145.33"
+   clip-path="url(#SVGID_24_)"
+   id="rect343"
+   style="fill:#831014" />
+	</g>
+	<g
+   id="Kante-MO">
+		<defs
+   id="defs346">
+			<polygon
+   points="547.717,108.077 551.85,104.722 586.155,104.722 588.031,108.077 "
+   id="SVGID_25_" />
+		</defs>
+		<clipPath
+   id="SVGID_26_">
+			<use
+   id="use350"
+   style="overflow:visible"
+   x="0"
+   y="0"
+   width="1007.524"
+   height="217.896"
+   xlink:href="#SVGID_25_" />
+		</clipPath>
+		<g
+   clip-path="url(#SVGID_26_)"
+   id="g352">
+			<rect
+   width="40.694"
+   height="2.895"
+   x="547.66101"
+   y="104.722"
+   id="rect354"
+   style="fill:#f1b9a1" />
+			<rect
+   width="40.694"
+   height="1.271"
+   x="547.66101"
+   y="106.346"
+   id="rect356"
+   style="fill:#e58060" />
+			<rect
+   width="40.694"
+   height="0.639"
+   x="547.66101"
+   y="106.978"
+   id="rect358"
+   style="fill:#dc5137" />
+			<rect
+   width="40.694"
+   height="0.090999998"
+   x="547.66101"
+   y="105.621"
+   id="rect360"
+   style="fill:#f7d8c8" />
+		</g>
+	</g>
+	<g
+   id="Schatten-MO">
+		<defs
+   id="defs363">
+			<polygon
+   points="547.717,108.077 551.85,104.722 553.563,104.722 "
+   id="SVGID_27_" />
+		</defs>
+		<clipPath
+   id="SVGID_28_">
+			<use
+   id="use367"
+   style="overflow:visible"
+   x="0"
+   y="0"
+   width="1007.524"
+   height="217.896"
+   xlink:href="#SVGID_27_" />
+		</clipPath>
+		<g
+   clip-path="url(#SVGID_28_)"
+   id="g369">
+			<line
+   stroke-miterlimit="3.864"
+   x1="554.12201"
+   y1="104.722"
+   x2="550.76703"
+   y2="104.722"
+   id="line371"
+   style="fill:none;stroke:#831014;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="553.98999"
+   y1="104.967"
+   x2="550.51501"
+   y2="104.967"
+   id="line373"
+   style="fill:none;stroke:#8a1a18;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="553.86401"
+   y1="105.201"
+   x2="550.18701"
+   y2="105.201"
+   id="line375"
+   style="fill:none;stroke:#92231b;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="553.737"
+   y1="105.442"
+   x2="549.86603"
+   y2="105.442"
+   id="line377"
+   style="fill:none;stroke:#992b20;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="553.60602"
+   y1="105.689"
+   x2="549.60797"
+   y2="105.689"
+   id="line379"
+   style="fill:none;stroke:#a13425;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="553.474"
+   y1="105.922"
+   x2="549.28601"
+   y2="105.922"
+   id="line381"
+   style="fill:none;stroke:#a83e2b;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="553.34802"
+   y1="106.155"
+   x2="548.966"
+   y2="106.155"
+   id="line383"
+   style="fill:none;stroke:#b04732;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="553.22198"
+   y1="106.396"
+   x2="548.70801"
+   y2="106.396"
+   id="line385"
+   style="fill:none;stroke:#b85239;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="553.02698"
+   y1="106.634"
+   x2="548.38702"
+   y2="106.634"
+   id="line387"
+   style="fill:none;stroke:#c05c42;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="552.89502"
+   y1="106.875"
+   x2="548.12201"
+   y2="106.875"
+   id="line389"
+   style="fill:none;stroke:#c8674b;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="552.76898"
+   y1="107.109"
+   x2="547.80103"
+   y2="107.109"
+   id="line391"
+   style="fill:none;stroke:#d17355;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="552.63599"
+   y1="107.347"
+   x2="547.47998"
+   y2="107.347"
+   id="line393"
+   style="fill:none;stroke:#d97e60;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="552.51001"
+   y1="107.588"
+   x2="547.22101"
+   y2="107.588"
+   id="line395"
+   style="fill:none;stroke:#e18b6c;stroke-miterlimit:3.86400008" />
+			<line
+   stroke-miterlimit="3.864"
+   x1="552.37799"
+   y1="107.83"
+   x2="546.90002"
+   y2="107.83"
+   id="line397"
+   style="fill:none;stroke:#ea9879;stroke-miterlimit:3.86400008" />
+		</g>
+	</g>
+	<g
+   id="Kante-OR_2_">
+		<defs
+   id="defs400">
+			<polygon
+   points="603.968,60.504 602.436,56.447 652.198,56.447 647.938,60.504 "
+   id="SVGID_29_" />
+		</defs>
+		<clipPath
+   id="SVGID_30_">
+			<use
+   id="use404"
+   style="overflow:visible"
+   x="0"
+   y="0"
+   width="1007.524"
+   height="217.896"
+   xlink:href="#SVGID_29_" />
+		</clipPath>
+		<rect
+   width="50.488998"
+   height="2.8940001"
+   x="601.974"
+   y="56.455002"
+   clip-path="url(#SVGID_30_)"
+   id="rect406"
+   style="fill:#f1b9a1" />
+		<rect
+   width="50.488998"
+   height="1.27"
+   x="601.974"
+   y="58.078999"
+   clip-path="url(#SVGID_30_)"
+   id="rect408"
+   style="fill:#e58060" />
+		<rect
+   width="50.488998"
+   height="0.639"
+   x="601.974"
+   y="58.709999"
+   clip-path="url(#SVGID_30_)"
+   id="rect410"
+   style="fill:#dc5137" />
+		<rect
+   width="50.488998"
+   height="0.090999998"
+   x="601.974"
+   y="57.354"
+   clip-path="url(#SVGID_30_)"
+   id="rect412"
+   style="fill:#f7d8c8" />
+	</g>
+	<g
+   id="Kante-OL_2_">
+		<defs
+   id="defs415">
+			<polygon
+   points="519.789,60.504 518.257,56.447 568.02,56.447 563.761,60.504 "
+   id="SVGID_31_" />
+		</defs>
+		<clipPath
+   id="SVGID_32_">
+			<use
+   id="use419"
+   style="overflow:visible"
+   x="0"
+   y="0"
+   width="1007.524"
+   height="217.896"
+   xlink:href="#SVGID_31_" />
+		</clipPath>
+		<rect
+   width="50.488998"
+   height="2.8940001"
+   x="517.79498"
+   y="56.455002"
+   clip-path="url(#SVGID_32_)"
+   id="rect421"
+   style="fill:#f1b9a1" />
+		<rect
+   width="50.488998"
+   height="1.27"
+   x="517.79498"
+   y="58.078999"
+   clip-path="url(#SVGID_32_)"
+   id="rect423"
+   style="fill:#e58060" />
+		<rect
+   width="50.488998"
+   height="0.639"
+   x="517.79498"
+   y="58.709999"
+   clip-path="url(#SVGID_32_)"
+   id="rect425"
+   style="fill:#dc5137" />
+		<rect
+   width="50.488998"
+   height="0.090999998"
+   x="517.79498"
+   y="57.354"
+   clip-path="url(#SVGID_32_)"
+   id="rect427"
+   style="fill:#f7d8c8" />
+	</g>
+</g>
+</svg>

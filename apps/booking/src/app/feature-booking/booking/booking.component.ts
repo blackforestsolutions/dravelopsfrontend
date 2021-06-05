@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 
 @Component({
-  selector: 'dravelopsfrontend-booking',
+  selector: 'dravelopsbookingfrontend-booking',
   templateUrl: './booking.component.html',
   styleUrls: ['./booking.component.scss']
 })
