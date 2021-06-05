@@ -36,7 +36,7 @@
       "projectType": "application",
       "root": "apps/shell",
       "sourceRoot": "apps/shell/src",
-      "prefix": "dravelopsfrontend",
+      "prefix": "dravelopsfrontendshell",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -46,7 +46,15 @@
             "main": "apps/shell/src/main.ts",
             "polyfills": "apps/shell/src/polyfills.ts",
             "tsConfig": "apps/shell/tsconfig.app.json",
-            "assets": ["apps/shell/src/favicon.ico", "apps/shell/src/assets"],
+            "assets": [
+              "apps/shell/src/favicon.ico",
+              "apps/shell/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./libs/shared-styles/src/assets",
+                "output": "/assets"
+              }
+            ],
             "styles": ["apps/shell/src/styles.scss"],
             "scripts": [],
             "vendorChunk": true,
@@ -211,7 +219,7 @@
       "projectType": "application",
       "root": "apps/efa",
       "sourceRoot": "apps/efa/src",
-      "prefix": "dravelopsfrontend",
+      "prefix": "dravelopsefafrontend",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -221,7 +229,15 @@
             "main": "apps/efa/src/main.ts",
             "polyfills": "apps/efa/src/polyfills.ts",
             "tsConfig": "apps/efa/tsconfig.app.json",
-            "assets": ["apps/efa/src/favicon.ico", "apps/efa/src/assets"],
+            "assets": [
+              "apps/efa/src/favicon.ico",
+              "apps/efa/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./libs/shared-styles/src/assets",
+                "output": "/assets"
+              }
+            ],
             "styles": ["apps/efa/src/styles.scss"],
             "scripts": [],
             "vendorChunk": true,
@@ -327,7 +343,7 @@
       "projectType": "application",
       "root": "apps/booking",
       "sourceRoot": "apps/booking/src",
-      "prefix": "dravelopsfrontend",
+      "prefix": "dravelopsbookingfrontend",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -339,7 +355,12 @@
             "tsConfig": "apps/booking/tsconfig.app.json",
             "assets": [
               "apps/booking/src/favicon.ico",
-              "apps/booking/src/assets"
+              "apps/booking/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./libs/shared-styles/src/assets",
+                "output": "/assets"
+              }
             ],
             "styles": ["apps/booking/src/styles.scss"],
             "scripts": []

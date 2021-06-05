@@ -14,7 +14,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "dravelopsfrontend",
+            "prefix": "dravelopsfrontendshell",
             "style": "camelCase"
           }
         ],
@@ -22,7 +22,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "dravelopsfrontend",
+            "prefix": "dravelopsfrontendshell",
             "style": "kebab-case"
           }
         ]
