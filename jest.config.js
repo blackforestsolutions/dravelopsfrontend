@@ -4,6 +4,16 @@ module.exports = {
     '<rootDir>/apps/efa',
     '<rootDir>/apps/booking',
     '<rootDir>/libs/shared-styles',
-    '<rootDir>/libs/data-access',
   ],
+  transform: {
+    '^.+\\.(ts|js|html)$': 'ts-jest',
+  },
+  coverageThreshold: {
+    global: {
+      branches: 80,
+      functions: 80,
+      lines: 80,
+      statements: 80,
+    },
+  },
 };

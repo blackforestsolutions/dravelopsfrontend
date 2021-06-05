@@ -1,0 +1,39 @@
+name: Angular Build
+
+on: [ push ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: '0'
+
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Checkstyle Tests
+        run: npm run all:lint
+
+      - name: Run Unit Tests
+        run: npm run all:cover
+
+      #      - name: Run e2e Tests
+      #        run: npm run all:e2e
+
+      - name: Build projects
+        run: npm run all:build

@@ -16,13 +16,29 @@
     }
   },
   "projects": {
-    "shell": { "tags": [] },
-    "shell-e2e": { "tags": [], "implicitDependencies": ["shell"] },
-    "efa": { "tags": [] },
-    "efa-e2e": { "tags": [], "implicitDependencies": ["efa"] },
-    "booking": { "tags": [] },
-    "booking-e2e": { "tags": [], "implicitDependencies": ["booking"] },
-    "shared-styles": { "tags": [] },
-    "data-access": { "tags": [] }
+    "shell": {
+      "tags": []
+    },
+    "shell-e2e": {
+      "tags": [],
+      "implicitDependencies": ["shell"]
+    },
+    "efa": {
+      "tags": []
+    },
+    "efa-e2e": {
+      "tags": [],
+      "implicitDependencies": ["efa"]
+    },
+    "booking": {
+      "tags": []
+    },
+    "booking-e2e": {
+      "tags": [],
+      "implicitDependencies": ["booking"]
+    },
+    "shared-styles": {
+      "tags": []
+    }
   }
 }

@@ -15,8 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@dravelopsfrontend/shared-styles": ["libs/shared-styles/src/index.ts"],
-      "@dravelopsfrontend/data-access": ["libs/data-access/src/index.ts"]
+      "@dravelopsfrontend/shared-styles": ["libs/shared-styles/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
