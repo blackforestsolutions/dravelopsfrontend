@@ -1,4 +1,4 @@
-import { TravelPoint } from '../model/generated';
+import { TravelPoint } from '@dravelopsfrontend/generated-content';
 
 /**
  * NEVER USE IN PRODUCTIVE CODE!

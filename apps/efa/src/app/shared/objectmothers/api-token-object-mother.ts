@@ -1,6 +1,6 @@
 import * as os from 'os';
 import { ApiToken } from '../model/api-token';
-import { GetAllJourneysQueryVariables } from '../model/generated';
+import { GetAllJourneysQueryVariables } from '@dravelopsfrontend/generated-content';
 
 const DEFAULT_TEST_IS_ROUND_TRIP = true;
 const DEFAULT_TEST_IS_NO_ROUND_TRIP = false;

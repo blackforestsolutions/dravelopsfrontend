@@ -10,7 +10,7 @@ import {
   getWaldkirchTownCenterTravelPoint
 } from './travel-point-object-mother';
 import { getSuedbadenTravelProvider } from './travel-provider-object-mother';
-import { Leg, Point, VehicleType } from '../model/generated';
+import { Leg, Point, VehicleType } from '@dravelopsfrontend/generated-content';
 
 /**
  * NEVER USE IN PRODUCTIVE CODE!

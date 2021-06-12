@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { JourneyFragment } from '../../../shared/model/generated';
+import { JourneyFragment } from '@dravelopsfrontend/generated-content';
 
 const LAST_INDEX = 1;
 

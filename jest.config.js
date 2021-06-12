@@ -4,6 +4,7 @@ module.exports = {
     '<rootDir>/apps/efa',
     '<rootDir>/apps/booking',
     '<rootDir>/libs/shared-styles',
+    '<rootDir>/libs/generated-content',
   ],
   transform: {
     '^.+\\.(ts|js|html)$': 'ts-jest',

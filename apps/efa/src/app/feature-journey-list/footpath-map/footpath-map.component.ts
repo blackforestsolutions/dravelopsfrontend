@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges } from '@angular/core';
 import { GeoJSON, geoJSON, icon, LatLng, latLng, LeafletEvent, Map, MapOptions, Marker, marker, TileLayer, tileLayer } from 'leaflet';
-import { PointFragment } from '../../shared/model/generated';
+import { PointFragment } from '@dravelopsfrontend/generated-content';
 
 const OSM_MAP = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 const DEPARTURE_ICON_URL = 'assets/footpath/departure_icon.svg';
@@ -23,13 +23,11 @@ const MAP_ATTRIBUTION = '&copy; <a href="https://www.openstreetmap.org/copyright
   styleUrls: ['./footpath-map.component.scss']
 })
 export class FootpathMapComponent implements OnChanges {
-
   @Input() waypoints: PointFragment[];
   options: MapOptions;
   private map: Map;
   private zoom: number;
   private geoJSONCoordinates: Array<Array<number>>;
-
 
   ngOnChanges(): void {
     this.options = this.getMap();
@@ -54,7 +52,6 @@ export class FootpathMapComponent implements OnChanges {
     }
     return geojsonCoordinates;
   }
-
 
   private getMap(): unknown {
     this.geoJSONCoordinates = this.mapWaypointsToGeoJSONCoordinates();
@@ -117,4 +114,3 @@ export class FootpathMapComponent implements OnChanges {
     });
   }
 }
-

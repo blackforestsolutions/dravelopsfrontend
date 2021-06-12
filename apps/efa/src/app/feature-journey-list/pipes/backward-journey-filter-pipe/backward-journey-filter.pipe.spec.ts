@@ -1,5 +1,5 @@
 import { BackwardJourneyFilterPipe } from './backward-journey-filter.pipe';
-import { JourneyFragment } from '../../../shared/model/generated';
+import { JourneyFragment } from '@dravelopsfrontend/generated-content';
 import { expect } from '@jest/globals';
 import {
   getFurtwangenToWaldkirchJourney,

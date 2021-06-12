@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { LegFragment, VehicleType } from '../../shared/model/generated';
+import { LegFragment, VehicleType } from '@dravelopsfrontend/generated-content';
 
 @Component({
   selector: 'dravelopsefafrontend-leg-list',

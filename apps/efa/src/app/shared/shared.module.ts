@@ -16,10 +16,6 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatChipsModule } from '@angular/material/chips';
-import { APOLLO_OPTIONS } from 'apollo-angular';
-import { HttpLink } from 'apollo-angular/http';
-import { createGraphQlConnection } from './api/api-connection';
-import { HOST, PORT } from '../../environments/config-tokens';
 
 const materialModules = [
   MatAutocompleteModule,
@@ -49,12 +45,7 @@ const materialModules = [
   providers: [
     {
       provide: MAT_RADIO_DEFAULT_OPTIONS,
-      useValue: { color: 'primary' }
-    },
-    {
-      provide: APOLLO_OPTIONS,
-      useFactory: createGraphQlConnection,
-      deps: [HttpLink, HOST, PORT]
+      useValue: {color: 'primary'}
     }
   ],
   exports: [

@@ -1,5 +1,5 @@
 import { EMPTY, Observable } from 'rxjs';
-import { JourneyFragment } from '../model/generated';
+import { JourneyFragment } from '@dravelopsfrontend/generated-content';
 import { scanJourneys } from './rxjs';
 import { tap } from 'rxjs/operators';
 import { TestScheduler } from 'rxjs/testing';

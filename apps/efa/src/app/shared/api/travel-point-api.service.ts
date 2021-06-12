@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AutocompleteTravelPointFragment, GetAddressesGQL, GetAddressesQuery } from '../model/generated';
+import { AutocompleteTravelPointFragment, GetAddressesGQL, GetAddressesQuery } from '@dravelopsfrontend/generated-content';
 import { map, retry } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { ApolloQueryResult } from '@apollo/client';

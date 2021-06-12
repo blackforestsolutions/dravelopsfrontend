@@ -13,7 +13,7 @@ import { VehicleTypeComponent } from '../vehicle-type/vehicle-type.component';
 import { FootpathMapComponent } from '../footpath-map/footpath-map.component';
 import { SharedModule } from '../../shared/shared.module';
 import { getFurtwangenIlbenstreetToBleibachLeg, getWaldkirchKastelberghalleToSickLeg } from '../../shared/objectmothers/leg-object-mother';
-import { LegFragment, VehicleType } from '../../shared/model/generated';
+import { LegFragment, VehicleType } from '@dravelopsfrontend/generated-content';
 
 describe('LegListItemComponent', () => {
   let componentUnderTest: LegListItemComponent;

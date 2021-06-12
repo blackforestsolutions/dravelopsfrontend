@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { JourneyFragment } from '../../shared/model/generated';
+import { JourneyFragment } from '@dravelopsfrontend/generated-content';
 import { IsOnlyFootpathPipe } from '../pipes/is-only-footpath-pipe/is-only-footpath.pipe';
 
 const FOOTPATH_PRICE = 0;

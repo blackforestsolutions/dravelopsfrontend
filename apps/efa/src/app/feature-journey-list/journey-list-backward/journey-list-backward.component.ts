@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { merge, Observable, Subject } from 'rxjs';
-import { JourneyFragment } from '../../shared/model/generated';
+import { JourneyFragment } from '@dravelopsfrontend/generated-content';
 import { map, mergeMap, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { JourneyListService } from '../services/journey-list.service';

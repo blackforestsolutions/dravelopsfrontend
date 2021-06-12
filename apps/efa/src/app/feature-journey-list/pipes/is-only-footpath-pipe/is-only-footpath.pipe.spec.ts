@@ -1,5 +1,5 @@
 import { IsOnlyFootpathPipe } from './is-only-footpath.pipe';
-import { JourneyFragment } from '../../../shared/model/generated';
+import { JourneyFragment } from '@dravelopsfrontend/generated-content';
 import {
   getFurtwangenToWaldkirchJourney,
   getGrosshausbergToFurtwangenIlbenstreetJourney

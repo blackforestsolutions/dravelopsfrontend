@@ -1,5 +1,5 @@
 import { IsJourneyInPastPipe } from './is-journey-in-past.pipe';
-import { JourneyFragment } from '../../../shared/model/generated';
+import { JourneyFragment } from '@dravelopsfrontend/generated-content';
 import { getFurtwangenToWaldkirchJourneyByArrivalTime } from '../../../shared/objectmothers/journey-object-mother';
 
 describe('IsJourneyInPastPipe', () => {

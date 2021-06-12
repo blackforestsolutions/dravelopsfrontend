@@ -1,4 +1,4 @@
-import { TravelProvider } from '../model/generated';
+import { TravelProvider } from '@dravelopsfrontend/generated-content';
 
 /**
  * NEVER USE IN PRODUCTIVE CODE!

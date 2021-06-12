@@ -5,18 +5,16 @@
   "scripts": {
     "start": "ng serve",
     "build": "ng build --configuration production",
-    "update:model": "graphql-codegen --config apps/efa/src/app/shared/model/codegen.yml",
+    "update:model": "graphql-codegen --config libs/graphql-generated-content/src/lib/model/codegen.yml",
     "all:test": "nx run-many --target=test --all",
     "all:lint": "nx run-many --target=lint --all --max-warnings=0",
-    "all:build": "nx run-many --target=build --all --configuration production && ng run shell:server --configuration production",
+    "all:build": "nx run-many --target=build --all --configuration production",
     "all:e2e": "nx run-many --target=e2e --all --browser=chrome",
     "all:cover": "jest --coverage",
     "update": "nx migrate latest",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "dev:ssr": "ng run shell:serve-ssr",
-    "serve:ssr": "node dist/apps/shell/server/main.js",
-    "build:ssr": "ng build --project shell --configuration production && ng run shell:server --configuration production"
+    "postinstall": "ngcc --properties es2015 browser module main"
   },
   "private": true,
   "dependencies": {
@@ -29,13 +27,10 @@
     "@angular/material": "^12.0.2",
     "@angular/platform-browser": "^12.0.2",
     "@angular/platform-browser-dynamic": "^12.0.2",
-    "@angular/platform-server": "^12.0.2",
     "@angular/router": "^12.0.2",
     "@apollo/client": "^3.3.19",
     "@asymmetrik/ngx-leaflet": "^8.1.0",
-    "@nguniversal/express-engine": "^12.0.1",
     "apollo-angular": "^2.6.0",
-    "express": "^4.15.2",
     "graphql": "^15.5.0",
     "leaflet": "^1.7.1",
     "mat-timepicker": "^5.1.4",
@@ -44,6 +39,7 @@
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
+    "@angular-builders/custom-webpack": "^12.1.0",
     "@angular-devkit/build-angular": "^12.0.2",
     "@angular-eslint/eslint-plugin": "^12.0.0",
     "@angular-eslint/eslint-plugin-template": "^12.0.0",
@@ -54,7 +50,6 @@
     "@graphql-codegen/cli": "^1.21.5",
     "@graphql-codegen/typescript-apollo-angular": "^2.3.4",
     "@graphql-codegen/typescript-operations": "^1.18.0",
-    "@nguniversal/builders": "^12.0.1",
     "@nrwl/angular": "^12.3.6",
     "@nrwl/cli": "^12.3.6",
     "@nrwl/cypress": "^12.3.6",
@@ -63,7 +58,6 @@
     "@nrwl/linter": "^12.3.6",
     "@nrwl/tao": "^12.3.6",
     "@nrwl/workspace": "^12.3.6",
-    "@types/express": "^4.17.0",
     "@types/jest": "^26.0.8",
     "@types/leaflet": "^1.7.1",
     "@types/node": "^14.14.33",
@@ -80,6 +74,7 @@
     "prettier": "^2.2.1",
     "ts-jest": "^26.5.5",
     "ts-node": "~9.1.1",
-    "typescript": "~4.2.4"
+    "typescript": "~4.2.4",
+    "webpack": "^5.38.1"
   }
 }

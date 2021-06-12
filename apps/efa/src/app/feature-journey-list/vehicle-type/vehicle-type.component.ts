@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { VehicleType } from '../../shared/model/generated';
+import { VehicleType } from '@dravelopsfrontend/generated-content';
 
 @Component({
   selector: 'dravelopsefafrontend-vehicle-type',

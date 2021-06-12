@@ -16,7 +16,7 @@ import {
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { expect } from '@jest/globals';
-import { JourneyFragment } from '../../shared/model/generated';
+import { JourneyFragment } from '@dravelopsfrontend/generated-content';
 import {
   getFurtwangenToWaldkirchJourney,
   getFurtwangenToWaldkirchJourneyByArrivalTime,
