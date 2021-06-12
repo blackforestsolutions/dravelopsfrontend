@@ -1,12 +1,26 @@
-<mat-expansion-panel hideToggle>
-  <mat-expansion-panel-header>
-    <div class='grid-container'>
+<mat-expansion-panel class='panel' hideToggle>
+  <mat-expansion-panel-header class='header'
+                              [collapsedHeight]='(isTabletView | async) ? null : "10rem"'
+                              [expandedHeight]='(isTabletView | async) ? null : "10rem"'
+  >
+    <div class='grid-container' [ngStyle]='{height: (isTabletView | async) ? null : "10rem"}'>
+
       <!-- first raw -->
       <div>
         {{ journey.legs[0].departure.departureTime | date: 'shortTime' }}
         - {{ journey.legs[journey.legs.length - 1].arrival.arrivalTime | date: 'shortTime' }}
       </div>
-      <div class='flex-container'>
+      <div>{{ journey.legs[0].departure.departureTime | duration: journey.legs[journey.legs.length - 1].arrival.arrivalTime }}</div>
+      <div class='transfers'>{{ journey.legs.length - 1 }}</div>
+      <div class='buying-button-container'>
+        <button class='buying-button' mat-flat-button color='primary'>Kaufen</button>
+        <button *ngIf='isJourneyBuyable' id='buyingButton' class='buying-button' mat-flat-button color='primary'
+                (click)='emitJourneySelectedEvent()'>
+          {{ buttonSelectText }}
+        </button>
+      </div>
+
+      <div class='icons'>
         <ng-container *ngFor='let leg of journey.legs'>
           <mat-icon>{{ leg.vehicleType | vehicleType }}</mat-icon>
           <mat-icon *ngIf='journey.legs[journey.legs.length - 1].arrival.name !== leg.arrival.name'>
@@ -14,16 +28,7 @@
           </mat-icon>
         </ng-container>
       </div>
-      <div>
-        {{ journey.legs[0].departure.departureTime | duration: journey.legs[journey.legs.length - 1].arrival.arrivalTime }}
-      </div>
-      <div class='flex-container flex-container-max-space'>
-        <div id='transfers'>{{ journey.legs.length - 1 }}</div>
-        <button *ngIf='isJourneyBuyable' id='buyingButton' mat-flat-button color='primary' (click)='emitJourneySelectedEvent()'>
-          {{ buttonSelectText }}
-        </button>
-        <div class='price'>{{ getPrice() | currency: 'EUR' }}</div>
-      </div>
+      <div class='price'>{{ getPrice() | currency: 'EUR' }}</div>
     </div>
   </mat-expansion-panel-header>
   <dravelopsefafrontend-leg-list [legs]='journey.legs'></dravelopsefafrontend-leg-list>

@@ -7,12 +7,14 @@ import { MatButtonHarness } from '@angular/material/button/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-import { MatChipHarness } from '@angular/material/chips/testing';
 import { MockComponent, MockPipe } from 'ng-mocks';
 import { VehicleTypeComponent } from '../vehicle-type/vehicle-type.component';
 import { FootpathMapComponent } from '../footpath-map/footpath-map.component';
 import { SharedModule } from '../../shared/shared.module';
-import { getFurtwangenIlbenstreetToBleibachLeg, getWaldkirchKastelberghalleToSickLeg } from '../../shared/objectmothers/leg-object-mother';
+import {
+  getFurtwangenIlbenstreetToBleibachLeg,
+  getWaldkirchKastelberghalleToSickLeg
+} from '../../shared/objectmothers/leg-object-mother';
 import { LegFragment, VehicleType } from '../../shared/model/generated';
 
 describe('LegListItemComponent', () => {
@@ -112,22 +114,32 @@ describe('LegListItemComponent', () => {
       });
     }));
 
-    it('should show "vehicleType" and "vehicleName" if length from one is greater than zero', async () => {
-      const matChip: MatChipHarness = await loader.getHarness<MatChipHarness>(MatChipHarness);
+    it('should show "vehicleType" and "vehicleName" if intermediate stops and vehicleDescriptions are available', () => {
       const vehicleTypeComponent: VehicleTypeComponent = fixture.debugElement.query(By.directive(VehicleTypeComponent)).componentInstance;
 
-      const matChipText = await matChip.getText();
-      expect(matChipText).toBe('272');
+      const vehicleNumber: string = fixture.nativeElement.querySelector('.vehicleNumber').innerHTML;
+      expect(vehicleNumber).toBe('272');
       expect(vehicleTypeComponent.key).toBe(VehicleType.BUS);
     });
 
-    it('should show the intermediateStopButton and intermediateStopText when intermediateStops are greater than zero', async () => {
+    it('should show intermediateStopText when intermediateStops are greater than zero and whether vehicleNumber nor vehicleName is available', () => {
+      const testLeg: LegFragment = getFurtwangenIlbenstreetToBleibachLeg();
+      testLeg.vehicleName = '';
+      testLeg.vehicleNumber = '';
+      componentUnderTest.leg = testLeg;
+
+      fixture.detectChanges();
+
+      const intermediateStopText: string = fixture.nativeElement.querySelector('.intermediateStopsText').innerHTML;
+      expect(intermediateStopText).toBe('2 Zwischenhalte');
+    });
+
+    it('should show the intermediateStopButton when intermediateStops are greater than zero', async () => {
+
       const intermediateStopsButton: MatButtonHarness = await loader.getHarness<MatButtonHarness>(MatButtonHarness);
-      const intermediateStopsText = fixture.nativeElement.querySelector('.intermediateStops');
 
       const buttonText: string = await intermediateStopsButton.getText();
       expect(buttonText).toBe('chevron_left');
-      expect(intermediateStopsText.innerHTML).toBe(' 2 Zwischenhalte ');
     });
 
     it('should not show the intermediateStopButton when intermediateStops are zero', waitForAsync(() => {

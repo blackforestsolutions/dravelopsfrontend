@@ -81,6 +81,14 @@ export class JourneyListOutwardComponent implements OnInit, OnDestroy {
   }
 
   private mergeJourneys(): void {
+    // working with mock data
+    // of([getWaldkirchToFurtwangenJourney(), getFurtwangenToWaldkirchJourney()])
+    //   .pipe(
+    //     takeUntil(this.destroy$),
+    //     delay(2000),
+    //     tap(() => this.loading = false)
+    //   )
+    //   .subscribe((journeys: JourneyFragment[]) => this.journeys$.next(journeys));
     let isNewSearch;
     this.route.paramMap
       .pipe(
