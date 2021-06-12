@@ -88,7 +88,7 @@ describe('JourneyListItemComponent', () => {
 
     it('should show the correct number of transfers', () => {
 
-      const result: string = fixture.debugElement.nativeElement.querySelector('#transfers').innerHTML;
+      const result: string = fixture.debugElement.nativeElement.querySelector('.transfers').innerHTML;
 
       expect(result).toBe('3');
     });
