@@ -190,7 +190,10 @@
                 "output": "/assets"
               }
             ],
-            "styles": ["apps/efa/src/styles.scss"],
+            "styles": [
+              "./node_modules/leaflet/dist/leaflet.css",
+              "apps/efa/src/styles.scss"
+            ],
             "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,

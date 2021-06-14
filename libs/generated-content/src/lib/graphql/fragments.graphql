@@ -10,10 +10,10 @@ fragment journey on Journey {
 
 fragment leg on Leg {
   departure {
-    ...journeyTravelPoint
+    ...travelPoint
   }
   arrival {
-    ...journeyTravelPoint
+    ...travelPoint
   }
   delayInMinutes
   distanceInKilometers
@@ -27,7 +27,7 @@ fragment leg on Leg {
   vehicleNumber
   vehicleName
   intermediateStops {
-    ...journeyTravelPoint
+    ...travelPoint
   }
 }
 
@@ -37,7 +37,7 @@ fragment price on Price {
   smallestCurrencyValue
 }
 
-fragment journeyTravelPoint on TravelPoint {
+fragment travelPoint on TravelPoint {
   name
   point {
     ...point
@@ -52,9 +52,23 @@ fragment travelProvider on TravelProvider {
   url
 }
 
-fragment autocompleteTravelPoint on TravelPoint {
+fragment autocompleteAddress on TravelPoint {
   name
   point {
+    ...point
+  }
+}
+
+fragment nearestAddress on TravelPoint {
+  name
+  point {
+    ...point
+  }
+  distanceInKilometers
+}
+
+fragment polygon on Polygon {
+  points {
     ...point
   }
 }

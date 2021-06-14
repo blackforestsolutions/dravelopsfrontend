@@ -1,8 +1,9 @@
 export interface EfaEnvironment {
-  production: boolean | string;
+  production: boolean;
   host: string;
-  port: number | string;
-  maxFutureDaysInCalendar: number | string;
-  maxPastDaysInCalendar: number | string;
+  port: number;
+  radiusInKilometers: number;
+  maxFutureDaysInCalendar: number;
+  maxPastDaysInCalendar: number;
   customerDirectory: string;
 }

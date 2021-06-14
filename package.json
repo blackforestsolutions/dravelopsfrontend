@@ -5,7 +5,7 @@
   "scripts": {
     "start": "ng serve",
     "build": "ng build --configuration production",
-    "update:model": "graphql-codegen --config libs/graphql-generated-content/src/lib/model/codegen.yml",
+    "update:model": "graphql-codegen --config libs/generated-content/src/lib/model/codegen.yml",
     "all:test": "nx run-many --target=test --all",
     "all:lint": "nx run-many --target=lint --all --max-warnings=0",
     "all:build": "nx run-many --target=build --all --configuration production",
