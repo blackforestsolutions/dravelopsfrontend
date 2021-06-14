@@ -4,7 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { TravelPointValidators } from '../validators/travel-point-validators';
 import { distinctUntilChanged, switchMap, takeUntil } from 'rxjs/operators';
 import { ApiToken, Point, TravelTime } from '../../shared/model/api-token';
-import { AutocompleteTravelPointFragment } from '../../shared/model/generated';
+import { AutocompleteTravelPointFragment } from '@dravelopsfrontend/generated-content';
 import { MAX_FUTURE_DAYS_IN_CALENDAR, MAX_PAST_DAYS_IN_CALENDAR } from '../../../environments/config-tokens';
 import { TravelPointApiService } from '../../shared/api/travel-point-api.service';
 import { DateTimeValidators } from '../validators/date-time-validators';

@@ -11,7 +11,7 @@ import {
   getWaldkirchKastelberghalleToSickLegByArrivalTime
 } from './leg-object-mother';
 import { getRegularPrice } from './price-object-mother';
-import { Journey } from '../model/generated';
+import { Journey } from '@dravelopsfrontend/generated-content';
 
 /**
  * NEVER USE IN PRODUCTIVE CODE!

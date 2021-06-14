@@ -18,7 +18,7 @@ import {
   getApiTokenWithIsRoundTripAsTrue
 } from '../../shared/objectmothers/api-token-object-mother';
 import { ApiToken } from '../../shared/model/api-token';
-import { AutocompleteTravelPointFragment } from '../../shared/model/generated';
+import { AutocompleteTravelPointFragment } from '@dravelopsfrontend/generated-content';
 import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { MatDatepickerInputHarness } from '@angular/material/datepicker/testing';
 import { MatButtonHarness } from '@angular/material/button/testing';

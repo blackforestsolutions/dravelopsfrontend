@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { VehicleTypeComponent } from './vehicle-type.component';
-import { VehicleType } from '../../shared/model/generated';
+import { VehicleType } from '@dravelopsfrontend/generated-content';
 
 describe('VehicleTypeComponent', () => {
   let componentUnderTest: VehicleTypeComponent;

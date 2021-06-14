@@ -1,21 +1,21 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { LegListItemComponent } from './leg-list-item.component';
-import { VehicleTypePipe } from '../pipes/vehicle-type-pipe/vehicle-type.pipe';
-import { DurationPipe } from '../pipes/duration-pipe/duration.pipe';
-import { HarnessLoader } from '@angular/cdk/testing';
-import { MatButtonHarness } from '@angular/material/button/testing';
-import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-import { MockComponent, MockPipe } from 'ng-mocks';
-import { VehicleTypeComponent } from '../vehicle-type/vehicle-type.component';
-import { FootpathMapComponent } from '../footpath-map/footpath-map.component';
-import { SharedModule } from '../../shared/shared.module';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
+import {LegListItemComponent} from './leg-list-item.component';
+import {VehicleTypePipe} from '../pipes/vehicle-type-pipe/vehicle-type.pipe';
+import {DurationPipe} from '../pipes/duration-pipe/duration.pipe';
+import {HarnessLoader} from '@angular/cdk/testing';
+import {MatButtonHarness} from '@angular/material/button/testing';
+import {TestbedHarnessEnvironment} from '@angular/cdk/testing/testbed';
+import {By} from '@angular/platform-browser';
+import {DebugElement} from '@angular/core';
+import {MockComponent, MockPipe} from 'ng-mocks';
+import {VehicleTypeComponent} from '../vehicle-type/vehicle-type.component';
+import {FootpathMapComponent} from '../footpath-map/footpath-map.component';
+import {SharedModule} from '../../shared/shared.module';
 import {
   getFurtwangenIlbenstreetToBleibachLeg,
   getWaldkirchKastelberghalleToSickLeg
 } from '../../shared/objectmothers/leg-object-mother';
-import { LegFragment, VehicleType } from '../../shared/model/generated';
+import {LegFragment, VehicleType} from '@dravelopsfrontend/generated-content';
 
 describe('LegListItemComponent', () => {
   let componentUnderTest: LegListItemComponent;
@@ -40,7 +40,7 @@ describe('LegListItemComponent', () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(LegListItemComponent);
       componentUnderTest = fixture.componentInstance;
-      componentUnderTest.leg = { ...getFurtwangenIlbenstreetToBleibachLeg() };
+      componentUnderTest.leg = {...getFurtwangenIlbenstreetToBleibachLeg()};
       loader = TestbedHarnessEnvironment.loader(fixture);
       fixture.detectChanges();
     });
@@ -173,7 +173,7 @@ describe('LegListItemComponent', () => {
     beforeEach(() => {
       fixture = TestBed.createComponent(LegListItemComponent);
       componentUnderTest = fixture.componentInstance;
-      componentUnderTest.leg = { ...getWaldkirchKastelberghalleToSickLeg() };
+      componentUnderTest.leg = {...getWaldkirchKastelberghalleToSickLeg()};
       loader = TestbedHarnessEnvironment.loader(fixture);
       fixture.detectChanges();
     });

@@ -1,4 +1,4 @@
-import { JourneyFragment } from '../model/generated';
+import { JourneyFragment } from '@dravelopsfrontend/generated-content';
 import { Observable } from 'rxjs';
 import { defaultIfEmpty, scan } from 'rxjs/operators';
 

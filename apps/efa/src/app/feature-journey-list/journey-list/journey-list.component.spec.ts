@@ -4,7 +4,7 @@ import { JourneyListComponent } from './journey-list.component';
 import { of } from 'rxjs';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { MockComponent } from 'ng-mocks';
-import { JourneyFragment } from '../../shared/model/generated';
+import { JourneyFragment } from '@dravelopsfrontend/generated-content';
 import {
   getApiTokenParamMapWithIsRoundTripAsFalse,
   getApiTokenParamMapWithIsRoundTripAsTrue

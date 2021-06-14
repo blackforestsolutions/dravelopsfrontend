@@ -14,7 +14,7 @@ import {
   getFurtwangenToWaldkirchJourney,
   getGrosshausbergToFurtwangenIlbenstreetJourney
 } from '../../shared/objectmothers/journey-object-mother';
-import { JourneyFragment } from '../../shared/model/generated';
+import { JourneyFragment } from '@dravelopsfrontend/generated-content';
 import { expect } from '@jest/globals';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { IsOnlyFootpathPipe } from '../pipes/is-only-footpath-pipe/is-only-footpath.pipe';

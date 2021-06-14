@@ -1,6 +1,6 @@
 import { SortJourneyPipe } from './sort-journey.pipe';
 import { expect } from '@jest/globals';
-import { JourneyFragment } from '../../../shared/model/generated';
+import { JourneyFragment } from '@dravelopsfrontend/generated-content';
 import {
   getFurtwangenToWaldkirchJourneyByArrivalTime,
   getWaldkirchToFurtwangenJourneyByDepartureTime

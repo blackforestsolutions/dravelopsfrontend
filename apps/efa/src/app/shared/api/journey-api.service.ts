@@ -2,7 +2,7 @@ import { Inject, Injectable, LOCALE_ID } from '@angular/core';
 import { Observable } from 'rxjs';
 import { retry } from 'rxjs/operators';
 import { SubscriptionResult } from 'apollo-angular';
-import { GetAllJourneysGQL, GetAllJourneysQuery, GetJourneysGQL, GetJourneysSubscription } from '../model/generated';
+import { GetAllJourneysGQL, GetAllJourneysQuery, GetJourneysGQL, GetJourneysSubscription } from '@dravelopsfrontend/generated-content';
 import { ApolloQueryResult } from '@apollo/client';
 import { ApiToken } from '../model/api-token';
 import { DatePipe } from '@angular/common';

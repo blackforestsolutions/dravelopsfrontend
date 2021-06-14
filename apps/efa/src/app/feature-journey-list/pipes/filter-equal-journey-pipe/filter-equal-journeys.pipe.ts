@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { GetAllJourneysQuery, GetJourneysSubscription, JourneyFragment } from '../../../shared/model/generated';
+import { GetAllJourneysQuery, GetJourneysSubscription, JourneyFragment } from '@dravelopsfrontend/generated-content';
 
 @Pipe({
   name: 'filterEqualJourneys'

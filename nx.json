@@ -39,6 +39,9 @@
     },
     "shared-styles": {
       "tags": []
+    },
+    "generated-content": {
+      "tags": []
     }
   }
 }

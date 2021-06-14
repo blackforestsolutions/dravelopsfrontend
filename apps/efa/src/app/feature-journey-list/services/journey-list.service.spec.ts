@@ -5,7 +5,7 @@ import { MockProvider } from 'ng-mocks';
 import { JourneyApiService } from '../../shared/api/journey-api.service';
 import { EMPTY, Observable, of } from 'rxjs';
 import { getFurtwangenToWaldkirchJourney } from '../../shared/objectmothers/journey-object-mother';
-import { GetAllJourneysQuery, JourneyFragment } from '../../shared/model/generated';
+import { GetAllJourneysQuery, JourneyFragment } from '@dravelopsfrontend/generated-content';
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';

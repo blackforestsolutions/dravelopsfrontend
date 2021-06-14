@@ -1,8 +1,8 @@
 overwrite: true
 schema: http://localhost:8085/graphql
 generates:
-  apps/efa/src/app/shared/model/generated.ts:
-    documents: "apps/efa/src/app/shared/graphql/*.graphql"
+  libs/graphql-generated-content/src/lib/model/generated.ts:
+    documents: 'libs/graphql-generated-content/src/lib/graphql/*.graphql'
     plugins:
       - "typescript"
       - "typescript-operations"

@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { TravelPointApiService } from './travel-point-api.service';
-import { GetAddressesGQL } from '../model/generated';
+import { GetAddressesGQL } from '@dravelopsfrontend/generated-content';
 import { getFurtwangenUniversityTravelPoint } from '../objectmothers/travel-point-object-mother';
 import { of } from 'rxjs';
 import { expect } from '@jest/globals';
