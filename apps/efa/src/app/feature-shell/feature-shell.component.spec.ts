@@ -7,8 +7,10 @@ import { Location } from '@angular/common';
 import { MockComponent } from 'ng-mocks';
 import { Component, DebugElement } from '@angular/core';
 import { JourneySearchComponent } from '../feature-journey-search/journey-search/journey-search.component';
-import { getApiTokenWithIsRoundTripAsFalse, getApiTokenWithIsRoundTripAsTrue } from '../shared/objectmothers/api-token-object-mother';
-import { StartpageComponent } from '../feature-journey-search/startpage/startpage.component';
+import {
+  getApiTokenWithIsRoundTripAsFalse,
+  getApiTokenWithIsRoundTripAsTrue
+} from '../shared/objectmothers/api-token-object-mother';
 import { describe } from '@jest/globals';
 
 @Component({ template: '' })
@@ -41,7 +43,6 @@ describe('FeatureShellContainerComponent', () => {
       declarations: [
         FeatureShellComponent,
         JourneyListComponentStub,
-        MockComponent(StartpageComponent),
         MockComponent(JourneySearchComponent)
       ]
     })
@@ -60,11 +61,9 @@ describe('FeatureShellContainerComponent', () => {
   });
 
   it('should have the right initial components', () => {
-    const startPageComponent: DebugElement = fixture.debugElement.query(By.directive(StartpageComponent));
     const journeyListStubComponent: DebugElement = fixture.debugElement.query(By.directive(JourneyListComponentStub));
     const journeySearchComponent: DebugElement = fixture.debugElement.query(By.directive(JourneySearchComponent));
 
-    expect(startPageComponent).not.toBeNull();
     expect(journeyListStubComponent).toBeNull();
     expect(journeySearchComponent).not.toBeNull();
   });
@@ -86,10 +85,8 @@ describe('FeatureShellContainerComponent', () => {
 
     fixture.whenStable().then(() => {
       expect(location.path()).toEqual('/true/48.04832/8.209972/48.088204/7.950507/1601463600000/true/1601550000000/true');
-      const startPageComponent: DebugElement = fixture.debugElement.query(By.directive(StartpageComponent));
       const journeyListStubComponent: DebugElement = fixture.debugElement.query(By.directive(JourneyListComponentStub));
       const journeySearchComponent: DebugElement = fixture.debugElement.query(By.directive(JourneySearchComponent));
-      expect(startPageComponent).not.toBeNull();
       expect(journeySearchComponent).not.toBeNull();
       expect(journeyListStubComponent).not.toBeNull();
     });
@@ -101,10 +98,8 @@ describe('FeatureShellContainerComponent', () => {
 
     fixture.whenStable().then(() => {
       expect(location.path()).toEqual('/false/48.04832/8.209972/48.088204/7.950507/1601463600000/true');
-      const startPageComponent: DebugElement = fixture.debugElement.query(By.directive(StartpageComponent));
       const journeyListStubComponent: DebugElement = fixture.debugElement.query(By.directive(JourneyListComponentStub));
       const journeySearchComponent: DebugElement = fixture.debugElement.query(By.directive(JourneySearchComponent));
-      expect(startPageComponent).not.toBeNull();
       expect(journeySearchComponent).not.toBeNull();
       expect(journeyListStubComponent).not.toBeNull();
     });
