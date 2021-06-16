@@ -23,6 +23,7 @@ import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatDividerHarness } from '@angular/material/divider/testing';
 import { MatListOptionHarness } from '@angular/material/list/testing';
+import { LoadingComponent } from '@dravelopsfrontend/shared-styles';
 
 const TEST_LONGITUDE = 5;
 const TEST_LATITUDE = 10;
@@ -38,7 +39,8 @@ describe('NearestAddressesListComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [
         NearestAddressesListComponent,
-        MockComponent(NearestAddressesListItemComponent)
+        MockComponent(NearestAddressesListItemComponent),
+        MockComponent(LoadingComponent)
       ],
       imports: [
         SharedModule
