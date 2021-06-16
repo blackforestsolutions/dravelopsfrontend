@@ -1,0 +1,13 @@
+<ng-container *ngIf='nearestAddresses$ | async as nearestAddresses'>
+  <mat-selection-list [multiple]='false' (selectionChange)='handleNearestAddressSelectEvent($event.options[0].value)'>
+    <mat-list-option *ngFor='let nearestAddress of nearestAddresses; last as isLast' [value]='nearestAddress'>
+      <dravelopsefafrontend-nearest-addresses-list-item [nearestAddress]='nearestAddress'>
+
+      </dravelopsefafrontend-nearest-addresses-list-item>
+      <mat-divider *ngIf='!isLast'></mat-divider>
+    </mat-list-option>
+  </mat-selection-list>
+  <p *ngIf='!this.nearestAddresses.length' class='no-result'>
+    Keine Addresse innerhalb von {{ radiusInKilometers }} Kilometern gefunden.
+  </p>
+</ng-container>
