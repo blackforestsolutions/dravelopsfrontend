@@ -1,4 +1,5 @@
 import { Polygon } from '@dravelopsfrontend/generated-content';
+import { polygon, Polygon as LeafletPolygon } from 'leaflet';
 
 /**
  * NEVER USE IN PRODUCTIVE CODE!
@@ -69,4 +70,75 @@ export const getHvvOperatingArea = (): Polygon => {
       }
     ]
   };
+};
+
+/**
+ * NEVER USE IN PRODUCTIVE CODE!
+ * ONLY FOR TESTING!
+ */
+export const getHvvLeafletPolygon = (): LeafletPolygon => {
+  return polygon(
+    [
+      {
+        lng: 9.926078590563,
+        lat: 51.536818622395
+      },
+      {
+        lng: 8.813833958308,
+        lat: 53.083480669832
+      },
+      {
+        lng: 8.611938439764,
+        lat: 53.508599382033
+      },
+      {
+        lng: 8.599557252481,
+        lat: 53.534911948266
+      },
+      {
+        lng: 8.310921044198,
+        lat: 54.906843172932
+      },
+      {
+        lng: 9.574676912757,
+        lat: 54.765199831029
+      },
+      {
+        lng: 11.226714204701,
+        lat: 54.500369899949
+      },
+      {
+        lng: 12.131073730255,
+        lat: 54.078243408456
+      },
+      {
+        lng: 12.117897716415,
+        lat: 53.939184400482
+      },
+      {
+        lng: 11.854733497487,
+        lat: 52.518175065533
+      },
+      {
+        lng: 11.788821628861,
+        lat: 52.393725712042
+      },
+      {
+        lng: 11.759540025387,
+        lat: 52.338463219795
+      },
+      {
+        lng: 11.657974729319,
+        lat: 52.166444610416
+      },
+      {
+        lng: 11.626887739718,
+        lat: 52.130347715987
+      },
+      {
+        lng: 9.926078590563,
+        lat: 51.536818622395
+      }
+    ]
+  );
 };
