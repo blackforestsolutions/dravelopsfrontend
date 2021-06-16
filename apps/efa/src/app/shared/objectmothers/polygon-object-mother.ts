@@ -1,5 +1,11 @@
 import { Polygon } from '@dravelopsfrontend/generated-content';
-import { polygon, Polygon as LeafletPolygon } from 'leaflet';
+import { LatLngExpression, polygon, Polygon as LeafletPolygon } from 'leaflet';
+import {
+  MAX_WGS_84_LATITUDE,
+  MAX_WGS_84_LONGITUDE,
+  MIN_WGS_84_LATITUDE,
+  MIN_WGS_84_LONGITUDE
+} from '../../../environments/config-tokens';
 
 /**
  * NEVER USE IN PRODUCTIVE CODE!
@@ -141,4 +147,24 @@ export const getHvvLeafletPolygon = (): LeafletPolygon => {
       }
     ]
   );
+};
+
+/**
+ * NEVER USE IN PRODUCTIVE CODE!
+ * ONLY FOR TESTING!
+ */
+export const getHvvLeafletPolygonWithInnerHole = (): LeafletPolygon => {
+  return polygon([
+    // outer ring
+    [
+      [MAX_WGS_84_LATITUDE, MIN_WGS_84_LONGITUDE],
+      [MAX_WGS_84_LATITUDE, MAX_WGS_84_LONGITUDE],
+      [MIN_WGS_84_LATITUDE, MAX_WGS_84_LONGITUDE],
+      [MIN_WGS_84_LATITUDE, MIN_WGS_84_LONGITUDE]
+    ],
+    // inner hole
+    [
+      ...getHvvLeafletPolygon().getLatLngs() as LatLngExpression[]
+    ]
+  ]);
 };
