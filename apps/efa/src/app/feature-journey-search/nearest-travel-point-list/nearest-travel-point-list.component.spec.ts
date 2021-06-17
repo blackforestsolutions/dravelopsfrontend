@@ -118,7 +118,7 @@ describe('NearestTravelPointListComponent', () => {
 
       componentUnderTest.nearestTravelPoint$.subscribe(() => {
         expect(travelPointService.getNearestAddressesBy).toHaveBeenCalledTimes(1);
-        expect(travelPointService.getNearestAddressesBy).toHaveBeenCalledWith(TEST_LONGITUDE, TEST_LATITUDE);
+        expect(travelPointService.getNearestAddressesBy).toHaveBeenCalledWith(TEST_LONGITUDE, TEST_LATITUDE, TEST_RADIUS_IN_KILOMETERS);
         done();
       });
     });
@@ -260,7 +260,7 @@ describe('NearestTravelPointListComponent', () => {
 
       componentUnderTest.nearestTravelPoint$.subscribe(() => {
         expect(travelPointService.getNearestStationsBy).toHaveBeenCalledTimes(1);
-        expect(travelPointService.getNearestStationsBy).toHaveBeenCalledWith(TEST_LONGITUDE, TEST_LATITUDE);
+        expect(travelPointService.getNearestStationsBy).toHaveBeenCalledWith(TEST_LONGITUDE, TEST_LATITUDE, TEST_RADIUS_IN_KILOMETERS);
         done();
       });
     });

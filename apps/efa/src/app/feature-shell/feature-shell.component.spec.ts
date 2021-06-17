@@ -12,6 +12,8 @@ import {
   getApiTokenWithIsRoundTripAsTrue
 } from '../shared/objectmothers/api-token-object-mother';
 import { describe } from '@jest/globals';
+import { CUSTOMER_DIRECTORY } from '../../environments/config-tokens';
+import { OverlayContainer } from '@angular/cdk/overlay';
 
 @Component({ template: '' })
 // for testing purpose
@@ -44,6 +46,15 @@ describe('FeatureShellContainerComponent', () => {
         FeatureShellComponent,
         JourneyListComponentStub,
         MockComponent(JourneySearchComponent)
+      ],
+      providers: [
+        {
+          provide: CUSTOMER_DIRECTORY,
+          useValue: 'bw'
+        },
+        {
+          provide: OverlayContainer
+        }
       ]
     })
       .compileComponents();

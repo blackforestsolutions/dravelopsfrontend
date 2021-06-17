@@ -75,7 +75,7 @@ export class MapOptionsPipe implements PipeTransform {
     return marker([geoJson[INDEX_ZERO][INDEX_ONE], geoJson[INDEX_ZERO][INDEX_ZERO]], {
       icon: icon({
         iconSize: [ICON_HEIGHT, ICON_WIDTH],
-        iconUrl: 'assets/footpath/departure_icon.svg'
+        iconUrl: 'assets/styles/footpath/departure_icon.svg'
       })
     });
   }
@@ -89,7 +89,7 @@ export class MapOptionsPipe implements PipeTransform {
       {
         icon: icon({
           iconSize: [ICON_HEIGHT, ICON_WIDTH],
-          iconUrl: 'assets/footpath/arrival_icon.svg'
+          iconUrl: 'assets/styles/footpath/arrival_icon.svg'
         })
       });
   }

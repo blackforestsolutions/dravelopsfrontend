@@ -42,9 +42,9 @@ export class NearestTravelPointListComponent implements OnInit {
   private getNearestTravelPoints(): Observable<NearestTravelPointFragment[]> {
     const { lat, lng } = this.latLng;
     if (this.useNearestAddress) {
-      return this.travelPointApiService.getNearestAddressesBy(lng, lat);
+      return this.travelPointApiService.getNearestAddressesBy(lng, lat, this.radiusInKilometers);
     }
-    return this.travelPointApiService.getNearestStationsBy(lng, lat);
+    return this.travelPointApiService.getNearestStationsBy(lng, lat, this.radiusInKilometers);
   }
 
 }
