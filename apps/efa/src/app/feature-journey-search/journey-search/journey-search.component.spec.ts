@@ -7,7 +7,7 @@ import { StartpageComponent } from '../startpage/startpage.component';
 import { MapSearchComponent } from '../map-search/map-search.component';
 import { JourneySearchFormComponent } from '../journey-search-form/journey-search-form.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NearestAddressFragment } from '@dravelopsfrontend/generated-content';
+import { NearestTravelPointFragment } from '@dravelopsfrontend/generated-content';
 import { getFurtwangenKindergardenTravelPoint } from '../../shared/objectmothers/travel-point-object-mother';
 import { ApiToken } from '../../shared/model/api-token';
 import { getApiTokenWithIsRoundTripAsTrue } from '../../shared/objectmothers/api-token-object-mother';
@@ -60,7 +60,7 @@ describe('JourneySearchComponent', () => {
   });
 
   it('should set "selectedDeparture" when "handleDepartureSelectEvent" is called', () => {
-    const selectedTestValue: NearestAddressFragment = getFurtwangenKindergardenTravelPoint();
+    const selectedTestValue: NearestTravelPointFragment = getFurtwangenKindergardenTravelPoint();
 
     componentUnderTest.handleDepartureSelectEvent(selectedTestValue);
 
@@ -68,7 +68,7 @@ describe('JourneySearchComponent', () => {
   });
 
   it('should set "selectedArrival" when "handleArrivalSelectEvent" is called', () => {
-    const selectedTestValue: NearestAddressFragment = getFurtwangenKindergardenTravelPoint();
+    const selectedTestValue: NearestTravelPointFragment = getFurtwangenKindergardenTravelPoint();
 
     componentUnderTest.handleArrivalSelectEvent(selectedTestValue);
 
@@ -120,7 +120,7 @@ describe('JourneySearchComponent', () => {
   });
 
   it('should update "departureTravelPoint" from JourneySearchFormComponent when MapSearchComponent triggers departureSelectEvent', async () => {
-    const selectedTestValue: NearestAddressFragment = getFurtwangenKindergardenTravelPoint();
+    const selectedTestValue: NearestTravelPointFragment = getFurtwangenKindergardenTravelPoint();
     const matTabGroup: MatTabGroupHarness = await loader.getHarness(MatTabGroupHarness);
     await matTabGroup.selectTab({ label: 'Kartensuche' });
     fixture.detectChanges();
@@ -134,7 +134,7 @@ describe('JourneySearchComponent', () => {
   });
 
   it('should update "arrivalTravelPoint" from JourneySearchFormComponent when MapSearchComponent triggers arrivalSelectEvent', async () => {
-    const selectedTestValue: NearestAddressFragment = getFurtwangenKindergardenTravelPoint();
+    const selectedTestValue: NearestTravelPointFragment = getFurtwangenKindergardenTravelPoint();
     const matTabGroup: MatTabGroupHarness = await loader.getHarness(MatTabGroupHarness);
     await matTabGroup.selectTab({ label: 'Kartensuche' });
     fixture.detectChanges();

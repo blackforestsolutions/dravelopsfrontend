@@ -1,6 +1,6 @@
-import {Component, EventEmitter, Output} from '@angular/core';
-import {ApiToken} from "../../shared/model/api-token";
-import {NearestAddressFragment} from "@dravelopsfrontend/generated-content";
+import { Component, EventEmitter, Output } from '@angular/core';
+import { ApiToken } from '../../shared/model/api-token';
+import { NearestTravelPointFragment } from '@dravelopsfrontend/generated-content';
 
 @Component({
   selector: 'dravelopsefafrontend-journey-search',
@@ -10,19 +10,19 @@ import {NearestAddressFragment} from "@dravelopsfrontend/generated-content";
 export class JourneySearchComponent {
   @Output() readonly submitApiTokenEvent = new EventEmitter<ApiToken>();
 
-  selectedDeparture: NearestAddressFragment;
-  selectedArrival: NearestAddressFragment;
+  selectedDeparture: NearestTravelPointFragment;
+  selectedArrival: NearestTravelPointFragment;
   selectedTabIndex = 0;
 
   setSelectedTabIndex(selectedTabIndex: number): void {
     this.selectedTabIndex = selectedTabIndex;
   }
 
-  handleDepartureSelectEvent(selectedDeparture: NearestAddressFragment): void {
+  handleDepartureSelectEvent(selectedDeparture: NearestTravelPointFragment): void {
     this.selectedDeparture = selectedDeparture;
   }
 
-  handleArrivalSelectEvent(selectedArrival: NearestAddressFragment): void {
+  handleArrivalSelectEvent(selectedArrival: NearestTravelPointFragment): void {
     this.selectedArrival = selectedArrival;
   }
 
