@@ -4,8 +4,7 @@ import { TravelPointApiService } from './travel-point-api.service';
 import {
   AutocompleteAddressFragment,
   GetAddressesGQL,
-  GetNearestAddressesGQL,
-  NearestAddressFragment
+  GetNearestAddressesGQL, GetNearestStationsGQL, NearestTravelPointFragment
 } from '@dravelopsfrontend/generated-content';
 import {
   getFurtwangenFriedrichStreetOneTravelPoint,
@@ -24,6 +23,7 @@ const TEST_RADIUS_IN_KILOMETERS = 5;
 describe('TravelPointApiService', () => {
   let getAddressesGQLSpy: jasmine.Spy;
   let getNearestAddressesGQLSpy: jasmine.Spy;
+  let getNearestStationsGQLSpy: jasmine.Spy;
   let classUnderTest: TravelPointApiService;
 
   beforeEach(() => {
@@ -39,6 +39,7 @@ describe('TravelPointApiService', () => {
     classUnderTest = TestBed.inject(TravelPointApiService);
     const getNearestAddressesGQl: GetNearestAddressesGQL = TestBed.inject(GetNearestAddressesGQL);
     classUnderTest = TestBed.inject(TravelPointApiService);
+    const getNearestStationsGQL: GetNearestStationsGQL = TestBed.inject(GetNearestStationsGQL);
 
     getAddressesGQLSpy = spyOn(getAddressesGQL, 'watch').and.returnValue(
       {
@@ -58,6 +59,22 @@ describe('TravelPointApiService', () => {
         valueChanges: of({
           data: {
             getNearestAddressesBy: [
+              getFurtwangenSupermarketTravelPoint(),
+              getFurtwangenKindergardenTravelPoint(),
+              getFurtwangenFriedrichStreetOneTravelPoint(),
+              getFurtwangenFriedrichStreetTwoTravelPoint(),
+              getFurtwangenFriedrichStreetThreeTravelPoint()
+            ]
+          }
+        })
+      }
+    );
+
+    getNearestStationsGQLSpy = spyOn(getNearestStationsGQL, 'watch').and.returnValue(
+      {
+        valueChanges: of({
+          data: {
+            getNearestStationsBy: [
               getFurtwangenSupermarketTravelPoint(),
               getFurtwangenKindergardenTravelPoint(),
               getFurtwangenFriedrichStreetOneTravelPoint(),
@@ -101,7 +118,7 @@ describe('TravelPointApiService', () => {
     const testLongitude = 10.0;
     const testLatitude = 10.0;
 
-    classUnderTest.getNearestAddressesBy(testLongitude, testLatitude).subscribe((result: NearestAddressFragment[]) => {
+    classUnderTest.getNearestAddressesBy(testLongitude, testLatitude).subscribe((result: NearestTravelPointFragment[]) => {
       expect(result.length).toBe(5);
       expect(result[0]).toEqual(getFurtwangenSupermarketTravelPoint());
       expect(result[1]).toEqual(getFurtwangenKindergardenTravelPoint());
@@ -119,6 +136,36 @@ describe('TravelPointApiService', () => {
     classUnderTest.getNearestAddressesBy(testLongitude, testLatitude).subscribe(() => {
       expect(getNearestAddressesGQLSpy).toHaveBeenCalledTimes(1);
       expect(getNearestAddressesGQLSpy).toHaveBeenCalledWith({
+        longitude: testLongitude,
+        latitude: testLatitude,
+        radiusInKilometers: TEST_RADIUS_IN_KILOMETERS
+      });
+      done();
+    });
+  });
+
+  it('should GET a list of travelPoints when getNearestStationsBy longitude and latitude is called', (done) => {
+    const testLongitude = 10.0;
+    const testLatitude = 10.0;
+
+    classUnderTest.getNearestStationsBy(testLongitude, testLatitude).subscribe((result: NearestTravelPointFragment[]) => {
+      expect(result.length).toBe(5);
+      expect(result[0]).toEqual(getFurtwangenSupermarketTravelPoint());
+      expect(result[1]).toEqual(getFurtwangenKindergardenTravelPoint());
+      expect(result[2]).toEqual(getFurtwangenFriedrichStreetOneTravelPoint());
+      expect(result[3]).toEqual(getFurtwangenFriedrichStreetTwoTravelPoint());
+      expect(result[4]).toEqual(getFurtwangenFriedrichStreetThreeTravelPoint());
+      done();
+    });
+  });
+
+  it('should be called "getNearestStationsGQL" correctly and with right params', (done) => {
+    const testLongitude = 10.0;
+    const testLatitude = 10.0;
+
+    classUnderTest.getNearestStationsBy(testLongitude, testLatitude).subscribe(() => {
+      expect(getNearestStationsGQLSpy).toHaveBeenCalledTimes(1);
+      expect(getNearestStationsGQLSpy).toHaveBeenCalledWith({
         longitude: testLongitude,
         latitude: testLatitude,
         radiusInKilometers: TEST_RADIUS_IN_KILOMETERS
