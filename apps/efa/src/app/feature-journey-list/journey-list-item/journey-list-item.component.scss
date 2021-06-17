@@ -1,5 +1,10 @@
 @import 'libs/shared-styles/src/assets/styles/variables';
 
+:host ::ng-deep.mat-expansion-panel-body {
+  padding: 0 0.5rem !important;
+  margin-bottom: 1rem !important;
+}
+
 .panel {
   padding: 0 0.5rem;
   margin-bottom: 1rem;

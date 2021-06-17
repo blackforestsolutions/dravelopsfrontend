@@ -1,3 +1,30 @@
 .content {
   margin-top: 1rem;
 }
+
+@media screen and (min-width: 850px) {
+  .header {
+    position: relative;
+  }
+
+  .layer {
+    position: absolute;
+    //background-color: rgba(#055ba6, 0.7);
+    right: 0;
+    width: 45rem;
+    height: 100vh;
+  }
+}
+
+@media screen and (min-width: 1100px)   {
+  .layer {
+    width: 55rem;
+  }
+}
+
+@media screen and (min-width: 1500px) {
+  .layout {
+    margin: 0 auto;
+    max-width: 1500px;
+  }
+}

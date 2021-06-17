@@ -1,7 +1,13 @@
-<dravelopsefafrontend-startpage></dravelopsefafrontend-startpage>
-<dravelopsefafrontend-journey-search (submitApiTokenEvent)='handleApiTokenEvent($event)'>
+<div class='layout'>
+  <div class='header'>
+    <dravelopsefafrontend-startpage></dravelopsefafrontend-startpage>
+    <span class='layer'>
+      <dravelopsefafrontend-journey-search (submitApiTokenEvent)='handleApiTokenEvent($event)'>
 
-</dravelopsefafrontend-journey-search>
-<div class='content'>
-  <router-outlet></router-outlet>
+      </dravelopsefafrontend-journey-search>
+    </span>
+  </div>
+  <div class='content'>
+    <router-outlet></router-outlet>
+  </div>
 </div>

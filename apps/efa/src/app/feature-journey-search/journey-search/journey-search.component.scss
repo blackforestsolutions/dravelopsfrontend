@@ -60,12 +60,13 @@
 }
 
 .mat-radio-button ~ .mat-radio-button {
-  margin-left: 1rem;
+  margin-left: 1.25rem;
 }
 
 .mat-radio-group {
-  padding-bottom: 1.17578125rem;
-}
+   padding-bottom: 1.88125rem;
+   margin: 0.25em 0;
+ }
 
 @media screen and (min-width: 850px) {
   .container {
