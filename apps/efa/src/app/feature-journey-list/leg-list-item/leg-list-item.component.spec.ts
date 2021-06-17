@@ -7,7 +7,6 @@ import {MatButtonHarness} from '@angular/material/button/testing';
 import {TestbedHarnessEnvironment} from '@angular/cdk/testing/testbed';
 import {By} from '@angular/platform-browser';
 import {DebugElement} from '@angular/core';
-import {MatChipHarness} from '@angular/material/chips/testing';
 import {MockComponent, MockPipe} from 'ng-mocks';
 import {VehicleTypeComponent} from '../vehicle-type/vehicle-type.component';
 import {FootpathMapComponent} from '../footpath-map/footpath-map.component';
