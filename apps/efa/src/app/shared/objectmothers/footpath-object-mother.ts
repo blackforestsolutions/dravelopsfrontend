@@ -1,4 +1,4 @@
-import { geoJSON, GeoJSON, icon, LatLng, latLng, Marker, marker } from 'leaflet';
+import { geoJSON, GeoJSON } from 'leaflet';
 import { PointFragment } from '@dravelopsfrontend/generated-content';
 
 /**
