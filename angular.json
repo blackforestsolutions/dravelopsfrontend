@@ -58,7 +58,10 @@
                 "output": "/assets"
               }
             ],
-            "styles": ["apps/shell/src/styles.scss"],
+            "styles": [
+              "apps/shell/src/styles.scss",
+              "./node_modules/leaflet/dist/leaflet.css"
+            ],
             "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
