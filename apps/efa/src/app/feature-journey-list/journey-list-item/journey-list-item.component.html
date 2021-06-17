@@ -13,9 +13,7 @@
       <div>{{ journey.legs[0].departure.departureTime | duration: journey.legs[journey.legs.length - 1].arrival.arrivalTime }}</div>
       <div class='transfers'>{{ journey.legs.length - 1 }}</div>
       <div class='buying-button-container'>
-        <button class='buying-button' mat-flat-button color='primary'>Kaufen</button>
-        <button *ngIf='isJourneyBuyable' id='buyingButton' class='buying-button' mat-flat-button color='primary'
-                (click)='emitJourneySelectedEvent()'>
+        <button *ngIf='isJourneyBuyable' class='buying-button' mat-flat-button color='primary' (click)='emitJourneySelectedEvent()'>
           {{ buttonSelectText }}
         </button>
       </div>
