@@ -1,15 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {
-  control,
-  Control,
-  LatLng,
-  LatLngExpression,
-  MapOptions,
-  polygon,
-  Polygon,
-  tileLayer,
-  TileLayer
-} from 'leaflet';
+import { LatLng, LatLngExpression, MapOptions, polygon, Polygon, tileLayer, TileLayer } from 'leaflet';
 import {
   MAP_ATTRIBUTION,
   MAX_WGS_84_LATITUDE,
