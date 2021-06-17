@@ -1,7 +1,9 @@
-<div
-  leaflet
-  [leafletOptions]='options'
-  (leafletMapReady)='onMapReady($event)'
-  (leafletMapZoomEnd)="onMapZoomEnd($event)"
-  class='map'>
-</div>
+<dravelopsfrontend-theme-emitter #theme></dravelopsfrontend-theme-emitter>
+<ng-container *ngIf='waypoints | geoJson as geoJson'>
+  <div leaflet
+       [leafletOptions]='waypoints | mapOptions: this.theme.primaryColor'
+       [leafletFitBounds]='geoJson.getBounds()'
+       [leafletMinZoom]='3'
+       class='map'>
+  </div>
+</ng-container>

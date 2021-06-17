@@ -1,5 +1,5 @@
 query GetAddresses($text: String!) {
   getAutocompleteAddressesBy(text: $text) {
-    ...autocompleteTravelPoint
+    ...autocompleteAddress
   }
 }

@@ -7,9 +7,11 @@ import { SharedModule } from '../shared/shared.module';
 import {
   CUSTOMER_DIRECTORY,
   MAX_FUTURE_DAYS_IN_CALENDAR,
-  MAX_PAST_DAYS_IN_CALENDAR
-} from "../../environments/config-tokens";
-import {environment} from "../../environments/environment";
+  MAX_PAST_DAYS_IN_CALENDAR,
+  RADIUS_IN_KILOMETERS,
+  USE_NEAREST_ADDRESS
+} from '../../environments/config-tokens';
+import { environment } from '../../environments/environment';
 
 @NgModule({
   declarations: [
@@ -32,6 +34,14 @@ import {environment} from "../../environments/environment";
     {
       provide: MAX_PAST_DAYS_IN_CALENDAR,
       useValue: environment.maxPastDaysInCalendar
+    },
+    {
+      provide: USE_NEAREST_ADDRESS,
+      useValue: environment.useNearestAddress
+    },
+    {
+      provide: RADIUS_IN_KILOMETERS,
+      useValue: environment.radiusInKilometers
     },
     {
       provide: CUSTOMER_DIRECTORY,

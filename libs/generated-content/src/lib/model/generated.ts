@@ -2,13 +2,9 @@ import { gql } from 'apollo-angular';
 import { Injectable } from '@angular/core';
 import * as Apollo from 'apollo-angular';
 export type Maybe<T> = T | null;
-export type Exact<T extends { [key: string]: unknown }> = {
-  [K in keyof T]: T[K];
-};
-export type MakeOptional<T, K extends keyof T> = Omit<T, K> &
-  { [SubKey in K]?: Maybe<T[SubKey]> };
-export type MakeMaybe<T, K extends keyof T> = Omit<T, K> &
-  { [SubKey in K]: Maybe<T[SubKey]> };
+export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
+export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
+export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
 /** All built-in and custom scalars, mapped to their actual values */
 export interface Scalars {
   ID: string;
@@ -22,6 +18,11 @@ export interface Scalars {
   URL: string;
   ZonedDateTime: Date;
 }
+
+
+
+
+
 
 export interface Journey {
   __typename?: 'Journey';
@@ -68,7 +69,7 @@ export enum PriceType {
   SENIOR = 'Senioren',
   TRAM = 'Straßenbahnpreis',
   SPECIAL = 'Angebotspreis',
-  YOUTH = 'Kinder',
+  YOUTH = 'Kinder'
 }
 
 export interface Query {
@@ -83,6 +84,7 @@ export interface Query {
   getOperatingArea?: Maybe<Polygon>;
 }
 
+
 export interface QueryGetJourneysByArgs {
   departureLongitude: Scalars['Float'];
   departureLatitude: Scalars['Float'];
@@ -93,10 +95,12 @@ export interface QueryGetJourneysByArgs {
   language?: Maybe<Scalars['String']>;
 }
 
+
 export interface QueryGetAutocompleteAddressesByArgs {
   text: Scalars['String'];
   language?: Maybe<Scalars['String']>;
 }
+
 
 export interface QueryGetNearestAddressesByArgs {
   longitude: Scalars['Float'];
@@ -104,6 +108,7 @@ export interface QueryGetNearestAddressesByArgs {
   radiusInKilometers?: Maybe<Scalars['Float']>;
   language?: Maybe<Scalars['String']>;
 }
+
 
 export interface QueryGetNearestStationsByArgs {
   longitude: Scalars['Float'];
@@ -117,6 +122,7 @@ export interface Subscription {
   /** Language param use ISO 639-1 */
   getJourneysBy?: Maybe<Journey>;
 }
+
 
 export interface SubscriptionGetJourneysByArgs {
   departureLongitude: Scalars['Float'];
@@ -144,6 +150,7 @@ export interface TravelProvider {
   url?: Maybe<Scalars['URL']>;
 }
 
+
 export enum VehicleType {
   WALK = 'WALK',
   BICYCLE = 'BICYCLE',
@@ -157,62 +164,92 @@ export enum VehicleType {
   GONDOLA = 'GONDOLA',
   FUNICULAR = 'FUNICULAR',
   TRANSIT = 'TRANSIT',
-  AIRPLANE = 'AIRPLANE',
+  AIRPLANE = 'AIRPLANE'
 }
 
-export type JourneyFragment = { __typename?: 'Journey' } & Pick<
-  Journey,
-  'id'
-> & {
-    legs?: Maybe<Array<Maybe<{ __typename?: 'Leg' } & LegFragment>>>;
-    prices?: Maybe<Array<Maybe<{ __typename?: 'Price' } & PriceFragment>>>;
-  };
 
-export type LegFragment = { __typename?: 'Leg' } & Pick<
-  Leg,
-  | 'delayInMinutes'
-  | 'distanceInKilometers'
-  | 'vehicleType'
-  | 'vehicleNumber'
-  | 'vehicleName'
-> & {
-    departure?: Maybe<
-      { __typename?: 'TravelPoint' } & JourneyTravelPointFragment
-    >;
-    arrival?: Maybe<
-      { __typename?: 'TravelPoint' } & JourneyTravelPointFragment
-    >;
-    waypoints?: Maybe<Array<Maybe<{ __typename?: 'Point' } & PointFragment>>>;
-    travelProvider?: Maybe<
-      { __typename?: 'TravelProvider' } & TravelProviderFragment
-    >;
-    intermediateStops?: Maybe<
-      Array<Maybe<{ __typename?: 'TravelPoint' } & JourneyTravelPointFragment>>
-    >;
-  };
+export type JourneyFragment = (
+  { __typename?: 'Journey' }
+  & Pick<Journey, 'id'>
+  & { legs?: Maybe<Array<Maybe<(
+    { __typename?: 'Leg' }
+    & LegFragment
+  )>>>, prices?: Maybe<Array<Maybe<(
+    { __typename?: 'Price' }
+    & PriceFragment
+  )>>> }
+);
 
-export type PriceFragment = { __typename?: 'Price' } & Pick<
-  Price,
-  'priceType' | 'currencyCode' | 'smallestCurrencyValue'
->;
+export type LegFragment = (
+  { __typename?: 'Leg' }
+  & Pick<Leg, 'delayInMinutes' | 'distanceInKilometers' | 'vehicleType' | 'vehicleNumber' | 'vehicleName'>
+  & { departure?: Maybe<(
+    { __typename?: 'TravelPoint' }
+    & TravelPointFragment
+  )>, arrival?: Maybe<(
+    { __typename?: 'TravelPoint' }
+    & TravelPointFragment
+  )>, waypoints?: Maybe<Array<Maybe<(
+    { __typename?: 'Point' }
+    & PointFragment
+  )>>>, travelProvider?: Maybe<(
+    { __typename?: 'TravelProvider' }
+    & TravelProviderFragment
+  )>, intermediateStops?: Maybe<Array<Maybe<(
+    { __typename?: 'TravelPoint' }
+    & TravelPointFragment
+  )>>> }
+);
 
-export type JourneyTravelPointFragment = { __typename?: 'TravelPoint' } & Pick<
-  TravelPoint,
-  'name' | 'arrivalTime' | 'departureTime' | 'platform'
-> & { point?: Maybe<{ __typename?: 'Point' } & PointFragment> };
+export type PriceFragment = (
+  { __typename?: 'Price' }
+  & Pick<Price, 'priceType' | 'currencyCode' | 'smallestCurrencyValue'>
+);
 
-export type TravelProviderFragment = { __typename?: 'TravelProvider' } & Pick<
-  TravelProvider,
-  'name' | 'url'
->;
+export type TravelPointFragment = (
+  { __typename?: 'TravelPoint' }
+  & Pick<TravelPoint, 'name' | 'arrivalTime' | 'departureTime' | 'platform'>
+  & { point?: Maybe<(
+    { __typename?: 'Point' }
+    & PointFragment
+  )> }
+);
 
-export type AutocompleteTravelPointFragment = {
-  __typename?: 'TravelPoint';
-} & Pick<TravelPoint, 'name'> & {
-    point?: Maybe<{ __typename?: 'Point' } & PointFragment>;
-  };
+export type TravelProviderFragment = (
+  { __typename?: 'TravelProvider' }
+  & Pick<TravelProvider, 'name' | 'url'>
+);
 
-export type PointFragment = { __typename?: 'Point' } & Pick<Point, 'x' | 'y'>;
+export type AutocompleteAddressFragment = (
+  { __typename?: 'TravelPoint' }
+  & Pick<TravelPoint, 'name'>
+  & { point?: Maybe<(
+    { __typename?: 'Point' }
+    & PointFragment
+  )> }
+);
+
+export type NearestTravelPointFragment = (
+  { __typename?: 'TravelPoint' }
+  & Pick<TravelPoint, 'name' | 'distanceInKilometers'>
+  & { point?: Maybe<(
+    { __typename?: 'Point' }
+    & PointFragment
+  )> }
+);
+
+export type PolygonFragment = (
+  { __typename?: 'Polygon' }
+  & { points?: Maybe<Array<Maybe<(
+    { __typename?: 'Point' }
+    & PointFragment
+  )>>> }
+);
+
+export type PointFragment = (
+  { __typename?: 'Point' }
+  & Pick<Point, 'x' | 'y'>
+);
 
 export type GetAllJourneysQueryVariables = Exact<{
   departureLatitude: Scalars['Float'];
@@ -223,11 +260,14 @@ export type GetAllJourneysQueryVariables = Exact<{
   isArrivalDateTime: Scalars['Boolean'];
 }>;
 
-export type GetAllJourneysQuery = { __typename?: 'Query' } & {
-  getJourneysBy?: Maybe<
-    Array<Maybe<{ __typename?: 'Journey' } & JourneyFragment>>
-  >;
-};
+
+export type GetAllJourneysQuery = (
+  { __typename?: 'Query' }
+  & { getJourneysBy?: Maybe<Array<Maybe<(
+    { __typename?: 'Journey' }
+    & JourneyFragment
+  )>>> }
+);
 
 export type GetJourneysSubscriptionVariables = Exact<{
   departureLatitude: Scalars['Float'];
@@ -238,193 +278,290 @@ export type GetJourneysSubscriptionVariables = Exact<{
   isArrivalDateTime: Scalars['Boolean'];
 }>;
 
-export type GetJourneysSubscription = { __typename?: 'Subscription' } & {
-  getJourneysBy?: Maybe<{ __typename?: 'Journey' } & JourneyFragment>;
-};
+
+export type GetJourneysSubscription = (
+  { __typename?: 'Subscription' }
+  & { getJourneysBy?: Maybe<(
+    { __typename?: 'Journey' }
+    & JourneyFragment
+  )> }
+);
+
+export type GetNearestAddressesQueryVariables = Exact<{
+  longitude: Scalars['Float'];
+  latitude: Scalars['Float'];
+  radiusInKilometers?: Maybe<Scalars['Float']>;
+}>;
+
+
+export type GetNearestAddressesQuery = (
+  { __typename?: 'Query' }
+  & { getNearestAddressesBy?: Maybe<Array<Maybe<(
+    { __typename?: 'TravelPoint' }
+    & NearestTravelPointFragment
+  )>>> }
+);
+
+export type GetNearestStationsQueryVariables = Exact<{
+  longitude: Scalars['Float'];
+  latitude: Scalars['Float'];
+  radiusInKilometers?: Maybe<Scalars['Float']>;
+  language?: Maybe<Scalars['String']>;
+}>;
+
+
+export type GetNearestStationsQuery = (
+  { __typename?: 'Query' }
+  & { getNearestStationsBy?: Maybe<Array<Maybe<(
+    { __typename?: 'TravelPoint' }
+    & NearestTravelPointFragment
+  )>>> }
+);
+
+export type GetOperatingAreaQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetOperatingAreaQuery = (
+  { __typename?: 'Query' }
+  & { getOperatingArea?: Maybe<(
+    { __typename?: 'Polygon' }
+    & PolygonFragment
+  )> }
+);
 
 export type GetAddressesQueryVariables = Exact<{
   text: Scalars['String'];
 }>;
 
-export type GetAddressesQuery = { __typename?: 'Query' } & {
-  getAutocompleteAddressesBy?: Maybe<
-    Array<
-      Maybe<{ __typename?: 'TravelPoint' } & AutocompleteTravelPointFragment>
-    >
-  >;
-};
+
+export type GetAddressesQuery = (
+  { __typename?: 'Query' }
+  & { getAutocompleteAddressesBy?: Maybe<Array<Maybe<(
+    { __typename?: 'TravelPoint' }
+    & AutocompleteAddressFragment
+  )>>> }
+);
 
 export const PointFragmentDoc = gql`
-  fragment point on Point {
-    x
-    y
+    fragment point on Point {
+  x
+  y
+}
+    `;
+export const TravelPointFragmentDoc = gql`
+    fragment travelPoint on TravelPoint {
+  name
+  point {
+    ...point
   }
-`;
-export const JourneyTravelPointFragmentDoc = gql`
-  fragment journeyTravelPoint on TravelPoint {
-    name
-    point {
-      ...point
-    }
-    arrivalTime
-    departureTime
-    platform
-  }
-  ${PointFragmentDoc}
-`;
+  arrivalTime
+  departureTime
+  platform
+}
+    ${PointFragmentDoc}`;
 export const TravelProviderFragmentDoc = gql`
-  fragment travelProvider on TravelProvider {
-    name
-    url
-  }
-`;
+    fragment travelProvider on TravelProvider {
+  name
+  url
+}
+    `;
 export const LegFragmentDoc = gql`
-  fragment leg on Leg {
-    departure {
-      ...journeyTravelPoint
-    }
-    arrival {
-      ...journeyTravelPoint
-    }
-    delayInMinutes
-    distanceInKilometers
-    vehicleType
-    waypoints {
-      ...point
-    }
-    travelProvider {
-      ...travelProvider
-    }
-    vehicleNumber
-    vehicleName
-    intermediateStops {
-      ...journeyTravelPoint
-    }
+    fragment leg on Leg {
+  departure {
+    ...travelPoint
   }
-  ${JourneyTravelPointFragmentDoc}
-  ${PointFragmentDoc}
-  ${TravelProviderFragmentDoc}
-`;
+  arrival {
+    ...travelPoint
+  }
+  delayInMinutes
+  distanceInKilometers
+  vehicleType
+  waypoints {
+    ...point
+  }
+  travelProvider {
+    ...travelProvider
+  }
+  vehicleNumber
+  vehicleName
+  intermediateStops {
+    ...travelPoint
+  }
+}
+    ${TravelPointFragmentDoc}
+${PointFragmentDoc}
+${TravelProviderFragmentDoc}`;
 export const PriceFragmentDoc = gql`
-  fragment price on Price {
-    priceType
-    currencyCode
-    smallestCurrencyValue
-  }
-`;
+    fragment price on Price {
+  priceType
+  currencyCode
+  smallestCurrencyValue
+}
+    `;
 export const JourneyFragmentDoc = gql`
-  fragment journey on Journey {
-    id
-    legs {
-      ...leg
-    }
-    prices {
-      ...price
-    }
+    fragment journey on Journey {
+  id
+  legs {
+    ...leg
   }
-  ${LegFragmentDoc}
-  ${PriceFragmentDoc}
-`;
-export const AutocompleteTravelPointFragmentDoc = gql`
-  fragment autocompleteTravelPoint on TravelPoint {
-    name
-    point {
-      ...point
-    }
+  prices {
+    ...price
   }
-  ${PointFragmentDoc}
-`;
+}
+    ${LegFragmentDoc}
+${PriceFragmentDoc}`;
+export const AutocompleteAddressFragmentDoc = gql`
+    fragment autocompleteAddress on TravelPoint {
+  name
+  point {
+    ...point
+  }
+}
+    ${PointFragmentDoc}`;
+export const NearestTravelPointFragmentDoc = gql`
+    fragment nearestTravelPoint on TravelPoint {
+  name
+  point {
+    ...point
+  }
+  distanceInKilometers
+}
+    ${PointFragmentDoc}`;
+export const PolygonFragmentDoc = gql`
+    fragment polygon on Polygon {
+  points {
+    ...point
+  }
+}
+    ${PointFragmentDoc}`;
 export const GetAllJourneysDocument = gql`
-  query GetAllJourneys(
-    $departureLatitude: Float!
-    $departureLongitude: Float!
-    $arrivalLatitude: Float!
-    $arrivalLongitude: Float!
-    $dateTime: String!
-    $isArrivalDateTime: Boolean!
+    query GetAllJourneys($departureLatitude: Float!, $departureLongitude: Float!, $arrivalLatitude: Float!, $arrivalLongitude: Float!, $dateTime: String!, $isArrivalDateTime: Boolean!) {
+  getJourneysBy(
+    departureLatitude: $departureLatitude
+    departureLongitude: $departureLongitude
+    arrivalLatitude: $arrivalLatitude
+    arrivalLongitude: $arrivalLongitude
+    dateTime: $dateTime
+    isArrivalDateTime: $isArrivalDateTime
   ) {
-    getJourneysBy(
-      departureLatitude: $departureLatitude
-      departureLongitude: $departureLongitude
-      arrivalLatitude: $arrivalLatitude
-      arrivalLongitude: $arrivalLongitude
-      dateTime: $dateTime
-      isArrivalDateTime: $isArrivalDateTime
-    ) {
-      ...journey
-    }
-  }
-  ${JourneyFragmentDoc}
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class GetAllJourneysGQL extends Apollo.Query<
-  GetAllJourneysQuery,
-  GetAllJourneysQueryVariables
-> {
-  document = GetAllJourneysDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+    ...journey
   }
 }
+    ${JourneyFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAllJourneysGQL extends Apollo.Query<GetAllJourneysQuery, GetAllJourneysQueryVariables> {
+    document = GetAllJourneysDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetJourneysDocument = gql`
-  subscription GetJourneys(
-    $departureLatitude: Float!
-    $departureLongitude: Float!
-    $arrivalLatitude: Float!
-    $arrivalLongitude: Float!
-    $dateTime: String!
-    $isArrivalDateTime: Boolean!
+    subscription GetJourneys($departureLatitude: Float!, $departureLongitude: Float!, $arrivalLatitude: Float!, $arrivalLongitude: Float!, $dateTime: String!, $isArrivalDateTime: Boolean!) {
+  getJourneysBy(
+    departureLatitude: $departureLatitude
+    departureLongitude: $departureLongitude
+    arrivalLatitude: $arrivalLatitude
+    arrivalLongitude: $arrivalLongitude
+    dateTime: $dateTime
+    isArrivalDateTime: $isArrivalDateTime
   ) {
-    getJourneysBy(
-      departureLatitude: $departureLatitude
-      departureLongitude: $departureLongitude
-      arrivalLatitude: $arrivalLatitude
-      arrivalLongitude: $arrivalLongitude
-      dateTime: $dateTime
-      isArrivalDateTime: $isArrivalDateTime
-    ) {
-      ...journey
-    }
-  }
-  ${JourneyFragmentDoc}
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class GetJourneysGQL extends Apollo.Subscription<
-  GetJourneysSubscription,
-  GetJourneysSubscriptionVariables
-> {
-  document = GetJourneysDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+    ...journey
   }
 }
+    ${JourneyFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetJourneysGQL extends Apollo.Subscription<GetJourneysSubscription, GetJourneysSubscriptionVariables> {
+    document = GetJourneysDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetNearestAddressesDocument = gql`
+    query GetNearestAddresses($longitude: Float!, $latitude: Float!, $radiusInKilometers: Float) {
+  getNearestAddressesBy(
+    longitude: $longitude
+    latitude: $latitude
+    radiusInKilometers: $radiusInKilometers
+  ) {
+    ...nearestTravelPoint
+  }
+}
+    ${NearestTravelPointFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetNearestAddressesGQL extends Apollo.Query<GetNearestAddressesQuery, GetNearestAddressesQueryVariables> {
+    document = GetNearestAddressesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetNearestStationsDocument = gql`
+    query GetNearestStations($longitude: Float!, $latitude: Float!, $radiusInKilometers: Float, $language: String) {
+  getNearestStationsBy(
+    longitude: $longitude
+    latitude: $latitude
+    radiusInKilometers: $radiusInKilometers
+    language: $language
+  ) {
+    ...nearestTravelPoint
+  }
+}
+    ${NearestTravelPointFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetNearestStationsGQL extends Apollo.Query<GetNearestStationsQuery, GetNearestStationsQueryVariables> {
+    document = GetNearestStationsDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetOperatingAreaDocument = gql`
+    query GetOperatingArea {
+  getOperatingArea {
+    ...polygon
+  }
+}
+    ${PolygonFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetOperatingAreaGQL extends Apollo.Query<GetOperatingAreaQuery, GetOperatingAreaQueryVariables> {
+    document = GetOperatingAreaDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const GetAddressesDocument = gql`
-  query GetAddresses($text: String!) {
-    getAutocompleteAddressesBy(text: $text) {
-      ...autocompleteTravelPoint
-    }
-  }
-  ${AutocompleteTravelPointFragmentDoc}
-`;
-
-@Injectable({
-  providedIn: 'root',
-})
-export class GetAddressesGQL extends Apollo.Query<
-  GetAddressesQuery,
-  GetAddressesQueryVariables
-> {
-  document = GetAddressesDocument;
-
-  constructor(apollo: Apollo.Apollo) {
-    super(apollo);
+    query GetAddresses($text: String!) {
+  getAutocompleteAddressesBy(text: $text) {
+    ...autocompleteAddress
   }
 }
+    ${AutocompleteAddressFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetAddressesGQL extends Apollo.Query<GetAddressesQuery, GetAddressesQueryVariables> {
+    document = GetAddressesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }

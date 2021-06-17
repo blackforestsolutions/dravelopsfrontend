@@ -167,3 +167,77 @@ export const getSickAgTravelPoint = (arrivalTime: Date, departureTime: Date): Tr
   };
 };
 
+/**
+ * NEVER USE IN PRODUCTIVE CODE!
+ * ONLY FOR TESTING!
+ */
+export const getFurtwangenSupermarketTravelPoint = (): TravelPoint => {
+  return {
+    name: 'Edeka Bruder Furtwangen, Baden-Württemberg, Deutschland',
+    point: {
+      x: 8.207591,
+      y: 48.051395
+    },
+    distanceInKilometers: 0.123
+  };
+};
+
+/**
+ * NEVER USE IN PRODUCTIVE CODE!
+ * ONLY FOR TESTING!
+ */
+export const getFurtwangenKindergardenTravelPoint = (): TravelPoint => {
+  return {
+    name: 'Kindergarden Furtwangen, Baden-Württemberg, Deutschland',
+    point: {
+      x: 8.207591,
+      y: 48.051395
+    },
+    distanceInKilometers: 0.200
+  };
+};
+
+/**
+ * NEVER USE IN PRODUCTIVE CODE!
+ * ONLY FOR TESTING!
+ */
+export const getFurtwangenFriedrichStreetOneTravelPoint = (): TravelPoint => {
+  return {
+    name: 'Friedrichstraße 1, Furtwangen im Schwarwald, Baden-Württemberg, Deutschland',
+    point: {
+      x: 8.207591,
+      y: 48.051395
+    },
+    distanceInKilometers: 0.210
+  };
+};
+
+/**
+ * NEVER USE IN PRODUCTIVE CODE!
+ * ONLY FOR TESTING!
+ */
+export const getFurtwangenFriedrichStreetTwoTravelPoint = (): TravelPoint => {
+  return {
+    name: 'Friedrichstraße 2, Furtwangen im Schwarwald, Baden-Württemberg, Deutschland',
+    point: {
+      x: 8.207591,
+      y: 48.051395
+    },
+    distanceInKilometers: 0.220
+  };
+};
+
+/**
+ * NEVER USE IN PRODUCTIVE CODE!
+ * ONLY FOR TESTING!
+ */
+export const getFurtwangenFriedrichStreetThreeTravelPoint = (): TravelPoint => {
+  return {
+    name: 'Friedrichstraße 3, Furtwangen im Schwarwald, Baden-Württemberg, Deutschland',
+    point: {
+      x: 8.207591,
+      y: 48.051395
+    },
+    distanceInKilometers: 0.230
+  };
+};
