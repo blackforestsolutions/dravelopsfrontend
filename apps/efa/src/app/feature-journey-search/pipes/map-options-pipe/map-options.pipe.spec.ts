@@ -4,7 +4,7 @@ import {
   MAX_WGS_84_LATITUDE,
   MAX_WGS_84_LONGITUDE,
   MIN_WGS_84_LATITUDE,
-  MIN_WGS_84_LONGITUDE
+  MIN_WGS_84_LONGITUDE, OSM_ZOOM_SNAP_LEVEL
 } from '../../../../environments/config-tokens';
 import {
   getHvvLeafletPolygon,
@@ -41,6 +41,7 @@ describe('MapOptionsPipe', () => {
         color: testPolygonColor
       }
     });
+    expect(result.zoomSnap).toBe(OSM_ZOOM_SNAP_LEVEL);
     expect(result.worldCopyJump).toBeFalsy();
     expect(result.maxBounds).toEqual({
       _northEast: {

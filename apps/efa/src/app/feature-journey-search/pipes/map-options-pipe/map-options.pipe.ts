@@ -16,10 +16,9 @@ import {
   MAX_WGS_84_LONGITUDE,
   MIN_WGS_84_LATITUDE,
   MIN_WGS_84_LONGITUDE,
-  OSM_MAP
+  OSM_MAP,
+  OSM_ZOOM_SNAP_LEVEL
 } from '../../../../environments/config-tokens';
-import Scale = Control.Scale;
-import scale = control.scale;
 
 @Pipe({
   name: 'mapOptions'
@@ -38,7 +37,8 @@ export class MapOptionsPipe implements PipeTransform {
         polygonLayer
       ],
       worldCopyJump: false,
-      maxBounds: polygon(this.getOuterWorldRing()).getBounds(),
+      zoomSnap: OSM_ZOOM_SNAP_LEVEL,
+      maxBounds: polygon(this.getOuterWorldRing()).getBounds()
     };
   }
 
@@ -54,10 +54,6 @@ export class MapOptionsPipe implements PipeTransform {
     return polygon(polygonWithInnerHole, {
       color: polygonColor
     });
-  }
-
-  private createScaleLayer(): Scale {
-    return scale();
   }
 
   private buildPolygonWithInnerHole(hole: LatLng[]): LatLngExpression[][] {
