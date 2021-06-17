@@ -59,7 +59,7 @@ fragment autocompleteAddress on TravelPoint {
   }
 }
 
-fragment nearestAddress on TravelPoint {
+fragment nearestTravelPoint on TravelPoint {
   name
   point {
     ...point

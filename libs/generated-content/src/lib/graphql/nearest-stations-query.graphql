@@ -1,9 +1,9 @@
-query GetNearestAddresses(
+query GetNearestStations(
   $longitude: Float!,
   $latitude: Float!,
   $radiusInKilometers: Float,
 ) {
-  getNearestAddressesBy(
+  getNearestStationsBy(
     longitude: $longitude,
     latitude: $latitude,
     radiusInKilometers: $radiusInKilometers,

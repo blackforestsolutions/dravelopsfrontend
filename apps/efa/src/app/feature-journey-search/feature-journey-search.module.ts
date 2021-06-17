@@ -8,8 +8,8 @@ import {JourneySearchFormComponent} from './journey-search-form/journey-search-f
 import {MapSearchComponent} from './map-search/map-search.component';
 import {LeafletModule} from "@asymmetrik/ngx-leaflet";
 import {SharedStylesModule} from "@dravelopsfrontend/shared-styles";
-import { NearestAddressesListComponent } from './nearest-addresses-list/nearest-addresses-list.component';
-import { NearestAddressesListItemComponent } from './nearest-addresses-list-item/nearest-addresses-list-item.component';
+import { NearestTravelPointListComponent } from './nearest-travel-point-list/nearest-travel-point-list.component';
+import { NearestTravelPointListItemComponent } from './nearest-travel-point-list-item/nearest-travel-point-list-item.component';
 import { MapOptionsPipe } from './pipes/map-options-pipe/map-options.pipe';
 import { PolygonPipe } from './pipes/polygon-pipe/polygon.pipe';
 
@@ -20,8 +20,8 @@ import { PolygonPipe } from './pipes/polygon-pipe/polygon.pipe';
     StartpageComponent,
     JourneySearchFormComponent,
     MapSearchComponent,
-    NearestAddressesListComponent,
-    NearestAddressesListItemComponent,
+    NearestTravelPointListComponent,
+    NearestTravelPointListItemComponent,
     MapOptionsPipe,
     PolygonPipe
   ],

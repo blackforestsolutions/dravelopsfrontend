@@ -11,6 +11,8 @@ export const MAP_ATTRIBUTION = '&copy; <a href="https://www.openstreetmap.org/co
 
 export const HOST = new InjectionToken<string>('host');
 export const PORT = new InjectionToken<number>('port');
+// Nearest address or station
+export const USE_NEAREST_ADDRESS = new InjectionToken<boolean>('useNearestAddress')
 export const RADIUS_IN_KILOMETERS = new InjectionToken<number>('radiusInKilometers');
 export const MAX_FUTURE_DAYS_IN_CALENDAR = new InjectionToken<number>('maxFutureDaysInCalendar');
 export const MAX_PAST_DAYS_IN_CALENDAR = new InjectionToken<number>('maxPastDaysInCalendar');

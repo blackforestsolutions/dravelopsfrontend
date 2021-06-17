@@ -229,7 +229,7 @@ export type AutocompleteAddressFragment = (
   )> }
 );
 
-export type NearestAddressFragment = (
+export type NearestTravelPointFragment = (
   { __typename?: 'TravelPoint' }
   & Pick<TravelPoint, 'name' | 'distanceInKilometers'>
   & { point?: Maybe<(
@@ -298,7 +298,23 @@ export type GetNearestAddressesQuery = (
   { __typename?: 'Query' }
   & { getNearestAddressesBy?: Maybe<Array<Maybe<(
     { __typename?: 'TravelPoint' }
-    & NearestAddressFragment
+    & NearestTravelPointFragment
+  )>>> }
+);
+
+export type GetNearestStationsQueryVariables = Exact<{
+  longitude: Scalars['Float'];
+  latitude: Scalars['Float'];
+  radiusInKilometers?: Maybe<Scalars['Float']>;
+  language?: Maybe<Scalars['String']>;
+}>;
+
+
+export type GetNearestStationsQuery = (
+  { __typename?: 'Query' }
+  & { getNearestStationsBy?: Maybe<Array<Maybe<(
+    { __typename?: 'TravelPoint' }
+    & NearestTravelPointFragment
   )>>> }
 );
 
@@ -402,8 +418,8 @@ export const AutocompleteAddressFragmentDoc = gql`
   }
 }
     ${PointFragmentDoc}`;
-export const NearestAddressFragmentDoc = gql`
-    fragment nearestAddress on TravelPoint {
+export const NearestTravelPointFragmentDoc = gql`
+    fragment nearestTravelPoint on TravelPoint {
   name
   point {
     ...point
@@ -475,16 +491,39 @@ export const GetNearestAddressesDocument = gql`
     latitude: $latitude
     radiusInKilometers: $radiusInKilometers
   ) {
-    ...nearestAddress
+    ...nearestTravelPoint
   }
 }
-    ${NearestAddressFragmentDoc}`;
+    ${NearestTravelPointFragmentDoc}`;
 
   @Injectable({
     providedIn: 'root'
   })
   export class GetNearestAddressesGQL extends Apollo.Query<GetNearestAddressesQuery, GetNearestAddressesQueryVariables> {
     document = GetNearestAddressesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const GetNearestStationsDocument = gql`
+    query GetNearestStations($longitude: Float!, $latitude: Float!, $radiusInKilometers: Float, $language: String) {
+  getNearestStationsBy(
+    longitude: $longitude
+    latitude: $latitude
+    radiusInKilometers: $radiusInKilometers
+    language: $language
+  ) {
+    ...nearestTravelPoint
+  }
+}
+    ${NearestTravelPointFragmentDoc}`;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class GetNearestStationsGQL extends Apollo.Query<GetNearestStationsQuery, GetNearestStationsQueryVariables> {
+    document = GetNearestStationsDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
