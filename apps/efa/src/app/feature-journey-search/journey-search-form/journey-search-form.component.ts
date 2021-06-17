@@ -2,7 +2,7 @@ import { Component, EventEmitter, Inject, Input, LOCALE_ID, OnChanges, OnDestroy
 import { ApiToken, Point, TravelTime } from '../../shared/model/api-token';
 import { CustomErrorStateMatcher } from '../validators/custom-error-state-matcher';
 import { Observable, Subject } from 'rxjs';
-import { AutocompleteAddressFragment, NearestAddressFragment } from '@dravelopsfrontend/generated-content';
+import { AutocompleteAddressFragment, NearestTravelPointFragment } from '@dravelopsfrontend/generated-content';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAX_FUTURE_DAYS_IN_CALENDAR, MAX_PAST_DAYS_IN_CALENDAR } from '../../../environments/config-tokens';
 import { TravelPointApiService } from '../../shared/api/travel-point-api.service';
@@ -23,8 +23,8 @@ type TravelTimeFormValue = {
 })
 export class JourneySearchFormComponent implements OnChanges, OnInit, OnDestroy {
 
-  @Input() departureTravelPoint: NearestAddressFragment;
-  @Input() arrivalTravelPoint: NearestAddressFragment;
+  @Input() departureTravelPoint: NearestTravelPointFragment;
+  @Input() arrivalTravelPoint: NearestTravelPointFragment;
   @Output() readonly submitApiTokenEvent = new EventEmitter<ApiToken>();
 
   readonly customErrorStateMatcher = new CustomErrorStateMatcher();
