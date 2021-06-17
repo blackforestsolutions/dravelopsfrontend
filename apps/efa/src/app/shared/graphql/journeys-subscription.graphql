@@ -1,5 +1,0 @@
-subscription GetJourneys($departureLatitude: Float!, $departureLongitude: Float!, $arrivalLatitude: Float!, $arrivalLongitude: Float!, $dateTime: String!, $isArrivalDateTime: Boolean!) {
-  getJourneysBy(departureLatitude: $departureLatitude, departureLongitude: $departureLongitude, arrivalLatitude: $arrivalLatitude, arrivalLongitude: $arrivalLongitude, dateTime: $dateTime, isArrivalDateTime: $isArrivalDateTime) {
-    ...journey
-  }
-}

@@ -1,0 +1,79 @@
+fragment journey on Journey {
+  id
+  legs {
+    ...leg
+  }
+  prices {
+    ...price
+  }
+}
+
+fragment leg on Leg {
+  departure {
+    ...travelPoint
+  }
+  arrival {
+    ...travelPoint
+  }
+  delayInMinutes
+  distanceInKilometers
+  vehicleType
+  waypoints {
+    ...point
+  }
+  travelProvider {
+    ...travelProvider
+  }
+  vehicleNumber
+  vehicleName
+  intermediateStops {
+    ...travelPoint
+  }
+}
+
+fragment price on Price {
+  priceType
+  currencyCode
+  smallestCurrencyValue
+}
+
+fragment travelPoint on TravelPoint {
+  name
+  point {
+    ...point
+  }
+  arrivalTime
+  departureTime
+  platform
+}
+
+fragment travelProvider on TravelProvider {
+  name
+  url
+}
+
+fragment autocompleteAddress on TravelPoint {
+  name
+  point {
+    ...point
+  }
+}
+
+fragment nearestTravelPoint on TravelPoint {
+  name
+  point {
+    ...point
+  }
+  distanceInKilometers
+}
+
+fragment polygon on Polygon {
+  points {
+    ...point
+  }
+}
+
+fragment point on Point {
+  x
+  y
+}

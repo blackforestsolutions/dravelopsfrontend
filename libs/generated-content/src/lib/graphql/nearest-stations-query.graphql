@@ -1,0 +1,13 @@
+query GetNearestStations(
+  $longitude: Float!,
+  $latitude: Float!,
+  $radiusInKilometers: Float,
+) {
+  getNearestStationsBy(
+    longitude: $longitude,
+    latitude: $latitude,
+    radiusInKilometers: $radiusInKilometers,
+  ) {
+    ...nearestTravelPoint
+  }
+}

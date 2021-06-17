@@ -1,0 +1,28 @@
+overwrite: true
+schema: http://localhost:8085/graphql
+generates:
+  libs/generated-content/src/lib/model/generated.ts:
+    documents: 'libs/generated-content/src/lib/graphql/*.graphql'
+    plugins:
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-apollo-angular"
+    config:
+      declarationKind: 'interface'
+      namingConvention:
+        enumValues: keep
+      scalars:
+        Duration: number
+        Distance: number
+        Currency: string
+        ZonedDateTime: Date
+        URL: string
+        Locale: string
+      enumValues:
+        PriceType:
+          REGULAR: 'Standard'
+          STUDENT: 'Studenten'
+          SENIOR: 'Senioren'
+          TRAM: 'Straßenbahnpreis'
+          SPECIAL: 'Angebotspreis'
+          YOUTH: 'Kinder'

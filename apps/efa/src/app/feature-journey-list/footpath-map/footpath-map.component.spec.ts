@@ -2,16 +2,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FootpathMapComponent } from './footpath-map.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { getFurtwangenIlbenstreetToBleibachLeg } from '../../shared/objectmothers/leg-object-mother';
-import {
-  getArrivalMarker,
-  getCenterLengthIsModuloOne,
-  getCenterLengthIsModuloZero,
-  getDepartureMarker,
-  getMappedWaypointsToGeoJSONFormatLengthModuloOne,
-  getMappedWaypointsToGeoJSONFormatLengthModuloZero
-} from '../../shared/objectmothers/footpath-object-mother';
-import { LatLng, Marker } from 'leaflet';
+import { MockComponent, MockPipe } from 'ng-mocks';
+import { GeoJsonPipe } from '../pipes/geo-json-pipe/geo-json.pipe';
+import { getFurtwangenFriedrichStreetToIlbenStreetGeoJson } from '../../shared/objectmothers/footpath-object-mother';
+import { MapOptionsPipe } from '../pipes/map-options-pipe/map-options.pipe';
+import { ThemeEmitterComponent } from '@dravelopsfrontend/shared-styles';
 
 describe('FootpathMapComponent', () => {
   let componentUnderTest: FootpathMapComponent;
@@ -19,7 +14,12 @@ describe('FootpathMapComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FootpathMapComponent],
+      declarations: [
+        FootpathMapComponent,
+        MockComponent(ThemeEmitterComponent),
+        MockPipe(GeoJsonPipe, () => getFurtwangenFriedrichStreetToIlbenStreetGeoJson()),
+        MapOptionsPipe
+      ],
       imports: [LeafletModule]
     })
       .compileComponents();
@@ -28,8 +28,6 @@ describe('FootpathMapComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(FootpathMapComponent);
     componentUnderTest = fixture.componentInstance;
-    componentUnderTest.waypoints = [...getFurtwangenIlbenstreetToBleibachLeg().waypoints];
-
     fixture.detectChanges();
   });
 
@@ -37,43 +35,9 @@ describe('FootpathMapComponent', () => {
     expect(componentUnderTest).toBeTruthy();
   });
 
-  it('should map waypoints to geoJSON format', () => {
-
-    const geojsonCoordinates: Array<Array<number>> = componentUnderTest.mapWaypointsToGeoJSONCoordinates();
-
-    expect(geojsonCoordinates).toEqual(getMappedWaypointsToGeoJSONFormatLengthModuloOne());
-  });
-
-  it('should calculate the center of the footpath with modulo one waypoints', () => {
-    const geojsonCoordinates: Array<Array<number>> = getMappedWaypointsToGeoJSONFormatLengthModuloOne();
-
-    const centerOfGeojsonCoordinates: LatLng = componentUnderTest.setCenter(geojsonCoordinates);
-
-    expect(centerOfGeojsonCoordinates).toStrictEqual(getCenterLengthIsModuloOne());
-  });
-
-  it('should calculate the center of the footpath with modulo zero waypoints', () => {
-    const geojsonCoordinates: Array<Array<number>> = getMappedWaypointsToGeoJSONFormatLengthModuloZero();
-
-    const centerOfGeojsonCoordinates: LatLng = componentUnderTest.setCenter(geojsonCoordinates);
-
-    expect(centerOfGeojsonCoordinates).toStrictEqual(getCenterLengthIsModuloZero());
-  });
-
-  it('should create departure marker', () => {
-    const geojsonCoordinates: Array<Array<number>> = getMappedWaypointsToGeoJSONFormatLengthModuloOne();
-
-    const departureMarker: Marker = componentUnderTest.createDepartureMarker(geojsonCoordinates);
-
-    expect(departureMarker).toEqual(getDepartureMarker());
-  });
-
-  it('should create arrival marker', () => {
-    const geojsonCoordinates: Array<Array<number>> = getMappedWaypointsToGeoJSONFormatLengthModuloOne();
-
-    const arrivalMarker: Marker = componentUnderTest.createArrivalMarker(geojsonCoordinates);
-
-    expect(arrivalMarker).toEqual(getArrivalMarker());
+  it('should show leaflet map when component initializes', () => {
+    const leafletMap = fixture.nativeElement.querySelector('.map');
+    expect(leafletMap).not.toBeNull();
   });
 
 });

@@ -7,9 +7,13 @@ USER node
 RUN npm install && npm run all:lint && npm run all:cover && npm run all:build
 
 # deployment stage
-FROM node:14-alpine
-COPY --from=build /dravelopsfrontend/dist/apps/shell/browser dist/apps/shell/browser
-COPY --from=build /dravelopsfrontend/dist/apps/shell/server dist/apps/shell/server
-RUN chown node:node dist/apps/shell/server && chown node:node dist/apps/shell/browser
-USER node
-CMD ["node", "dist/apps/shell/server/main.js"]
+FROM nginx:alpine
+WORKDIR /usr/share/nginx/html
+COPY --from=build /dravelopsfrontend/dist/apps/shell .
+COPY --from=build /dravelopsfrontend/nginx/default.conf /etc/nginx/conf.d
+RUN chown -R nginx:nginx /var/cache/nginx && \
+    chown -R nginx:nginx /var/log/nginx && \
+    chown -R nginx:nginx /etc/nginx/conf.d && \
+    touch /var/run/nginx.pid && \
+    chown -R nginx:nginx /var/run/nginx.pid
+USER nginx

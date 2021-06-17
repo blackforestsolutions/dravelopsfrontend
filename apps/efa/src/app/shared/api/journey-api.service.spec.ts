@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { JourneyApiService } from './journey-api.service';
-import { GetAllJourneysGQL, GetJourneysGQL } from '../model/generated';
+import { GetAllJourneysGQL, GetJourneysGQL } from '@dravelopsfrontend/generated-content';
 import { getFurtwangenToWaldkirchJourney } from '../objectmothers/journey-object-mother';
 import { ApiToken } from '../model/api-token';
 import {

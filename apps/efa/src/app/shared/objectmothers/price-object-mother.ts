@@ -1,4 +1,4 @@
-import { Price, PriceType } from '../model/generated';
+import { Price, PriceType } from '@dravelopsfrontend/generated-content';
 
 /**
  * NEVER USE IN PRODUCTIVE CODE!

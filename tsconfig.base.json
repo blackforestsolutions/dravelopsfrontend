@@ -15,7 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@dravelopsfrontend/shared-styles": ["libs/shared-styles/src/index.ts"]
+      "@dravelopsfrontend/shared-styles": ["libs/shared-styles/src/index.ts"],
+      "@dravelopsfrontend/generated-content": [
+        "libs/generated-content/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

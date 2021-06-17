@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { VehicleType } from '../../../shared/model/generated';
+import { VehicleType } from '@dravelopsfrontend/generated-content';
 
 @Pipe({
   name: 'vehicleType'

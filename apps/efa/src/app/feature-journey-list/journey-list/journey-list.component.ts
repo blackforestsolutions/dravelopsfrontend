@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
-import { JourneyFragment } from '../../shared/model/generated';
+import { JourneyFragment } from '@dravelopsfrontend/generated-content';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({

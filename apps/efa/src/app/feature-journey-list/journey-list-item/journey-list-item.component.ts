@@ -1,9 +1,9 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { JourneyFragment } from '../../shared/model/generated';
-import { IsOnlyFootpathPipe } from '../pipes/is-only-footpath-pipe/is-only-footpath.pipe';
-import { Observable } from 'rxjs';
-import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
-import { map } from 'rxjs/operators';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {JourneyFragment} from '@dravelopsfrontend/generated-content';
+import {IsOnlyFootpathPipe} from '../pipes/is-only-footpath-pipe/is-only-footpath.pipe';
+import {Observable} from 'rxjs';
+import {BreakpointObserver, BreakpointState} from '@angular/cdk/layout';
+import {map} from 'rxjs/operators';
 
 const FOOTPATH_PRICE = 0;
 const DEFAULT_MOCK_PRICE = 10;

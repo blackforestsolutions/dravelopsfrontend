@@ -1,5 +1,5 @@
 import { FilterEqualJourneysPipe } from './filter-equal-journeys.pipe';
-import { JourneyFragment } from '../../../shared/model/generated';
+import { JourneyFragment } from '@dravelopsfrontend/generated-content';
 import {
   getFurtwangenToWaldkirchJourney,
   getFurtwangenToWaldkirchJourneyById,

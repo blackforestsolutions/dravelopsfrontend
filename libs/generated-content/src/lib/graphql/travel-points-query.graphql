@@ -1,0 +1,5 @@
+query GetAddresses($text: String!) {
+  getAutocompleteAddressesBy(text: $text) {
+    ...autocompleteAddress
+  }
+}

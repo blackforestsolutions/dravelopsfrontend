@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { JourneyFragment, VehicleType } from '../../../shared/model/generated';
+import { JourneyFragment, VehicleType } from '@dravelopsfrontend/generated-content';
 
 @Pipe({
   name: 'isOnlyFootpath'

@@ -39,9 +39,12 @@
       "prefix": "dravelopsfrontendshell",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
-            "outputPath": "dist/apps/shell/browser",
+            "customWebpackConfig": {
+              "path": "./apps/shell/webpack.config.js"
+            },
+            "outputPath": "dist/apps/shell",
             "index": "apps/shell/src/index.html",
             "main": "apps/shell/src/main.ts",
             "polyfills": "apps/shell/src/polyfills.ts",
@@ -55,17 +58,24 @@
                 "output": "/assets"
               }
             ],
-            "styles": ["apps/shell/src/styles.scss"],
+            "styles": [
+              "apps/shell/src/styles.scss",
+              "./node_modules/leaflet/dist/leaflet.css"
+            ],
             "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
             "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "namedChunks": true
+            "namedChunks": true,
+            "commonChunk": false
           },
           "configurations": {
             "production": {
+              "customWebpackConfig": {
+                "path": "./apps/shell/webpack.config.js"
+              },
               "fileReplacements": [
                 {
                   "replace": "apps/shell/src/environments/environment.ts",
@@ -95,9 +105,10 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "browserTarget": "shell:build"
+            "browserTarget": "shell:build",
+            "port": 8096
           },
           "configurations": {
             "production": {
@@ -127,65 +138,6 @@
             "jestConfig": "apps/shell/jest.config.js",
             "passWithNoTests": true
           }
-        },
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "dist/apps/shell/server",
-            "main": "apps/shell/server.ts",
-            "tsConfig": "apps/shell/tsconfig.server.json",
-            "optimization": false,
-            "sourceMap": true,
-            "extractLicenses": false
-          },
-          "configurations": {
-            "production": {
-              "outputHashing": "media",
-              "fileReplacements": [
-                {
-                  "replace": "apps/shell/src/environments/environment.ts",
-                  "with": "apps/shell/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "sourceMap": false,
-              "extractLicenses": true
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve-ssr": {
-          "builder": "@nguniversal/builders:ssr-dev-server",
-          "configurations": {
-            "development": {
-              "browserTarget": "shell:build:development",
-              "serverTarget": "shell:server:development"
-            },
-            "production": {
-              "browserTarget": "shell:build:production",
-              "serverTarget": "shell:server:production"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "prerender": {
-          "builder": "@nguniversal/builders:prerender",
-          "options": {
-            "routes": [
-              "/"
-            ]
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "shell:build:production",
-              "serverTarget": "shell:server:production"
-            },
-            "development": {
-              "browserTarget": "shell:build:development",
-              "serverTarget": "shell:server:development"
-            }
-          },
-          "defaultConfiguration": "production"
         }
       }
     },
@@ -222,8 +174,11 @@
       "prefix": "dravelopsefafrontend",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "customWebpackConfig": {
+              "path": "./apps/efa/webpack.config.js"
+            },
             "outputPath": "dist/apps/efa",
             "index": "apps/efa/src/index.html",
             "main": "apps/efa/src/main.ts",
@@ -238,17 +193,24 @@
                 "output": "/assets"
               }
             ],
-            "styles": ["apps/efa/src/styles.scss"],
+            "styles": [
+              "./node_modules/leaflet/dist/leaflet.css",
+              "apps/efa/src/styles.scss"
+            ],
             "scripts": [],
             "vendorChunk": true,
             "extractLicenses": false,
             "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
-            "namedChunks": true
+            "namedChunks": true,
+            "commonChunk": false
           },
           "configurations": {
             "production": {
+              "customWebpackConfig": {
+                "path": "./apps/efa/webpack.config.js"
+              },
               "fileReplacements": [
                 {
                   "replace": "apps/efa/src/environments/environment.ts",
@@ -278,9 +240,10 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "browserTarget": "efa:build"
+            "browserTarget": "efa:build",
+            "port": 8094
           },
           "configurations": {
             "production": {
@@ -346,8 +309,11 @@
       "prefix": "dravelopsbookingfrontend",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-builders/custom-webpack:browser",
           "options": {
+            "customWebpackConfig": {
+              "path": "./apps/booking/webpack.config.js"
+            },
             "outputPath": "dist/apps/booking",
             "index": "apps/booking/src/index.html",
             "main": "apps/booking/src/main.ts",
@@ -363,9 +329,13 @@
               }
             ],
             "styles": ["apps/booking/src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "commonChunk": false
           },
           "configurations": {
+            "customWebpackConfig": {
+              "path": "./apps/booking/webpack.config.js"
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -396,9 +366,10 @@
           }
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular-builders/custom-webpack:dev-server",
           "options": {
-            "browserTarget": "booking:build"
+            "browserTarget": "booking:build",
+            "port": 8095
           },
           "configurations": {
             "production": {
@@ -478,6 +449,31 @@
           "options": {
             "jestConfig": "libs/shared-styles/jest.config.js",
             "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "generated-content": {
+      "projectType": "library",
+      "root": "libs/generated-content",
+      "sourceRoot": "libs/generated-content/src",
+      "prefix": "dravelopsfrontend",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/generated-content"],
+          "options": {
+            "jestConfig": "libs/generated-content/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/generated-content/src/**/*.ts",
+              "libs/generated-content/src/**/*.html"
+            ]
           }
         }
       }

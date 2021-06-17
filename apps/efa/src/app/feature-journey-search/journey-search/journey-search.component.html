@@ -1,91 +1,27 @@
-<form [formGroup]='apiTokenForm' (ngSubmit)='submitForm()' class='container grid-container'>
-  <mat-radio-group formControlName='isRoundTrip' class='trip'>
-    <mat-radio-button [value]='false'>Einfache Fahrt</mat-radio-button>
-    <mat-radio-button [value]='true'>Hin- und Rückfahrt</mat-radio-button>
-  </mat-radio-group>
+<ng-container [ngSwitch]='selectedTabIndex'>
+  <dravelopsefafrontend-startpage *ngSwitchCase='0'></dravelopsefafrontend-startpage>
+  <dravelopsefafrontend-map-search
+    *ngSwitchCase='1'
+    (departureSelectEvent)='handleDepartureSelectEvent($event)'
+    (arrivalSelectEvent)='handleArrivalSelectEvent($event)'
+  >
 
-  <mat-form-field appearance='outline' class='start'>
-    <mat-label>Start</mat-label>
-    <input type='text' matInput [matAutocomplete]='departureAutocomplete' id='departureInput'
-           (keyup)='departureInput$.next($event.target.value)' formControlName='departureTravelPoint' [errorStateMatcher]='customErrorStateMatcher'>
-    <mat-icon matSuffix>location_on</mat-icon>
-    <mat-error>Bitte wähle einen Ort aus</mat-error>
-    <mat-autocomplete #departureAutocomplete [displayWith]='displayTravelPointName'>
-      <mat-option *ngFor='let travelPoint of departureTravelPoints$ | async' [value]='travelPoint'>
-        {{ travelPoint.name }}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
+  </dravelopsefafrontend-map-search>
+</ng-container>
 
-  <mat-form-field appearance='outline' class='destination'>
-    <mat-label>Ziel</mat-label>
-    <input type='text' matInput [matAutocomplete]='arrivalAutocomplete' id='arrivalInput'
-           (keyup)='arrivalInput$.next($event.target.value)' formControlName='arrivalTravelPoint' [errorStateMatcher]='customErrorStateMatcher'>
-    <mat-icon matSuffix>location_on</mat-icon>
-    <mat-error>Bitte wähle einen Ort aus</mat-error>
-    <mat-autocomplete #arrivalAutocomplete [displayWith]='displayTravelPointName'>
-      <mat-option *ngFor='let travelPoint of arrivalTravelPoints$ | async' [value]='travelPoint'>
-        {{ travelPoint.name }}
-      </mat-option>
-    </mat-autocomplete>
-  </mat-form-field>
+<mat-tab-group (selectedIndexChange)='setSelectedTabIndex($event)' mat-stretch-tabs backgroundColor='primary' animationDuration='0ms'>
+  <mat-tab label='Verbindungssuche'>
+    <dravelopsefafrontend-journey-search-form (submitApiTokenEvent)='passSubmitApiTokenEvent($event)'>
 
-  <ng-container formGroupName='outwardJourney'>
-    <mat-form-field appearance='outline' class='date' (click)='this.outwardJourneyDatePicker.open()'>
-      <mat-label>Datum (Hin.)</mat-label>
-      <input matInput [min]='initMinDate()' [max]='initMaxDate()' [matDatepicker]='this.outwardJourneyDatePicker'
-             formControlName='date' [errorStateMatcher]='customErrorStateMatcher' id='outwardJourneyDate'>
-      <mat-icon matSuffix>calendar_today</mat-icon>
-      <mat-error>Bitte wähle ein Datum aus</mat-error>
-      <mat-datepicker touchUi #outwardJourneyDatePicker></mat-datepicker>
-    </mat-form-field>
+    </dravelopsefafrontend-journey-search-form>
+  </mat-tab>
+  <mat-tab label='Kartensuche'>
+    <dravelopsefafrontend-journey-search-form
+      [departureTravelPoint]='selectedDeparture'
+      [arrivalTravelPoint]='selectedArrival'
+      (submitApiTokenEvent)='passSubmitApiTokenEvent($event)'
+    >
 
-    <mat-form-field appearance='outline' class='time'>
-      <mat-label>Uhrzeit (Hin.)</mat-label>
-      <input matTimepicker cancelLabel='Abbrechen' formControlName='time'
-             [errorStateMatcher]='customErrorStateMatcher' id='outwardJourneyTime'>
-      <mat-icon matSuffix>schedule</mat-icon>
-      <mat-error>Bitte wähle eine Uhrzeit aus</mat-error>
-    </mat-form-field>
-
-    <mat-radio-group class='dep-or-arr' formControlName='isArrivalDateTime'>
-      <mat-radio-button [value]='false'>Ab</mat-radio-button>
-      <mat-radio-button [value]='true'>An</mat-radio-button>
-    </mat-radio-group>
-  </ng-container>
-
-  <ng-container formGroupName='backwardJourney' *ngIf='isRoundTrip'>
-    <mat-form-field class='returnTrip-date' appearance='outline' (click)='this.backwardJourneyDatePicker.open()'>
-      <mat-label>Datum (Rück.)</mat-label>
-      <mat-icon matSuffix>calendar_today</mat-icon>
-      <input matInput [min]='initMinDate()' [max]='initMaxDate()' [matDatepicker]='this.backwardJourneyDatePicker'
-             formControlName='date' [errorStateMatcher]='customErrorStateMatcher' id='backwardJourneyDate'>
-      <mat-error *ngIf='this.apiTokenForm.get("backwardJourney").get("date").hasError("required")'>
-        Bitte wähle ein Datum aus
-      </mat-error>
-      <mat-error *ngIf='this.apiTokenForm.get("backwardJourney").get("date").hasError("backwardDate")'>
-        Das Rückfahrtdatum muss nach dem Hinfahrtdatum liegen
-      </mat-error>
-      <mat-datepicker touchUi #backwardJourneyDatePicker></mat-datepicker>
-    </mat-form-field>
-
-    <mat-form-field appearance='outline' class='returnTrip-time'>
-      <mat-label>Uhrzeit (Rück.)</mat-label>
-      <input matTimepicker cancelLabel='Abbrechen' formControlName='time' [errorStateMatcher]='customErrorStateMatcher'>
-      <mat-icon matSuffix>schedule</mat-icon>
-      <mat-error *ngIf='this.apiTokenForm.get("backwardJourney").get("time").hasError("required")'>
-        Bitte wähle eine Uhrzeit aus
-      </mat-error>
-      <mat-error *ngIf='this.apiTokenForm.get("backwardJourney").get("time").hasError("backwardTime")'>
-        Die Rückfahrtzeit muss nach der Hinfahrtzeit liegen
-      </mat-error>
-    </mat-form-field>
-
-    <mat-radio-group class='returnTrip-dep-or-arr' formControlName='isArrivalDateTime' id='backwardJourneyIsArrivalDateTime'>
-      <mat-radio-button [value]='false'>Ab</mat-radio-button>
-      <mat-radio-button [value]='true'>An</mat-radio-button>
-    </mat-radio-group>
-  </ng-container>
-
-  <button type='submit' color='primary' mat-raised-button class='submitButton'>Suchen</button>
-</form>
+    </dravelopsefafrontend-journey-search-form>
+  </mat-tab>
+</mat-tab-group>

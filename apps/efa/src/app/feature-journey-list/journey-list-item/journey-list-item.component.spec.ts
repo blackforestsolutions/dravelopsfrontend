@@ -14,7 +14,7 @@ import {
   getFurtwangenToWaldkirchJourney,
   getGrosshausbergToFurtwangenIlbenstreetJourney
 } from '../../shared/objectmothers/journey-object-mother';
-import { JourneyFragment } from '../../shared/model/generated';
+import { JourneyFragment } from '@dravelopsfrontend/generated-content';
 import { expect } from '@jest/globals';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { IsOnlyFootpathPipe } from '../pipes/is-only-footpath-pipe/is-only-footpath.pipe';
@@ -108,7 +108,7 @@ describe('JourneyListItemComponent', () => {
 
       fixture.detectChanges();
 
-      const matButtonHarness = await loader.getHarness(MatButtonHarness.with({ selector: '#buyingButton' }));
+      const matButtonHarness = await loader.getHarness(MatButtonHarness.with({ selector: '.buying-button' }));
       expect(await matButtonHarness.getText()).toBe('Kaufen');
     });
 
@@ -118,7 +118,7 @@ describe('JourneyListItemComponent', () => {
 
       fixture.detectChanges();
 
-      expect(fixture.nativeElement.querySelector('#buyingButton')).toBeNull();
+      expect(fixture.nativeElement.querySelector('.buying-button')).toBeNull();
     });
 
     it('should emit "journeySelectedEvent" when "emitJourneySelectedEvent" is called with journey payload', () => {
@@ -134,7 +134,7 @@ describe('JourneyListItemComponent', () => {
 
     it('should be called "emitJourneySelectedEvent" when select button is clicked', () => {
       const emitJourneySelectedEventSpy = spyOn(componentUnderTest, 'emitJourneySelectedEvent');
-      const selectButton = fixture.nativeElement.querySelector('#buyingButton');
+      const selectButton = fixture.nativeElement.querySelector('.buying-button');
 
       selectButton.click();
 

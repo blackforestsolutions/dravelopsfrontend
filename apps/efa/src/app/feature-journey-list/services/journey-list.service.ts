@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { asyncScheduler, Observable, scheduled } from 'rxjs';
-import { GetAllJourneysQuery, GetJourneysSubscription, JourneyFragment } from '../../shared/model/generated';
+import { GetAllJourneysQuery, GetJourneysSubscription, JourneyFragment } from '@dravelopsfrontend/generated-content';
 import { map, mergeAll, tap } from 'rxjs/operators';
 import { JourneyApiService } from '../../shared/api/journey-api.service';
 import { ApolloQueryResult, SubscriptionResult } from '@apollo/client';

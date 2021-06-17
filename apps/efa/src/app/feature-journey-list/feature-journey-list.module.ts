@@ -19,6 +19,9 @@ import { SortJourneyPipe } from './pipes/sort-journey-pipe/sort-journey.pipe';
 import { IsJourneyInPastPipe } from './pipes/is-journey-in-past-pipe/is-journey-in-past.pipe';
 import { JourneyListService } from './services/journey-list.service';
 import { IsOnlyFootpathPipe } from './pipes/is-only-footpath-pipe/is-only-footpath.pipe';
+import {SharedStylesModule} from "@dravelopsfrontend/shared-styles";
+import { GeoJsonPipe } from './pipes/geo-json-pipe/geo-json.pipe';
+import { MapOptionsPipe } from './pipes/map-options-pipe/map-options.pipe';
 
 
 @NgModule({
@@ -37,7 +40,9 @@ import { IsOnlyFootpathPipe } from './pipes/is-only-footpath-pipe/is-only-footpa
     JourneyListBackwardComponent,
     SortJourneyPipe,
     IsJourneyInPastPipe,
-    IsOnlyFootpathPipe
+    IsOnlyFootpathPipe,
+    GeoJsonPipe,
+    MapOptionsPipe,
   ],
   providers: [
     JourneyListService,
@@ -52,6 +57,7 @@ import { IsOnlyFootpathPipe } from './pipes/is-only-footpath-pipe/is-only-footpa
     CommonModule,
     FeatureJourneyListRoutingModule,
     SharedModule,
+    SharedStylesModule,
     LeafletModule
   ]
 })
