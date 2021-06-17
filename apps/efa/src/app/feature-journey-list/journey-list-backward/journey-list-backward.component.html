@@ -1,6 +1,7 @@
 <mat-progress-bar mode='query' *ngIf='loading'></mat-progress-bar>
 <ng-container *ngIf='(journeys$ | async | filterEqualJourneys | backwardJourneyFilter: selectedOutwardJourney | sortJourney: getJourneyIsArrivalDateTime()) as journeys'>
   <p class='date'>Rückfahrt am {{ getJourneyDateTime() | date: 'mediumDate' }}</p>
+
   <button *ngIf='this.journeys && this.journeys.length && earlierJourneysAvailable' (click)='earlierButtonClick$.next()' mat-button color='primary'>
     Früher
   </button>
