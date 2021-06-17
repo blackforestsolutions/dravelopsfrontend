@@ -1,4 +1,13 @@
+@import 'libs/shared-styles/src/assets/hvv/material';
+
 .startImage {
-  max-width: 100%;
+  width: 100%;
   height: auto;
+}
+
+@media screen and (min-width: 850px) {
+  .startImage {
+    height: 100vh;
+    object-fit: cover;
+  }
 }
