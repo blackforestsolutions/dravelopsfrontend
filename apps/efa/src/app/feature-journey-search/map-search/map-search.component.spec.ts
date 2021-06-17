@@ -9,7 +9,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { PolygonApiService } from '../../shared/api/polygon-api.service';
 import { expect } from '@jest/globals';
-import { NearestAddressesListComponent } from '../nearest-addresses-list/nearest-addresses-list.component';
+import { NearestTravelPointListComponent } from '../nearest-travel-point-list/nearest-travel-point-list.component';
 
 describe('MapSearchComponent', () => {
   let componentUnderTest: MapSearchComponent;
@@ -21,7 +21,7 @@ describe('MapSearchComponent', () => {
         MapSearchComponent,
         MockComponent(ThemeEmitterComponent),
         MockComponent(LoadingComponent),
-        MockComponent(NearestAddressesListComponent),
+        MockComponent(NearestTravelPointListComponent),
         PolygonPipe,
         MapOptionsPipe
       ],

@@ -2,9 +2,9 @@ import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/cor
 import { LatLng, Map, Marker, marker } from 'leaflet';
 import { PolygonApiService } from '../../shared/api/polygon-api.service';
 import { Observable, Subject } from 'rxjs';
-import { NearestAddressFragment, PolygonFragment } from '@dravelopsfrontend/generated-content';
+import { NearestTravelPointFragment, PolygonFragment } from '@dravelopsfrontend/generated-content';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { NearestAddressesListComponent } from '../nearest-addresses-list/nearest-addresses-list.component';
+import { NearestTravelPointListComponent } from '../nearest-travel-point-list/nearest-travel-point-list.component';
 import { takeUntil } from 'rxjs/operators';
 
 @Component({
@@ -13,8 +13,8 @@ import { takeUntil } from 'rxjs/operators';
   styleUrls: ['./map-search.component.scss']
 })
 export class MapSearchComponent implements OnInit, OnDestroy {
-  @Output() departureSelectEvent = new EventEmitter<NearestAddressFragment>();
-  @Output() arrivalSelectEvent = new EventEmitter<NearestAddressFragment>();
+  @Output() departureSelectEvent = new EventEmitter<NearestTravelPointFragment>();
+  @Output() arrivalSelectEvent = new EventEmitter<NearestTravelPointFragment>();
 
   polygon$: Observable<PolygonFragment>;
   private destroy$: Subject<void> = new Subject<void>();
@@ -62,7 +62,7 @@ export class MapSearchComponent implements OnInit, OnDestroy {
   }
 
   private openBottomSheet(latLng: LatLng): void {
-    const matBottomSheetRef: MatBottomSheetRef = this.matBottomSheet.open(NearestAddressesListComponent, {
+    const matBottomSheetRef: MatBottomSheetRef = this.matBottomSheet.open(NearestTravelPointListComponent, {
       panelClass: '.custom-bottom-sheet',
       data: latLng
     });
@@ -70,12 +70,12 @@ export class MapSearchComponent implements OnInit, OnDestroy {
       .pipe(
         takeUntil(this.destroy$)
       )
-      .subscribe((nearestAddress: NearestAddressFragment) => {
-        if (nearestAddress && this.departureMarker && this.arrivalMarker) {
-          this.arrivalSelectEvent.emit(nearestAddress);
+      .subscribe((nearestTravelPoint: NearestTravelPointFragment) => {
+        if (nearestTravelPoint && this.departureMarker && this.arrivalMarker) {
+          this.arrivalSelectEvent.emit(nearestTravelPoint);
         }
-        if (nearestAddress && this.departureMarker && !this.arrivalMarker) {
-          this.departureSelectEvent.emit(nearestAddress);
+        if (nearestTravelPoint && this.departureMarker && !this.arrivalMarker) {
+          this.departureSelectEvent.emit(nearestTravelPoint);
         }
       });
   }
