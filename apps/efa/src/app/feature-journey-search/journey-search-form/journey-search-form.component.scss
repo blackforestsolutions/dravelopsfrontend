@@ -24,32 +24,32 @@
   grid-column: 1/6;
 }
 
-.time {
+.outward-time {
   grid-row: 4;
   grid-column: 4/6;
 }
 
-.date {
+.outward-date {
   grid-row: 4;
   grid-column: 1/3;
 }
 
-.dep-or-arr {
+.outward-is-arrival-date-time {
   grid-row: 5;
   grid-column: 1/3;
 }
 
-.returnTrip-time {
+.backward-time {
   grid-row: 6;
   grid-column: 4/6;
 }
 
-.returnTrip-date {
+.backward-date {
   grid-row: 6;
   grid-column: 1/3;
 }
 
-.returnTrip-dep-or-arr {
+.backward-is-arrival-date-time {
   grid-row: 7;
   grid-column: 1/6;
 }
