@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NearestAddressesListItemComponent } from './nearest-addresses-list-item.component';
+import { NearestTravelPointListItemComponent } from './nearest-travel-point-list-item.component';
 import { SharedModule } from '../../shared/shared.module';
 import {
   getFurtwangenKindergardenTravelPoint,
@@ -8,21 +8,21 @@ import {
 } from '../../shared/objectmothers/travel-point-object-mother';
 
 describe('NearestAddressesListItemComponent', () => {
-  let componentUnderTest: NearestAddressesListItemComponent;
-  let fixture: ComponentFixture<NearestAddressesListItemComponent>;
+  let componentUnderTest: NearestTravelPointListItemComponent;
+  let fixture: ComponentFixture<NearestTravelPointListItemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [NearestAddressesListItemComponent],
+      declarations: [NearestTravelPointListItemComponent],
       imports: [SharedModule]
     })
       .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NearestAddressesListItemComponent);
+    fixture = TestBed.createComponent(NearestTravelPointListItemComponent);
     componentUnderTest = fixture.componentInstance;
-    componentUnderTest.nearestAddress = getFurtwangenSupermarketTravelPoint();
+    componentUnderTest.nearestTravelPoint = getFurtwangenSupermarketTravelPoint();
     fixture.detectChanges();
   });
 
@@ -31,7 +31,7 @@ describe('NearestAddressesListItemComponent', () => {
   });
 
   it('should show distance in metres', () => {
-    componentUnderTest.nearestAddress = getFurtwangenKindergardenTravelPoint();
+    componentUnderTest.nearestTravelPoint = getFurtwangenKindergardenTravelPoint();
 
     fixture.detectChanges();
 
