@@ -118,7 +118,7 @@ describe('LegListItemComponent', () => {
       const vehicleTypeComponent: VehicleTypeComponent = fixture.debugElement.query(By.directive(VehicleTypeComponent)).componentInstance;
 
       const vehicleNumber: string = fixture.nativeElement.querySelector('.vehicleNumber').innerHTML;
-      expect(vehicleNumber).toBe('272');
+      expect(vehicleNumber).toContain('272');
       expect(vehicleTypeComponent.key).toBe(VehicleType.BUS);
     });
 
