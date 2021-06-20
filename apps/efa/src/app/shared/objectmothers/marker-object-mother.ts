@@ -7,8 +7,8 @@ import { icon, marker, Marker } from 'leaflet';
 export const getDepartureMarker = (): Marker => {
   return marker([48.05532, 8.20426], {
     icon: icon({
-      iconSize: [25, 41],
-      iconUrl: 'assets/styles/footpath/departure_icon.svg'
+      iconSize: [31.25, 51.25],
+      iconUrl: 'assets/bw/departure_icon.svg'
     })
   });
 };
@@ -20,8 +20,8 @@ export const getDepartureMarker = (): Marker => {
 export const getArrivalMarker = (): Marker => {
   return marker([48.05939, 8.20257], {
     icon: icon({
-      iconSize: [25, 41],
-      iconUrl: 'assets/styles/footpath/arrival_icon.svg'
+      iconSize: [31.25, 51.25],
+      iconUrl: 'assets/bw/arrival_icon.svg'
     })
   });
 };
