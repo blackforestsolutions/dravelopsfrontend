@@ -76,6 +76,7 @@ export class JourneyListBackwardComponent implements OnInit, OnDestroy {
     this.route.paramMap
       .pipe(
         takeUntil(this.destroy$),
+        tap(() => this.journeys$.next(null)),
         tap(() => isNewSearch = true),
         switchMap((params: ParamMap) => merge(
           this.getJourneys(params),
