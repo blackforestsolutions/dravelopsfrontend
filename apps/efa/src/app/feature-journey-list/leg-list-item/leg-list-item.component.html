@@ -3,27 +3,26 @@
 <div class='grid-container'>
 
   <!-- first row -->
-  <div class='left'><!--icons and street on the left side -->
-    <mat-icon>trip_origin</mat-icon>
+  <div class='departureIcon'>
+  <mat-icon>trip_origin</mat-icon>
   </div>
-  <div class='place'>
+  <div [ngClass]='leg.departure.platform.length === 0 ? "departureName--long" : "departureName--short"' class='departureName'>
     {{ leg.departure.name }}
   </div>
-  <div class='right'><!--time on the right side -->
-    {{ leg.departure.departureTime | date: 'shortTime' }}
+  <div *ngIf='leg.departure.platform.length > 0' class='departurePlatform'>
+    Gleis: {{ leg.departure.platform }}
   </div>
-  <div>
-    <ng-container *ngIf='leg.departure.platform.length > 0'>
-      Gleis: {{ leg.departure.platform }}
-    </ng-container>
+  <div class='departureTime'>
+    {{ leg.departure.departureTime | date: 'shortTime' }}
+    <span *ngIf='leg.delayInMinutes > 0' class='delay'> +{{ leg.delayInMinutes }}</span>
   </div>
 
   <!-- second row -->
-  <div class='left'><!--Icon and street on the left side -->
+  <div class='arrowDownIcon'>
     <mat-icon>arrow_downward</mat-icon>
     <mat-icon>{{ leg.vehicleType | vehicleType }}</mat-icon>
   </div>
-  <div class='flex-container'>
+  <div class='actionButton flex-container'>
     <ng-container *ngIf='leg.vehicleType === "WALK" && leg.waypoints.length > 0'>
       <span class='footpath' (click)='toggleFootpathMap()'>
         {{ leg.distanceInKilometers }} km
@@ -49,34 +48,27 @@
       </button>
     </ng-container>
   </div>
-  <div class='right'> <!--time on the right side -->
+  <div class='duration'>
     {{ leg.departure.departureTime | duration: leg.arrival.arrivalTime }}
   </div>
 
-  <div>
-
-  </div>
-
-  <!-- possible third row -->
+  <!-- possible third row intermediateStops -->
   <ng-container *ngIf='showIntermediateStops'>
     <ng-container *ngFor='let intermediateStop of leg.intermediateStops'>
-      <div class='left'><!--Information on the left side -->
+      <div class='intermediateStopIcon'>
         <mat-icon>arrow_downward</mat-icon>
       </div>
-      <div id='intermediateStopName'>{{ intermediateStop.name }}</div>
-      <div id='intermediateStopArrivalTime' class='right'><!--time on the right side -->
+      <div class='intermediateStopName'>{{ intermediateStop.name }}</div>
+      <div class='intermediateStopArrivalTime'>
         {{ intermediateStop.arrivalTime | date: 'shortTime' }}
-        <span *ngIf='leg.delayInMinutes > 0' class='delay'> +{{ leg.delayInMinutes }} min</span>
-      </div>
-      <div>
-
+        <span *ngIf='leg.delayInMinutes > 0' class='delay'> +{{ leg.delayInMinutes }}</span>
       </div>
     </ng-container>
   </ng-container>
 
-  <!-- possible third row -> map-->
+  <!-- possible third row map-->
   <ng-container *ngIf='showFootpathMap'>
-    <div class='left'><!--time on the right side -->
+    <div class='mapIcon'>
       <mat-icon>map</mat-icon>
     </div>
     <div class='map'>
@@ -86,18 +78,18 @@
 
 
   <!-- fourth row -->
-  <div class='left'> <!--Street and icon on the left side -->
+  <div class='arrivalIcon'>
     <mat-icon>stop_circle</mat-icon>
   </div>
-  <div class='place'>
+  <div [ngClass]='leg.arrival.platform.length === 0 ? "arrivalName--long" : "arrivalName--short"' class='arrivalName'>
     {{ leg.arrival.name }}
   </div>
-  <div class='right'> <!--time on the right side -->
-    {{ leg.arrival.arrivalTime | date: "shortTime" }}
-    <span *ngIf='leg.delayInMinutes > 0' class='delay'> +{{ leg.delayInMinutes }} min</span>
+  <div *ngIf='leg.arrival.platform.length > 0' class='arrivalPlatform'>
+    Gleis: {{ leg.arrival.platform }}
   </div>
-  <div>
-    <ng-container *ngIf='leg.arrival.platform.length > 0'>{{ leg.arrival.platform }}</ng-container>
+  <div class='arrivalTime' [ngStyle]="{'grid-row': (isTabletView$ | async) ? positionArrivalTime() : null}">
+    {{ leg.arrival.arrivalTime | date: "shortTime" }}
+    <span *ngIf='leg.delayInMinutes > 0' class='delay'> +{{ leg.delayInMinutes }}</span>
   </div>
 
 </div>
