@@ -8,7 +8,7 @@
     <mat-label>Start</mat-label>
     <input type='text' matInput [matAutocomplete]='departureAutocomplete' id='departureInput'
            (keyup)='departureInput$.next($event.target.value)' formControlName='departureTravelPoint' [errorStateMatcher]='customErrorStateMatcher'>
-    <mat-icon matSuffix>location_on</mat-icon>
+    <mat-icon matSuffix>{{ getTravelPointSearchIcon() }}</mat-icon>
     <mat-error>Bitte wähle einen Ort aus</mat-error>
     <mat-autocomplete #departureAutocomplete [displayWith]='displayTravelPointName'>
       <mat-option *ngFor='let travelPoint of departureTravelPoints$ | async' [value]='travelPoint'>
@@ -21,7 +21,7 @@
     <mat-label>Ziel</mat-label>
     <input type='text' matInput [matAutocomplete]='arrivalAutocomplete' id='arrivalInput'
            (keyup)='arrivalInput$.next($event.target.value)' formControlName='arrivalTravelPoint' [errorStateMatcher]='customErrorStateMatcher'>
-    <mat-icon matSuffix>location_on</mat-icon>
+    <mat-icon matSuffix>{{ getTravelPointSearchIcon() }}</mat-icon>
     <mat-error>Bitte wähle einen Ort aus</mat-error>
     <mat-autocomplete #arrivalAutocomplete [displayWith]='displayTravelPointName'>
       <mat-option *ngFor='let travelPoint of arrivalTravelPoints$ | async' [value]='travelPoint'>
@@ -64,7 +64,7 @@
         Bitte wähle ein Datum aus
       </mat-error>
       <mat-error *ngIf='this.apiTokenForm.get("backwardJourney").get("date").hasError("backwardDate")'>
-        Das Rückfahrtdatum muss nach dem Hinfahrtdatum liegen
+        Rückfahrtdatum vor Hinfahrtdatum
       </mat-error>
       <mat-datepicker touchUi #backwardJourneyDatePicker></mat-datepicker>
     </mat-form-field>
@@ -77,7 +77,7 @@
         Bitte wähle eine Uhrzeit aus
       </mat-error>
       <mat-error *ngIf='this.apiTokenForm.get("backwardJourney").get("time").hasError("backwardTime")'>
-        Die Rückfahrtzeit muss nach der Hinfahrtzeit liegen
+        Rückfahrtzeit vor Hinfahrtzeit
       </mat-error>
     </mat-form-field>
 

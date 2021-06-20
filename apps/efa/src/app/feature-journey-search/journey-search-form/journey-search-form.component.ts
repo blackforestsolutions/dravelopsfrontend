@@ -23,6 +23,7 @@ type TravelTimeFormValue = {
 })
 export class JourneySearchFormComponent implements OnChanges, OnInit, OnDestroy {
 
+  @Input() isMapSearch: boolean;
   @Input() departureTravelPoint: NearestTravelPointFragment;
   @Input() arrivalTravelPoint: NearestTravelPointFragment;
   @Output() readonly submitApiTokenEvent = new EventEmitter<ApiToken>();
@@ -150,6 +151,13 @@ export class JourneySearchFormComponent implements OnChanges, OnInit, OnDestroy 
       return this.apiTokenForm.get('isRoundTrip').value;
     }
     return false;
+  }
+
+  getTravelPointSearchIcon(): string {
+    if (this.isMapSearch) {
+      return 'map';
+    }
+    return 'location_on';
   }
 
   submitForm(): void {

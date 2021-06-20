@@ -265,6 +265,30 @@ describe('JourneySearchFormComponent', () => {
     expect(backwardJourneyIsArrivalTime).not.toBeNull();
   });
 
+  it('should be returned map icon when "isMapSearch" = true', () => {
+    componentUnderTest.isMapSearch = true;
+
+    const result: string = componentUnderTest.getTravelPointSearchIcon();
+
+    expect(result).toBe('map');
+  });
+
+  it('should be returned location icon when "isMapSearch" = false', () => {
+    componentUnderTest.isMapSearch = false;
+
+    const result: string = componentUnderTest.getTravelPointSearchIcon();
+
+    expect(result).toBe('location_on');
+  });
+
+  it('should be called "getTravelPointSearchIcon" fourth when dom is updated', () => {
+    const getTravelPointSearchIconSpy = spyOn(componentUnderTest, 'getTravelPointSearchIcon');
+
+    fixture.detectChanges();
+
+    expect(getTravelPointSearchIconSpy).toHaveBeenCalledTimes(4);
+  });
+
   it('should return an apiToken with backwardJourney and trigger the "submitApiTokenEvent" when submitForm is called', () => {
     const expectedApiToken: ApiToken = getApiTokenWithIsRoundTripAsTrue();
     componentUnderTest.apiTokenForm.setValue(getApiTokenFormWithIsRoundTripAsTrue());
@@ -440,7 +464,7 @@ describe('JourneySearchFormComponent', () => {
 
     const backwardJourneyDateFormField = await loader.getHarness(MatFormFieldHarness.with({floatingLabelText: 'Datum (Rück.)'}));
     expect((await backwardJourneyDateFormField.getTextErrors()).length).toBe(1);
-    expect((await backwardJourneyDateFormField.getTextErrors())[0]).toBe('Das Rückfahrtdatum muss nach dem Hinfahrtdatum liegen');
+    expect((await backwardJourneyDateFormField.getTextErrors())[0]).toBe('Rückfahrtdatum vor Hinfahrtdatum');
   });
 
   // because description is necessary for test understanding
@@ -456,6 +480,6 @@ describe('JourneySearchFormComponent', () => {
 
     const backwardJourneyTimeFormField = await loader.getHarness(MatFormFieldHarness.with({floatingLabelText: 'Uhrzeit (Rück.)'}));
     expect((await backwardJourneyTimeFormField.getTextErrors()).length).toBe(1);
-    expect((await backwardJourneyTimeFormField.getTextErrors())[0]).toBe('Die Rückfahrtzeit muss nach der Hinfahrtzeit liegen');
+    expect((await backwardJourneyTimeFormField.getTextErrors())[0]).toBe('Rückfahrtzeit vor Hinfahrtzeit');
   });
 });
