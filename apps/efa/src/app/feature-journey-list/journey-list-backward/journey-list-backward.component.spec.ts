@@ -20,7 +20,7 @@ import { JourneyFragment } from '@dravelopsfrontend/generated-content';
 import {
   getFurtwangenToWaldkirchJourney,
   getFurtwangenToWaldkirchJourneyByArrivalTime,
-  getGrosshausbergToFurtwangenIlbenstreetJourney,
+  getGrosshausbergToFurtwangenIlbenstreetJourney
 } from '../../shared/objectmothers/journey-object-mother';
 import { TestScheduler } from 'rxjs/testing';
 import { MatProgressBarHarness } from '@angular/material/progress-bar/testing';
@@ -150,31 +150,39 @@ describe('JourneyListBackwardComponent', () => {
   it('should return "journeys$" when component is initialized', () => {
     spyOn(journeyListService, 'getBackwardJourneysBy').and.returnValue(of(
       [getFurtwangenToWaldkirchJourney()],
+      getFurtwangenToWaldkirchJourney()
     ));
 
     const scheduler: TestScheduler = new TestScheduler(((actual, expected) => expect(actual).toEqual(expected)));
     scheduler.run(({ expectObservable, cold }) => {
-      cold('-a').subscribe(() => componentUnderTest.ngOnInit());
-      const expectedMarble = '-a';
+      cold('ab').subscribe(() => componentUnderTest.ngOnInit());
+      const expectedMarble = '-(abc)';
       const expectedJourneys = {
-        a: [getFurtwangenToWaldkirchJourney()],
+        a: null,
+        b: [getFurtwangenToWaldkirchJourney()],
+        c: [getFurtwangenToWaldkirchJourney(), getFurtwangenToWaldkirchJourney()]
       };
       expectObservable(componentUnderTest.journeys$).toBe(expectedMarble, expectedJourneys);
     });
   });
 
   it('should be called "getBackwardJourneysBy" from journeyListService with right params', (done) => {
+    let counter = 0;
     const journeyListServiceSpy = spyOn(journeyListService, 'getBackwardJourneysBy')
       .and.returnValue(of([getFurtwangenToWaldkirchJourney()]));
 
     componentUnderTest.journeys$.subscribe({
       next: () => {
-        expect(journeyListServiceSpy).toHaveBeenCalledTimes(1);
-        expect(journeyListServiceSpy).toHaveBeenCalledWith(
-          convertToParamMap(getApiTokenParamMapWithIsRoundTripAsTrue()),
-          expect.anything()
-        );
-        done();
+        if (counter === 1) {
+          expect(journeyListServiceSpy).toHaveBeenCalledTimes(1);
+          expect(journeyListServiceSpy).toHaveBeenCalledWith(
+            convertToParamMap(getApiTokenParamMapWithIsRoundTripAsTrue()),
+            expect.anything()
+          );
+          done();
+        } else {
+          counter++;
+        }
       }
     });
 
