@@ -7,6 +7,7 @@ import { GeoJsonPipe } from '../pipes/geo-json-pipe/geo-json.pipe';
 import { getFurtwangenFriedrichStreetToIlbenStreetGeoJson } from '../../shared/objectmothers/footpath-object-mother';
 import { MapOptionsPipe } from '../pipes/map-options-pipe/map-options.pipe';
 import { ThemeEmitterComponent } from '@dravelopsfrontend/shared-styles';
+import { CUSTOMER_DIRECTORY } from '../../../environments/config-tokens';
 
 describe('FootpathMapComponent', () => {
   let componentUnderTest: FootpathMapComponent;
@@ -19,6 +20,12 @@ describe('FootpathMapComponent', () => {
         MockComponent(ThemeEmitterComponent),
         MockPipe(GeoJsonPipe, () => getFurtwangenFriedrichStreetToIlbenStreetGeoJson()),
         MapOptionsPipe
+      ],
+      providers: [
+        {
+          provide: CUSTOMER_DIRECTORY,
+          useValue: 'bw',
+        }
       ],
       imports: [LeafletModule]
     })
