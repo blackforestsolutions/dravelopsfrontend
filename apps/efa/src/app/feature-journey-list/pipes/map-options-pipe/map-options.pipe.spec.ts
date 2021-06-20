@@ -12,7 +12,9 @@ import { getArrivalMarker, getDepartureMarker } from '../../../shared/objectmoth
 
 describe('MapOptionsPipe', () => {
 
-  const classUnderTest: MapOptionsPipe = new MapOptionsPipe();
+  const customerDirectory = 'bw';
+
+  const classUnderTest: MapOptionsPipe = new MapOptionsPipe(customerDirectory);
 
   it('create an instance', () => {
     expect(classUnderTest).toBeTruthy();
