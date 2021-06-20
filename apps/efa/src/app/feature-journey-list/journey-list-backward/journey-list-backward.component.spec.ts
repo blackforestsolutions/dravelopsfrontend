@@ -23,7 +23,6 @@ import {
   getGrosshausbergToFurtwangenIlbenstreetJourney
 } from '../../shared/objectmothers/journey-object-mother';
 import { TestScheduler } from 'rxjs/testing';
-import { MatProgressBarHarness } from '@angular/material/progress-bar/testing';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { SortJourneyPipe } from '../pipes/sort-journey-pipe/sort-journey.pipe';
@@ -187,12 +186,6 @@ describe('JourneyListBackwardComponent', () => {
     });
 
     componentUnderTest.ngOnInit();
-  });
-
-  it('should show progressbar when component is initialized', async () => {
-    const progressBarHarness: MatProgressBarHarness = await loader.getHarness(MatProgressBarHarness);
-
-    expect(progressBarHarness).not.toBeNull();
   });
 
   it('should show journeyListItems with correct input bindings when journeys are available', () => {
