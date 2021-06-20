@@ -1,11 +1,15 @@
-import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
-import { LatLng, Map, Marker, marker } from 'leaflet';
+import { Component, EventEmitter, Inject, OnDestroy, OnInit, Output } from '@angular/core';
+import { icon, LatLng, Map, Marker, marker } from 'leaflet';
 import { PolygonApiService } from '../../shared/api/polygon-api.service';
 import { Observable, Subject } from 'rxjs';
 import { NearestTravelPointFragment, PolygonFragment } from '@dravelopsfrontend/generated-content';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { NearestTravelPointListComponent } from '../nearest-travel-point-list/nearest-travel-point-list.component';
 import { takeUntil } from 'rxjs/operators';
+import { CUSTOMER_DIRECTORY } from '../../../environments/config-tokens';
+
+const ICON_WIDTH = 45;
+const ICON_HEIGHT = 73.8;
 
 @Component({
   selector: 'dravelopsefafrontend-map-search',
@@ -23,6 +27,7 @@ export class MapSearchComponent implements OnInit, OnDestroy {
   private arrivalMarker: Marker = null;
 
   constructor(
+    @Inject(CUSTOMER_DIRECTORY) private readonly customerDirectory: string,
     private readonly polygonApiService: PolygonApiService,
     private readonly matBottomSheet: MatBottomSheet
   ) {
@@ -47,11 +52,11 @@ export class MapSearchComponent implements OnInit, OnDestroy {
 
   private setMarker(latLng: LatLng): void {
     if (!this.departureMarker) {
-      this.departureMarker = marker(latLng).addTo(this.leafletMap);
+      this.departureMarker = this.createDepartureMarker(latLng).addTo(this.leafletMap);
       return;
     }
     if (!this.arrivalMarker) {
-      this.arrivalMarker = marker(latLng).addTo(this.leafletMap);
+      this.arrivalMarker = this.createArrivalMarker(latLng).addTo(this.leafletMap);
       return;
     }
     this.leafletMap.removeLayer(this.departureMarker);
@@ -61,23 +66,54 @@ export class MapSearchComponent implements OnInit, OnDestroy {
     this.setMarker(latLng);
   }
 
+  private createDepartureMarker(latLng: LatLng): Marker {
+    return marker(latLng, {
+      icon: icon({
+        iconSize: [ICON_WIDTH, ICON_HEIGHT],
+        iconUrl: `assets/${this.customerDirectory}/departure_icon.svg`
+      })
+    });
+  }
+
+  private createArrivalMarker(latLng: LatLng): Marker {
+    return marker(latLng, {
+      icon: icon({
+        iconSize: [ICON_WIDTH, ICON_HEIGHT],
+        iconUrl: `assets/${this.customerDirectory}/arrival_icon.svg`
+      })
+    });
+  }
+
   private openBottomSheet(latLng: LatLng): void {
     const matBottomSheetRef: MatBottomSheetRef = this.matBottomSheet.open(NearestTravelPointListComponent, {
       panelClass: '.custom-bottom-sheet',
+      closeOnNavigation: true,
       data: latLng
     });
     matBottomSheetRef.afterDismissed()
-      .pipe(
-        takeUntil(this.destroy$)
-      )
-      .subscribe((nearestTravelPoint: NearestTravelPointFragment) => {
-        if (nearestTravelPoint && this.departureMarker && this.arrivalMarker) {
-          this.arrivalSelectEvent.emit(nearestTravelPoint);
-        }
-        if (nearestTravelPoint && this.departureMarker && !this.arrivalMarker) {
-          this.departureSelectEvent.emit(nearestTravelPoint);
-        }
-      });
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((nearestTravelPoint: NearestTravelPointFragment) => this.handleBottomSheetCloseEvent(nearestTravelPoint));
+  }
+
+  private handleBottomSheetCloseEvent(nearestTravelPoint: NearestTravelPointFragment): void {
+    if (nearestTravelPoint && this.arrivalMarker) {
+      this.arrivalSelectEvent.emit(nearestTravelPoint);
+      return;
+    }
+    if (nearestTravelPoint && !this.arrivalMarker) {
+      this.departureSelectEvent.emit(nearestTravelPoint);
+      return;
+    }
+    if (!nearestTravelPoint && this.arrivalMarker) {
+      this.leafletMap.removeLayer(this.arrivalMarker);
+      this.arrivalMarker = null;
+      return;
+    }
+    if (!nearestTravelPoint && !this.arrivalMarker) {
+      this.leafletMap.removeLayer(this.departureMarker);
+      this.departureMarker = null;
+      return;
+    }
   }
 
 }
