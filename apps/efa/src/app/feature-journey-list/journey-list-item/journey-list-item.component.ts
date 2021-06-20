@@ -20,7 +20,7 @@ export class JourneyListItemComponent implements OnInit {
   @Input() journey: JourneyFragment;
   @Output() journeySelectedEvent = new EventEmitter<JourneyFragment>();
 
-  isTabletView: Observable<boolean>;
+  isTabletView$: Observable<boolean>;
 
   constructor(
     private breakpointObserver: BreakpointObserver,
@@ -29,7 +29,7 @@ export class JourneyListItemComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isTabletView = this.breakpointObserver.observe('(min-width: 720px)').pipe(
+    this.isTabletView$ = this.breakpointObserver.observe('(min-width: 720px)').pipe(
       map((breakPointState: BreakpointState) => breakPointState.matches)
     );
   }

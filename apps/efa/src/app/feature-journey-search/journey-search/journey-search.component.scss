@@ -1,10 +1,12 @@
+@import "libs/shared-styles/src/assets/styles/global";
+
 @media screen and (min-width: 850px) {
   .layer {
     position: absolute;
-    background-color: rgba(#055ba6, 0.7);
+    background-color: rgba($primary-color, 0.7);
     right: 0;
     width: 45rem;
-    height: 100vh;
+    height: 100%;
   }
 
   .container {
@@ -13,7 +15,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     max-width: 35rem;
-    background-color: white;
+    background-color: $background-color;
   }
 }
 
@@ -26,4 +28,3 @@
     max-width: 45rem;
   }
 }
-

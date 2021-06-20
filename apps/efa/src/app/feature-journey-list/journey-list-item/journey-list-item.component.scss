@@ -1,4 +1,4 @@
-@import 'libs/shared-styles/src/assets/styles/variables';
+@import 'libs/shared-styles/src/assets/styles/global';
 
 :host ::ng-deep.mat-expansion-panel-body {
   padding: 0 0.5rem !important;
@@ -18,13 +18,8 @@
   width: 100%;
   display: grid;
   grid-template-rows: auto auto;
-  grid-template-columns: auto auto auto;
+  grid-template-columns: repeat(3, 1fr);
   align-items: center;
-}
-
-.flex-container {
-  display: flex;
-  justify-content: space-between;
 }
 
 .duration {
@@ -50,7 +45,7 @@
 
 @media (min-width: 500px) {
   .grid-container {
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: repeat(4, 1fr);
   }
 
   .transfers {
@@ -63,10 +58,10 @@
   }
 }
 
-@media (min-width: $tablet) {
+@media (min-width: $bp-tablet) {
   .grid-container {
     grid-template-rows: auto;
-    grid-template-columns: 15% 40% 15% 10% 10% 10%;
+    grid-template-columns: 15% 40% repeat(4, 11.25%);
   }
 
   .icons {
@@ -76,6 +71,7 @@
 
   .duration {
     grid-column: 3 / 4;
+    justify-self: start;
   }
 
   .transfers {

@@ -1,0 +1,28 @@
+@import "libs/shared-styles/src/assets/styles/global";
+
+.grid-container {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-column: auto;
+}
+
+.header {
+  align-self: center;
+}
+
+.grid-container, .content {
+  width: 100%;
+  height: 100%;
+}
+
+@media (min-width: 850px) {
+  .grid-container {
+    grid-template-rows: 8% 92%;
+  }
+}
+
+@media (min-width: $bp-laptop) {
+  .grid-container {
+    grid-template-rows: 10% 90%;
+  }
+}

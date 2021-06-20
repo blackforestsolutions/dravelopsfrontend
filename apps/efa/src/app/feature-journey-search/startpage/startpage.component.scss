@@ -1,3 +1,8 @@
+.startImageWrapper {
+  height: 100%;
+  width: 100%;
+}
+
 .startImage {
   width: 100%;
   height: auto;
@@ -5,7 +10,7 @@
 
 @media screen and (min-width: 850px) {
   .startImage {
-    height: 100vh;
+    height: 100%;
     object-fit: cover;
   }
 }

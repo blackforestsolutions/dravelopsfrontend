@@ -1,15 +1,11 @@
-@import "libs/shared-styles/src/assets/styles/variables";
+@import "libs/shared-styles/src/assets/styles/global";
 
 .grid-container {
   width: 100%;
   display: grid;
-  grid-template-columns: 13% 37% 34% 16%;
+  grid-template-columns: 15% 1fr 30% 5.415rem;
   gap: 0 0;
   align-items: center;
-}
-
-.right {
-  grid-column: 4;
 }
 
 .divider{
@@ -18,16 +14,12 @@
 
 @media screen and (min-width: 440px){
   .grid-container {
-    grid-template-columns: 10% 51% 29% 10%;
+    grid-template-columns: 15% 35% 25% 25%;
   }
 }
 
-@media screen and (min-width: $tablet) {
+@media screen and (min-width: $bp-tablet) {
   .grid-container {
-    grid-template-columns: 15% 40% 15% 10% 10% 10%;
-  }
-
-  .right {
-    grid-column: 3;
+    grid-template-columns: 15% 40% repeat(4, 11.25%);
   }
 }
