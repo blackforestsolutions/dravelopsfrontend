@@ -13,8 +13,6 @@ import {
   getApiTokenParamMapWithIsRoundTripAsTrue,
   getApiTokenWithIsRoundTripAsTrue
 } from '../../shared/objectmothers/api-token-object-mother';
-import { HarnessLoader } from '@angular/cdk/testing';
-import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { expect } from '@jest/globals';
 import { JourneyFragment } from '@dravelopsfrontend/generated-content';
 import {
@@ -33,7 +31,6 @@ describe('JourneyListBackwardComponent', () => {
   let componentUnderTest: JourneyListBackwardComponent;
   let fixture: ComponentFixture<JourneyListBackwardComponent>;
   let journeyListService: JourneyListService;
-  let loader: HarnessLoader;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -68,7 +65,6 @@ describe('JourneyListBackwardComponent', () => {
     fixture = TestBed.createComponent(JourneyListBackwardComponent);
     componentUnderTest = fixture.componentInstance;
     journeyListService = TestBed.inject(JourneyListService);
-    loader = TestbedHarnessEnvironment.loader(fixture);
     fixture.detectChanges();
   });
 
