@@ -62,6 +62,7 @@ describe('JourneyListBackwardComponent', () => {
   });
 
   beforeEach(() => {
+    window.HTMLElement.prototype.scrollIntoView = jest.fn();
     fixture = TestBed.createComponent(JourneyListBackwardComponent);
     componentUnderTest = fixture.componentInstance;
     journeyListService = TestBed.inject(JourneyListService);
