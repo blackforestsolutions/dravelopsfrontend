@@ -1,0 +1,66 @@
+@import 'libs/shared-styles/src/assets/styles/global';
+
+.grid-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+}
+
+.path {
+  display: none;
+}
+
+.duration {
+  justify-self: center;
+}
+
+.transfers {
+  display: none;
+}
+
+.price{
+  justify-self: end;
+}
+
+mat-card {
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+}
+
+
+@media screen and (min-width: 500px) {
+  .grid-container {
+    grid-template-columns: repeat(4, 1fr);
+    align-items: center;
+  }
+
+  mat-card {
+    padding: 0.7rem 1rem;
+  }
+
+  .transfers {
+    display: unset;
+    justify-self: center;
+  }
+}
+
+@media screen and (min-width: $bp-tablet) {
+  .grid-container {
+    grid-template-columns: 15% 40% repeat(4, 11.25%);
+    align-items: center;
+  }
+
+  .duration {
+    justify-self: start;
+  }
+
+  .path {
+    display: unset;
+  }
+
+  .price {
+    grid-column: 5 / 7;
+    justify-self: center;
+  }
+}
