@@ -17,6 +17,7 @@ import {MatListModule} from '@angular/material/list';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatTabsModule} from "@angular/material/tabs";
 import {MatBottomSheetModule} from "@angular/material/bottom-sheet";
+import { MatCardModule } from '@angular/material/card';
 
 const materialModules = [
   MatAutocompleteModule,
@@ -36,6 +37,7 @@ const materialModules = [
   MatSlideToggleModule,
   MatTabsModule,
   MatBottomSheetModule,
+  MatCardModule
 ];
 
 @NgModule({
