@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { JourneyFragment } from '@dravelopsfrontend/generated-content';
 import { takeUntil } from 'rxjs/operators';
 
+const BOOKING_PATH = '/booking';
+
 @Component({
   selector: 'dravelopsefafrontend-journey-list',
   templateUrl: './journey-list.component.html',
@@ -33,13 +35,17 @@ export class JourneyListComponent implements OnInit, OnDestroy {
     if (isRoundTrip) {
       this.selectedOutwardJourney = journey;
     } else {
-      this.router.navigate(['/booking', isRoundTrip, journey.id]);
+      this.router.navigate([BOOKING_PATH, isRoundTrip, journey.id]);
     }
   }
 
   handleBackwardJourneySelectedEvent(journey: JourneyFragment): void {
     const isRoundTrip: boolean = JSON.parse(this.route.snapshot.paramMap.get('isRoundTrip'));
-    this.router.navigate(['/booking/', isRoundTrip, this.selectedOutwardJourney.id, journey.id]);
+    if (journey) {
+      this.router.navigate([BOOKING_PATH, isRoundTrip, this.selectedOutwardJourney.id, journey.id]);
+    } else {
+      this.router.navigate([BOOKING_PATH, false, this.selectedOutwardJourney.id]);
+    }
   }
 
   private resetComponent(): void {

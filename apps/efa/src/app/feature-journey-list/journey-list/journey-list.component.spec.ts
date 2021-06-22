@@ -214,5 +214,17 @@ describe('JourneyListComponent ', () => {
         expect(location.path()).toEqual(`/booking/${false}/${testJourney.id}`);
       });
     }));
+
+    it('should navigate to booking api when "handleBackwardJourneySelectedEvent" is called with null"', waitForAsync(() => {
+      const outwardTestJourney: JourneyFragment = getFurtwangenToWaldkirchJourney();
+      componentUnderTest.selectedOutwardJourney = outwardTestJourney;
+
+      componentUnderTest.handleBackwardJourneySelectedEvent(null);
+
+      fixture.whenStable().then(() => {
+        expect(componentUnderTest.selectedOutwardJourney).toEqual(outwardTestJourney);
+        expect(location.path()).toEqual(`/booking/${false}/${outwardTestJourney.id}`);
+      });
+    }));
   });
 });
