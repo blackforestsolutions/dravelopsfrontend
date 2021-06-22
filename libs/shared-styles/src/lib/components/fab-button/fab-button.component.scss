@@ -1,0 +1,15 @@
+@import "libs/shared-styles/src/assets/styles/global";
+
+.fab-button {
+  position: fixed;
+  left: 97.5%;
+  bottom: 2.5%;
+  transform: translate(-100%);
+}
+
+@media (min-width: $bp-max + 250px) {
+  .fab-button {
+    left: 50%;
+    transform: translate(calc(#{$bp-max} / 2 + 4.5rem));
+  }
+}
