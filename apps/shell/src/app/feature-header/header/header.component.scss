@@ -1,4 +1,4 @@
-@import "libs/shared-styles/src/assets/styles/variables";
+@import "libs/shared-styles/src/assets/styles/global";
 
 .example-spacer {
   flex: 1 1 auto;
@@ -9,17 +9,20 @@
   height: auto;
 }
 
+.logo:hover {
+  cursor: pointer;
+}
+
 .title, .material-icons {
   font-weight: normal;
 }
 
 .material-icons {
-  font-size: 3.3rem;
-  margin-right: 1.6rem;
+  margin-right: 0.8rem;
 }
 
 .menu-title {
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: normal;
 }
 
@@ -27,7 +30,18 @@
   display: none;
 }
 
-@media (min-width: $tablet) {
+@media (min-width: $bp-handy) {
+  .material-icons {
+    font-size: 3.3rem;
+    margin-right: 1.6rem;
+  }
+
+  .menu-title {
+    font-size: 1.8rem;
+  }
+}
+
+@media (min-width: $bp-tablet) {
   .menu-title {
     display: none;
   }
@@ -42,5 +56,15 @@
 
   .title {
     display: unset;
+  }
+
+  .toolbar-wrapper {
+    padding: 0.5em 0.5rem;
+  }
+}
+
+@media (min-width: $bp-laptop) {
+  .toolbar-wrapper {
+    padding: 1em 1rem;
   }
 }

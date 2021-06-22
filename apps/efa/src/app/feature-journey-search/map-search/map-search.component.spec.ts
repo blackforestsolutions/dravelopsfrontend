@@ -10,6 +10,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { PolygonApiService } from '../../shared/api/polygon-api.service';
 import { expect } from '@jest/globals';
 import { NearestTravelPointListComponent } from '../nearest-travel-point-list/nearest-travel-point-list.component';
+import { CUSTOMER_DIRECTORY } from '../../../environments/config-tokens';
 
 describe('MapSearchComponent', () => {
   let componentUnderTest: MapSearchComponent;
@@ -30,7 +31,11 @@ describe('MapSearchComponent', () => {
         LeafletModule
       ],
       providers: [
-        MockProvider(PolygonApiService)
+        MockProvider(PolygonApiService),
+        {
+          provide: CUSTOMER_DIRECTORY,
+          useValue: 'bw'
+        }
       ]
     })
       .compileComponents();

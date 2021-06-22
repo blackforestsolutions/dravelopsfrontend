@@ -1,3 +1,24 @@
+<div class='layer'>
+  <div class='container'>
+    <mat-tab-group [(selectedIndex)]='selectedTabIndex' mat-stretch-tabs backgroundColor='primary' animationDuration='0ms'>
+      <mat-tab label='Verbindungssuche'>
+        <dravelopsefafrontend-journey-search-form (submitApiTokenEvent)='passSubmitApiTokenEvent($event)'>
+
+        </dravelopsefafrontend-journey-search-form>
+      </mat-tab>
+      <mat-tab label='Kartensuche'>
+        <dravelopsefafrontend-journey-search-form
+          [isMapSearch]='true'
+          [departureTravelPoint]='selectedDeparture'
+          [arrivalTravelPoint]='selectedArrival'
+          (submitApiTokenEvent)='passSubmitApiTokenEvent($event)'
+        >
+        </dravelopsefafrontend-journey-search-form>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+</div>
+
 <ng-container [ngSwitch]='selectedTabIndex'>
   <dravelopsefafrontend-startpage *ngSwitchCase='0'></dravelopsefafrontend-startpage>
   <dravelopsefafrontend-map-search
@@ -8,20 +29,3 @@
 
   </dravelopsefafrontend-map-search>
 </ng-container>
-
-<mat-tab-group (selectedIndexChange)='setSelectedTabIndex($event)' mat-stretch-tabs backgroundColor='primary' animationDuration='0ms'>
-  <mat-tab label='Verbindungssuche'>
-    <dravelopsefafrontend-journey-search-form (submitApiTokenEvent)='passSubmitApiTokenEvent($event)'>
-
-    </dravelopsefafrontend-journey-search-form>
-  </mat-tab>
-  <mat-tab label='Kartensuche'>
-    <dravelopsefafrontend-journey-search-form
-      [departureTravelPoint]='selectedDeparture'
-      [arrivalTravelPoint]='selectedArrival'
-      (submitApiTokenEvent)='passSubmitApiTokenEvent($event)'
-    >
-
-    </dravelopsefafrontend-journey-search-form>
-  </mat-tab>
-</mat-tab-group>

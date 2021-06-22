@@ -1,17 +1,34 @@
-import {ComponentFixture, TestBed} from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import {HeaderComponent} from './header.component';
 import {SharedModule} from '../../shared/shared.module';
 import {CUSTOMER_DIRECTORY, HEADER_TITLE} from "../../../environments/app-environmnet";
+import { RouterTestingModule } from '@angular/router/testing';
+import { Component } from '@angular/core';
+import { Location } from '@angular/common';
+
+@Component({
+  template: ''
+})
+class EfaFrontendComponent {}
 
 describe('HeaderComponent', () => {
   let componentUnderTest: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
+  let location: Location;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [HeaderComponent],
-      imports: [SharedModule],
+      imports: [
+        SharedModule,
+        RouterTestingModule.withRoutes([
+          {
+            path: '',
+            component: EfaFrontendComponent
+          }
+        ])
+      ],
       providers: [
         {
           provide: HEADER_TITLE,
@@ -27,6 +44,7 @@ describe('HeaderComponent', () => {
   });
 
   beforeEach(() => {
+    location = TestBed.inject(Location);
     fixture = TestBed.createComponent(HeaderComponent);
     componentUnderTest = fixture.componentInstance;
     fixture.detectChanges();
@@ -56,4 +74,14 @@ describe('HeaderComponent', () => {
 
     expect(getLogoSpy).toHaveBeenCalled();
   });
+
+  it('should navigate to start when logo is clicked', waitForAsync(() => {
+    const logo = fixture.nativeElement.querySelector('.logo');
+
+    logo.click();
+
+    fixture.whenStable().then(() => {
+      expect(location.path()).toEqual('/');
+    });
+  }));
 });

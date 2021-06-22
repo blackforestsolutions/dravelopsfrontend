@@ -14,10 +14,6 @@ export class JourneySearchComponent {
   selectedArrival: NearestTravelPointFragment;
   selectedTabIndex = 0;
 
-  setSelectedTabIndex(selectedTabIndex: number): void {
-    this.selectedTabIndex = selectedTabIndex;
-  }
-
   handleDepartureSelectEvent(selectedDeparture: NearestTravelPointFragment): void {
     this.selectedDeparture = selectedDeparture;
   }

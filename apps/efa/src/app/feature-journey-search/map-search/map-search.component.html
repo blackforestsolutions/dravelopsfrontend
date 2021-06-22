@@ -1,15 +1,17 @@
 <dravelopsfrontend-theme-emitter #theme></dravelopsfrontend-theme-emitter>
-<ng-container *ngIf='(polygon$ | async) | polygon as polygon; else this.loading'>
-  <div leaflet
-       [leafletOptions]='polygon | mapOptions: this.theme.primaryColor'
-       [leafletFitBounds]='polygon.getBounds()'
-       [leafletMinZoom]='3'
-       (leafletMapReady)='onMapReadyEvent($event)'
-       (leafletClick)='onMapClickEvent($event.latlng)'
-       class='map'
-  >
-  </div>
-</ng-container>
+<div class='map-wrapper'>
+  <ng-container *ngIf='(polygon$ | async) | polygon as polygon; else this.loading'>
+    <div leaflet
+         [leafletOptions]='polygon | mapOptions: this.theme.primaryColor'
+         [leafletFitBounds]='polygon.getBounds()'
+         [leafletMinZoom]='3'
+         (leafletMapReady)='onMapReadyEvent($event)'
+         (leafletClick)='onMapClickEvent($event.latlng)'
+         class='map'
+    >
+    </div>
+  </ng-container>
+</div>
 
 <ng-template #loading>
   <dravelopsfrontend-loading></dravelopsfrontend-loading>

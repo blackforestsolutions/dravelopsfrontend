@@ -1,14 +1,99 @@
-@import 'libs/shared-styles/src/assets/styles/variables';
+@import 'libs/shared-styles/src/assets/styles/global';
 
 .grid-container {
   width: 100%;
   display: grid;
-  grid-template-columns: 13% 37% auto 4.6rem;
-  gap: 0 0;
+  grid-template-columns: 15% 1fr 30% 5.415rem;
   align-items: center;
 }
 
-.place {
+.departureIcon {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+}
+
+.departureName--short {
+  grid-row: 1 / 2;
+  grid-column: 2 / 3;
+}
+
+.departureName--long {
+  grid-row: 1 / 2;
+  grid-column: 2 / 4;
+}
+
+.departurePlatform {
+  grid-row: 1 / 2;
+  grid-column: 3 / 4;
+  justify-self: center;
+}
+
+.departureTime {
+  grid-row: 1 / 2;
+  grid-column: 4 / 5;
+  justify-self: right;
+}
+
+.arrowDownIcon {
+  grid-row: 2 / 3;
+  grid-column: 1 / 2;
+}
+
+.actionButton {
+  grid-row: 2 / 3;
+  grid-column: 2 / 3;
+}
+
+.duration {
+  grid-row: 2 / 3;
+  grid-column: 4 / 5;
+  justify-self: right;
+}
+
+.intermediateStopIcon {
+  grid-column: 1 / 2;
+}
+
+.intermediateStopName {
+  grid-column: 2 / 4;
+}
+
+.intermediateStopArrivalTime {
+  grid-column: 4 / 5;
+  justify-self: right;
+}
+
+.mapIcon {
+  grid-column: 1 / 2;
+}
+
+.map {
+  grid-column: 2 / 5;
+}
+
+.arrivalIcon {
+  grid-column: 1 / 2;
+}
+
+.arrivalName--short {
+  grid-column: 2 / 3;
+}
+
+.arrivalName--long {
+  grid-column: 2 / 4;
+}
+
+.arrivalPlatform {
+  grid-column: 3 / 4;
+  justify-self: center;
+}
+
+.arrivalTime {
+  grid-column: 4 / 5;
+  justify-self: right;
+}
+
+.departureName, .arrivalName {
   font-weight: bold;
 }
 
@@ -21,43 +106,36 @@
   align-items: center;
 }
 
-.intermediateStops {
+.intermediateStops, .footpath {
   text-decoration: underline;
 }
 
-.divider{
+.divider {
   padding: 0.2rem;
 }
 
-.map {
-  grid-column: 2 / 5;
-}
-
-.right {
-  grid-column: 4;
-}
-
-.left {
-  grid-column: 1;
-}
-
-@media screen and (min-width: 440px){
+@media screen and (min-width: 440px) {
   .grid-container {
-    grid-template-columns: 10% 51% auto 4.6rem;
+    grid-template-columns: 15% 35% 25% 25%;
   }
 }
 
-@media screen and (min-width: $tablet){
+@media screen and (min-width: $bp-tablet) {
   .grid-container {
-    grid-template-columns: 15% 40% 15% 10% 10% 10%;
+    grid-template-columns: 15% 40% repeat(4, 11.25%);
   }
 
-  .duration {
-    justify-self: center;
+  .departureName--long, .arrivalName--long, .intermediateStopName {
+    grid-column: 2 / 3;
   }
 
-  .right {
-    grid-column: 3;
+  .departurePlatform, .arrivalPlatform {
+    grid-column: 4 / 5;
+  }
+
+  .departureTime, .arrivalTime, .intermediateStopArrivalTime, .duration {
+    grid-column: 3 / 4;
+    justify-self: left;
   }
 }
 

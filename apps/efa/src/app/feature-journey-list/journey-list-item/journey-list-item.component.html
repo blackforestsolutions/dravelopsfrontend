@@ -1,16 +1,16 @@
 <mat-expansion-panel class='panel' hideToggle>
   <mat-expansion-panel-header class='header'
-                              [collapsedHeight]='(isTabletView | async) ? null : "10rem"'
-                              [expandedHeight]='(isTabletView | async) ? null : "10rem"'
+                              [collapsedHeight]='(isTabletView$ | async) ? null : "10rem"'
+                              [expandedHeight]='(isTabletView$ | async) ? null : "10rem"'
   >
-    <div class='grid-container' [ngStyle]='{height: (isTabletView | async) ? null : "10rem"}'>
+    <div class='grid-container' [ngStyle]='{height: (isTabletView$ | async) ? null : "10rem"}'>
 
       <!-- first raw -->
       <div>
         {{ journey.legs[0].departure.departureTime | date: 'shortTime' }}
         - {{ journey.legs[journey.legs.length - 1].arrival.arrivalTime | date: 'shortTime' }}
       </div>
-      <div>{{ journey.legs[0].departure.departureTime | duration: journey.legs[journey.legs.length - 1].arrival.arrivalTime }}</div>
+      <div class='duration'>{{ journey.legs[0].departure.departureTime | duration: journey.legs[journey.legs.length - 1].arrival.arrivalTime }}</div>
       <div class='transfers'>{{ journey.legs.length - 1 }}</div>
       <div class='buying-button-container'>
         <button *ngIf='isJourneyBuyable' class='buying-button' mat-flat-button color='primary' (click)='emitJourneySelectedEvent()'>

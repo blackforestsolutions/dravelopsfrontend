@@ -59,7 +59,7 @@
               }
             ],
             "styles": [
-              "apps/shell/src/styles.scss",
+              "libs/shared-styles/src/assets/styles/global.scss",
               "./node_modules/leaflet/dist/leaflet.css"
             ],
             "scripts": [],
@@ -98,7 +98,7 @@
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumError": "100kb"
                 }
               ]
             }
@@ -195,7 +195,7 @@
             ],
             "styles": [
               "./node_modules/leaflet/dist/leaflet.css",
-              "apps/efa/src/styles.scss"
+              "libs/shared-styles/src/assets/styles/global.scss"
             ],
             "scripts": [],
             "vendorChunk": true,
@@ -233,7 +233,7 @@
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumError": "100kb"
                 }
               ]
             }
@@ -328,7 +328,7 @@
                 "output": "/assets"
               }
             ],
-            "styles": ["apps/booking/src/styles.scss"],
+            "styles": ["libs/shared-styles/src/assets/styles/global.scss"],
             "scripts": [],
             "commonChunk": false
           },
@@ -359,7 +359,7 @@
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumError": "100kb"
                 }
               ]
             }

@@ -51,14 +51,6 @@ describe('JourneySearchComponent', () => {
     expect(componentUnderTest).toBeTruthy();
   });
 
-  it('should set "selectedTabIndex" when "setSelectedTabIndex" is called', () => {
-    const selectedTabIndexTest = 1;
-
-    componentUnderTest.setSelectedTabIndex(selectedTabIndexTest);
-
-    expect(componentUnderTest.selectedTabIndex).toBe(selectedTabIndexTest);
-  });
-
   it('should set "selectedDeparture" when "handleDepartureSelectEvent" is called', () => {
     const selectedTestValue: NearestTravelPointFragment = getFurtwangenKindergardenTravelPoint();
 

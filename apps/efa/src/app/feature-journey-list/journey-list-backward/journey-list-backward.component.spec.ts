@@ -13,34 +13,32 @@ import {
   getApiTokenParamMapWithIsRoundTripAsTrue,
   getApiTokenWithIsRoundTripAsTrue
 } from '../../shared/objectmothers/api-token-object-mother';
-import { HarnessLoader } from '@angular/cdk/testing';
-import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { expect } from '@jest/globals';
 import { JourneyFragment } from '@dravelopsfrontend/generated-content';
 import {
   getFurtwangenToWaldkirchJourney,
   getFurtwangenToWaldkirchJourneyByArrivalTime,
-  getGrosshausbergToFurtwangenIlbenstreetJourney,
+  getGrosshausbergToFurtwangenIlbenstreetJourney
 } from '../../shared/objectmothers/journey-object-mother';
 import { TestScheduler } from 'rxjs/testing';
-import { MatProgressBarHarness } from '@angular/material/progress-bar/testing';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { SortJourneyPipe } from '../pipes/sort-journey-pipe/sort-journey.pipe';
 import { IsOnlyFootpathPipe } from '../pipes/is-only-footpath-pipe/is-only-footpath.pipe';
 import { IsJourneyInPastPipe } from '../pipes/is-journey-in-past-pipe/is-journey-in-past.pipe';
+import { JourneyListHeaderComponent } from '../journey-list-header/journey-list-header.component';
 
 describe('JourneyListBackwardComponent', () => {
   let componentUnderTest: JourneyListBackwardComponent;
   let fixture: ComponentFixture<JourneyListBackwardComponent>;
   let journeyListService: JourneyListService;
-  let loader: HarnessLoader;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [
         JourneyListBackwardComponent,
         MockComponent(JourneyListItemComponent),
+        MockComponent(JourneyListHeaderComponent),
         MockPipe(FilterEqualJourneysPipe, (journeys: JourneyFragment[]) => journeys),
         MockPipe(BackwardJourneyFilterPipe, (journeys: JourneyFragment[]) => journeys),
         MockPipe(SortJourneyPipe, (journeys: JourneyFragment[]) => journeys)
@@ -69,7 +67,6 @@ describe('JourneyListBackwardComponent', () => {
     fixture = TestBed.createComponent(JourneyListBackwardComponent);
     componentUnderTest = fixture.componentInstance;
     journeyListService = TestBed.inject(JourneyListService);
-    loader = TestbedHarnessEnvironment.loader(fixture);
     fixture.detectChanges();
   });
 
@@ -150,41 +147,43 @@ describe('JourneyListBackwardComponent', () => {
   it('should return "journeys$" when component is initialized', () => {
     spyOn(journeyListService, 'getBackwardJourneysBy').and.returnValue(of(
       [getFurtwangenToWaldkirchJourney()],
+      getFurtwangenToWaldkirchJourney()
     ));
 
     const scheduler: TestScheduler = new TestScheduler(((actual, expected) => expect(actual).toEqual(expected)));
     scheduler.run(({ expectObservable, cold }) => {
-      cold('-a').subscribe(() => componentUnderTest.ngOnInit());
-      const expectedMarble = '-a';
+      cold('ab').subscribe(() => componentUnderTest.ngOnInit());
+      const expectedMarble = '-(abc)';
       const expectedJourneys = {
-        a: [getFurtwangenToWaldkirchJourney()],
+        a: null,
+        b: [getFurtwangenToWaldkirchJourney()],
+        c: [getFurtwangenToWaldkirchJourney(), getFurtwangenToWaldkirchJourney()]
       };
       expectObservable(componentUnderTest.journeys$).toBe(expectedMarble, expectedJourneys);
     });
   });
 
   it('should be called "getBackwardJourneysBy" from journeyListService with right params', (done) => {
+    let counter = 0;
     const journeyListServiceSpy = spyOn(journeyListService, 'getBackwardJourneysBy')
       .and.returnValue(of([getFurtwangenToWaldkirchJourney()]));
 
     componentUnderTest.journeys$.subscribe({
       next: () => {
-        expect(journeyListServiceSpy).toHaveBeenCalledTimes(1);
-        expect(journeyListServiceSpy).toHaveBeenCalledWith(
-          convertToParamMap(getApiTokenParamMapWithIsRoundTripAsTrue()),
-          expect.anything()
-        );
-        done();
+        if (counter === 1) {
+          expect(journeyListServiceSpy).toHaveBeenCalledTimes(1);
+          expect(journeyListServiceSpy).toHaveBeenCalledWith(
+            convertToParamMap(getApiTokenParamMapWithIsRoundTripAsTrue()),
+            expect.anything()
+          );
+          done();
+        } else {
+          counter++;
+        }
       }
     });
 
     componentUnderTest.ngOnInit();
-  });
-
-  it('should show progressbar when component is initialized', async () => {
-    const progressBarHarness: MatProgressBarHarness = await loader.getHarness(MatProgressBarHarness);
-
-    expect(progressBarHarness).not.toBeNull();
   });
 
   it('should show journeyListItems with correct input bindings when journeys are available', () => {

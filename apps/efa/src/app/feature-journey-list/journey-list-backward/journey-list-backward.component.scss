@@ -1,3 +1,41 @@
+@import "libs/shared-styles/src/assets/styles/global";
+
+.scroll-wrapper {
+  padding: 2vh 0 0 0;
+  height: 98vh;
+}
+
 .date {
   text-align: center;
+  color: $warn-color;
+  font-weight: normal;
+}
+
+mat-card {
+  width: 8.622rem;
+  padding: 0.5rem 1rem 0.5rem 0.25rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.mat-icon {
+  height: 2rem;
+  width: 2rem;
+}
+
+.material-icons {
+  font-size: 2rem;
+}
+
+@media (min-width: 500px) {
+  .mat-icon {
+    height: 2.4rem;
+    width: 2.4rem;
+  }
+
+  .material-icons {
+    font-size: 2.4rem;
+  }
 }

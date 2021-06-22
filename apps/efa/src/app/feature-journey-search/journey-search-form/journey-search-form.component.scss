@@ -1,15 +1,70 @@
-.apiTokenForm > * {
-  display: block;
+.grid-container {
+  padding: 3%;
+  width: 94%;
+  display: grid;
+  grid-template-rows: repeat(8, auto);
+  grid-template-columns: 24.25% 24.25% 3% 24.25% 24.25%;
+  align-items: center;
+}
+
+.trip {
+  grid-row: 1;
+  grid-column: 1/6;
+}
+
+.start {
+  grid-row: 2;
+  grid-column: 1/6;
+}
+
+.destination {
+  grid-row: 3;
+  grid-column: 1/6;
+}
+
+.outward-time {
+  grid-row: 4;
+  grid-column: 4/6;
+}
+
+.outward-date {
+  grid-row: 4;
+  grid-column: 1/3;
+}
+
+.outward-is-arrival-date-time {
+  grid-row: 5;
+  grid-column: 1/3;
+}
+
+.backward-time {
+  grid-row: 6;
+  grid-column: 4/6;
+}
+
+.backward-date {
+  grid-row: 6;
+  grid-column: 1/3;
+}
+
+.backward-is-arrival-date-time {
+  grid-row: 7;
+  grid-column: 1/6;
 }
 
 .submitButton {
-  width: 100vw;
+  grid-row: 8;
+  grid-column: 1/6;
 }
 
 .mat-radio-button ~ .mat-radio-button {
-  margin-left: 1rem;
+  margin-left: 1.25rem;
+}
+
+mat-form-field {
+  padding-bottom: 0.5375em;
 }
 
 .mat-radio-group {
-  padding-bottom: 1.17578125rem;
+  padding-bottom: 1.88125em;
 }

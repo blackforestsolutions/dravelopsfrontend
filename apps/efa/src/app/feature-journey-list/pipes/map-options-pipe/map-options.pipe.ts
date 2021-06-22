@@ -1,4 +1,4 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Inject, Pipe, PipeTransform } from '@angular/core';
 import {
   geoJSON,
   GeoJSON,
@@ -12,6 +12,7 @@ import {
   TileLayer
 } from 'leaflet';
 import {
+  CUSTOMER_DIRECTORY,
   MAP_ATTRIBUTION,
   MAX_WGS_84_LATITUDE,
   MAX_WGS_84_LONGITUDE,
@@ -23,13 +24,18 @@ import { PointFragment } from '@dravelopsfrontend/generated-content';
 
 const INDEX_ZERO = 0;
 const INDEX_ONE = 1;
-const ICON_HEIGHT = 25;
-const ICON_WIDTH = 41;
+const ICON_WIDTH = 31.25;
+const ICON_HEIGHT = 51.25;
 
 @Pipe({
   name: 'mapOptions'
 })
 export class MapOptionsPipe implements PipeTransform {
+
+  constructor(
+    @Inject(CUSTOMER_DIRECTORY) private readonly customerDirectory: string
+  ) {
+  }
 
   transform(waypoints: PointFragment[], polygonColor: string): MapOptions {
     if (!waypoints) {
@@ -74,8 +80,8 @@ export class MapOptionsPipe implements PipeTransform {
     const geoJson: number[][] = this.mapWaypointsToGeoJson(waypoints);
     return marker([geoJson[INDEX_ZERO][INDEX_ONE], geoJson[INDEX_ZERO][INDEX_ZERO]], {
       icon: icon({
-        iconSize: [ICON_HEIGHT, ICON_WIDTH],
-        iconUrl: 'assets/styles/footpath/departure_icon.svg'
+        iconSize: [ICON_WIDTH, ICON_HEIGHT],
+        iconUrl: `assets/${this.customerDirectory}/departure_icon.svg`
       })
     });
   }
@@ -88,8 +94,8 @@ export class MapOptionsPipe implements PipeTransform {
       ],
       {
         icon: icon({
-          iconSize: [ICON_HEIGHT, ICON_WIDTH],
-          iconUrl: 'assets/styles/footpath/arrival_icon.svg'
+          iconSize: [ICON_WIDTH, ICON_HEIGHT],
+          iconUrl: `assets/${this.customerDirectory}/arrival_icon.svg`
         })
       });
   }

@@ -29,6 +29,7 @@ import { DebugElement } from '@angular/core';
 import { SortJourneyPipe } from '../pipes/sort-journey-pipe/sort-journey.pipe';
 import { IsOnlyFootpathPipe } from '../pipes/is-only-footpath-pipe/is-only-footpath.pipe';
 import { IsJourneyInPastPipe } from '../pipes/is-journey-in-past-pipe/is-journey-in-past.pipe';
+import { JourneyListHeaderComponent } from '../journey-list-header/journey-list-header.component';
 
 
 describe('JourneyListOutwardComponent', () => {
@@ -43,6 +44,7 @@ describe('JourneyListOutwardComponent', () => {
         declarations: [
           JourneyListOutwardComponent,
           MockComponent(JourneyListItemComponent),
+          MockComponent(JourneyListHeaderComponent),
           MockPipe(FilterEqualJourneysPipe, (journeys: JourneyFragment[]) => journeys),
           MockPipe(SortJourneyPipe, (journeys: JourneyFragment[]) => journeys)
         ],
@@ -125,32 +127,40 @@ describe('JourneyListOutwardComponent', () => {
 
     it('should return "journeys$" when component is initialized', () => {
       spyOn(journeyListService, 'getOutwardJourneysBy').and.returnValue(of(
-        getFurtwangenToWaldkirchJourney()
+        getFurtwangenToWaldkirchJourney(),
+        [getFurtwangenToWaldkirchJourney()]
       ));
 
       const scheduler: TestScheduler = new TestScheduler(((actual, expected) => expect(actual).toEqual(expected)));
       scheduler.run(({ expectObservable, cold }) => {
-        cold('-a').subscribe(() => componentUnderTest.ngOnInit());
-        const expectedMarble = '-a';
+        cold('ab').subscribe(() => componentUnderTest.ngOnInit());
+        const expectedMarble = '-(abc)';
         const expectedJourneys = {
-          a: [getFurtwangenToWaldkirchJourney()]
+          a: null,
+          b: [getFurtwangenToWaldkirchJourney()],
+          c: [getFurtwangenToWaldkirchJourney(), getFurtwangenToWaldkirchJourney()]
         };
         expectObservable(componentUnderTest.journeys$).toBe(expectedMarble, expectedJourneys);
       });
     });
 
     it('should be called "getOutwardJourneysBy" from journeyListService with right params', (done) => {
+      let counter = 0;
       const journeyListServiceSpy = spyOn(journeyListService, 'getOutwardJourneysBy')
         .and.returnValue(of([getFurtwangenToWaldkirchJourney()]));
 
       componentUnderTest.journeys$.subscribe({
         next: () => {
-          expect(journeyListServiceSpy).toHaveBeenCalledTimes(1);
-          expect(journeyListServiceSpy).toHaveBeenCalledWith(
-            convertToParamMap(getApiTokenParamMapWithIsRoundTripAsTrue()),
-            expect.anything()
-          );
-          done();
+          if (counter === 1) {
+            expect(journeyListServiceSpy).toHaveBeenCalledTimes(1);
+            expect(journeyListServiceSpy).toHaveBeenCalledWith(
+              convertToParamMap(getApiTokenParamMapWithIsRoundTripAsTrue()),
+              expect.anything()
+            );
+            done();
+          } else {
+            counter++;
+          }
         }
       });
 
@@ -218,6 +228,7 @@ describe('JourneyListOutwardComponent', () => {
         declarations: [
           JourneyListOutwardComponent,
           MockComponent(JourneyListItemComponent),
+          MockComponent(JourneyListHeaderComponent),
           MockPipe(FilterEqualJourneysPipe, (journeys: JourneyFragment[]) => journeys),
           MockPipe(SortJourneyPipe, (journeys: JourneyFragment[]) => journeys)
         ],

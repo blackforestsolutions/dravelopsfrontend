@@ -72,8 +72,8 @@ describe('LegListItemComponent', () => {
 
       fixture.detectChanges();
       fixture.whenStable().then(() => {
-        const intermediateStopName = fixture.nativeElement.querySelector('#intermediateStopName');
-        const intermediateStopArrivalTime = fixture.nativeElement.querySelector('#intermediateStopArrivalTime');
+        const intermediateStopName = fixture.nativeElement.querySelector('.intermediateStopName');
+        const intermediateStopArrivalTime = fixture.nativeElement.querySelector('.intermediateStopArrivalTime');
         expect(intermediateStopName.innerHTML).toBe(expectedLeg.intermediateStops[0].name);
         expect(intermediateStopArrivalTime.innerHTML).not.toBe('');
       });
@@ -88,8 +88,8 @@ describe('LegListItemComponent', () => {
 
       fixture.detectChanges();
       fixture.whenStable().then(() => {
-        const intermediateStopName = fixture.nativeElement.querySelector('#intermediateStopName');
-        const intermediateStopArrivalTime = fixture.nativeElement.querySelector('#intermediateStopArrivalTime');
+        const intermediateStopName = fixture.nativeElement.querySelector('.intermediateStopName');
+        const intermediateStopArrivalTime = fixture.nativeElement.querySelector('.intermediateStopArrivalTime');
         expect(intermediateStopName.innerHTML).toBe(expectedLeg.intermediateStops[0].name);
         expect(intermediateStopArrivalTime.innerHTML).not.toBe('');
       });
@@ -101,16 +101,18 @@ describe('LegListItemComponent', () => {
       expect(delaySpans.length).toBe(0);
     });
 
-    it('should show two delayInMinutes when value is greater than zero and intermediateStops are allowed to show', waitForAsync(() => {
+    it('should show four delay elements when delayInMinutes is greater than zero and intermediateStops are allowed to show', waitForAsync(() => {
       componentUnderTest.showIntermediateStops = true;
       componentUnderTest.leg.delayInMinutes = 1;
 
       fixture.detectChanges();
       fixture.whenStable().then(() => {
         const delaySpans: DebugElement[] = fixture.debugElement.queryAll(By.css('.delay'));
-        expect(delaySpans.length).toBe(3);
-        expect(delaySpans[0].nativeElement.innerHTML).toBe(' +1 min');
-        expect(delaySpans[1].nativeElement.innerHTML).toBe(' +1 min');
+        expect(delaySpans.length).toBe(4);
+        expect(delaySpans[0].nativeElement.innerHTML).toBe(' +1');
+        expect(delaySpans[1].nativeElement.innerHTML).toBe(' +1');
+        expect(delaySpans[2].nativeElement.innerHTML).toBe(' +1');
+        expect(delaySpans[3].nativeElement.innerHTML).toBe(' +1');
       });
     }));
 
