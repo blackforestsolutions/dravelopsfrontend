@@ -34,7 +34,7 @@ describe('FabButtonComponent', () => {
     expect(componentUnderTest).toBeTruthy();
   });
 
-  it('should be called "ScrollUpDirective with "hiddenOnStartPage" as true', () => {
+  it('should be called "ScrollTopDirective" with "hiddenOnStartPage" as true', () => {
     const scrollUpDirective: ScrollTopDirective = ngMocks.get(
       ngMocks.find('.fab-button'),
       ScrollTopDirective
