@@ -29,6 +29,7 @@ import { DebugElement } from '@angular/core';
 import { SortJourneyPipe } from '../pipes/sort-journey-pipe/sort-journey.pipe';
 import { IsOnlyFootpathPipe } from '../pipes/is-only-footpath-pipe/is-only-footpath.pipe';
 import { IsJourneyInPastPipe } from '../pipes/is-journey-in-past-pipe/is-journey-in-past.pipe';
+import { NoJourneyResultComponent } from '../no-journey-result/no-journey-result.component';
 
 
 describe('JourneyListOutwardComponent', () => {
@@ -43,6 +44,7 @@ describe('JourneyListOutwardComponent', () => {
         declarations: [
           JourneyListOutwardComponent,
           MockComponent(JourneyListItemComponent),
+          MockComponent(NoJourneyResultComponent),
           MockPipe(FilterEqualJourneysPipe, (journeys: JourneyFragment[]) => journeys),
           MockPipe(SortJourneyPipe, (journeys: JourneyFragment[]) => journeys)
         ],
@@ -67,6 +69,7 @@ describe('JourneyListOutwardComponent', () => {
 
     beforeEach(() => {
       window.HTMLElement.prototype.scrollIntoView = jest.fn();
+      window.scrollTo = jest.fn();
       fixture = TestBed.createComponent(JourneyListOutwardComponent);
       componentUnderTest = fixture.componentInstance;
       journeyListService = TestBed.inject(JourneyListService);
@@ -203,8 +206,9 @@ describe('JourneyListOutwardComponent', () => {
       fixture.detectChanges();
 
       expect(fixture.debugElement.queryAll(By.directive(JourneyListItemComponent)).length).toBe(0);
-      expect(fixture.nativeElement.querySelector('#no-result').innerHTML).toBe('Es wurde keine Hinfahrt gefunden.');
-      expect(fixture.nativeElement.querySelector('mat-progress-bar')).toBeNull();
+      const noJourneyResultComponent: NoJourneyResultComponent = fixture.debugElement.query(By.directive(NoJourneyResultComponent)).componentInstance;
+      expect(noJourneyResultComponent.noResultMessage).toBe('Hinfahrt');
+      expect(noJourneyResultComponent.isBackwardJourney).toBeFalsy();
     });
 
     it('should call "passJourneySelectedEvent" with right param when journeySelectedEvent is emitted', () => {
@@ -227,6 +231,7 @@ describe('JourneyListOutwardComponent', () => {
         declarations: [
           JourneyListOutwardComponent,
           MockComponent(JourneyListItemComponent),
+          MockComponent(NoJourneyResultComponent),
           MockPipe(FilterEqualJourneysPipe, (journeys: JourneyFragment[]) => journeys),
           MockPipe(SortJourneyPipe, (journeys: JourneyFragment[]) => journeys)
         ],
