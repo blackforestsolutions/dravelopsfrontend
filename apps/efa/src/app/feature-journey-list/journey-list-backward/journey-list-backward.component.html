@@ -1,22 +1,31 @@
-<div #scrollWrapper class='scroll-wrapper'>
+<div #scrollWrapper id='backward-scroll-wrapper' class='scroll-wrapper'>
   <mat-progress-bar mode='query' *ngIf='loading'></mat-progress-bar>
-  <ng-container *ngIf='(journeys$ | async | filterEqualJourneys | backwardJourneyFilter: selectedOutwardJourney | sortJourney: getJourneyIsArrivalDateTime()) as journeys'>
-    <p class='date'>Rückfahrt am {{ getJourneyDateTime() | date: 'mediumDate' }}</p>
-    <button *ngIf='this.journeys && this.journeys.length && earlierJourneysAvailable' (click)='earlierButtonClick$.next()' mat-button color='primary'>
-      Früher
-    </button>
-    <mat-accordion multi>
-      <dravelopsefafrontend-journey-list-item
-        *ngFor='let journey of this.journeys'
-        [journey]='journey'
-        [isJourneyBuyable]='isJourneyBuyable(journey)'
-        [buttonSelectText]='"Kaufen"'
-        (journeySelectedEvent)='passJourneySelectedEvent($event)'>
-      </dravelopsefafrontend-journey-list-item>
-    </mat-accordion>
-    <p id='no-result' *ngIf='!this.journeys.length && !loading'>Es wurde keine Rückfahrt zur Hinfahrt gefunden.</p>
-    <button *ngIf='this.journeys && this.journeys.length' (click)='laterButtonClick$.next()' mat-button color='primary'>
-      Später
-    </button>
+  <ng-container
+    *ngIf='(journeys$ | async | filterEqualJourneys | backwardJourneyFilter: selectedOutwardJourney | sortJourney: getJourneyIsArrivalDateTime()) as journeys'>
+    <ng-container *ngIf='this.journeys.length'>
+      <p class='date'>Rückfahrt am {{ getJourneyDateTime() | date: 'mediumDate' }}</p>
+      <button *ngIf='earlierJourneysAvailable' (click)='earlierButtonClick$.next()' mat-button color='primary'>
+        Früher
+      </button>
+      <mat-accordion multi>
+        <dravelopsefafrontend-journey-list-item
+          *ngFor='let journey of this.journeys'
+          [journey]='journey'
+          [isJourneyBuyable]='isJourneyBuyable(journey)'
+          [buttonSelectText]='"Kaufen"'
+          (journeySelectedEvent)='passJourneySelectedEvent($event)'>
+        </dravelopsefafrontend-journey-list-item>
+      </mat-accordion>
+      <button (click)='laterButtonClick$.next()' mat-button color='primary'>
+        Später
+      </button>
+    </ng-container>
+    <dravelopsefafrontend-no-journey-result
+      *ngIf='!this.journeys.length && !loading'
+      noResultMessage='Rückfahrt zur Hinfahrt'
+      [isBackwardJourney]='true'
+      (buyOutwardJourneyEvent)='passJourneySelectedEvent($event)'
+    >
+    </dravelopsefafrontend-no-journey-result>
   </ng-container>
 </div>
