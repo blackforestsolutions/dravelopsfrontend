@@ -1,8 +1,18 @@
 @import "libs/shared-styles/src/assets/styles/global";
 
+:host ::ng-deep .mat-button-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .scroll-wrapper {
   padding: 2vh 0 0 0;
   height: 98vh;
+}
+
+.progress-bar {
+  margin-bottom: 1rem;
 }
 
 .date {
@@ -11,13 +21,16 @@
   font-weight: normal;
 }
 
-mat-card {
-  width: 8.622rem;
+.button {
+  width: 9.872rem;
+  height: 3rem;
+  font-weight: normal;
   padding: 0.5rem 1rem 0.5rem 0.25rem;
   margin-bottom: 1rem;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
+}
+
+.mat-raised-button {
+  line-height: normal;
 }
 
 .mat-icon {
@@ -30,6 +43,10 @@ mat-card {
 }
 
 @media (min-width: 500px) {
+  .button {
+    height: 3.4rem;
+  }
+
   .mat-icon {
     height: 2.4rem;
     width: 2.4rem;

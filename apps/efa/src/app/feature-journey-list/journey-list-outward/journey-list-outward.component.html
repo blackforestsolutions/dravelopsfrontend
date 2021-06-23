@@ -1,13 +1,13 @@
 <div #scrollWrapper class='scroll-wrapper'>
-  <mat-progress-bar mode='query' *ngIf='loading'></mat-progress-bar>
+  <mat-progress-bar class='progress-bar' mode='query' *ngIf='loading'></mat-progress-bar>
   <ng-container
     *ngIf='(journeys$ | async | filterEqualJourneys | sortJourney: getJourneyIsArrivalDateTime()) as journeys'>
     <h2 class='date'>{{ getIsRoundTripText() }} am {{ getJourneyDateTime() | date: 'mediumDate' }}</h2>
     <dravelopsefafrontend-journey-list-header></dravelopsefafrontend-journey-list-header>
-    <mat-card *ngIf='this.journeys && this.journeys.length' (click)='earlierButtonClick$.next()'>
+    <button class='button' mat-raised-button *ngIf='this.journeys && this.journeys.length' (click)='earlierButtonClick$.next()'>
       <mat-icon>expand_less</mat-icon>
       <span>Früher</span>
-    </mat-card>
+    </button>
     <mat-accordion multi>
       <dravelopsefafrontend-journey-list-item *ngFor='let journey of this.journeys'
                                               [journey]='journey'
@@ -17,9 +17,9 @@
       </dravelopsefafrontend-journey-list-item>
     </mat-accordion>
     <p *ngIf='!this.journeys.length && !loading' id='no-result'>Es wurde keine {{ getIsRoundTripText() }} gefunden.</p>
-    <mat-card *ngIf='this.journeys && this.journeys.length' (click)='laterButtonClick$.next()'>
+    <button class='button' mat-raised-button *ngIf='this.journeys && this.journeys.length' (click)='laterButtonClick$.next()'>
       <mat-icon>expand_more</mat-icon>
       <span>Später</span>
-    </mat-card>
+    </button>
   </ng-container>
 </div>
