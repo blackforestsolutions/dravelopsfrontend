@@ -3,14 +3,15 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MapSearchComponent } from './map-search.component';
 import { PolygonPipe } from '../pipes/polygon-pipe/polygon.pipe';
 import { MapOptionsPipe } from '../pipes/map-options-pipe/map-options.pipe';
-import { MockComponent, MockProvider } from 'ng-mocks';
+import { MockComponent, MockDirective, MockProvider } from 'ng-mocks';
 import { LoadingComponent, ThemeEmitterComponent } from '@dravelopsfrontend/shared-styles';
 import { SharedModule } from '../../shared/shared.module';
-import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { LeafletDirective, LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { PolygonApiService } from '../../shared/api/polygon-api.service';
 import { expect } from '@jest/globals';
 import { NearestTravelPointListComponent } from '../nearest-travel-point-list/nearest-travel-point-list.component';
 import { CUSTOMER_DIRECTORY } from '../../../environments/config-tokens';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('MapSearchComponent', () => {
   let componentUnderTest: MapSearchComponent;
@@ -23,12 +24,14 @@ describe('MapSearchComponent', () => {
         MockComponent(ThemeEmitterComponent),
         MockComponent(LoadingComponent),
         MockComponent(NearestTravelPointListComponent),
+        MockDirective(LeafletDirective),
         PolygonPipe,
         MapOptionsPipe
       ],
       imports: [
         SharedModule,
-        LeafletModule
+        LeafletModule,
+        RouterTestingModule
       ],
       providers: [
         MockProvider(PolygonApiService),

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Inject, OnDestroy, OnInit, Output } from '@angular/core';
-import { icon, LatLng, Map, Marker, marker } from 'leaflet';
+import { icon, latLng, LatLng, Map, Marker, marker } from 'leaflet';
 import { PolygonApiService } from '../../shared/api/polygon-api.service';
 import { Observable, Subject } from 'rxjs';
 import { NearestTravelPointFragment, PolygonFragment } from '@dravelopsfrontend/generated-content';
@@ -7,6 +7,7 @@ import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-shee
 import { NearestTravelPointListComponent } from '../nearest-travel-point-list/nearest-travel-point-list.component';
 import { takeUntil } from 'rxjs/operators';
 import { CUSTOMER_DIRECTORY } from '../../../environments/config-tokens';
+import { ActivatedRoute } from '@angular/router';
 
 const ICON_WIDTH = 45;
 const ICON_HEIGHT = 73.8;
@@ -29,6 +30,7 @@ export class MapSearchComponent implements OnInit, OnDestroy {
   constructor(
     @Inject(CUSTOMER_DIRECTORY) private readonly customerDirectory: string,
     private readonly polygonApiService: PolygonApiService,
+    private readonly route: ActivatedRoute,
     private readonly matBottomSheet: MatBottomSheet
   ) {
   }
@@ -43,11 +45,39 @@ export class MapSearchComponent implements OnInit, OnDestroy {
 
   onMapReadyEvent(leafletMap: Map): void {
     this.leafletMap = leafletMap;
+    this.setMarkerOnPageReload();
   }
 
   onMapClickEvent(latLng: LatLng): void {
     this.setMarker(latLng);
     this.openBottomSheet(latLng);
+  }
+
+  private setMarkerOnPageReload(): void {
+    if (this.route.firstChild) {
+      this.setDepartureMarkerOnPageReload();
+      this.setArrivalMarkerOnPageReload();
+    }
+  }
+
+  private setDepartureMarkerOnPageReload(): void {
+    const urlDepartureLatitude: string = this.route.firstChild.snapshot.paramMap.get('departureLatitude');
+    const urlDepartureLongitude: string = this.route.firstChild.snapshot.paramMap.get('departureLongitude');
+
+    if (urlDepartureLatitude && urlDepartureLongitude) {
+      const departureCoordinates: LatLng = latLng(+urlDepartureLatitude, +urlDepartureLongitude);
+      this.setMarker(departureCoordinates);
+    }
+  }
+
+  private setArrivalMarkerOnPageReload(): void {
+    const urlArrivalLatitude: string = this.route.firstChild.snapshot.paramMap.get('arrivalLatitude');
+    const urlArrivalLongitude: string = this.route.firstChild.snapshot.paramMap.get('arrivalLongitude');
+
+    if (urlArrivalLatitude && urlArrivalLongitude) {
+      const arrivalCoordinates: LatLng = latLng(+urlArrivalLatitude, +urlArrivalLongitude);
+      this.setMarker(arrivalCoordinates);
+    }
   }
 
   private setMarker(latLng: LatLng): void {

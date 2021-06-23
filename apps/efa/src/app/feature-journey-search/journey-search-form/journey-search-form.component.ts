@@ -1,14 +1,19 @@
-import { Component, EventEmitter, Inject, Input, LOCALE_ID, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
 import { ApiToken, Point, TravelTime } from '../../shared/model/api-token';
 import { CustomErrorStateMatcher } from '../validators/custom-error-state-matcher';
 import { Observable, Subject } from 'rxjs';
 import { AutocompleteAddressFragment, NearestTravelPointFragment } from '@dravelopsfrontend/generated-content';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MAX_FUTURE_DAYS_IN_CALENDAR, MAX_PAST_DAYS_IN_CALENDAR } from '../../../environments/config-tokens';
+import {
+  MAX_FUTURE_DAYS_IN_CALENDAR,
+  MAX_PAST_DAYS_IN_CALENDAR,
+  RADIUS_IN_KILOMETERS
+} from '../../../environments/config-tokens';
 import { TravelPointApiService } from '../../shared/api/travel-point-api.service';
 import { TravelPointValidators } from '../validators/travel-point-validators';
 import { DateTimeValidators } from '../validators/date-time-validators';
 import { distinctUntilChanged, switchMap, takeUntil } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
 
 type TravelTimeFormValue = {
   date: Date,
@@ -38,10 +43,11 @@ export class JourneySearchFormComponent implements OnChanges, OnInit, OnDestroy 
   private readonly destroy$ = new Subject();
 
   constructor(
+    @Inject(RADIUS_IN_KILOMETERS) private readonly radiusInKilometers: number,
     @Inject(MAX_FUTURE_DAYS_IN_CALENDAR) private readonly maxFutureDaysInCalendar: number,
     @Inject(MAX_PAST_DAYS_IN_CALENDAR) private readonly maxPastDaysInCalendar: number,
-    @Inject(LOCALE_ID) private readonly locale: string,
     private readonly fb: FormBuilder,
+    private readonly route: ActivatedRoute,
     private readonly travelPointApiService: TravelPointApiService
   ) {
   }
@@ -59,6 +65,7 @@ export class JourneySearchFormComponent implements OnChanges, OnInit, OnDestroy 
     this.initDepartureTravelPoints();
     this.initArrivalTravelPoints();
     this.initForm();
+    this.initFormOnPageReload();
   }
 
   ngOnDestroy(): void {
@@ -144,6 +151,77 @@ export class JourneySearchFormComponent implements OnChanges, OnInit, OnDestroy 
         isArrivalDateTime: [false]
       })
     });
+  }
+
+  private initFormOnPageReload(): void {
+    if (this.route.firstChild) {
+      this.initIsRoundTripOnPageReload();
+      this.initOutwardJourneyOnPageReload();
+      this.initBackwardJourneyOnPageReload();
+      this.initDepartureOnPageReload();
+      this.initArrivalOnPageReload();
+    }
+  }
+
+  private initIsRoundTripOnPageReload(): void {
+    const urlIsRoundTrip: string = this.route.firstChild.snapshot.paramMap.get('isRoundTrip');
+
+    if (urlIsRoundTrip) {
+      this.apiTokenForm.get('isRoundTrip').setValue(JSON.parse(urlIsRoundTrip));
+      this.apiTokenForm.get('outwardJourneyDateTime');
+    }
+  }
+
+  private initOutwardJourneyOnPageReload(): void {
+    const urlOutwardJourneyDateTime: string = this.route.firstChild.snapshot.paramMap.get('outwardJourneyDateTime');
+    const urlOutwardJourneyIsArrivalDateTime: string = this.route.firstChild.snapshot.paramMap.get('outwardJourneyIsArrivalDateTime');
+
+    if (urlOutwardJourneyDateTime && urlOutwardJourneyIsArrivalDateTime) {
+      this.apiTokenForm.get('outwardJourney').get('date').setValue(new Date(+urlOutwardJourneyDateTime));
+      this.apiTokenForm.get('outwardJourney').get('time').setValue(new Date(+urlOutwardJourneyDateTime));
+      this.apiTokenForm.get('outwardJourney').get('isArrivalDateTime').setValue(JSON.parse(urlOutwardJourneyIsArrivalDateTime));
+    }
+  }
+
+  private initBackwardJourneyOnPageReload(): void {
+    const urlBackwardJourneyDateTime: string = this.route.firstChild.snapshot.paramMap.get('backwardJourneyDateTime');
+    const urlBackwardJourneyIsArrivalDateTime: string = this.route.firstChild.snapshot.paramMap.get('backwardJourneyIsArrivalDateTime');
+
+    if (urlBackwardJourneyDateTime && urlBackwardJourneyIsArrivalDateTime) {
+      this.apiTokenForm.get('backwardJourney').get('date').setValue(new Date(+urlBackwardJourneyDateTime));
+      this.apiTokenForm.get('backwardJourney').get('time').setValue(new Date(+urlBackwardJourneyDateTime));
+      this.apiTokenForm.get('backwardJourney').get('isArrivalDateTime').setValue(JSON.parse(urlBackwardJourneyIsArrivalDateTime));
+    }
+  }
+
+  private initDepartureOnPageReload(): void {
+    const urlDepartureLatitude: string = this.route.firstChild.snapshot.paramMap.get('departureLatitude');
+    const urlDepartureLongitude: string = this.route.firstChild.snapshot.paramMap.get('departureLongitude');
+
+    if (urlDepartureLatitude && urlDepartureLongitude) {
+      this.travelPointApiService.getNearestAddressesBy(
+        +urlDepartureLongitude,
+        +urlDepartureLatitude,
+        this.radiusInKilometers
+      ).pipe(
+        takeUntil(this.destroy$)
+      ).subscribe((nearestAddresses: NearestTravelPointFragment[]) => this.apiTokenForm.get('departureTravelPoint').setValue(nearestAddresses[0]));
+    }
+  }
+
+  private initArrivalOnPageReload(): void {
+    const urlArrivalLatitude: string = this.route.firstChild.snapshot.paramMap.get('arrivalLatitude');
+    const urlArrivalLongitude: string = this.route.firstChild.snapshot.paramMap.get('arrivalLongitude');
+
+    if (urlArrivalLatitude && urlArrivalLongitude) {
+      this.travelPointApiService.getNearestAddressesBy(
+        +urlArrivalLongitude,
+        +urlArrivalLatitude,
+        this.radiusInKilometers
+      ).pipe(
+        takeUntil(this.destroy$)
+      ).subscribe((nearestAddresses: NearestTravelPointFragment[]) => this.apiTokenForm.get('arrivalTravelPoint').setValue(nearestAddresses[0]));
+    }
   }
 
   get isRoundTrip(): boolean {

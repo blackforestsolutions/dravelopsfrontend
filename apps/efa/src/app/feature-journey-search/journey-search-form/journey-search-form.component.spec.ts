@@ -1,15 +1,19 @@
-import {ComponentFixture, fakeAsync, TestBed, tick} from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 
-import {JourneySearchFormComponent} from './journey-search-form.component';
-import {TravelPointApiService} from "../../shared/api/travel-point-api.service";
-import {HarnessLoader} from "@angular/cdk/testing";
-import {SharedModule} from "../../shared/shared.module";
-import {FormGroup, ReactiveFormsModule} from "@angular/forms";
-import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
-import {MockProvider} from "ng-mocks";
-import {MAX_FUTURE_DAYS_IN_CALENDAR, MAX_PAST_DAYS_IN_CALENDAR} from "../../../environments/config-tokens";
-import {TestbedHarnessEnvironment} from "@angular/cdk/testing/testbed";
-import {of} from "rxjs";
+import { JourneySearchFormComponent } from './journey-search-form.component';
+import { TravelPointApiService } from '../../shared/api/travel-point-api.service';
+import { HarnessLoader } from '@angular/cdk/testing';
+import { SharedModule } from '../../shared/shared.module';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MockProvider } from 'ng-mocks';
+import {
+  MAX_FUTURE_DAYS_IN_CALENDAR,
+  MAX_PAST_DAYS_IN_CALENDAR,
+  RADIUS_IN_KILOMETERS
+} from '../../../environments/config-tokens';
+import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import { of } from 'rxjs';
 import {
   getFurtwangenKindergardenTravelPoint,
   getFurtwangenUniversityTravelPoint
@@ -19,14 +23,15 @@ import {
   getApiTokenFormWithIsRoundTripAsTrue,
   getApiTokenWithIsRoundTripAsFalse,
   getApiTokenWithIsRoundTripAsTrue
-} from "../../shared/objectmothers/api-token-object-mother";
-import {AutocompleteAddressFragment} from "@dravelopsfrontend/generated-content";
-import {MatAutocompleteHarness} from "@angular/material/autocomplete/testing";
-import {MatFormFieldHarness} from "@angular/material/form-field/testing";
-import {MatRadioButtonHarness, MatRadioGroupHarness} from "@angular/material/radio/testing";
-import {ApiToken} from "../../shared/model/api-token";
-import {MatDatepickerInputHarness} from "@angular/material/datepicker/testing";
-import {MatButtonHarness} from "@angular/material/button/testing";
+} from '../../shared/objectmothers/api-token-object-mother';
+import { AutocompleteAddressFragment } from '@dravelopsfrontend/generated-content';
+import { MatAutocompleteHarness } from '@angular/material/autocomplete/testing';
+import { MatFormFieldHarness } from '@angular/material/form-field/testing';
+import { MatRadioButtonHarness, MatRadioGroupHarness } from '@angular/material/radio/testing';
+import { ApiToken } from '../../shared/model/api-token';
+import { MatDatepickerInputHarness } from '@angular/material/datepicker/testing';
+import { MatButtonHarness } from '@angular/material/button/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 const MAX_FUTURE_DAYS_IN_CALENDAR_TEST_VALUE = 365;
 const MAX_PAST_DAYS_IN_CALENDAR_TEST_VALUE = 7305;
@@ -40,7 +45,12 @@ describe('JourneySearchFormComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [JourneySearchFormComponent],
-      imports: [SharedModule, ReactiveFormsModule, BrowserAnimationsModule],
+      imports: [
+        SharedModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
+        RouterTestingModule
+      ],
       providers: [
         MockProvider(TravelPointApiService),
         {
@@ -50,6 +60,10 @@ describe('JourneySearchFormComponent', () => {
         {
           provide: MAX_PAST_DAYS_IN_CALENDAR,
           useValue: MAX_PAST_DAYS_IN_CALENDAR_TEST_VALUE
+        },
+        {
+          provide: RADIUS_IN_KILOMETERS,
+          useValue: 5
         }
       ]
     })
@@ -63,7 +77,7 @@ describe('JourneySearchFormComponent', () => {
     fixture.detectChanges();
 
     travelPointApiService = TestBed.inject(TravelPointApiService);
-    spyOn(travelPointApiService, 'getAddressesBy').and.returnValue(of([{...getFurtwangenUniversityTravelPoint()}]));
+    spyOn(travelPointApiService, 'getAddressesBy').and.returnValue(of([{ ...getFurtwangenUniversityTravelPoint() }]));
   });
 
   it('should create', () => {
@@ -223,7 +237,7 @@ describe('JourneySearchFormComponent', () => {
     const inputElement = fixture.nativeElement.querySelector('#departureInput');
     inputElement.value = 'Am';
     inputElement.dispatchEvent(new KeyboardEvent(
-      'keyup', {bubbles: true, cancelable: true, shiftKey: false}
+      'keyup', { bubbles: true, cancelable: true, shiftKey: false }
     ));
 
     const matAutocomplete = await loader.getHarness<MatAutocompleteHarness>(MatAutocompleteHarness);
@@ -239,7 +253,7 @@ describe('JourneySearchFormComponent', () => {
     const displayTravelPointNameSpy = spyOn(componentUnderTest, 'displayTravelPointName');
     const inputElement = fixture.nativeElement.querySelector('#arrivalInput');
     inputElement.dispatchEvent(new KeyboardEvent(
-      'keyup', {bubbles: true, cancelable: true, shiftKey: false}
+      'keyup', { bubbles: true, cancelable: true, shiftKey: false }
     ));
 
     const matAutocomplete = await loader.getAllHarnesses<MatAutocompleteHarness>(MatAutocompleteHarness)
@@ -255,10 +269,10 @@ describe('JourneySearchFormComponent', () => {
   it('should be shown backwardJourneyFormGroup when "isRoundTrip" is true', async () => {
     componentUnderTest.apiTokenForm.setValue(getApiTokenFormWithIsRoundTripAsTrue());
 
-    const backwardJourneyDate = await loader.getHarness(MatFormFieldHarness.with({floatingLabelText: 'Datum (Rück.)'}));
-    const backwardJourneyTime = await loader.getHarness(MatFormFieldHarness.with({floatingLabelText: 'Uhrzeit (Rück.)'}));
+    const backwardJourneyDate = await loader.getHarness(MatFormFieldHarness.with({ floatingLabelText: 'Datum (Rück.)' }));
+    const backwardJourneyTime = await loader.getHarness(MatFormFieldHarness.with({ floatingLabelText: 'Uhrzeit (Rück.)' }));
     const backwardJourneyIsArrivalTime = await loader.getHarness(MatRadioGroupHarness.with(
-      {selector: '#backwardJourneyIsArrivalDateTime'})
+      { selector: '#backwardJourneyIsArrivalDateTime' })
     );
     expect(backwardJourneyDate).not.toBeNull();
     expect(backwardJourneyTime).not.toBeNull();
@@ -335,7 +349,7 @@ describe('JourneySearchFormComponent', () => {
     const inputElement = fixture.nativeElement.querySelector('#departureInput');
     inputElement.value = 'H';
     inputElement.dispatchEvent(new KeyboardEvent(
-      'keyup', {bubbles: true, cancelable: true, shiftKey: false}
+      'keyup', { bubbles: true, cancelable: true, shiftKey: false }
     ));
 
     expect(departureInputSpy).toHaveBeenCalledTimes(1);
@@ -348,7 +362,7 @@ describe('JourneySearchFormComponent', () => {
     const inputElement = fixture.nativeElement.querySelector('#arrivalInput');
     inputElement.value = 'H';
     inputElement.dispatchEvent(new KeyboardEvent(
-      'keyup', {bubbles: true, cancelable: true, shiftKey: false}
+      'keyup', { bubbles: true, cancelable: true, shiftKey: false }
     ));
 
     expect(arrivalInputSpy).toHaveBeenCalledTimes(1);
@@ -369,7 +383,7 @@ describe('JourneySearchFormComponent', () => {
     const autocompleteHarnesses = await loader.getAllHarnesses<MatAutocompleteHarness>(MatAutocompleteHarness);
     await autocompleteHarnesses[0].enterText('B');
 
-    await autocompleteHarnesses[0].selectOption({text: 'Hochschule Furtwangen'});
+    await autocompleteHarnesses[0].selectOption({ text: 'Hochschule Furtwangen' });
 
     expect(componentUnderTest.apiTokenForm.get('departureTravelPoint').value).toEqual(getFurtwangenUniversityTravelPoint());
   });
@@ -378,7 +392,7 @@ describe('JourneySearchFormComponent', () => {
     const autocompleteHarnesses = await loader.getAllHarnesses<MatAutocompleteHarness>(MatAutocompleteHarness);
     await autocompleteHarnesses[1].enterText('B');
 
-    await autocompleteHarnesses[1].selectOption({text: 'Hochschule Furtwangen'});
+    await autocompleteHarnesses[1].selectOption({ text: 'Hochschule Furtwangen' });
 
     expect(componentUnderTest.apiTokenForm.get('arrivalTravelPoint').value).toEqual(getFurtwangenUniversityTravelPoint());
   });
@@ -434,12 +448,12 @@ describe('JourneySearchFormComponent', () => {
     const buttonHarness = await loader.getHarness<MatButtonHarness>(MatButtonHarness);
     await buttonHarness.click();
 
-    const departureTravelPointFormField = await loader.getHarness(MatFormFieldHarness.with({floatingLabelText: 'Start'}));
-    const arrivalTravelPointFormField = await loader.getHarness(MatFormFieldHarness.with({floatingLabelText: 'Ziel'}));
-    const outwardJourneyDateFormField = await loader.getHarness(MatFormFieldHarness.with({floatingLabelText: 'Datum (Hin.)'}));
-    const outwardJourneyTimeFormField = await loader.getHarness(MatFormFieldHarness.with({floatingLabelText: 'Uhrzeit (Hin.)'}));
-    const backwardJourneyDateFormField = await loader.getHarness(MatFormFieldHarness.with({floatingLabelText: 'Datum (Rück.)'}));
-    const backwardJourneyTimeFormField = await loader.getHarness(MatFormFieldHarness.with({floatingLabelText: 'Uhrzeit (Rück.)'}));
+    const departureTravelPointFormField = await loader.getHarness(MatFormFieldHarness.with({ floatingLabelText: 'Start' }));
+    const arrivalTravelPointFormField = await loader.getHarness(MatFormFieldHarness.with({ floatingLabelText: 'Ziel' }));
+    const outwardJourneyDateFormField = await loader.getHarness(MatFormFieldHarness.with({ floatingLabelText: 'Datum (Hin.)' }));
+    const outwardJourneyTimeFormField = await loader.getHarness(MatFormFieldHarness.with({ floatingLabelText: 'Uhrzeit (Hin.)' }));
+    const backwardJourneyDateFormField = await loader.getHarness(MatFormFieldHarness.with({ floatingLabelText: 'Datum (Rück.)' }));
+    const backwardJourneyTimeFormField = await loader.getHarness(MatFormFieldHarness.with({ floatingLabelText: 'Uhrzeit (Rück.)' }));
     expect((await departureTravelPointFormField.getTextErrors()).length).toBe(1);
     expect((await departureTravelPointFormField.getTextErrors())[0]).toBe('Bitte wähle einen Ort aus');
     expect((await arrivalTravelPointFormField.getTextErrors()).length).toBe(1);
@@ -462,7 +476,7 @@ describe('JourneySearchFormComponent', () => {
     const buttonHarness = await loader.getHarness<MatButtonHarness>(MatButtonHarness);
     await buttonHarness.click();
 
-    const backwardJourneyDateFormField = await loader.getHarness(MatFormFieldHarness.with({floatingLabelText: 'Datum (Rück.)'}));
+    const backwardJourneyDateFormField = await loader.getHarness(MatFormFieldHarness.with({ floatingLabelText: 'Datum (Rück.)' }));
     expect((await backwardJourneyDateFormField.getTextErrors()).length).toBe(1);
     expect((await backwardJourneyDateFormField.getTextErrors())[0]).toBe('Rückfahrtdatum vor Hinfahrtdatum');
   });
@@ -478,7 +492,7 @@ describe('JourneySearchFormComponent', () => {
     const buttonHarness = await loader.getHarness<MatButtonHarness>(MatButtonHarness);
     await buttonHarness.click();
 
-    const backwardJourneyTimeFormField = await loader.getHarness(MatFormFieldHarness.with({floatingLabelText: 'Uhrzeit (Rück.)'}));
+    const backwardJourneyTimeFormField = await loader.getHarness(MatFormFieldHarness.with({ floatingLabelText: 'Uhrzeit (Rück.)' }));
     expect((await backwardJourneyTimeFormField.getTextErrors()).length).toBe(1);
     expect((await backwardJourneyTimeFormField.getTextErrors())[0]).toBe('Rückfahrtzeit vor Hinfahrtzeit');
   });
