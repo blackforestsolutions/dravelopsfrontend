@@ -39,6 +39,8 @@ describe('ScrollTopDirective', () => {
 
     it('should display host when pageYOffset is greater than zero and hiddenOnStartPage is true', () => {
       directiveUnderTest.hiddenOnStartPage = true;
+      // for testing purpose
+      // eslint-disable-next-line no-global-assign
       window = Object.assign(window, { pageYOffset: 1 });
 
       directiveUnderTest.ngOnInit();
@@ -48,6 +50,8 @@ describe('ScrollTopDirective', () => {
 
     it('should display host when pageYOffset is greater than zero and hiddenOnStartPage is false', () => {
       directiveUnderTest.hiddenOnStartPage = false;
+      // for testing purpose
+      // eslint-disable-next-line no-global-assign
       window = Object.assign(window, { pageYOffset: 1 });
 
       directiveUnderTest.ngOnInit();
@@ -65,7 +69,6 @@ describe('ScrollTopDirective', () => {
   });
 
   describe('with host', () => {
-    let testHostComponent: TestHostComponent;
     let testHostFixture: ComponentFixture<TestHostComponent>;
     let viewportScrollerMock: ViewportScroller;
 
@@ -78,7 +81,6 @@ describe('ScrollTopDirective', () => {
       });
 
       testHostFixture = TestBed.createComponent(TestHostComponent);
-      testHostComponent = testHostFixture.componentInstance;
       viewportScrollerMock = TestBed.inject(ViewportScroller);
     });
 
