@@ -26,6 +26,7 @@ import { By } from '@angular/platform-browser';
 import { SortJourneyPipe } from '../pipes/sort-journey-pipe/sort-journey.pipe';
 import { IsOnlyFootpathPipe } from '../pipes/is-only-footpath-pipe/is-only-footpath.pipe';
 import { IsJourneyInPastPipe } from '../pipes/is-journey-in-past-pipe/is-journey-in-past.pipe';
+import { JourneyListHeaderComponent } from '../journey-list-header/journey-list-header.component';
 
 describe('JourneyListBackwardComponent', () => {
   let componentUnderTest: JourneyListBackwardComponent;
@@ -37,6 +38,7 @@ describe('JourneyListBackwardComponent', () => {
       declarations: [
         JourneyListBackwardComponent,
         MockComponent(JourneyListItemComponent),
+        MockComponent(JourneyListHeaderComponent),
         MockPipe(FilterEqualJourneysPipe, (journeys: JourneyFragment[]) => journeys),
         MockPipe(BackwardJourneyFilterPipe, (journeys: JourneyFragment[]) => journeys),
         MockPipe(SortJourneyPipe, (journeys: JourneyFragment[]) => journeys)

@@ -22,6 +22,7 @@ import { IsOnlyFootpathPipe } from './pipes/is-only-footpath-pipe/is-only-footpa
 import {SharedStylesModule} from "@dravelopsfrontend/shared-styles";
 import { GeoJsonPipe } from './pipes/geo-json-pipe/geo-json.pipe';
 import { MapOptionsPipe } from './pipes/map-options-pipe/map-options.pipe';
+import { JourneyListHeaderComponent } from './journey-list-header/journey-list-header.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { MapOptionsPipe } from './pipes/map-options-pipe/map-options.pipe';
     IsOnlyFootpathPipe,
     GeoJsonPipe,
     MapOptionsPipe,
+    JourneyListHeaderComponent,
   ],
   providers: [
     JourneyListService,

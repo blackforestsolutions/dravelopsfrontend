@@ -80,11 +80,13 @@
 
   .buying-button-container {
     grid-column: 5 / 6;
+    justify-self: center;
   }
 
   .price {
     grid-row: 1 / 2;
     grid-column: 6 / 7;
+    justify-self: center;
   }
 
   .buying-button {
