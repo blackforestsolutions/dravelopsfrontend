@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { merge, Observable, Subject } from 'rxjs';
 import { JourneyFragment } from '@dravelopsfrontend/generated-content';
 import { map, mergeMap, switchMap, takeUntil, tap } from 'rxjs/operators';
@@ -17,6 +17,7 @@ import { IsJourneyInPastPipe } from '../pipes/is-journey-in-past-pipe/is-journey
 export class JourneyListBackwardComponent implements OnInit, OnDestroy {
   @Input() selectedOutwardJourney: JourneyFragment;
   @Output() journeySelectedEvent = new EventEmitter<JourneyFragment>();
+  @ViewChild('scrollWrapper', { static: true }) scrollWrapper: ElementRef;
   loading = true;
   journeys$ = new Subject<JourneyFragment[]>();
   earlierJourneysAvailable = true;
@@ -78,6 +79,7 @@ export class JourneyListBackwardComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$),
         tap(() => this.journeys$.next(null)),
         tap(() => isNewSearch = true),
+        tap(() => this.scrollWrapper.nativeElement.scrollIntoView({ behavior: 'smooth' })),
         switchMap((params: ParamMap) => merge(
           this.getJourneys(params),
           this.getEarlierJourneys(params),

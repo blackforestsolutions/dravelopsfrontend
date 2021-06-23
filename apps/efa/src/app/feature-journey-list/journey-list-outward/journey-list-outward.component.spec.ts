@@ -68,6 +68,7 @@ describe('JourneyListOutwardComponent', () => {
     });
 
     beforeEach(() => {
+      window.HTMLElement.prototype.scrollIntoView = jest.fn();
       fixture = TestBed.createComponent(JourneyListOutwardComponent);
       componentUnderTest = fixture.componentInstance;
       journeyListService = TestBed.inject(JourneyListService);
