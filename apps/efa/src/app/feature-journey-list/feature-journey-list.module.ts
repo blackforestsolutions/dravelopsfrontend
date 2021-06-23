@@ -23,6 +23,7 @@ import {SharedStylesModule} from "@dravelopsfrontend/shared-styles";
 import { GeoJsonPipe } from './pipes/geo-json-pipe/geo-json.pipe';
 import { MapOptionsPipe } from './pipes/map-options-pipe/map-options.pipe';
 import { NoJourneyResultComponent } from './no-journey-result/no-journey-result.component';
+import { JourneyListHeaderComponent } from './journey-list-header/journey-list-header.component';
 
 
 @NgModule({
@@ -45,6 +46,7 @@ import { NoJourneyResultComponent } from './no-journey-result/no-journey-result.
     GeoJsonPipe,
     MapOptionsPipe,
     NoJourneyResultComponent,
+    JourneyListHeaderComponent,
   ],
   providers: [
     JourneyListService,

@@ -27,6 +27,7 @@ import { SortJourneyPipe } from '../pipes/sort-journey-pipe/sort-journey.pipe';
 import { IsOnlyFootpathPipe } from '../pipes/is-only-footpath-pipe/is-only-footpath.pipe';
 import { IsJourneyInPastPipe } from '../pipes/is-journey-in-past-pipe/is-journey-in-past.pipe';
 import { NoJourneyResultComponent } from '../no-journey-result/no-journey-result.component';
+import { JourneyListHeaderComponent } from '../journey-list-header/journey-list-header.component';
 
 describe('JourneyListBackwardComponent', () => {
   let componentUnderTest: JourneyListBackwardComponent;
@@ -39,6 +40,7 @@ describe('JourneyListBackwardComponent', () => {
         JourneyListBackwardComponent,
         MockComponent(JourneyListItemComponent),
         MockComponent(NoJourneyResultComponent),
+        MockComponent(JourneyListHeaderComponent),
         MockPipe(FilterEqualJourneysPipe, (journeys: JourneyFragment[]) => journeys),
         MockPipe(BackwardJourneyFilterPipe, (journeys: JourneyFragment[]) => journeys),
         MockPipe(SortJourneyPipe, (journeys: JourneyFragment[]) => journeys)

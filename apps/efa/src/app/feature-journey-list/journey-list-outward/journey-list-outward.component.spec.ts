@@ -29,6 +29,7 @@ import { DebugElement } from '@angular/core';
 import { SortJourneyPipe } from '../pipes/sort-journey-pipe/sort-journey.pipe';
 import { IsOnlyFootpathPipe } from '../pipes/is-only-footpath-pipe/is-only-footpath.pipe';
 import { IsJourneyInPastPipe } from '../pipes/is-journey-in-past-pipe/is-journey-in-past.pipe';
+import { JourneyListHeaderComponent } from '../journey-list-header/journey-list-header.component';
 import { NoJourneyResultComponent } from '../no-journey-result/no-journey-result.component';
 
 
@@ -44,6 +45,7 @@ describe('JourneyListOutwardComponent', () => {
         declarations: [
           JourneyListOutwardComponent,
           MockComponent(JourneyListItemComponent),
+          MockComponent(JourneyListHeaderComponent),
           MockComponent(NoJourneyResultComponent),
           MockPipe(FilterEqualJourneysPipe, (journeys: JourneyFragment[]) => journeys),
           MockPipe(SortJourneyPipe, (journeys: JourneyFragment[]) => journeys)
@@ -231,6 +233,7 @@ describe('JourneyListOutwardComponent', () => {
         declarations: [
           JourneyListOutwardComponent,
           MockComponent(JourneyListItemComponent),
+          MockComponent(JourneyListHeaderComponent),
           MockComponent(NoJourneyResultComponent),
           MockPipe(FilterEqualJourneysPipe, (journeys: JourneyFragment[]) => journeys),
           MockPipe(SortJourneyPipe, (journeys: JourneyFragment[]) => journeys)

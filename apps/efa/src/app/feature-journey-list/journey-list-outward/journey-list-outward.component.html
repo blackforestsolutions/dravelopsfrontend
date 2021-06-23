@@ -1,11 +1,13 @@
 <div #scrollWrapper id='outward-scroll-wrapper' class='scroll-wrapper'>
-  <mat-progress-bar mode='query' *ngIf='loading'></mat-progress-bar>
+  <mat-progress-bar class='progress-bar' mode='query' *ngIf='loading'></mat-progress-bar>
   <ng-container
     *ngIf='(journeys$ | async | filterEqualJourneys | sortJourney: getJourneyIsArrivalDateTime()) as journeys'>
     <ng-container *ngIf='this.journeys.length'>
-      <p class='date'>{{ getIsRoundTripText() }} am {{ getJourneyDateTime() | date: 'mediumDate' }}</p>
-      <button (click)='earlierButtonClick$.next()' mat-button color='primary'>
-        Früher
+      <h2 class='date'>{{ getIsRoundTripText() }} am {{ getJourneyDateTime() | date: 'mediumDate' }}</h2>
+      <dravelopsefafrontend-journey-list-header></dravelopsefafrontend-journey-list-header>
+      <button class='button' mat-raised-button (click)='earlierButtonClick$.next()'>
+        <mat-icon>expand_less</mat-icon>
+        <span>Früher</span>
       </button>
       <mat-accordion multi>
         <dravelopsefafrontend-journey-list-item
@@ -16,8 +18,9 @@
           (journeySelectedEvent)='passJourneySelectedEvent($event)'>
         </dravelopsefafrontend-journey-list-item>
       </mat-accordion>
-      <button (click)='laterButtonClick$.next()' mat-button color='primary'>
-        Später
+      <button class='button' mat-raised-button (click)='laterButtonClick$.next()'>
+        <mat-icon>expand_more</mat-icon>
+        <span>Später</span>
       </button>
     </ng-container>
     <dravelopsefafrontend-no-journey-result
