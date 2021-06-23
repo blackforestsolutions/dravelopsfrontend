@@ -1,25 +1,33 @@
-<div #scrollWrapper class='scroll-wrapper'>
+<div #scrollWrapper id='outward-scroll-wrapper' class='scroll-wrapper'>
   <mat-progress-bar class='progress-bar' mode='query' *ngIf='loading'></mat-progress-bar>
   <ng-container
     *ngIf='(journeys$ | async | filterEqualJourneys | sortJourney: getJourneyIsArrivalDateTime()) as journeys'>
-    <h2 class='date'>{{ getIsRoundTripText() }} am {{ getJourneyDateTime() | date: 'mediumDate' }}</h2>
-    <dravelopsefafrontend-journey-list-header></dravelopsefafrontend-journey-list-header>
-    <button class='button' mat-raised-button *ngIf='this.journeys && this.journeys.length' (click)='earlierButtonClick$.next()'>
-      <mat-icon>expand_less</mat-icon>
-      <span>Früher</span>
-    </button>
-    <mat-accordion multi>
-      <dravelopsefafrontend-journey-list-item *ngFor='let journey of this.journeys'
-                                              [journey]='journey'
-                                              [isJourneyBuyable]='isJourneyBuyable(journey)'
-                                              [buttonSelectText]='getButtonSelectText()'
-                                              (journeySelectedEvent)='passJourneySelectedEvent($event)'>
-      </dravelopsefafrontend-journey-list-item>
-    </mat-accordion>
-    <p *ngIf='!this.journeys.length && !loading' id='no-result'>Es wurde keine {{ getIsRoundTripText() }} gefunden.</p>
-    <button class='button' mat-raised-button *ngIf='this.journeys && this.journeys.length' (click)='laterButtonClick$.next()'>
-      <mat-icon>expand_more</mat-icon>
-      <span>Später</span>
-    </button>
+    <ng-container *ngIf='this.journeys.length'>
+      <h2 class='date'>{{ getIsRoundTripText() }} am {{ getJourneyDateTime() | date: 'mediumDate' }}</h2>
+      <dravelopsefafrontend-journey-list-header></dravelopsefafrontend-journey-list-header>
+      <button class='button' mat-raised-button (click)='earlierButtonClick$.next()'>
+        <mat-icon>expand_less</mat-icon>
+        <span>Früher</span>
+      </button>
+      <mat-accordion multi>
+        <dravelopsefafrontend-journey-list-item
+          *ngFor='let journey of this.journeys'
+          [journey]='journey'
+          [isJourneyBuyable]='isJourneyBuyable(journey)'
+          [buttonSelectText]='getButtonSelectText()'
+          (journeySelectedEvent)='passJourneySelectedEvent($event)'>
+        </dravelopsefafrontend-journey-list-item>
+      </mat-accordion>
+      <button class='button' mat-raised-button (click)='laterButtonClick$.next()'>
+        <mat-icon>expand_more</mat-icon>
+        <span>Später</span>
+      </button>
+    </ng-container>
+    <dravelopsefafrontend-no-journey-result
+      *ngIf='!this.journeys.length && !loading'
+      [noResultMessage]='getIsRoundTripText()'
+      [isBackwardJourney]='false'>
+    </dravelopsefafrontend-no-journey-result>
   </ng-container>
 </div>
+

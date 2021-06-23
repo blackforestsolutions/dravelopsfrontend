@@ -13,6 +13,10 @@ export class BookingComponent {
   ) {
   }
 
+  logIsRoundTrip(): boolean {
+    return JSON.parse(this.route.snapshot.paramMap.get('isRoundTrip'));
+  }
+
   logOutwardJourneyId(): string {
     return this.route.snapshot.paramMap.get('outwardJourneyId');
   }

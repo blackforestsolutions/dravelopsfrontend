@@ -17,7 +17,6 @@ const DEFAULT_TEST_BACKWARD_JOURNEY_DATE: Date = new Date('2020-10-01T12:30:30+0
 const DEFAULT_TEST_BACKWARD_JOURNEY_TIME: Date = new Date('2020-10-01T13:00:00+02:00');
 const DEFAULT_TEST_BACKWARD_JOURNEY_DATE_TIME: Date = new Date('2020-10-01T13:00:00+02:00');
 const DEFAULT_TEST_IS_ARRIVAL_DATE_TIME = true;
-const DEFAULT_TEST_IS_NO_ARRIVAL_DATE_TIME = false;
 
 /**
  * NEVER USE IN PRODUCTIVE CODE!
@@ -63,32 +62,6 @@ export const getApiTokenWithIsRoundTripAsFalse = (): ApiToken => {
     outwardJourney: {
       dateTime: DEFAULT_TEST_OUTWARD_JOURNEY_DATE_TIME,
       isArrivalDateTime: DEFAULT_TEST_IS_ARRIVAL_DATE_TIME
-    }
-  };
-};
-
-/**
- * NEVER USE IN PRODUCTIVE CODE!
- * ONLY FOR TESTING!
- */
-export const getApiTokenWithIsArrivalDateTimeAsFalse = (): ApiToken => {
-  return {
-    isRoundTrip: DEFAULT_TEST_IS_ROUND_TRIP,
-    departureCoordinate: {
-      longitude: DEFAULT_TEST_DEPARTURE_LONGITUDE,
-      latitude: DEFAULT_TEST_DEPARTURE_LATITUDE
-    },
-    arrivalCoordinate: {
-      longitude: DEFAULT_TEST_ARRIVAL_LONGITUDE,
-      latitude: DEFAULT_TEST_ARRIVAL_LATITUDE
-    },
-    outwardJourney: {
-      dateTime: DEFAULT_TEST_OUTWARD_JOURNEY_DATE_TIME,
-      isArrivalDateTime: DEFAULT_TEST_IS_NO_ARRIVAL_DATE_TIME
-    },
-    backwardJourney: {
-      dateTime: DEFAULT_TEST_BACKWARD_JOURNEY_DATE_TIME,
-      isArrivalDateTime: DEFAULT_TEST_IS_NO_ARRIVAL_DATE_TIME
     }
   };
 };
@@ -229,40 +202,6 @@ export const getApiTokenFormWithIsRoundTripAsFalse = (): unknown => {
  * NEVER USE IN PRODUCTIVE CODE!
  * ONLY FOR TESTING!
  */
-export const getApiTokenFormWithIsArrivalDateTimeAsFalse = (): unknown => {
-  return {
-    isRoundTrip: DEFAULT_TEST_IS_ROUND_TRIP,
-    departureTravelPoint: {
-      name: DEFAULT_TEST_DEPARTURE_NAME,
-      point: {
-        x: DEFAULT_TEST_DEPARTURE_LONGITUDE,
-        y: DEFAULT_TEST_DEPARTURE_LATITUDE
-      }
-    },
-    arrivalTravelPoint: {
-      name: DEFAULT_TEST_ARRIVAL_NAME,
-      point: {
-        x: DEFAULT_TEST_ARRIVAL_LONGITUDE,
-        y: DEFAULT_TEST_ARRIVAL_LATITUDE
-      }
-    },
-    outwardJourney: {
-      date: DEFAULT_TEST_OUTWARD_JOURNEY_DATE,
-      time: DEFAULT_TEST_OUTWARD_JOURNEY_TIME,
-      isArrivalDateTime: DEFAULT_TEST_IS_NO_ARRIVAL_DATE_TIME
-    },
-    backwardJourney: {
-      date: DEFAULT_TEST_BACKWARD_JOURNEY_DATE,
-      time: DEFAULT_TEST_BACKWARD_JOURNEY_TIME,
-      isArrivalDateTime: DEFAULT_TEST_IS_NO_ARRIVAL_DATE_TIME
-    }
-  };
-};
-
-/**
- * NEVER USE IN PRODUCTIVE CODE!
- * ONLY FOR TESTING!
- */
 export const getApiTokenParamMapWithIsRoundTripAsTrue = (): unknown => {
   return {
     isRoundTrip: DEFAULT_TEST_IS_ROUND_TRIP,
@@ -292,23 +231,3 @@ export const getApiTokenParamMapWithIsRoundTripAsFalse = (): unknown => {
     outwardJourneyIsArrivalDateTime: DEFAULT_TEST_IS_ARRIVAL_DATE_TIME
   };
 };
-
-/**
- * NEVER USE IN PRODUCTIVE CODE!
- * ONLY FOR TESTING!
- */
-export const getApiTokenParamMapWithIsArrivalDateTimeAsFalse = (): unknown => {
-  return {
-    isRoundTrip: DEFAULT_TEST_IS_ROUND_TRIP,
-    departureLatitude: DEFAULT_TEST_DEPARTURE_LATITUDE,
-    departureLongitude: DEFAULT_TEST_DEPARTURE_LONGITUDE,
-    arrivalLatitude: DEFAULT_TEST_ARRIVAL_LATITUDE,
-    arrivalLongitude: DEFAULT_TEST_ARRIVAL_LONGITUDE,
-    outwardJourneyDateTime: DEFAULT_TEST_OUTWARD_JOURNEY_DATE_TIME,
-    outwardJourneyIsArrivalDateTime: DEFAULT_TEST_IS_NO_ARRIVAL_DATE_TIME,
-    backwardJourneyDateTime: DEFAULT_TEST_BACKWARD_JOURNEY_DATE_TIME,
-    backwardJourneyIsArrivalDateTime: DEFAULT_TEST_IS_NO_ARRIVAL_DATE_TIME
-  };
-};
-
-

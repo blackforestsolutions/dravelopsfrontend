@@ -12,6 +12,7 @@ import {
   USE_NEAREST_ADDRESS
 } from '../../environments/config-tokens';
 import { environment } from '../../environments/environment';
+import { SharedStylesModule } from '@dravelopsfrontend/shared-styles';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { environment } from '../../environments/environment';
     CommonModule,
     SharedModule,
     FeatureShellRoutingModule,
-    FeatureJourneySearchModule
+    FeatureJourneySearchModule,
+    SharedStylesModule
   ],
   providers: [
     {

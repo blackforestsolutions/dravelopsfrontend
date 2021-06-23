@@ -26,6 +26,7 @@ import { By } from '@angular/platform-browser';
 import { SortJourneyPipe } from '../pipes/sort-journey-pipe/sort-journey.pipe';
 import { IsOnlyFootpathPipe } from '../pipes/is-only-footpath-pipe/is-only-footpath.pipe';
 import { IsJourneyInPastPipe } from '../pipes/is-journey-in-past-pipe/is-journey-in-past.pipe';
+import { NoJourneyResultComponent } from '../no-journey-result/no-journey-result.component';
 import { JourneyListHeaderComponent } from '../journey-list-header/journey-list-header.component';
 
 describe('JourneyListBackwardComponent', () => {
@@ -38,6 +39,7 @@ describe('JourneyListBackwardComponent', () => {
       declarations: [
         JourneyListBackwardComponent,
         MockComponent(JourneyListItemComponent),
+        MockComponent(NoJourneyResultComponent),
         MockComponent(JourneyListHeaderComponent),
         MockPipe(FilterEqualJourneysPipe, (journeys: JourneyFragment[]) => journeys),
         MockPipe(BackwardJourneyFilterPipe, (journeys: JourneyFragment[]) => journeys),
@@ -65,6 +67,7 @@ describe('JourneyListBackwardComponent', () => {
 
   beforeEach(() => {
     window.HTMLElement.prototype.scrollIntoView = jest.fn();
+    window.scrollTo = jest.fn();
     fixture = TestBed.createComponent(JourneyListBackwardComponent);
     componentUnderTest = fixture.componentInstance;
     journeyListService = TestBed.inject(JourneyListService);
@@ -209,8 +212,9 @@ describe('JourneyListBackwardComponent', () => {
     fixture.detectChanges();
 
     expect(fixture.debugElement.queryAll(By.directive(JourneyListItemComponent)).length).toBe(0);
-    expect(fixture.nativeElement.querySelector('#no-result').innerHTML).toBe('Es wurde keine Rückfahrt zur Hinfahrt gefunden.');
-    expect(fixture.nativeElement.querySelector('mat-progress-bar')).toBeNull();
+    const noJourneyResultComponent: NoJourneyResultComponent = fixture.debugElement.query(By.directive(NoJourneyResultComponent)).componentInstance;
+    expect(noJourneyResultComponent.noResultMessage).toBe('Rückfahrt zur Hinfahrt');
+    expect(noJourneyResultComponent.isBackwardJourney).toBeTruthy();
   });
 
   it('should call "passJourneySelectedEvent" with right param when journeySelectedEvent is emitted', () => {

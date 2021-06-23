@@ -155,6 +155,33 @@ describe('LegListItemComponent', () => {
         expect(intermediateStopsButton).toBeNull();
       });
     }));
+
+
+    it('should return 4 / 5 grid-row on arrivalTime when footpath map is unfold', () => {
+      componentUnderTest.showFootpathMap = true;
+
+      const result: string = componentUnderTest.positionArrivalTime();
+
+      expect(result).toBe('4 / 5');
+    });
+
+    it('should return 3 / 4 grid-row when neither footpath map nor intermediate stops are unfold', () => {
+      componentUnderTest.showIntermediateStops = false;
+      componentUnderTest.showFootpathMap = false;
+
+      const result: string = componentUnderTest.positionArrivalTime();
+
+      expect(result).toBe('3 / 4');
+    });
+
+    it('should return 5 / 6 grid row when neither intermediate stops are unfold', () => {
+      componentUnderTest.showIntermediateStops = true;
+      componentUnderTest.leg = getFurtwangenIlbenstreetToBleibachLeg();
+
+      const result: string = componentUnderTest.positionArrivalTime();
+
+      expect(result).toBe('5 / 6');
+    });
   });
 
   describe('with footpath data (waypoints)', () => {

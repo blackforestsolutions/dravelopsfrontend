@@ -56,6 +56,14 @@ describe('BookingComponent', () => {
       expect(componentUnderTest).toBeTruthy();
     });
 
+    it('should return isRoundTrip from route path', () => {
+
+      const result: boolean = componentUnderTest.logIsRoundTrip();
+
+      expect(result).toBeTruthy();
+    });
+
+
     it('should return outwardJourneyId from route path', () => {
 
       const result: string = componentUnderTest.logOutwardJourneyId();
@@ -70,7 +78,17 @@ describe('BookingComponent', () => {
       expect(result).toBe(getApiTokenParamMapWithIsRoundTripAsTrue().backwardJourneyId);
     });
 
-    it('should be called "logOutwardJourneyId" on component init', waitForAsync(() => {
+    it('should be called "logIsRoundTrip" when change detection is triggered', waitForAsync(() => {
+      const logIsRoundTripSpy = spyOn(componentUnderTest, 'logIsRoundTrip');
+
+      fixture.detectChanges();
+
+      fixture.whenStable().then(() => {
+        expect(logIsRoundTripSpy).toHaveBeenCalledTimes(2);
+      });
+    }));
+
+    it('should be called "logOutwardJourneyId" when change detection is triggered', waitForAsync(() => {
       const logOutwardJourneyIdSpy = spyOn(componentUnderTest, 'logOutwardJourneyId');
 
       fixture.detectChanges();
@@ -80,7 +98,7 @@ describe('BookingComponent', () => {
       });
     }));
 
-    it('should should be called "logBackwardJourneyId" on component init', waitForAsync(() => {
+    it('should should be called "logBackwardJourneyId" when change detection is triggered', waitForAsync(() => {
       const logBackwardJourneyIdSpy = spyOn(componentUnderTest, 'logBackwardJourneyId');
 
       fixture.detectChanges();
@@ -111,6 +129,13 @@ describe('BookingComponent', () => {
       fixture = TestBed.createComponent(BookingComponent);
       componentUnderTest = fixture.componentInstance;
       fixture.detectChanges();
+    });
+
+    it('should return isRoundTrip from route path', () => {
+
+      const result: boolean = componentUnderTest.logIsRoundTrip();
+
+      expect(result).toBeFalsy();
     });
 
     it('should return an empty backwardJourneyId from route path', () => {

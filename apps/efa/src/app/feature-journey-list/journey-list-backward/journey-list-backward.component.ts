@@ -8,6 +8,7 @@ import { BackwardJourneyFilterPipe } from '../pipes/backward-journey-filter-pipe
 import { scanJourneys } from '../../shared/util/rxjs';
 import { IsOnlyFootpathPipe } from '../pipes/is-only-footpath-pipe/is-only-footpath.pipe';
 import { IsJourneyInPastPipe } from '../pipes/is-journey-in-past-pipe/is-journey-in-past.pipe';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'dravelopsefafrontend-journey-list-backward',
@@ -26,6 +27,7 @@ export class JourneyListBackwardComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
 
   constructor(
+    private readonly viewportScroller: ViewportScroller,
     private readonly journeyListService: JourneyListService,
     private readonly route: ActivatedRoute,
     private readonly backwardJourneyFilter: BackwardJourneyFilterPipe,
@@ -79,7 +81,7 @@ export class JourneyListBackwardComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$),
         tap(() => this.journeys$.next(null)),
         tap(() => isNewSearch = true),
-        tap(() => this.scrollWrapper.nativeElement.scrollIntoView({ behavior: 'smooth' })),
+        tap(() => this.viewportScroller.scrollToAnchor(this.scrollWrapper.nativeElement.id)),
         switchMap((params: ParamMap) => merge(
           this.getJourneys(params),
           this.getEarlierJourneys(params),

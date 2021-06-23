@@ -14,6 +14,7 @@ import {
 import { describe } from '@jest/globals';
 import { CUSTOMER_DIRECTORY } from '../../environments/config-tokens';
 import { OverlayContainer } from '@angular/cdk/overlay';
+import { FabButtonComponent } from '@dravelopsfrontend/shared-styles';
 
 @Component({ template: '' })
 // for testing purpose
@@ -45,7 +46,8 @@ describe('FeatureShellContainerComponent', () => {
       declarations: [
         FeatureShellComponent,
         JourneyListComponentStub,
-        MockComponent(JourneySearchComponent)
+        MockComponent(JourneySearchComponent),
+        MockComponent(FabButtonComponent)
       ],
       providers: [
         {
