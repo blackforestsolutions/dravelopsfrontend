@@ -7,7 +7,7 @@
   width: auto;
 }
 
-@media screen and (min-width: 850px) {
+@media (min-width: 850px) {
   .map-wrapper {
     position: absolute;
     top: 0;
@@ -20,7 +20,7 @@
   }
 }
 
-@media screen and (min-width: 1100px) {
+@media (min-width: 1100px) {
   .map-wrapper {
     width: calc(100% - 55rem);
   }

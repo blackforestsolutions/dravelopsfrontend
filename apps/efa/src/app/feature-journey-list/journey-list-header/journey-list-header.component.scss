@@ -29,7 +29,7 @@ mat-card {
 }
 
 
-@media screen and (min-width: 500px) {
+@media (min-width: 500px) {
   .grid-container {
     grid-template-columns: repeat(4, 1fr);
     align-items: center;
@@ -45,7 +45,7 @@ mat-card {
   }
 }
 
-@media screen and (min-width: $bp-tablet) {
+@media (min-width: $bp-tablet) {
   .grid-container {
     grid-template-columns: 15% 40% repeat(4, 11.25%);
     align-items: center;

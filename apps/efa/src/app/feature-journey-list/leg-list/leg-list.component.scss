@@ -12,13 +12,13 @@
   padding: 0.2rem;
 }
 
-@media screen and (min-width: 440px){
+@media (min-width: 440px){
   .grid-container {
     grid-template-columns: 15% 35% 25% 25%;
   }
 }
 
-@media screen and (min-width: $bp-tablet) {
+@media (min-width: $bp-tablet) {
   .grid-container {
     grid-template-columns: 15% 40% repeat(4, 11.25%);
   }
