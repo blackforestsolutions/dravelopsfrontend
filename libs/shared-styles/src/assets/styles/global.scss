@@ -30,7 +30,7 @@ body {
   margin: 0;
 }
 
-@media screen and (min-width: $bp-max) {
+@media (min-width: $bp-max) {
   body {
     margin: 0 auto;
     max-width: $bp-max;
