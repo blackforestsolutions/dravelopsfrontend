@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NearestTravelPointListItemComponent } from './nearest-travel-point-list-item.component';
-import { SharedModule } from '../../shared/shared.module';
 import {
   getFurtwangenKindergardenTravelPoint,
   getFurtwangenSupermarketTravelPoint
 } from '../../shared/objectmothers/travel-point-object-mother';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('NearestAddressesListItemComponent', () => {
   let componentUnderTest: NearestTravelPointListItemComponent;
@@ -14,7 +14,9 @@ describe('NearestAddressesListItemComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [NearestTravelPointListItemComponent],
-      imports: [SharedModule]
+      imports: [
+        MatIconModule
+      ]
     })
       .compileComponents();
   });
@@ -35,6 +37,6 @@ describe('NearestAddressesListItemComponent', () => {
 
     fixture.detectChanges();
 
-    expect(fixture.nativeElement.querySelector('.info').innerHTML).toContain('200 m')
+    expect(fixture.nativeElement.querySelector('.info').innerHTML).toContain('200 m');
   });
 });

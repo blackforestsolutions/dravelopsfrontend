@@ -4,7 +4,7 @@ import { LoadingComponent } from './loading.component';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatProgressSpinnerHarness } from '@angular/material/progress-spinner/testing';
-import { SharedStylesModule } from '../../shared-styles.module';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 describe('LoadingComponent', () => {
   let componentUnderTest: LoadingComponent;
@@ -14,7 +14,7 @@ describe('LoadingComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LoadingComponent],
-      imports: [SharedStylesModule]
+      imports: [MatProgressSpinnerModule]
     })
       .compileComponents();
   });

@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { JourneyListOutwardComponent } from './journey-list-outward.component';
 import { MockComponent, MockPipe, MockProvider } from 'ng-mocks';
 import { JourneyListItemComponent } from '../journey-list-item/journey-list-item.component';
-import { SharedModule } from '../../shared/shared.module';
 import { ActivatedRoute, convertToParamMap } from '@angular/router';
 import { of } from 'rxjs';
 import {
@@ -31,6 +30,10 @@ import { IsOnlyFootpathPipe } from '../pipes/is-only-footpath-pipe/is-only-footp
 import { IsJourneyInPastPipe } from '../pipes/is-journey-in-past-pipe/is-journey-in-past.pipe';
 import { JourneyListHeaderComponent } from '../journey-list-header/journey-list-header.component';
 import { NoJourneyResultComponent } from '../no-journey-result/no-journey-result.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
 
 
 describe('JourneyListOutwardComponent', () => {
@@ -64,7 +67,12 @@ describe('JourneyListOutwardComponent', () => {
             }
           }
         ],
-        imports: [SharedModule]
+        imports: [
+          MatProgressBarModule,
+          MatButtonModule,
+          MatExpansionModule,
+          MatIconModule
+        ]
       })
         .compileComponents();
     });
@@ -252,7 +260,12 @@ describe('JourneyListOutwardComponent', () => {
             }
           }
         ],
-        imports: [SharedModule]
+        imports: [
+          MatProgressBarModule,
+          MatButtonModule,
+          MatExpansionModule,
+          MatIconModule
+        ]
       })
         .compileComponents();
     });

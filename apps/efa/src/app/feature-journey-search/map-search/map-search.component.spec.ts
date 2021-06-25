@@ -5,13 +5,13 @@ import { PolygonPipe } from '../pipes/polygon-pipe/polygon.pipe';
 import { MapOptionsPipe } from '../pipes/map-options-pipe/map-options.pipe';
 import { MockComponent, MockDirective, MockProvider } from 'ng-mocks';
 import { LoadingComponent, ThemeEmitterComponent } from '@dravelopsfrontend/shared-styles';
-import { SharedModule } from '../../shared/shared.module';
 import { LeafletDirective, LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { PolygonApiService } from '../../shared/api/polygon-api.service';
 import { expect } from '@jest/globals';
 import { NearestTravelPointListComponent } from '../nearest-travel-point-list/nearest-travel-point-list.component';
 import { CUSTOMER_DIRECTORY } from '../../../environments/config-tokens';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 
 describe('MapSearchComponent', () => {
   let componentUnderTest: MapSearchComponent;
@@ -29,7 +29,7 @@ describe('MapSearchComponent', () => {
         MapOptionsPipe
       ],
       imports: [
-        SharedModule,
+        MatBottomSheetModule,
         LeafletModule,
         RouterTestingModule
       ],

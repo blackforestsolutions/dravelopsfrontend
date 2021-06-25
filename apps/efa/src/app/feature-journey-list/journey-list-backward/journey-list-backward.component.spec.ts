@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { JourneyListBackwardComponent } from './journey-list-backward.component';
-import { SharedModule } from '../../shared/shared.module';
 import { MockComponent, MockPipe, MockProvider } from 'ng-mocks';
 import { JourneyListItemComponent } from '../journey-list-item/journey-list-item.component';
 import { FilterEqualJourneysPipe } from '../pipes/filter-equal-journey-pipe/filter-equal-journeys.pipe';
@@ -28,6 +27,10 @@ import { IsOnlyFootpathPipe } from '../pipes/is-only-footpath-pipe/is-only-footp
 import { IsJourneyInPastPipe } from '../pipes/is-journey-in-past-pipe/is-journey-in-past.pipe';
 import { NoJourneyResultComponent } from '../no-journey-result/no-journey-result.component';
 import { JourneyListHeaderComponent } from '../journey-list-header/journey-list-header.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('JourneyListBackwardComponent', () => {
   let componentUnderTest: JourneyListBackwardComponent;
@@ -60,7 +63,12 @@ describe('JourneyListBackwardComponent', () => {
           }
         }
       ],
-      imports: [SharedModule]
+      imports: [
+        MatProgressBarModule,
+        MatButtonModule,
+        MatExpansionModule,
+        MatIconModule
+      ]
     })
       .compileComponents();
   });

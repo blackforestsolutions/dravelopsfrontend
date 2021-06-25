@@ -9,12 +9,14 @@ import {
   getApiTokenParamMapWithIsRoundTripAsFalse,
   getApiTokenParamMapWithIsRoundTripAsTrue
 } from '../../shared/objectmothers/api-token-object-mother';
-import { SharedModule } from '../../shared/shared.module';
 import { JourneyListOutwardComponent } from '../journey-list-outward/journey-list-outward.component';
 import { JourneyListBackwardComponent } from '../journey-list-backward/journey-list-backward.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { expect } from '@jest/globals';
-import { getFurtwangenToWaldkirchJourney, getWaldkirchToFurtwangenJourney } from '../../shared/objectmothers/journey-object-mother';
+import {
+  getFurtwangenToWaldkirchJourney,
+  getWaldkirchToFurtwangenJourney
+} from '../../shared/objectmothers/journey-object-mother';
 import { By } from '@angular/platform-browser';
 import { Component, DebugElement } from '@angular/core';
 import { Location } from '@angular/common';
@@ -51,12 +53,13 @@ describe('JourneyListComponent ', () => {
             }
           }
         ],
-        imports: [SharedModule, RouterTestingModule.withRoutes([
-          {
-            path: 'booking/:isRoundTrip/:outwardJourneyId/:backwardJourneyId',
-            component: BookingComponentStub
-          }
-        ])]
+        imports: [
+          RouterTestingModule.withRoutes([
+            {
+              path: 'booking/:isRoundTrip/:outwardJourneyId/:backwardJourneyId',
+              component: BookingComponentStub
+            }
+          ])]
       }).compileComponents();
     });
 
@@ -179,12 +182,13 @@ describe('JourneyListComponent ', () => {
             }
           }
         ],
-        imports: [SharedModule, RouterTestingModule.withRoutes([
-          {
-            path: 'booking/:isRoundTrip/:outwardJourneyId',
-            component: BookingComponentStub
-          }
-        ])]
+        imports: [
+          RouterTestingModule.withRoutes([
+            {
+              path: 'booking/:isRoundTrip/:outwardJourneyId',
+              component: BookingComponentStub
+            }
+          ])]
       }).compileComponents();
     });
 

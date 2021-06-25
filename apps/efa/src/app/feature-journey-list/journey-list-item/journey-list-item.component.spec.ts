@@ -9,7 +9,6 @@ import { MatIconHarness } from '@angular/material/icon/testing';
 import { MockComponent, MockPipe, MockProvider } from 'ng-mocks';
 import { LegListComponent } from '../leg-list/leg-list.component';
 import { By } from '@angular/platform-browser';
-import { SharedModule } from '../../shared/shared.module';
 import {
   getFurtwangenToWaldkirchJourney,
   getGrosshausbergToFurtwangenIlbenstreetJourney
@@ -21,6 +20,9 @@ import { IsOnlyFootpathPipe } from '../pipes/is-only-footpath-pipe/is-only-footp
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 
 describe('JourneyListItemComponent', () => {
@@ -42,7 +44,9 @@ describe('JourneyListItemComponent', () => {
           IsOnlyFootpathPipe
         ],
         imports: [
-          SharedModule,
+          MatExpansionModule,
+          MatButtonModule,
+          MatIconModule,
           BrowserAnimationsModule
         ]
       })

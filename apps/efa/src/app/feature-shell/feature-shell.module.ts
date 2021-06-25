@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FeatureShellComponent } from './feature-shell.component';
 import { FeatureJourneySearchModule } from '../feature-journey-search/feature-journey-search.module';
 import { FeatureShellRoutingModule } from './feature-shell-routing.module';
-import { SharedModule } from '../shared/shared.module';
 import {
   CUSTOMER_DIRECTORY,
   MAX_FUTURE_DAYS_IN_CALENDAR,
@@ -23,7 +22,6 @@ import { SharedStylesModule } from '@dravelopsfrontend/shared-styles';
   ],
   imports: [
     CommonModule,
-    SharedModule,
     FeatureShellRoutingModule,
     FeatureJourneySearchModule,
     SharedStylesModule

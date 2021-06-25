@@ -8,13 +8,13 @@ import { By } from '@angular/platform-browser';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatIconHarness } from '@angular/material/icon/testing';
-import { SharedModule } from '../../shared/shared.module';
 import {
   getBleibachToWaldkirchKastelberghalleLeg,
   getFurtwangenIlbenstreetToBleibachLeg,
   getGrosshausbergToFurtwangenIlbenstreetLeg,
   getWaldkirchKastelberghalleToSickLeg
 } from '../../shared/objectmothers/leg-object-mother';
+import { MatIconModule } from '@angular/material/icon';
 
 describe('LegListComponent', () => {
   let component: LegListComponent;
@@ -28,7 +28,9 @@ describe('LegListComponent', () => {
         MockComponent(LegListItemComponent),
         MockPipe(DurationPipe, value => `mock:${value}`)
       ],
-      imports: [SharedModule]
+      imports: [
+        MatIconModule
+      ]
     })
       .compileComponents();
   });

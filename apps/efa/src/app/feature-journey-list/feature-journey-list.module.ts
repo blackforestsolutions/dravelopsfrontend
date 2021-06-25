@@ -10,7 +10,6 @@ import { DurationPipe } from './pipes/duration-pipe/duration.pipe';
 import { VehicleTypePipe } from './pipes/vehicle-type-pipe/vehicle-type.pipe';
 import { FeatureJourneyListRoutingModule } from './feature-journey-list-routing.module';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { SharedModule } from '../shared/shared.module';
 import { BackwardJourneyFilterPipe } from './pipes/backward-journey-filter-pipe/backward-journey-filter.pipe';
 import { FilterEqualJourneysPipe } from './pipes/filter-equal-journey-pipe/filter-equal-journeys.pipe';
 import { JourneyListBackwardComponent } from './journey-list-backward/journey-list-backward.component';
@@ -19,7 +18,7 @@ import { SortJourneyPipe } from './pipes/sort-journey-pipe/sort-journey.pipe';
 import { IsJourneyInPastPipe } from './pipes/is-journey-in-past-pipe/is-journey-in-past.pipe';
 import { JourneyListService } from './services/journey-list.service';
 import { IsOnlyFootpathPipe } from './pipes/is-only-footpath-pipe/is-only-footpath.pipe';
-import {SharedStylesModule} from "@dravelopsfrontend/shared-styles";
+import { SharedStylesModule } from '@dravelopsfrontend/shared-styles';
 import { GeoJsonPipe } from './pipes/geo-json-pipe/geo-json.pipe';
 import { MapOptionsPipe } from './pipes/map-options-pipe/map-options.pipe';
 import { NoJourneyResultComponent } from './no-journey-result/no-journey-result.component';
@@ -46,7 +45,7 @@ import { JourneyListHeaderComponent } from './journey-list-header/journey-list-h
     GeoJsonPipe,
     MapOptionsPipe,
     NoJourneyResultComponent,
-    JourneyListHeaderComponent,
+    JourneyListHeaderComponent
   ],
   providers: [
     JourneyListService,
@@ -60,7 +59,6 @@ import { JourneyListHeaderComponent } from './journey-list-header/journey-list-h
   imports: [
     CommonModule,
     FeatureJourneyListRoutingModule,
-    SharedModule,
     SharedStylesModule,
     LeafletModule
   ]

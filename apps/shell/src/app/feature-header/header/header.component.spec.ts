@@ -1,16 +1,19 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import {HeaderComponent} from './header.component';
-import {SharedModule} from '../../shared/shared.module';
-import {CUSTOMER_DIRECTORY, HEADER_TITLE} from "../../../environments/app-environmnet";
+import { HeaderComponent } from './header.component';
+import { CUSTOMER_DIRECTORY, HEADER_TITLE } from '../../../environments/app-environmnet';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   template: ''
 })
-class EfaFrontendComponent {}
+class EfaFrontendComponent {
+}
 
 describe('HeaderComponent', () => {
   let componentUnderTest: HeaderComponent;
@@ -21,13 +24,15 @@ describe('HeaderComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [HeaderComponent],
       imports: [
-        SharedModule,
         RouterTestingModule.withRoutes([
           {
             path: '',
             component: EfaFrontendComponent
           }
-        ])
+        ]),
+        MatToolbarModule,
+        MatButtonModule,
+        MatIconModule
       ],
       providers: [
         {
