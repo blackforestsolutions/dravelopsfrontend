@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { JourneyListHeaderComponent } from './journey-list-header.component';
-import { SharedModule } from '../../shared/shared.module';
+import { MatCardModule } from '@angular/material/card';
 
 describe('JourneyListHeaderComponent', () => {
   let componentUnderTest: JourneyListHeaderComponent;
@@ -11,7 +11,7 @@ describe('JourneyListHeaderComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [JourneyListHeaderComponent],
       imports: [
-        SharedModule
+        MatCardModule
       ]
     })
       .compileComponents();

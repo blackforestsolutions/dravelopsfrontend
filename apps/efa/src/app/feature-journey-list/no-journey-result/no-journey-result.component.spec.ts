@@ -2,12 +2,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NoJourneyResultComponent } from './no-journey-result.component';
 import { MockDirective, ngMocks } from 'ng-mocks';
-import { SharedModule } from '../../shared/shared.module';
 import { ScrollTopDirective } from '@dravelopsfrontend/shared-styles';
 import { JourneyFragment } from '@dravelopsfrontend/generated-content';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import { MatButtonModule } from '@angular/material/button';
 
 describe('NoJourneyResultComponent', () => {
   let componentUnderTest: NoJourneyResultComponent;
@@ -21,7 +21,7 @@ describe('NoJourneyResultComponent', () => {
         MockDirective(ScrollTopDirective)
       ],
       imports: [
-        SharedModule
+        MatButtonModule
       ]
     })
       .compileComponents();

@@ -3,7 +3,6 @@ import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testin
 import { JourneySearchFormComponent } from './journey-search-form.component';
 import { TravelPointApiService } from '../../shared/api/travel-point-api.service';
 import { HarnessLoader } from '@angular/cdk/testing';
-import { SharedModule } from '../../shared/shared.module';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MockProvider } from 'ng-mocks';
@@ -32,6 +31,15 @@ import { ApiToken } from '../../shared/model/api-token';
 import { MatDatepickerInputHarness } from '@angular/material/datepicker/testing';
 import { MatButtonHarness } from '@angular/material/button/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatTimepickerModule } from 'mat-timepicker';
+import { MatButtonModule } from '@angular/material/button';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
 
 const MAX_FUTURE_DAYS_IN_CALENDAR_TEST_VALUE = 365;
 const MAX_PAST_DAYS_IN_CALENDAR_TEST_VALUE = 7305;
@@ -46,7 +54,15 @@ describe('JourneySearchFormComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [JourneySearchFormComponent],
       imports: [
-        SharedModule,
+        MatRadioModule,
+        MatFormFieldModule,
+        MatAutocompleteModule,
+        MatIconModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatTimepickerModule,
+        MatButtonModule,
+        MatInputModule,
         ReactiveFormsModule,
         BrowserAnimationsModule,
         RouterTestingModule

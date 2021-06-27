@@ -2,9 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NearestTravelPointListComponent } from './nearest-travel-point-list.component';
 import { MockComponent, MockProvider } from 'ng-mocks';
-import { SharedModule } from '../../shared/shared.module';
 import { RADIUS_IN_KILOMETERS, USE_NEAREST_ADDRESS } from '../../../environments/config-tokens';
-import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetRef } from '@angular/material/bottom-sheet';
+import { MAT_BOTTOM_SHEET_DATA, MatBottomSheetModule, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { TravelPointApiService } from '../../shared/api/travel-point-api.service';
 import { of } from 'rxjs';
 import {
@@ -22,6 +21,8 @@ import { MatDividerHarness } from '@angular/material/divider/testing';
 import { MatListOptionHarness } from '@angular/material/list/testing';
 import { LoadingComponent } from '@dravelopsfrontend/shared-styles';
 import { NearestTravelPointFragment } from '@dravelopsfrontend/generated-content';
+import { MatListModule } from '@angular/material/list';
+import { MatDividerModule } from '@angular/material/divider';
 
 const TEST_LONGITUDE = 5;
 const TEST_LATITUDE = 10;
@@ -42,7 +43,9 @@ describe('NearestTravelPointListComponent', () => {
           MockComponent(LoadingComponent)
         ],
         imports: [
-          SharedModule
+          MatBottomSheetModule,
+          MatListModule,
+          MatDividerModule
         ],
         providers: [
           MockProvider(TravelPointApiService),
@@ -188,7 +191,9 @@ describe('NearestTravelPointListComponent', () => {
           MockComponent(LoadingComponent)
         ],
         imports: [
-          SharedModule
+          MatBottomSheetModule,
+          MatListModule,
+          MatDividerModule
         ],
         providers: [
           MockProvider(TravelPointApiService),

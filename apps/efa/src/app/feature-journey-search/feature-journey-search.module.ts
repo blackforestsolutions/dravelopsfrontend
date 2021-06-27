@@ -3,7 +3,6 @@ import {CommonModule} from '@angular/common';
 import {ReactiveFormsModule} from '@angular/forms';
 import {JourneySearchComponent} from './journey-search/journey-search.component';
 import {StartpageComponent} from './startpage/startpage.component';
-import {SharedModule} from '../shared/shared.module';
 import {JourneySearchFormComponent} from './journey-search-form/journey-search-form.component';
 import {MapSearchComponent} from './map-search/map-search.component';
 import {LeafletModule} from "@asymmetrik/ngx-leaflet";
@@ -28,7 +27,6 @@ import { PolygonPipe } from './pipes/polygon-pipe/polygon.pipe';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    SharedModule,
     SharedStylesModule,
     LeafletModule
   ],

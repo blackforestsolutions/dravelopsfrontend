@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { JourneySearchComponent } from './journey-search.component';
-import { SharedModule } from '../../shared/shared.module';
 import { MockComponent } from 'ng-mocks';
 import { StartpageComponent } from '../startpage/startpage.component';
 import { MapSearchComponent } from '../map-search/map-search.component';
@@ -17,6 +16,7 @@ import { expect } from '@jest/globals';
 import { MatTabGroupHarness } from '@angular/material/tabs/testing';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import { MatTabsModule } from '@angular/material/tabs';
 
 
 describe('JourneySearchComponent', () => {
@@ -33,7 +33,7 @@ describe('JourneySearchComponent', () => {
         MockComponent(JourneySearchFormComponent)
       ],
       imports: [
-        SharedModule,
+        MatTabsModule,
         BrowserAnimationsModule
       ]
     })
@@ -102,7 +102,7 @@ describe('JourneySearchComponent', () => {
     const matTabGroup: MatTabGroupHarness = await loader.getHarness(MatTabGroupHarness);
 
     await matTabGroup.selectTab({ label: 'Kartensuche' });
-    await matTabGroup.selectTab({ label: 'Verbindungssuche'});
+    await matTabGroup.selectTab({ label: 'Verbindungssuche' });
 
     fixture.detectChanges();
     const mapSearchComponent: DebugElement = fixture.debugElement.query(By.directive(MapSearchComponent));
