@@ -1,13 +1,14 @@
 import { Component, EventEmitter, Inject, OnDestroy, OnInit, Output } from '@angular/core';
-import { icon, latLng, LatLng, Map, Marker, marker } from 'leaflet';
+import { latLng, LatLng, Map, Marker } from 'leaflet';
 import { PolygonApiService } from '../../shared/api/polygon-api.service';
 import { Observable, Subject } from 'rxjs';
-import { NearestTravelPointFragment, PolygonFragment } from '@dravelopsfrontend/generated-content';
+import { NearestTravelPointFragment, PointFragment, PolygonFragment } from '@dravelopsfrontend/generated-content';
 import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
 import { NearestTravelPointListComponent } from '../nearest-travel-point-list/nearest-travel-point-list.component';
 import { takeUntil } from 'rxjs/operators';
 import { CUSTOMER_DIRECTORY } from '../../../environments/config-tokens';
 import { ActivatedRoute } from '@angular/router';
+import { LeafletService } from '../../shared/util/leaflet.service';
 
 const ICON_WIDTH = 45;
 const ICON_HEIGHT = 73.8;
@@ -31,7 +32,8 @@ export class MapSearchComponent implements OnInit, OnDestroy {
     @Inject(CUSTOMER_DIRECTORY) private readonly customerDirectory: string,
     private readonly polygonApiService: PolygonApiService,
     private readonly route: ActivatedRoute,
-    private readonly matBottomSheet: MatBottomSheet
+    private readonly matBottomSheet: MatBottomSheet,
+    private readonly leafletService: LeafletService
   ) {
   }
 
@@ -81,12 +83,13 @@ export class MapSearchComponent implements OnInit, OnDestroy {
   }
 
   private setMarker(latLng: LatLng): void {
+    const point: PointFragment[] = this.mapLatLngToPoint(latLng);
     if (!this.departureMarker) {
-      this.departureMarker = this.createDepartureMarker(latLng).addTo(this.leafletMap);
+      this.departureMarker = this.leafletService.createDepartureMarker(point, ICON_WIDTH, ICON_HEIGHT).addTo(this.leafletMap);
       return;
     }
     if (!this.arrivalMarker) {
-      this.arrivalMarker = this.createArrivalMarker(latLng).addTo(this.leafletMap);
+      this.arrivalMarker = this.leafletService.createArrivalMarker(point, ICON_WIDTH, ICON_HEIGHT).addTo(this.leafletMap);
       return;
     }
     this.leafletMap.removeLayer(this.departureMarker);
@@ -96,22 +99,11 @@ export class MapSearchComponent implements OnInit, OnDestroy {
     this.setMarker(latLng);
   }
 
-  private createDepartureMarker(latLng: LatLng): Marker {
-    return marker(latLng, {
-      icon: icon({
-        iconSize: [ICON_WIDTH, ICON_HEIGHT],
-        iconUrl: `assets/${this.customerDirectory}/departure_icon.svg`
-      })
-    });
-  }
-
-  private createArrivalMarker(latLng: LatLng): Marker {
-    return marker(latLng, {
-      icon: icon({
-        iconSize: [ICON_WIDTH, ICON_HEIGHT],
-        iconUrl: `assets/${this.customerDirectory}/arrival_icon.svg`
-      })
-    });
+  private mapLatLngToPoint(latLng: LatLng): PointFragment[] {
+    return [{
+      x: latLng.lng,
+      y: latLng.lat
+    }];
   }
 
   private openBottomSheet(latLng: LatLng): void {

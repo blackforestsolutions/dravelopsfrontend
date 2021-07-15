@@ -12,6 +12,7 @@ import { NearestTravelPointListComponent } from '../nearest-travel-point-list/ne
 import { CUSTOMER_DIRECTORY } from '../../../environments/config-tokens';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { LeafletService } from '../../shared/util/leaflet.service';
 
 describe('MapSearchComponent', () => {
   let componentUnderTest: MapSearchComponent;
@@ -35,6 +36,7 @@ describe('MapSearchComponent', () => {
       ],
       providers: [
         MockProvider(PolygonApiService),
+        MockProvider(LeafletService),
         {
           provide: CUSTOMER_DIRECTORY,
           useValue: 'bw'
