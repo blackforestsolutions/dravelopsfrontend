@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Inject, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { merge, Observable, Subject } from 'rxjs';
 import { JourneyFragment } from '@dravelopsfrontend/generated-content';
 import { JourneyListService } from '../services/journey-list.service';
@@ -8,6 +8,7 @@ import { scanJourneys } from '../../shared/util/rxjs';
 import { IsOnlyFootpathPipe } from '../pipes/is-only-footpath-pipe/is-only-footpath.pipe';
 import { IsJourneyInPastPipe } from '../pipes/is-journey-in-past-pipe/is-journey-in-past.pipe';
 import { ViewportScroller } from '@angular/common';
+import { SHOW_JOURNEY_RESULT_MAP } from '../../../environments/config-tokens';
 
 @Component({
   selector: 'dravelopsefafrontend-journey-list-outward',
@@ -18,12 +19,14 @@ export class JourneyListOutwardComponent implements OnInit, OnDestroy {
   @Output() journeySelectedEvent = new EventEmitter<JourneyFragment>();
   @ViewChild('scrollWrapper', { static: true }) scrollWrapper: ElementRef;
   loading = true;
+  expandedJourney: JourneyFragment = null;
   journeys$ = new Subject<JourneyFragment[]>();
   earlierButtonClick$ = new Subject<void>();
   laterButtonClick$ = new Subject<void>();
   private destroy$ = new Subject<void>();
 
   constructor(
+    @Inject(SHOW_JOURNEY_RESULT_MAP) public readonly showJourneyResultMap: boolean,
     private readonly viewportScroller: ViewportScroller,
     private readonly journeyListService: JourneyListService,
     private readonly route: ActivatedRoute,
@@ -75,12 +78,16 @@ export class JourneyListOutwardComponent implements OnInit, OnDestroy {
     return 'Kaufen';
   }
 
-  private isRoundTrip(): boolean {
-    return JSON.parse(this.route.snapshot.paramMap.get('isRoundTrip'));
-  }
-
   passJourneySelectedEvent(selectedJourney: JourneyFragment): void {
     this.journeySelectedEvent.emit(selectedJourney);
+  }
+
+  setExpandedJourney(expandedJourney: JourneyFragment): void {
+    this.expandedJourney = expandedJourney;
+  }
+
+  private isRoundTrip(): boolean {
+    return JSON.parse(this.route.snapshot.paramMap.get('isRoundTrip'));
   }
 
   private mergeJourneys(): void {
@@ -98,6 +105,7 @@ export class JourneyListOutwardComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$),
         tap(() => this.journeys$.next(null)),
         tap(() => isNewSearch = true),
+        tap(() => this.expandedJourney = null),
         tap(() => this.viewportScroller.scrollToAnchor(this.scrollWrapper.nativeElement.id)),
         switchMap((params: ParamMap) => merge(
           this.getJourneys(params),
