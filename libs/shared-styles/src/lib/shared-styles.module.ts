@@ -24,6 +24,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { IfTabletViewDirective } from './directives/if-tablet-view/if-tablet-view.directive';
 
 const modules = [
   MatProgressSpinnerModule,
@@ -56,7 +57,8 @@ const components = [
 ];
 
 const directives = [
-  ScrollTopDirective
+  ScrollTopDirective,
+  IfTabletViewDirective
 ];
 
 @NgModule({
