@@ -12,7 +12,8 @@ export const environment: EfaEnvironment = {
   radiusInKilometers: 5,
   maxFutureDaysInCalendar: 365,
   maxPastDaysInCalendar: 0,
-  customerDirectory: 'hvv'
+  customerDirectory: 'hvv',
+  showJourneyResultMap: true
 };
 
 /*

@@ -59,6 +59,10 @@
 }
 
 @media (min-width: $bp-tablet) {
+  .panel {
+    margin-bottom: 1.6rem;
+  }
+
   .grid-container {
     grid-template-rows: auto;
     grid-template-columns: 15% 40% repeat(4, 11.25%);

@@ -5,7 +5,7 @@ export const MAX_WGS_84_LONGITUDE = 180;
 export const MIN_WGS_84_LATITUDE = -90;
 export const MAX_WGS_84_LATITUDE = 90;
 export const OSM_MAP = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-export const OSM_ZOOM_SNAP_LEVEL = 0.1;
+export const OSM_ZOOM_SNAP_LEVEL = 1.5;
 export const MAP_ATTRIBUTION = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
 
 
@@ -17,3 +17,4 @@ export const RADIUS_IN_KILOMETERS = new InjectionToken<number>('radiusInKilomete
 export const MAX_FUTURE_DAYS_IN_CALENDAR = new InjectionToken<number>('maxFutureDaysInCalendar');
 export const MAX_PAST_DAYS_IN_CALENDAR = new InjectionToken<number>('maxPastDaysInCalendar');
 export const CUSTOMER_DIRECTORY = new InjectionToken<string>('customerDirectory');
+export const SHOW_JOURNEY_RESULT_MAP = new InjectionToken<string>('showJourneyResultMap');

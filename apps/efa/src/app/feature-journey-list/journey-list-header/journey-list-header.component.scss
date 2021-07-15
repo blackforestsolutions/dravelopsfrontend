@@ -46,6 +46,10 @@ mat-card {
 }
 
 @media (min-width: $bp-tablet) {
+  mat-card {
+    margin-bottom: 1.6rem;
+  }
+
   .grid-container {
     grid-template-columns: 15% 40% repeat(4, 11.25%);
     align-items: center;
