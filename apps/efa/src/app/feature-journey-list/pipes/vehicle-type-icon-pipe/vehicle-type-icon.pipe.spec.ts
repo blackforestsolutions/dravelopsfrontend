@@ -115,7 +115,7 @@ describe('VehicleTypeIconPipe', () => {
     expect(result).toBe('flight');
   });
 
-  it('should return an "help" when type is not correct', () => {
+  it('should return an "help" when vehicle type is not available', () => {
     const testVehicleType = 'NoVehicleType';
 
     const result: string = pipeUnderTest.transform(testVehicleType);
