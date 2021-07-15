@@ -1,53 +1,54 @@
 import { MapOptionsPipe } from './map-options.pipe';
 import { PointFragment } from '@dravelopsfrontend/generated-content';
-import { GeoJSON, MapOptions, TileLayer } from 'leaflet';
+import { LatLngExpression, MapOptions, tileLayer, TileLayer } from 'leaflet';
 import { getFurtwangenFriedrichStreetToIlbenStreetWaypoints } from '../../../shared/objectmothers/footpath-object-mother';
 import {
+  MAP_ATTRIBUTION,
   MAX_WGS_84_LATITUDE,
   MAX_WGS_84_LONGITUDE,
   MIN_WGS_84_LATITUDE,
-  MIN_WGS_84_LONGITUDE
+  MIN_WGS_84_LONGITUDE,
+  OSM_MAP,
+  OSM_ZOOM_SNAP_LEVEL
 } from '../../../../environments/config-tokens';
-import { getArrivalMarker, getDepartureMarker } from '../../../shared/objectmothers/marker-object-mother';
+import { LeafletService } from '../../../shared/util/leaflet.service';
+import { MockService } from 'ng-mocks';
+import { expect } from '@jest/globals';
 
 describe('MapOptionsPipe', () => {
 
-  const customerDirectory = 'bw';
+  const leafletService: LeafletService = MockService(LeafletService, {
+    getOuterWorldRing: (): LatLngExpression[] => [
+      [MAX_WGS_84_LATITUDE, MIN_WGS_84_LONGITUDE],
+      [MAX_WGS_84_LATITUDE, MAX_WGS_84_LONGITUDE],
+      [MIN_WGS_84_LATITUDE, MAX_WGS_84_LONGITUDE],
+      [MIN_WGS_84_LATITUDE, MIN_WGS_84_LONGITUDE]
+    ],
+    createTileLayer: (): TileLayer => tileLayer(OSM_MAP, {
+      attribution: MAP_ATTRIBUTION
+    })
+  });
 
-  const classUnderTest: MapOptionsPipe = new MapOptionsPipe(customerDirectory);
+  const classUnderTest: MapOptionsPipe = new MapOptionsPipe(leafletService);
 
   it('create an instance', () => {
     expect(classUnderTest).toBeTruthy();
   });
 
-  it('should return null when waypoints are null', () => {
-    const testWaypoints: PointFragment[] = null;
-    const testPolygonColor = '#FFFFFF';
+  it('should return null when value is null', () => {
+    const testValue: PointFragment[] = null;
 
-    const result: MapOptions = classUnderTest.transform(testWaypoints, testPolygonColor);
-
-    expect(result).toBeNull();
-  });
-
-  it('should return mapOptions when waypoints are null', () => {
-    const testWaypoints: PointFragment[] = null;
-    const testPolygonColor = '#FFFFFF';
-
-    const result: MapOptions = classUnderTest.transform(testWaypoints, testPolygonColor);
+    const result: MapOptions = classUnderTest.transform(testValue);
 
     expect(result).toBeNull();
   });
 
   it('should create mapOptions correctly with waypoints', () => {
     const testWaypoints: PointFragment[] = getFurtwangenFriedrichStreetToIlbenStreetWaypoints();
-    const testPolygonColor = '#FFFFFF';
 
-    const result: MapOptions = classUnderTest.transform(testWaypoints, testPolygonColor);
+    const result: MapOptions = classUnderTest.transform(testWaypoints);
 
     expect(result.layers[0]).toBeInstanceOf(TileLayer);
-    expect(result.layers[1]).toBeInstanceOf(GeoJSON);
-    expect(result.layers[2]).toEqual(getArrivalMarker());
-    expect(result.layers[3]).toEqual(getDepartureMarker());
     expect(result.worldCopyJump).toBeFalsy();
     expect(result.maxBounds).toEqual({
       _northEast: {
@@ -59,6 +60,6 @@ describe('MapOptionsPipe', () => {
         lng: MIN_WGS_84_LONGITUDE
       }
     });
-    expect(result.center).toEqual({ lat: 48.057365000000004, lng: 8.203415 });
+    expect(result.zoomSnap).toBe(OSM_ZOOM_SNAP_LEVEL);
   });
 });
