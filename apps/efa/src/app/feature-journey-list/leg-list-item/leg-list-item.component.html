@@ -20,7 +20,7 @@
   <!-- second row -->
   <div class='arrowDownIcon'>
     <mat-icon>arrow_downward</mat-icon>
-    <mat-icon>{{ leg.vehicleType | vehicleType }}</mat-icon>
+    <mat-icon>{{ leg.vehicleType | vehicleTypeIcon }}</mat-icon>
   </div>
   <div class='actionButton flex-container'>
     <ng-container *ngIf='leg.vehicleType === "WALK" && leg.waypoints.length > 0'>
@@ -34,9 +34,7 @@
     <ng-container *ngIf='leg.vehicleType !== "WALK" && leg.intermediateStops.length > 0'>
       <span class='intermediateStops' (click)='toggleIntermediateStops()'>
         <ng-container *ngIf='leg.vehicleNumber.length > 0 || leg.vehicleName.length > 0; else this.noVehicle'>
-          <dravelopsefafrontend-vehicle-type [key]='leg.vehicleType'>
-
-          </dravelopsefafrontend-vehicle-type>
+          {{ leg.vehicleType | vehicleType }}
           <span class='vehicleNumber'>&nbsp;{{ leg.vehicleNumber }}</span>
         </ng-container>
         <ng-template #noVehicle>

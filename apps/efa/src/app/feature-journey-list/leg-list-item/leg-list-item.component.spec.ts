@@ -8,16 +8,16 @@ import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { MockComponent, MockPipe } from 'ng-mocks';
-import { VehicleTypeComponent } from '../vehicle-type/vehicle-type.component';
 import { FootpathMapComponent } from '../footpath-map/footpath-map.component';
 import {
   getFurtwangenIlbenstreetToBleibachLeg,
   getWaldkirchKastelberghalleToSickLeg
 } from '../../shared/objectmothers/leg-object-mother';
-import { LegFragment, VehicleType } from '@dravelopsfrontend/generated-content';
+import { LegFragment } from '@dravelopsfrontend/generated-content';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { VehicleTypeIconPipe } from '../pipes/vehicle-type-icon-pipe/vehicle-type-icon.pipe';
 
 describe('LegListItemComponent', () => {
   let componentUnderTest: LegListItemComponent;
@@ -29,9 +29,9 @@ describe('LegListItemComponent', () => {
       await TestBed.configureTestingModule({
         declarations: [
           LegListItemComponent,
-          MockComponent(VehicleTypeComponent),
           MockPipe(VehicleTypePipe, value => `mock:${value}`),
           MockPipe(DurationPipe, value => `mock:${value}`),
+          MockPipe(VehicleTypeIconPipe, value => `mock:${value}`),
           MockComponent(FootpathMapComponent)
         ],
         imports: [
@@ -123,11 +123,8 @@ describe('LegListItemComponent', () => {
     }));
 
     it('should show "vehicleType" and "vehicleName" if intermediate stops and vehicleDescriptions are available', () => {
-      const vehicleTypeComponent: VehicleTypeComponent = fixture.debugElement.query(By.directive(VehicleTypeComponent)).componentInstance;
-
       const vehicleNumber: string = fixture.nativeElement.querySelector('.vehicleNumber').innerHTML;
       expect(vehicleNumber).toContain('272');
-      expect(vehicleTypeComponent.key).toBe(VehicleType.BUS);
     });
 
     it('should show intermediateStopText when intermediateStops are greater than zero and whether vehicleNumber nor vehicleName is available', () => {
@@ -195,9 +192,9 @@ describe('LegListItemComponent', () => {
       await TestBed.configureTestingModule({
         declarations: [
           LegListItemComponent,
-          MockComponent(VehicleTypeComponent),
           MockPipe(VehicleTypePipe, value => `mock:${value}`),
           MockPipe(DurationPipe, value => `mock:${value}`),
+          MockPipe(VehicleTypeIconPipe, value => `mock:${value}`),
           MockComponent(FootpathMapComponent)
         ],
         imports: [
