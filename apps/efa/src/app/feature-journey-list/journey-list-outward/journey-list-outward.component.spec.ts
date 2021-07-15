@@ -279,7 +279,7 @@ describe('JourneyListOutwardComponent', () => {
       expect(setExpandedJourneySpy).toHaveBeenCalledWith(getFurtwangenToWaldkirchJourney());
     });
 
-    it('should be passed default journey to "JourneyMapComponent" when no journey is expanded', () => {
+    it('should be passed default journey (first journey in list) to "JourneyMapComponent" when no journey is expanded', () => {
       componentUnderTest.expandedJourney = null;
       componentUnderTest.journeys$.next([getFurtwangenToWaldkirchJourney(), getWaldkirchToFurtwangenJourney()]);
 
@@ -289,7 +289,7 @@ describe('JourneyListOutwardComponent', () => {
       expect(journeyMapComponent.journey).toEqual(getFurtwangenToWaldkirchJourney());
     });
 
-    it('should be passed exanded journey to "JourneyMapComponent" when journey is expanded', () => {
+    it('should be passed expanded journey to "JourneyMapComponent" when journey is expanded', () => {
       componentUnderTest.expandedJourney = getWaldkirchToFurtwangenJourney();
       componentUnderTest.journeys$.next([getFurtwangenToWaldkirchJourney(), getWaldkirchToFurtwangenJourney()]);
 

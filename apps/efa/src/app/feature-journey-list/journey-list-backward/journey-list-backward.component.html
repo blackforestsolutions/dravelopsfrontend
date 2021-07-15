@@ -3,6 +3,12 @@
   <ng-container
     *ngIf='(journeys$ | async | filterEqualJourneys | backwardJourneyFilter: selectedOutwardJourney | sortJourney: getJourneyIsArrivalDateTime()) as journeys'>
     <ng-container *ngIf='this.journeys.length'>
+      <ng-container *ngIf='showJourneyResultMap'>
+        <dravelopsefafrontend-journey-map
+          *dravelopsfrontendIfTabletView
+          [journey]='expandedJourney ? expandedJourney : this.journeys[0]'>
+        </dravelopsefafrontend-journey-map>
+      </ng-container>
       <h2 class='date'>Rückfahrt am {{ getJourneyDateTime() | date: 'mediumDate' }}</h2>
       <dravelopsefafrontend-journey-list-header></dravelopsefafrontend-journey-list-header>
       <button class='button' mat-raised-button *ngIf='earlierJourneysAvailable'
@@ -16,7 +22,8 @@
           [journey]='journey'
           [isJourneyBuyable]='isJourneyBuyable(journey)'
           [buttonSelectText]='"Kaufen"'
-          (journeySelectedEvent)='passJourneySelectedEvent($event)'>
+          (journeySelectedEvent)='passJourneySelectedEvent($event)'
+          (journeyExpandedEvent)='setExpandedJourney($event)'>
         </dravelopsefafrontend-journey-list-item>
       </mat-accordion>
       <button class='button' mat-raised-button (click)='laterButtonClick$.next()'>

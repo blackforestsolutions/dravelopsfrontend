@@ -1,4 +1,14 @@
-import { Component, ElementRef, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Inject,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild
+} from '@angular/core';
 import { merge, Observable, Subject } from 'rxjs';
 import { JourneyFragment } from '@dravelopsfrontend/generated-content';
 import { map, mergeMap, switchMap, takeUntil, tap } from 'rxjs/operators';
@@ -9,6 +19,7 @@ import { scanJourneys } from '../../shared/util/rxjs';
 import { IsOnlyFootpathPipe } from '../pipes/is-only-footpath-pipe/is-only-footpath.pipe';
 import { IsJourneyInPastPipe } from '../pipes/is-journey-in-past-pipe/is-journey-in-past.pipe';
 import { ViewportScroller } from '@angular/common';
+import { SHOW_JOURNEY_RESULT_MAP } from '../../../environments/config-tokens';
 
 @Component({
   selector: 'dravelopsefafrontend-journey-list-backward',
@@ -20,6 +31,7 @@ export class JourneyListBackwardComponent implements OnInit, OnDestroy {
   @Output() journeySelectedEvent = new EventEmitter<JourneyFragment>();
   @ViewChild('scrollWrapper', { static: true }) scrollWrapper: ElementRef;
   loading = true;
+  expandedJourney: JourneyFragment;
   journeys$ = new Subject<JourneyFragment[]>();
   earlierJourneysAvailable = true;
   earlierButtonClick$ = new Subject<void>();
@@ -27,6 +39,7 @@ export class JourneyListBackwardComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject<void>();
 
   constructor(
+    @Inject(SHOW_JOURNEY_RESULT_MAP) public readonly showJourneyResultMap: boolean,
     private readonly viewportScroller: ViewportScroller,
     private readonly journeyListService: JourneyListService,
     private readonly route: ActivatedRoute,
@@ -66,6 +79,10 @@ export class JourneyListBackwardComponent implements OnInit, OnDestroy {
     this.journeySelectedEvent.emit(journey);
   }
 
+  setExpandedJourney(expandedJourney: JourneyFragment): void {
+    this.expandedJourney = expandedJourney;
+  }
+
   private mergeJourneys(): void {
     // working with mock data
     // of([getWaldkirchToFurtwangenJourney(), getFurtwangenToWaldkirchJourney()])
@@ -81,6 +98,7 @@ export class JourneyListBackwardComponent implements OnInit, OnDestroy {
         takeUntil(this.destroy$),
         tap(() => this.journeys$.next(null)),
         tap(() => isNewSearch = true),
+        tap(() => this.expandedJourney = null),
         tap(() => this.viewportScroller.scrollToAnchor(this.scrollWrapper.nativeElement.id)),
         switchMap((params: ParamMap) => merge(
           this.getJourneys(params),
