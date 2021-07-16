@@ -23,21 +23,23 @@ export class FootpathMapComponent {
   }
 
   buildLayers(): Layer[] {
-    const footpathLayer: GeoJSON = this.createFootpathLayer(this.waypoints, this.themeEmitterRef.primaryColor);
+    const footpathLayer: GeoJSON = this.createFootpathLayer(this.waypoints);
     const arrivalMarker: Marker = this.leafletService.createArrivalMarker(this.waypoints, ICON_WIDTH, ICON_HEIGHT);
     const departureMarker: Marker = this.leafletService.createDepartureMarker(this.waypoints, ICON_WIDTH, ICON_HEIGHT);
 
     return [footpathLayer, arrivalMarker, departureMarker];
   }
 
-  private createFootpathLayer(waypoints: PointFragment[], polygonColor: string): GeoJSON {
+  private createFootpathLayer(waypoints: PointFragment[]): GeoJSON {
     const geoJson: number[][] = this.leafletService.mapWaypointsToGeoJson(waypoints);
     return geoJSON(
       {
         type: 'LineString',
         coordinates: geoJson
       } as never, {
-        style: () => ({ color: polygonColor })
+        style: {
+          color: this.themeEmitterRef.primaryColor
+        }
       }
     );
   }

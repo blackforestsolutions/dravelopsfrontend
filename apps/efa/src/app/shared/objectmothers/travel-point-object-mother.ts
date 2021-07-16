@@ -18,7 +18,7 @@ export const getFurtwangenUniversityTravelPoint = (): TravelPoint => {
  * NEVER USE IN PRODUCTIVE CODE!
  * ONLY FOR TESTING!
  */
-export const getGrosshausbergTravelPoint = (arrivalTime: Date, departureTime: Date): TravelPoint => {
+export const getGrosshausbergTravelPoint = (arrivalTime?: Date, departureTime?: Date): TravelPoint => {
   return {
     name: 'Am Großhausberg 8',
     point: {
@@ -35,7 +35,7 @@ export const getGrosshausbergTravelPoint = (arrivalTime: Date, departureTime: Da
  * NEVER USE IN PRODUCTIVE CODE!
  * ONLY FOR TESTING!
  */
-export const getFurtwangenIlbenstreetTravelPoint = (arrivalTime: Date, departureTime: Date): TravelPoint => {
+export const getFurtwangenIlbenstreetTravelPoint = (arrivalTime?: Date, departureTime?: Date): TravelPoint => {
   return {
     name: 'Furtwangen Ilbenstraße',
     point: {
@@ -52,7 +52,7 @@ export const getFurtwangenIlbenstreetTravelPoint = (arrivalTime: Date, departure
  * NEVER USE IN PRODUCTIVE CODE!
  * ONLY FOR TESTING!
  */
-export const getBleibachSevTravelPoint = (arrivalTime: Date, departureTime: Date): TravelPoint => {
+export const getBleibachSevTravelPoint = (arrivalTime?: Date, departureTime?: Date): TravelPoint => {
   return {
     name: 'Bleibach SEV',
     point: {
@@ -69,7 +69,7 @@ export const getBleibachSevTravelPoint = (arrivalTime: Date, departureTime: Date
  * NEVER USE IN PRODUCTIVE CODE!
  * ONLY FOR TESTING!
  */
-export const getGuetenbachTownHallTravelPoint = (arrivalTime: Date, departureTime: Date): TravelPoint => {
+export const getGuetenbachTownHallTravelPoint = (arrivalTime?: Date, departureTime?: Date): TravelPoint => {
   return {
     name: 'Gütenbach Rathaus',
     point: {
@@ -86,7 +86,7 @@ export const getGuetenbachTownHallTravelPoint = (arrivalTime: Date, departureTim
  * NEVER USE IN PRODUCTIVE CODE!
  * ONLY FOR TESTING!
  */
-export const getSimonswaldTownHallTravelPoint = (arrivalTime: Date, departureTime: Date): TravelPoint => {
+export const getSimonswaldTownHallTravelPoint = (arrivalTime?: Date, departureTime?: Date): TravelPoint => {
   return {
     name: 'Simonswald Rathaus',
     point: {
@@ -103,7 +103,7 @@ export const getSimonswaldTownHallTravelPoint = (arrivalTime: Date, departureTim
  * NEVER USE IN PRODUCTIVE CODE!
  * ONLY FOR TESTING!
  */
-export const getWaldkirchKastelberghalleTravelPoint = (arrivalTime: Date, departureTime: Date): TravelPoint => {
+export const getWaldkirchKastelberghalleTravelPoint = (arrivalTime?: Date, departureTime?: Date): TravelPoint => {
   return {
     name: 'Waldkirch Kastelberghalle',
     point: {
@@ -120,7 +120,7 @@ export const getWaldkirchKastelberghalleTravelPoint = (arrivalTime: Date, depart
  * NEVER USE IN PRODUCTIVE CODE!
  * ONLY FOR TESTING!
  */
-export const getKollnauTrainStationTravelPoint = (arrivalTime: Date, departureTime: Date): TravelPoint => {
+export const getKollnauTrainStationTravelPoint = (arrivalTime?: Date, departureTime?: Date): TravelPoint => {
   return {
     name: 'Kollnau Bf (Bus)',
     point: {
@@ -137,7 +137,7 @@ export const getKollnauTrainStationTravelPoint = (arrivalTime: Date, departureTi
  * NEVER USE IN PRODUCTIVE CODE!
  * ONLY FOR TESTING!
  */
-export const getWaldkirchTownCenterTravelPoint = (arrivalTime: Date, departureTime: Date): TravelPoint => {
+export const getWaldkirchTownCenterTravelPoint = (arrivalTime?: Date, departureTime?: Date): TravelPoint => {
   return {
     name: 'Waldkirch Stadtmitte',
     point: {
@@ -154,7 +154,7 @@ export const getWaldkirchTownCenterTravelPoint = (arrivalTime: Date, departureTi
  * NEVER USE IN PRODUCTIVE CODE!
  * ONLY FOR TESTING!
  */
-export const getSickAgTravelPoint = (arrivalTime: Date, departureTime: Date): TravelPoint => {
+export const getSickAgTravelPoint = (arrivalTime?: Date, departureTime?: Date): TravelPoint => {
   return {
     name: 'Sick AG',
     point: {

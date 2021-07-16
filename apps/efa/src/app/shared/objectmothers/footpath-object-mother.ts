@@ -1,11 +1,11 @@
 import { geoJSON, GeoJSON } from 'leaflet';
-import { PointFragment } from '@dravelopsfrontend/generated-content';
+import { Point, PointFragment } from '@dravelopsfrontend/generated-content';
 
 /**
  * NEVER USE IN PRODUCTIVE CODE!
  * ONLY FOR TESTING!
  */
-export const getFurtwangenFriedrichStreetToIlbenStreetWaypoints = (): PointFragment[] => {
+export const getExampleWaypoints = (): Point[] => {
   return [
     {
       x: 8.20426,
@@ -96,6 +96,14 @@ export const getFurtwangenFriedrichStreetToIlbenStreetWaypoints = (): PointFragm
       y: 48.05939
     }
   ];
+};
+
+/**
+ * NEVER USE IN PRODUCTIVE CODE!
+ * ONLY FOR TESTING!
+ */
+export const getFurtwangenFriedrichStreetToIlbenStreetWaypoints = (): PointFragment[] => {
+  return [...getExampleWaypoints()];
 };
 
 /**
@@ -205,3 +213,21 @@ export const getFurtwangenFriedrichStreetToIlbenStreetGeoJson = (): GeoJSON => {
     } as never
   );
 };
+
+/**
+ * NEVER USE IN PRODUCTIVE CODE!
+ * ONLY FOR TESTING!
+ */
+export const getJourneyWaypointsGeoJson = (): GeoJSON => {
+  return geoJSON(
+    {
+      type: 'LineString',
+      coordinates: [
+        ...getFurtwangenFriedrichStreetToIlbenStreetGeoJsonArray(),
+        ...getFurtwangenFriedrichStreetToIlbenStreetGeoJsonArray(),
+        ...getFurtwangenFriedrichStreetToIlbenStreetGeoJsonArray(),
+        ...getFurtwangenFriedrichStreetToIlbenStreetGeoJsonArray()
+      ]
+    } as never
+  )
+}
