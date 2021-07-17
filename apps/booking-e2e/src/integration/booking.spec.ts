@@ -1,8 +1,16 @@
+import {
+  getBackwardJourneyIdField,
+  getIsRoundTripField,
+  getOutwardAndBackwardJourney,
+  getOutwardJourneyIdField,
+  getSingleJourney
+} from '../support/booking.po';
+
 describe('Booking', () => {
   beforeEach(() => cy.visit('/'));
 
   it('should include correct url params when "Einfache Fahrt" was selected', () => {
-    cy.get('[data-cy=single-journey]').click();
+    getSingleJourney().click();
 
     // isRoundTrip param
     cy.url().should('include', '/false');
@@ -11,15 +19,15 @@ describe('Booking', () => {
   });
 
   it('should display outwardJourneyId and isRoundTrip as false when "Einfache Fahrt" was selected', () => {
-    cy.get('[data-cy=single-journey]').click();
+    getSingleJourney().click();
 
-    cy.get('[data-cy=is-round-trip]').should('include.text', 'false');
-    cy.get('[data-cy=outward-journey-id]').should('have.text', '04e11b67-5085-48d1-92a4-c549a673954b');
-    cy.get('[data-cy=backward-journey-id]').should('have.text', '');
+    getIsRoundTripField().should('include.text', 'false');
+    getOutwardJourneyIdField().should('have.text', '04e11b67-5085-48d1-92a4-c549a673954b');
+    getBackwardJourneyIdField().should('have.text', '');
   });
 
   it('should include correct url params when "Hin- und Rückfahrt" was selected', () => {
-    cy.get('[data-cy=outward-backward-journey]').click();
+    getOutwardAndBackwardJourney().click();
 
     // isRoundTrip param
     cy.url().should('include', '/true');
@@ -30,10 +38,10 @@ describe('Booking', () => {
   });
 
   it('should display outwardJourneyId, backwardJourneyId and isRoundTrip as true when "Hin- und Rückfahrt" was selected', () => {
-    cy.get('[data-cy=outward-backward-journey]').click();
+    getOutwardAndBackwardJourney().click();
 
-    cy.get('[data-cy=is-round-trip]').should('include.text', 'true');
-    cy.get('[data-cy=outward-journey-id]').should('have.text', '04e11b67-5085-48d1-92a4-c549a673954b');
-    cy.get('[data-cy=backward-journey-id]').should('have.text', 'c1094660-ccbd-420a-b344-4569b0ae47e2');
+    getIsRoundTripField().should('include.text', 'true');
+    getOutwardJourneyIdField().should('have.text', '04e11b67-5085-48d1-92a4-c549a673954b');
+    getBackwardJourneyIdField().should('have.text', 'c1094660-ccbd-420a-b344-4569b0ae47e2');
   });
 });
