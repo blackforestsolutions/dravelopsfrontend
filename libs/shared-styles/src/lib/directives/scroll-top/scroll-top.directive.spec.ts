@@ -78,7 +78,7 @@ describe('ScrollTopDirective', () => {
           ScrollTopDirective,
           TestHostComponent
         ]
-      });
+      }).compileComponents();
 
       testHostFixture = TestBed.createComponent(TestHostComponent);
       viewportScrollerMock = TestBed.inject(ViewportScroller);
