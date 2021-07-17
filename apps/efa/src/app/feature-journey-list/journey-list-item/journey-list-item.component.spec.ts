@@ -113,16 +113,19 @@ describe('JourneyListItemComponent', () => {
     fixture.detectChanges();
 
     const matButtonHarness = await loader.getHarness(MatButtonHarness.with({ selector: '.buying-button' }));
+    expect(await matButtonHarness.isDisabled()).toBeFalsy();
     expect(await matButtonHarness.getText()).toBe('Kaufen');
   });
 
-  it('should show no buttonSelectText when isJourneyBuyable = false', async () => {
+  it('should show disabled buttonSelectText when isJourneyBuyable = false', async () => {
     componentUnderTest.buttonSelectText = 'Rückfahrt';
     componentUnderTest.isJourneyBuyable = false;
 
     fixture.detectChanges();
 
-    expect(fixture.nativeElement.querySelector('.buying-button')).toBeNull();
+    const matButtonHarness = await loader.getHarness(MatButtonHarness.with({ selector: '.buying-button' }));
+    expect(await matButtonHarness.isDisabled()).toBeTruthy();
+    expect(await matButtonHarness.getText()).toBe('Rückfahrt');
   });
 
   it('should emit "journeySelectedEvent" when "emitJourneySelectedEvent" is called with journey payload', () => {
