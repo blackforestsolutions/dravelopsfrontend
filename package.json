@@ -10,6 +10,7 @@
     "all:lint": "nx run-many --target=lint --all --max-warnings=0",
     "all:build": "nx run-many --target=build --all --configuration production",
     "all:e2e": "nx run-many --target=e2e --all --browser=chrome",
+    "booking:e2e": "nx e2e booking-e2e --watch",
     "all:cover": "jest --coverage",
     "update": "nx migrate latest",
     "dep-graph": "nx dep-graph",
