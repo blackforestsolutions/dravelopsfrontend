@@ -29,8 +29,18 @@ export class JourneyMapComponent {
   buildDynamicLayers(): Layer[] {
     const waypointLayers: GeoJSON[] = this.createWaypointsLayer();
     const stationLayers: CircleMarker[] = this.createCircles();
-    const arrivalMarker: Marker = this.leafletService.createArrivalMarker(this.journey.legs[this.journey.legs.length - 1].waypoints, ICON_WIDTH, ICON_HEIGHT);
-    const departureMarker: Marker = this.leafletService.createDepartureMarker(this.journey.legs[0].waypoints, ICON_WIDTH, ICON_HEIGHT);
+    const arrivalMarker: Marker = this.leafletService.createArrivalMarker(
+      this.journey.legs[this.journey.legs.length - 1].waypoints,
+      ICON_WIDTH,
+      ICON_HEIGHT,
+      this.customerDirectory
+    );
+    const departureMarker: Marker = this.leafletService.createDepartureMarker(
+      this.journey.legs[0].waypoints,
+      ICON_WIDTH,
+      ICON_HEIGHT,
+      this.customerDirectory
+    );
     return [
       arrivalMarker,
       departureMarker,

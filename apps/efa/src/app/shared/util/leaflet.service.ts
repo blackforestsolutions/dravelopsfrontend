@@ -1,7 +1,6 @@
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { icon, LatLngExpression, marker, Marker, tileLayer, TileLayer } from 'leaflet';
 import {
-  CUSTOMER_DIRECTORY,
   MAP_ATTRIBUTION,
   MAX_WGS_84_LATITUDE,
   MAX_WGS_84_LONGITUDE,
@@ -19,22 +18,17 @@ const INDEX_ONE = 1;
 })
 export class LeafletService {
 
-  constructor(
-    @Inject(CUSTOMER_DIRECTORY) private readonly customerDirectory: string
-  ) {
-  }
-
-  createDepartureMarker(waypoints: PointFragment[], iconWidth: number, iconHeight: number): Marker {
+  createDepartureMarker(waypoints: PointFragment[], iconWidth: number, iconHeight: number, customerDirectory: string): Marker {
     const geoJson: number[][] = this.mapWaypointsToGeoJson(waypoints);
     return marker([geoJson[INDEX_ZERO][INDEX_ONE], geoJson[INDEX_ZERO][INDEX_ZERO]], {
       icon: icon({
         iconSize: [iconWidth, iconHeight],
-        iconUrl: `assets/${this.customerDirectory}/departure_icon.svg`
+        iconUrl: `assets/${customerDirectory}/departure_icon.svg`
       })
     });
   }
 
-  createArrivalMarker(waypoints: PointFragment[], iconWidth: number, iconHeight: number): Marker {
+  createArrivalMarker(waypoints: PointFragment[], iconWidth: number, iconHeight: number, customerDirectory: string): Marker {
     const geoJson: number[][] = this.mapWaypointsToGeoJson(waypoints);
     return marker([
         geoJson[geoJson.length - INDEX_ONE][INDEX_ONE],
@@ -43,7 +37,7 @@ export class LeafletService {
       {
         icon: icon({
           iconSize: [iconWidth, iconHeight],
-          iconUrl: `assets/${this.customerDirectory}/arrival_icon.svg`
+          iconUrl: `assets/${customerDirectory}/arrival_icon.svg`
         })
       });
   }

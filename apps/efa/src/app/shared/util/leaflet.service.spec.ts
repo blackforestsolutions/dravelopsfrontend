@@ -9,7 +9,6 @@ import {
 import { LatLngExpression, Marker, TileLayer } from 'leaflet';
 import { getArrivalMarker, getDepartureMarker } from '../objectmothers/marker-object-mother';
 import {
-  CUSTOMER_DIRECTORY,
   MAP_ATTRIBUTION,
   MAX_WGS_84_LATITUDE,
   MAX_WGS_84_LONGITUDE,
@@ -21,14 +20,7 @@ describe('LeafletService', () => {
   let classUnderTest: LeafletService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-        {
-          provide: CUSTOMER_DIRECTORY,
-          useValue: 'bw'
-        }
-      ]
-    });
+    TestBed.configureTestingModule({});
     classUnderTest = TestBed.inject(LeafletService);
   });
 
@@ -40,8 +32,9 @@ describe('LeafletService', () => {
     const testWaypoints: PointFragment[] = getFurtwangenFriedrichStreetToIlbenStreetWaypoints();
     const testWidth = 31.25;
     const testHeight = 51.25;
+    const testDirectory = 'bw';
 
-    const result: Marker = classUnderTest.createDepartureMarker(testWaypoints, testWidth, testHeight);
+    const result: Marker = classUnderTest.createDepartureMarker(testWaypoints, testWidth, testHeight, testDirectory);
 
     expect(result).toEqual(getDepartureMarker());
   });
@@ -50,8 +43,9 @@ describe('LeafletService', () => {
     const testWaypoints: PointFragment[] = getFurtwangenFriedrichStreetToIlbenStreetWaypoints();
     const testWidth = 31.25;
     const testHeight = 51.25;
+    const testDirectory = 'bw';
 
-    const result: Marker = classUnderTest.createArrivalMarker(testWaypoints, testWidth, testHeight);
+    const result: Marker = classUnderTest.createArrivalMarker(testWaypoints, testWidth, testHeight, testDirectory);
 
     expect(result).toEqual(getArrivalMarker());
   });

@@ -17,8 +17,9 @@ describe('FootpathMapComponent', () => {
     createDepartureMarker: (): Marker => getDepartureMarker(),
     mapWaypointsToGeoJson: (): number[][] => getFurtwangenFriedrichStreetToIlbenStreetGeoJsonArray()
   });
+  const testCustomerDirectory = 'bw';
 
-  const componentUnderTest: FootpathMapComponent = new FootpathMapComponent(leafletService);
+  const componentUnderTest: FootpathMapComponent = new FootpathMapComponent(testCustomerDirectory, leafletService);
 
   beforeEach(() => {
     const themeEmitterRef: ThemeEmitterComponent = new ThemeEmitterComponent();

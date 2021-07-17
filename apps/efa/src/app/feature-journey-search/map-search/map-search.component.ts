@@ -85,11 +85,11 @@ export class MapSearchComponent implements OnInit, OnDestroy {
   private setMarker(latLng: LatLng): void {
     const point: PointFragment[] = this.mapLatLngToPoint(latLng);
     if (!this.departureMarker) {
-      this.departureMarker = this.leafletService.createDepartureMarker(point, ICON_WIDTH, ICON_HEIGHT).addTo(this.leafletMap);
+      this.departureMarker = this.leafletService.createDepartureMarker(point, ICON_WIDTH, ICON_HEIGHT, this.customerDirectory).addTo(this.leafletMap);
       return;
     }
     if (!this.arrivalMarker) {
-      this.arrivalMarker = this.leafletService.createArrivalMarker(point, ICON_WIDTH, ICON_HEIGHT).addTo(this.leafletMap);
+      this.arrivalMarker = this.leafletService.createArrivalMarker(point, ICON_WIDTH, ICON_HEIGHT, this.customerDirectory).addTo(this.leafletMap);
       return;
     }
     this.leafletMap.removeLayer(this.departureMarker);
