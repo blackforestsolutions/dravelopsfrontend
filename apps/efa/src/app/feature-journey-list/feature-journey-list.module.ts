@@ -5,7 +5,6 @@ import { JourneyListComponent } from './journey-list/journey-list.component';
 import { JourneyListItemComponent } from './journey-list-item/journey-list-item.component';
 import { LegListComponent } from './leg-list/leg-list.component';
 import { LegListItemComponent } from './leg-list-item/leg-list-item.component';
-import { VehicleTypeComponent } from './vehicle-type/vehicle-type.component';
 import { DurationPipe } from './pipes/duration-pipe/duration.pipe';
 import { VehicleTypePipe } from './pipes/vehicle-type-pipe/vehicle-type.pipe';
 import { FeatureJourneyListRoutingModule } from './feature-journey-list-routing.module';
@@ -23,6 +22,8 @@ import { GeoJsonPipe } from './pipes/geo-json-pipe/geo-json.pipe';
 import { MapOptionsPipe } from './pipes/map-options-pipe/map-options.pipe';
 import { NoJourneyResultComponent } from './no-journey-result/no-journey-result.component';
 import { JourneyListHeaderComponent } from './journey-list-header/journey-list-header.component';
+import { JourneyMapComponent } from './journey-map/journey-map.component';
+import { VehicleTypeIconPipe } from './pipes/vehicle-type-icon-pipe/vehicle-type-icon.pipe';
 
 
 @NgModule({
@@ -32,7 +33,6 @@ import { JourneyListHeaderComponent } from './journey-list-header/journey-list-h
     JourneyListItemComponent,
     LegListComponent,
     LegListItemComponent,
-    VehicleTypeComponent,
     DurationPipe,
     VehicleTypePipe,
     BackwardJourneyFilterPipe,
@@ -45,7 +45,9 @@ import { JourneyListHeaderComponent } from './journey-list-header/journey-list-h
     GeoJsonPipe,
     MapOptionsPipe,
     NoJourneyResultComponent,
-    JourneyListHeaderComponent
+    JourneyListHeaderComponent,
+    JourneyMapComponent,
+    VehicleTypeIconPipe
   ],
   providers: [
     JourneyListService,
@@ -54,7 +56,8 @@ import { JourneyListHeaderComponent } from './journey-list-header/journey-list-h
     BackwardJourneyFilterPipe,
     SortJourneyPipe,
     IsJourneyInPastPipe,
-    IsOnlyFootpathPipe
+    IsOnlyFootpathPipe,
+    VehicleTypePipe
   ],
   imports: [
     CommonModule,

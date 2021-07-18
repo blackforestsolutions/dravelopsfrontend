@@ -9,38 +9,46 @@ export class VehicleTypePipe implements PipeTransform {
   transform(value: string): string {
     const vehicleType: VehicleType = VehicleType[value];
 
-    if (vehicleType === VehicleType.WALK || vehicleType === VehicleType.TRANSIT) {
-      return 'directions_walk';
+    if (vehicleType === VehicleType.WALK) {
+      return 'Fußweg';
+    }
+    if (vehicleType === VehicleType.TRANSIT) {
+      return 'Transit';
     }
     if (vehicleType === VehicleType.BICYCLE) {
-      return 'directions_bike';
+      return 'Fahrrad';
     }
     if (vehicleType === VehicleType.CAR) {
-      return 'directions_car';
+      return 'Auto';
     }
-    // cable car and tram have the same string for an enum
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    if (vehicleType === VehicleType.TRAM || vehicleType === VehicleType.FUNICULAR || vehicleType === VehicleType.CABLE_CAR) {
-      return 'tram';
+    if (vehicleType === VehicleType.TRAM) {
+      return 'Straßenbahn';
+    }
+    if (vehicleType === VehicleType.FUNICULAR) {
+      return 'Seilbahn';
+    }
+    if (vehicleType === VehicleType.CABLE_CAR) {
+      return 'Straßenbahn';
     }
     if (vehicleType === VehicleType.SUBWAY) {
-      return 'subway';
+      return 'U-Bahn';
     }
     if (vehicleType === VehicleType.RAIL) {
-      return 'directions_railway';
+      return 'Zug';
     }
     if (vehicleType === VehicleType.BUS) {
-      return 'directions_bus';
+      return 'Bus';
     }
-    if (vehicleType === VehicleType.FERRY || vehicleType === VehicleType.GONDOLA) {
-      return 'directions_boat';
+    if (vehicleType === VehicleType.FERRY) {
+      return 'Fähre';
+    }
+    if (vehicleType === VehicleType.GONDOLA) {
+      return 'Gondelboot';
     }
     if (vehicleType === VehicleType.AIRPLANE) {
-      return 'flight';
+      return 'Flug';
     }
-
-    return 'help';
+    return '';
   }
 
 }

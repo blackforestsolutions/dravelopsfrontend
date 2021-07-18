@@ -11,116 +11,116 @@ describe('VehicleTypePipe', () => {
     expect(pipeUnderTest).toBeTruthy();
   });
 
-  it('should return "directions_walk" when vehicleType is WALK', () => {
+  it('should return "Fußweg" when vehicleType is WALK', () => {
     const testVehicleType = 'WALK';
 
     const result: string = pipeUnderTest.transform(testVehicleType);
 
-    expect(result).toBe('directions_walk');
+    expect(result).toBe('Fußweg');
   });
 
-  it('should return "directions_walk" when vehicleType is TRANSIT', () => {
+  it('should return "Transit" when vehicleType is TRANSIT', () => {
     const testVehicleType = 'TRANSIT';
 
     const result: string = pipeUnderTest.transform(testVehicleType);
 
-    expect(result).toBe('directions_walk');
+    expect(result).toBe('Transit');
   });
 
-  it('should return "directions_bike" when vehicleType is BICYCLE', () => {
+  it('should return "Fahrrad" when vehicleType is BICYCLE', () => {
     const testVehicleType = 'BICYCLE';
 
     const result: string = pipeUnderTest.transform(testVehicleType);
 
-    expect(result).toBe('directions_bike');
+    expect(result).toBe('Fahrrad');
   });
 
-  it('should return "directions_car" when vehicleType is CAR', () => {
+  it('should return "Auto" when vehicleType is CAR', () => {
     const testVehicleType = 'CAR';
 
     const result: string = pipeUnderTest.transform(testVehicleType);
 
-    expect(result).toBe('directions_car');
+    expect(result).toBe('Auto');
   });
 
-  it('should return "tram" when vehicleType is TRAM', () => {
+  it('should return "Straßenbahn" when vehicleType is TRAM', () => {
     const testVehicleType = 'TRAM';
 
     const result: string = pipeUnderTest.transform(testVehicleType);
 
-    expect(result).toBe('tram');
+    expect(result).toBe('Straßenbahn');
   });
 
-  it('should return "tram" when vehicleType is FUNICULAR', () => {
+  it('should return "Seilbahn" when vehicleType is FUNICULAR', () => {
     const testVehicleType = 'FUNICULAR';
 
     const result: string = pipeUnderTest.transform(testVehicleType);
 
-    expect(result).toBe('tram');
+    expect(result).toBe('Seilbahn');
   });
 
-  it('should return "tram" when vehicleType is CABLE_CAR', () => {
+  it('should return "Straßenbahn" when vehicleType is CABLE_CAR', () => {
     const testVehicleType = 'CABLE_CAR';
 
     const result: string = pipeUnderTest.transform(testVehicleType);
 
-    expect(result).toBe('tram');
+    expect(result).toBe('Straßenbahn');
   });
 
-  it('should return "subway" when vehicleType is SUBWAY', () => {
+  it('should return "U-Bahn" when vehicleType is SUBWAY', () => {
     const testVehicleType = 'SUBWAY';
 
     const result: string = pipeUnderTest.transform(testVehicleType);
 
-    expect(result).toBe('subway');
+    expect(result).toBe('U-Bahn');
   });
 
-  it('should return "directions_railway" when vehicleType is RAIL', () => {
+  it('should return "Zug" when vehicleType is RAIL', () => {
     const testVehicleType = 'RAIL';
 
     const result: string = pipeUnderTest.transform(testVehicleType);
 
-    expect(result).toBe('directions_railway');
+    expect(result).toBe('Zug');
   });
 
-  it('should return "directions_bus" when vehicleType is BUS', () => {
+  it('should return "Bus" when vehicleType is BUS', () => {
     const testVehicleType = 'BUS';
 
     const result: string = pipeUnderTest.transform(testVehicleType);
 
-    expect(result).toBe('directions_bus');
+    expect(result).toBe('Bus');
   });
 
-  it('should return "directions_boat" when vehicleType is FERRY', () => {
+  it('should return "Fähre" when vehicleType is FERRY', () => {
     const testVehicleType = 'FERRY';
 
     const result: string = pipeUnderTest.transform(testVehicleType);
 
-    expect(result).toBe('directions_boat');
+    expect(result).toBe('Fähre');
   });
 
-  it('should return "directions_boat" when vehicleType is GONDOLA', () => {
+  it('should return "Gondelboot" when vehicleType is GONDOLA', () => {
     const testVehicleType = 'GONDOLA';
 
     const result: string = pipeUnderTest.transform(testVehicleType);
 
-    expect(result).toBe('directions_boat');
+    expect(result).toBe('Gondelboot');
   });
 
-  it('should return "flight" when vehicleType is AIRPLANE', () => {
+  it('should return "Flug" when vehicleType is AIRPLANE', () => {
     const testVehicleType = 'AIRPLANE';
 
     const result: string = pipeUnderTest.transform(testVehicleType);
 
-    expect(result).toBe('flight');
+    expect(result).toBe('Flug');
   });
 
-  it('should return an "help" when type is not correct', () => {
+  it('should return an "" when vehcicle type is not available', () => {
     const testVehicleType = 'NoVehicleType';
 
     const result: string = pipeUnderTest.transform(testVehicleType);
 
-    expect(result).toBe('help');
+    expect(result).toBe('');
   });
 
 });

@@ -17,14 +17,14 @@ import { JourneyFragment } from '@dravelopsfrontend/generated-content';
 import {
   getFurtwangenToWaldkirchJourney,
   getFurtwangenToWaldkirchJourneyByArrivalTime,
-  getGrosshausbergToFurtwangenIlbenstreetJourney
+  getGrosshausbergToFurtwangenIlbenstreetJourney,
+  getWaldkirchToFurtwangenJourney
 } from '../../shared/objectmothers/journey-object-mother';
-import { TestScheduler } from 'rxjs/testing';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatProgressBarHarness } from '@angular/material/progress-bar/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { DebugElement, Directive, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { SortJourneyPipe } from '../pipes/sort-journey-pipe/sort-journey.pipe';
 import { IsOnlyFootpathPipe } from '../pipes/is-only-footpath-pipe/is-only-footpath.pipe';
 import { IsJourneyInPastPipe } from '../pipes/is-journey-in-past-pipe/is-journey-in-past.pipe';
@@ -34,7 +34,25 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
+import { JourneyMapComponent } from '../journey-map/journey-map.component';
+import { SHOW_JOURNEY_RESULT_MAP } from '../../../environments/config-tokens';
+import { TestScheduler } from 'rxjs/testing';
 
+@Directive({
+  // eslint-disable-next-line @angular-eslint/directive-selector
+  selector: '[dravelopsfrontendIfTabletView]'
+})
+class IfTabletViewDirective implements OnInit {
+  constructor(
+    private readonly templateRef: TemplateRef<unknown>,
+    private readonly viewContainerRef: ViewContainerRef,
+  ) {
+  }
+
+  ngOnInit(): void {
+    this.viewContainerRef.createEmbeddedView(this.templateRef);
+  }
+}
 
 describe('JourneyListOutwardComponent', () => {
   let componentUnderTest: JourneyListOutwardComponent;
@@ -42,7 +60,7 @@ describe('JourneyListOutwardComponent', () => {
   let journeyListService: JourneyListService;
   let loader: HarnessLoader;
 
-  describe('with isRoundTrip = true', () => {
+  describe('with isRoundTrip = true and showJourneyResultMap = true', () => {
     beforeEach(async () => {
       await TestBed.configureTestingModule({
         declarations: [
@@ -50,8 +68,10 @@ describe('JourneyListOutwardComponent', () => {
           MockComponent(JourneyListItemComponent),
           MockComponent(JourneyListHeaderComponent),
           MockComponent(NoJourneyResultComponent),
+          MockComponent(JourneyMapComponent),
           MockPipe(FilterEqualJourneysPipe, (journeys: JourneyFragment[]) => journeys),
-          MockPipe(SortJourneyPipe, (journeys: JourneyFragment[]) => journeys)
+          MockPipe(SortJourneyPipe, (journeys: JourneyFragment[]) => journeys),
+          IfTabletViewDirective
         ],
         providers: [
           MockProvider(JourneyListService),
@@ -65,6 +85,10 @@ describe('JourneyListOutwardComponent', () => {
                 paramMap: convertToParamMap(getApiTokenParamMapWithIsRoundTripAsTrue())
               }
             }
+          },
+          {
+            provide: SHOW_JOURNEY_RESULT_MAP,
+            useValue: true
           }
         ],
         imports: [
@@ -135,6 +159,14 @@ describe('JourneyListOutwardComponent', () => {
       componentUnderTest.passJourneySelectedEvent(testJourney);
 
       expect(receivedJourney).toEqual(getFurtwangenToWaldkirchJourney());
+    });
+
+    it('should set "expandedJourney" when "setExpandedJourney" is called with journey', () => {
+      const testJourney: JourneyFragment = getFurtwangenToWaldkirchJourney();
+
+      componentUnderTest.setExpandedJourney(testJourney);
+
+      expect(componentUnderTest.expandedJourney).toEqual(testJourney);
     });
 
     it('should return "journeys$" when component is initialized', () => {
@@ -233,9 +265,42 @@ describe('JourneyListOutwardComponent', () => {
       expect(passJourneySelectedEventSpy).toHaveBeenCalledTimes(1);
       expect(passJourneySelectedEventSpy).toHaveBeenCalledWith(getFurtwangenToWaldkirchJourney());
     });
+
+    it('should be called "setExpandedJourney" when "journeyExpandedEvent" is emitted', () => {
+      const setExpandedJourneySpy = spyOn(componentUnderTest, 'setExpandedJourney');
+      componentUnderTest.journeys$.next([getFurtwangenToWaldkirchJourney()]);
+      fixture.detectChanges();
+      const journeyListItem: JourneyListItemComponent = fixture.debugElement
+        .query(By.directive(JourneyListItemComponent)).componentInstance;
+
+      journeyListItem.journeyExpandedEvent.emit(getFurtwangenToWaldkirchJourney());
+
+      expect(setExpandedJourneySpy).toHaveBeenCalledTimes(1);
+      expect(setExpandedJourneySpy).toHaveBeenCalledWith(getFurtwangenToWaldkirchJourney());
+    });
+
+    it('should be passed default journey (first journey in list) to "JourneyMapComponent" when no journey is expanded', () => {
+      componentUnderTest.expandedJourney = null;
+      componentUnderTest.journeys$.next([getFurtwangenToWaldkirchJourney(), getWaldkirchToFurtwangenJourney()]);
+
+      fixture.detectChanges();
+
+      const journeyMapComponent: JourneyMapComponent = fixture.debugElement.query(By.directive(JourneyMapComponent)).componentInstance;
+      expect(journeyMapComponent.journey).toEqual(getFurtwangenToWaldkirchJourney());
+    });
+
+    it('should be passed expanded journey to "JourneyMapComponent" when journey is expanded', () => {
+      componentUnderTest.expandedJourney = getWaldkirchToFurtwangenJourney();
+      componentUnderTest.journeys$.next([getFurtwangenToWaldkirchJourney(), getWaldkirchToFurtwangenJourney()]);
+
+      fixture.detectChanges();
+
+      const journeyMapComponent: JourneyMapComponent = fixture.debugElement.query(By.directive(JourneyMapComponent)).componentInstance;
+      expect(journeyMapComponent.journey).toEqual(getWaldkirchToFurtwangenJourney());
+    });
   });
 
-  describe('with isRoundTrip = false', () => {
+  describe('with isRoundTrip = false and showJourneyResultMap = false', () => {
     beforeEach(async () => {
       await TestBed.configureTestingModule({
         declarations: [
@@ -243,8 +308,10 @@ describe('JourneyListOutwardComponent', () => {
           MockComponent(JourneyListItemComponent),
           MockComponent(JourneyListHeaderComponent),
           MockComponent(NoJourneyResultComponent),
+          MockComponent(JourneyMapComponent),
           MockPipe(FilterEqualJourneysPipe, (journeys: JourneyFragment[]) => journeys),
-          MockPipe(SortJourneyPipe, (journeys: JourneyFragment[]) => journeys)
+          MockPipe(SortJourneyPipe, (journeys: JourneyFragment[]) => journeys),
+          IfTabletViewDirective
         ],
         providers: [
           MockProvider(JourneyListService),
@@ -258,6 +325,10 @@ describe('JourneyListOutwardComponent', () => {
                 paramMap: convertToParamMap(getApiTokenParamMapWithIsRoundTripAsFalse())
               }
             }
+          },
+          {
+            provide: SHOW_JOURNEY_RESULT_MAP,
+            useValue: false
           }
         ],
         imports: [

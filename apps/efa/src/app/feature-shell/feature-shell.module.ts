@@ -8,6 +8,7 @@ import {
   MAX_FUTURE_DAYS_IN_CALENDAR,
   MAX_PAST_DAYS_IN_CALENDAR,
   RADIUS_IN_KILOMETERS,
+  SHOW_JOURNEY_RESULT_MAP,
   USE_NEAREST_ADDRESS
 } from '../../environments/config-tokens';
 import { environment } from '../../environments/environment';
@@ -46,6 +47,10 @@ import { SharedStylesModule } from '@dravelopsfrontend/shared-styles';
     {
       provide: CUSTOMER_DIRECTORY,
       useValue: environment.customerDirectory
+    },
+    {
+      provide: SHOW_JOURNEY_RESULT_MAP,
+      useValue: environment.showJourneyResultMap
     }
   ]
 })

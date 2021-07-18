@@ -1,0 +1,13 @@
+@import "libs/shared-styles/src/assets/styles/global";
+
+.map {
+  height: 30em;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: $bp-tablet) {
+  .map {
+    margin-bottom: 1.6rem;
+  }
+}

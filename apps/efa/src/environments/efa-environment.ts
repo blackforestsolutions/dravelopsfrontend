@@ -7,4 +7,5 @@ export interface EfaEnvironment {
   maxFutureDaysInCalendar: number;
   maxPastDaysInCalendar: number;
   customerDirectory: string;
+  showJourneyResultMap: boolean;
 }

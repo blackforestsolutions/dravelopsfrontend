@@ -1,19 +1,35 @@
 import { MapOptionsPipe } from './map-options.pipe';
-import { MapOptions, Polygon, TileLayer } from 'leaflet';
+import { LatLngExpression, MapOptions, Polygon, tileLayer, TileLayer } from 'leaflet';
 import {
+  MAP_ATTRIBUTION,
   MAX_WGS_84_LATITUDE,
   MAX_WGS_84_LONGITUDE,
   MIN_WGS_84_LATITUDE,
-  MIN_WGS_84_LONGITUDE, OSM_ZOOM_SNAP_LEVEL
+  MIN_WGS_84_LONGITUDE,
+  OSM_MAP
 } from '../../../../environments/config-tokens';
 import {
   getHvvLeafletPolygon,
   getHvvLeafletPolygonWithInnerHole
 } from '../../../shared/objectmothers/polygon-object-mother';
+import { LeafletService } from '../../../shared/util/leaflet.service';
+import { MockService } from 'ng-mocks';
 
 describe('MapOptionsPipe', () => {
 
-  const classUnderTest: MapOptionsPipe = new MapOptionsPipe();
+  const leafletService: LeafletService = MockService(LeafletService, {
+    getOuterWorldRing: (): LatLngExpression[] => [
+      [MAX_WGS_84_LATITUDE, MIN_WGS_84_LONGITUDE],
+      [MAX_WGS_84_LATITUDE, MAX_WGS_84_LONGITUDE],
+      [MIN_WGS_84_LATITUDE, MAX_WGS_84_LONGITUDE],
+      [MIN_WGS_84_LATITUDE, MIN_WGS_84_LONGITUDE]
+    ],
+    createTileLayer: (): TileLayer => tileLayer(OSM_MAP, {
+      attribution: MAP_ATTRIBUTION
+    })
+  });
+
+  const classUnderTest: MapOptionsPipe = new MapOptionsPipe(leafletService);
 
   it('create an instance', () => {
     expect(classUnderTest).toBeTruthy();
@@ -41,7 +57,7 @@ describe('MapOptionsPipe', () => {
         color: testPolygonColor
       }
     });
-    expect(result.zoomSnap).toBe(OSM_ZOOM_SNAP_LEVEL);
+    expect(result.zoomSnap).toBe(0.1);
     expect(result.worldCopyJump).toBeFalsy();
     expect(result.maxBounds).toEqual({
       _northEast: {

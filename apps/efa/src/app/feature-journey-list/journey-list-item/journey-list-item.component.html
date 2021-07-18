@@ -1,4 +1,4 @@
-<mat-expansion-panel class='panel' hideToggle>
+<mat-expansion-panel class='panel' hideToggle (opened)='emitJourneyExpandedEvent()'>
   <mat-expansion-panel-header class='header'
                               [collapsedHeight]='(isTabletView$ | async) ? null : "10rem"'
                               [expandedHeight]='(isTabletView$ | async) ? null : "10rem"'
@@ -20,7 +20,7 @@
 
       <div class='icons'>
         <ng-container *ngFor='let leg of journey.legs'>
-          <mat-icon>{{ leg.vehicleType | vehicleType }}</mat-icon>
+          <mat-icon>{{ leg.vehicleType | vehicleTypeIcon }}</mat-icon>
           <mat-icon *ngIf='journey.legs[journey.legs.length - 1].arrival.name !== leg.arrival.name'>
             arrow_forward
           </mat-icon>

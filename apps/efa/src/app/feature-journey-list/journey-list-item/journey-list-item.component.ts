@@ -19,6 +19,7 @@ export class JourneyListItemComponent implements OnInit {
   @Input() buttonSelectText: string;
   @Input() journey: JourneyFragment;
   @Output() journeySelectedEvent = new EventEmitter<JourneyFragment>();
+  @Output() journeyExpandedEvent = new EventEmitter<JourneyFragment>();
 
   isTabletView$: Observable<boolean>;
 
@@ -43,5 +44,9 @@ export class JourneyListItemComponent implements OnInit {
 
   emitJourneySelectedEvent(): void {
     this.journeySelectedEvent.emit(this.journey);
+  }
+
+  emitJourneyExpandedEvent(): void {
+    this.journeyExpandedEvent.emit(this.journey);
   }
 }
