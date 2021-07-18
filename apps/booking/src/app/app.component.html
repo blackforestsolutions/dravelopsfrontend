@@ -1,7 +1,11 @@
 <header>
   <ul>
-    <li id='singleJourney' [routerLink]='["booking", false, "04e11b67-5085-48d1-92a4-c549a673954b"]'>Einfache Fahrt</li>
-    <li id='outwardAndBackwardJourney' [routerLink]='["booking", true, "04e11b67-5085-48d1-92a4-c549a673954b", "c1094660-ccbd-420a-b344-4569b0ae47e2"]'>Hin- und Rückfahrt</li>
+    <li id='singleJourney' data-cy='single-journey' [routerLink]='["booking", false, "04e11b67-5085-48d1-92a4-c549a673954b"]'>
+      Einfache Fahrt
+    </li>
+    <li id='outwardAndBackwardJourney' data-cy='outward-backward-journey' [routerLink]='["booking", true, "04e11b67-5085-48d1-92a4-c549a673954b", "c1094660-ccbd-420a-b344-4569b0ae47e2"]'>
+      Hin- und Rückfahrt
+    </li>
   </ul>
 </header>
 <router-outlet></router-outlet>
