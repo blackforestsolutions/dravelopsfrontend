@@ -39,6 +39,8 @@ export class MapSearchComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.polygon$ = this.polygonApiService.getOperatingArea();
+    // working with mock data
+    // this.polygon$ = of(getHvvOperatingArea());
   }
 
   ngOnDestroy(): void {

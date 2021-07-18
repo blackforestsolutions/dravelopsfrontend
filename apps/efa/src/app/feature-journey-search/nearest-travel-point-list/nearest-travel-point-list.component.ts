@@ -45,6 +45,14 @@ export class NearestTravelPointListComponent implements OnInit {
       return this.travelPointApiService.getNearestAddressesBy(lng, lat, this.radiusInKilometers);
     }
     return this.travelPointApiService.getNearestStationsBy(lng, lat, this.radiusInKilometers);
+    // working with mock data
+    // return of([
+    //   getFurtwangenSupermarketTravelPoint(),
+    //   getFurtwangenKindergardenTravelPoint(),
+    //   getFurtwangenFriedrichStreetOneTravelPoint(),
+    //   getFurtwangenFriedrichStreetTwoTravelPoint(),
+    //   getFurtwangenFriedrichStreetThreeTravelPoint()
+    // ]);
   }
 
 }
