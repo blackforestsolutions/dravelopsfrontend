@@ -32,4 +32,4 @@ services:
   versionendbookingfrontend:
     extends:
       service: bookingfrontend
-  image: blackforestsolutions/dravelopsbookingfrontend:${VERSION_TAG}
+    image: blackforestsolutions/dravelopsbookingfrontend:${VERSION_TAG}
