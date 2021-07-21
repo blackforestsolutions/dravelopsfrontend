@@ -33,18 +33,12 @@ jobs:
           username: ${{ secrets.DOCKER_USER }}
           password: ${{ secrets.DOCKER_PASS }}
 
-      - name: Build latest docker images
-        run: docker-compose build
-
-      - name: Push latest docker images
-        run: docker-compose push
-
-      - name: Build versioned docker images
+      - name: Build versioned and latest docker images
         run: docker-compose build
         env:
           VERSION_TAG: ${{ steps.tag-version.outputs.new_tag }}
 
-      - name: Push versioned docker images
+      - name: Push versioned and latest docker images
         run: docker-compose push
         env:
           VERSION_TAG: ${{ steps.tag-version.outputs.new_tag }}
