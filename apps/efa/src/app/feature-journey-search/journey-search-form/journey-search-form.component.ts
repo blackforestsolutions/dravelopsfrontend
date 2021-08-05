@@ -12,7 +12,7 @@ import {
 import { TravelPointApiService } from '../../shared/api/travel-point-api.service';
 import { TravelPointValidators } from '../validators/travel-point-validators';
 import { DateTimeValidators } from '../validators/date-time-validators';
-import { distinctUntilChanged, switchMap, takeUntil } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, filter, switchMap, takeUntil } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 
 type TravelTimeFormValue = {
@@ -76,6 +76,8 @@ export class JourneySearchFormComponent implements OnChanges, OnInit, OnDestroy 
     this.departureTravelPoints$ = this.departureInput$
       .pipe(
         takeUntil(this.destroy$),
+        filter(term => term.length >= 1),
+        debounceTime(50),
         distinctUntilChanged(),
         switchMap((searchTerm: string) => this.travelPointApiService.getAddressesBy(searchTerm))
       );
@@ -87,6 +89,8 @@ export class JourneySearchFormComponent implements OnChanges, OnInit, OnDestroy 
     this.arrivalTravelPoints$ = this.arrivalInput$
       .pipe(
         takeUntil(this.destroy$),
+        filter(term => term.length >= 1),
+        debounceTime(50),
         distinctUntilChanged(),
         switchMap((searchTerm: string) => this.travelPointApiService.getAddressesBy(searchTerm))
       );

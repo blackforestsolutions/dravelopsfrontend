@@ -1,5 +1,5 @@
 <ng-container *ngIf='nearestTravelPoint$ | async as nearestTravelPoints; else this.loading'>
-  <mat-selection-list [multiple]='false' (selectionChange)='handleNearestTravelPointSelectEvent($event.options[0].value)'>
+  <mat-selection-list [multiple]='false' (selectionChange)='handleNearestTravelPointSelectEvent($event.options[0].value)' data-cy='nearest-travel-point-list'>
     <mat-list-option *ngFor='let nearestTravelPoint of nearestTravelPoints; last as isLast' [value]='nearestTravelPoint'>
       <dravelopsefafrontend-nearest-travel-point-list-item [nearestTravelPoint]='nearestTravelPoint'>
 
@@ -7,7 +7,7 @@
       <mat-divider *ngIf='!isLast'></mat-divider>
     </mat-list-option>
   </mat-selection-list>
-  <p *ngIf='!this.nearestTravelPoints.length' class='no-result'>
+  <p *ngIf='!this.nearestTravelPoints.length' class='no-result' data-cy='no-nearest-travel-point-result'>
     Keine {{ getNoResultMessage() }} innerhalb von {{ radiusInKilometers }} Kilometern gefunden.
   </p>
 </ng-container>
