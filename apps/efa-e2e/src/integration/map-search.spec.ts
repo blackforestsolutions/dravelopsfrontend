@@ -186,7 +186,7 @@ describe('MapSearch', () => {
       getMap().click(travelProvider.arrivalMapLongitude, travelProvider.arrivalMapLatitude);
       getFirstNearestTravelPointResult().click();
       // eslint-disable-next-line cypress/no-unnecessary-waiting
-      cy.wait(500);
+      cy.wait(750);
       getSubmitButton().click();
 
       cy.wait('@arrival')

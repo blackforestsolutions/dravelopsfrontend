@@ -25,15 +25,4 @@ export const getBackwardJourneyIsArrivalDateTimeRadioGroup = () => cy.get('[data
 export const getBackwardJourneyIsArrivalDateTimeFalseRadioButton = () => cy.get('[data-cy=backward-journey-is-arrival-date-time-false] > .mat-radio-label > .mat-radio-container > .mat-radio-input');
 export const getBackwardJourneyIsArrivalDateTimeTrueRadioButton = () => cy.get('[data-cy=backward-journey-is-arrival-date-time-true] > .mat-radio-label > .mat-radio-container > .mat-radio-input');
 export const getJourneySelectedTime = () => cy.get('.mat-button-wrapper').contains('Ok');
-export const getSubmitButton = () => cy.get('[data-cy=submit]');{
-  "fileServerFolder": ".",
-  "fixturesFolder": "./src/fixtures",
-  "integrationFolder": "./src/integration",
-  "modifyObstructiveCode": false,
-  "pluginsFile": "./src/plugins/index",
-  "supportFile": "./src/support/index.ts",
-  "video": true,
-  "videosFolder": "../../dist/cypress/apps/booking-e2e/videos",
-  "screenshotsFolder": "../../dist/cypress/apps/booking-e2e/screenshots",
-  "chromeWebSecurity": false
-}
+export const getSubmitButton = () => cy.get('[data-cy=submit]');
