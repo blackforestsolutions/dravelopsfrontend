@@ -29,6 +29,9 @@ fragment leg on Leg {
   intermediateStops {
     ...travelPoint
   }
+  walkSteps {
+    ...walkStep
+  }
 }
 
 fragment price on Price {
@@ -50,6 +53,23 @@ fragment travelPoint on TravelPoint {
 fragment travelProvider on TravelProvider {
   name
   url
+}
+
+fragment walkStep on WalkStep {
+  streetName
+  distanceInKilometers
+  startPoint {
+    ...point
+  }
+  endPoint {
+    ...point
+  }
+  walkingDirection
+  compassDirection
+  isStreetNameGenerated
+  isOriginPoint
+  isDestinationPoint
+  circleExit
 }
 
 fragment autocompleteAddress on TravelPoint {

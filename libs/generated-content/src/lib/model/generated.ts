@@ -21,6 +21,17 @@ export interface Scalars {
 
 
 
+export enum CompassDirection {
+  NORTH = 'NORTH',
+  NORTHEAST = 'NORTHEAST',
+  EAST = 'EAST',
+  SOUTHEAST = 'SOUTHEAST',
+  SOUTH = 'SOUTH',
+  SOUTHWEST = 'SOUTHWEST',
+  WEST = 'WEST',
+  NORTHWEST = 'NORTHWEST'
+}
+
 
 
 
@@ -43,6 +54,7 @@ export interface Leg {
   vehicleNumber?: Maybe<Scalars['String']>;
   vehicleName?: Maybe<Scalars['String']>;
   intermediateStops?: Maybe<Array<Maybe<TravelPoint>>>;
+  walkSteps?: Maybe<Array<Maybe<WalkStep>>>;
 }
 
 export interface Point {
@@ -167,6 +179,36 @@ export enum VehicleType {
   AIRPLANE = 'AIRPLANE'
 }
 
+export interface WalkStep {
+  __typename?: 'WalkStep';
+  streetName?: Maybe<Scalars['String']>;
+  distanceInKilometers?: Maybe<Scalars['Distance']>;
+  startPoint?: Maybe<Point>;
+  endPoint?: Maybe<Point>;
+  walkingDirection?: Maybe<WalkingDirection>;
+  compassDirection?: Maybe<CompassDirection>;
+  isStreetNameGenerated?: Maybe<Scalars['Boolean']>;
+  isOriginPoint?: Maybe<Scalars['Boolean']>;
+  isDestinationPoint?: Maybe<Scalars['Boolean']>;
+  circleExit?: Maybe<Scalars['String']>;
+}
+
+export enum WalkingDirection {
+  DEPART = 'DEPART',
+  HARD_LEFT = 'HARD_LEFT',
+  LEFT = 'LEFT',
+  SLIGHTLY_LEFT = 'SLIGHTLY_LEFT',
+  CONTINUE = 'CONTINUE',
+  SLIGHTLY_RIGHT = 'SLIGHTLY_RIGHT',
+  RIGHT = 'RIGHT',
+  HARD_RIGHT = 'HARD_RIGHT',
+  CIRCLE_CLOCKWISE = 'CIRCLE_CLOCKWISE',
+  CIRCLE_COUNTERCLOCKWISE = 'CIRCLE_COUNTERCLOCKWISE',
+  ELEVATOR = 'ELEVATOR',
+  UTURN_LEFT = 'UTURN_LEFT',
+  UTURN_RIGHT = 'UTURN_RIGHT'
+}
+
 
 export type JourneyFragment = (
   { __typename?: 'Journey' }
@@ -198,6 +240,9 @@ export type LegFragment = (
   )>, intermediateStops?: Maybe<Array<Maybe<(
     { __typename?: 'TravelPoint' }
     & TravelPointFragment
+  )>>>, walkSteps?: Maybe<Array<Maybe<(
+    { __typename?: 'WalkStep' }
+    & WalkStepFragment
   )>>> }
 );
 
@@ -218,6 +263,18 @@ export type TravelPointFragment = (
 export type TravelProviderFragment = (
   { __typename?: 'TravelProvider' }
   & Pick<TravelProvider, 'name' | 'url'>
+);
+
+export type WalkStepFragment = (
+  { __typename?: 'WalkStep' }
+  & Pick<WalkStep, 'streetName' | 'distanceInKilometers' | 'walkingDirection' | 'compassDirection' | 'isStreetNameGenerated' | 'isOriginPoint' | 'isDestinationPoint' | 'circleExit'>
+  & { startPoint?: Maybe<(
+    { __typename?: 'Point' }
+    & PointFragment
+  )>, endPoint?: Maybe<(
+    { __typename?: 'Point' }
+    & PointFragment
+  )> }
 );
 
 export type AutocompleteAddressFragment = (
@@ -306,7 +363,6 @@ export type GetNearestStationsQueryVariables = Exact<{
   longitude: Scalars['Float'];
   latitude: Scalars['Float'];
   radiusInKilometers?: Maybe<Scalars['Float']>;
-  language?: Maybe<Scalars['String']>;
 }>;
 
 
@@ -365,6 +421,24 @@ export const TravelProviderFragmentDoc = gql`
   url
 }
     `;
+export const WalkStepFragmentDoc = gql`
+    fragment walkStep on WalkStep {
+  streetName
+  distanceInKilometers
+  startPoint {
+    ...point
+  }
+  endPoint {
+    ...point
+  }
+  walkingDirection
+  compassDirection
+  isStreetNameGenerated
+  isOriginPoint
+  isDestinationPoint
+  circleExit
+}
+    ${PointFragmentDoc}`;
 export const LegFragmentDoc = gql`
     fragment leg on Leg {
   departure {
@@ -387,10 +461,14 @@ export const LegFragmentDoc = gql`
   intermediateStops {
     ...travelPoint
   }
+  walkSteps {
+    ...walkStep
+  }
 }
     ${TravelPointFragmentDoc}
 ${PointFragmentDoc}
-${TravelProviderFragmentDoc}`;
+${TravelProviderFragmentDoc}
+${WalkStepFragmentDoc}`;
 export const PriceFragmentDoc = gql`
     fragment price on Price {
   priceType
@@ -507,12 +585,11 @@ export const GetNearestAddressesDocument = gql`
     }
   }
 export const GetNearestStationsDocument = gql`
-    query GetNearestStations($longitude: Float!, $latitude: Float!, $radiusInKilometers: Float, $language: String) {
+    query GetNearestStations($longitude: Float!, $latitude: Float!, $radiusInKilometers: Float) {
   getNearestStationsBy(
     longitude: $longitude
     latitude: $latitude
     radiusInKilometers: $radiusInKilometers
-    language: $language
   ) {
     ...nearestTravelPoint
   }
