@@ -24,6 +24,9 @@ import { NoJourneyResultComponent } from './no-journey-result/no-journey-result.
 import { JourneyListHeaderComponent } from './journey-list-header/journey-list-header.component';
 import { JourneyMapComponent } from './journey-map/journey-map.component';
 import { VehicleTypeIconPipe } from './pipes/vehicle-type-icon-pipe/vehicle-type-icon.pipe';
+import { WalkStepListComponent } from './walk-step-list/walk-step-list.component';
+import { WalkStepArrowIconPipe } from './pipes/walk-step-arrow-icon-pipe/walk-step-arrow-icon.pipe';
+import { WalkStepDescriptionPipe } from './pipes/walk-step-description-pipe/walk-step-description.pipe';
 
 
 @NgModule({
@@ -47,7 +50,10 @@ import { VehicleTypeIconPipe } from './pipes/vehicle-type-icon-pipe/vehicle-type
     NoJourneyResultComponent,
     JourneyListHeaderComponent,
     JourneyMapComponent,
-    VehicleTypeIconPipe
+    VehicleTypeIconPipe,
+    WalkStepListComponent,
+    WalkStepArrowIconPipe,
+    WalkStepDescriptionPipe
   ],
   providers: [
     JourneyListService,
