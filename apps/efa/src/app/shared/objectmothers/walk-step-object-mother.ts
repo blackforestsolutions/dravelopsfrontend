@@ -6,7 +6,7 @@ const DEFAULT_TEST_PATH_STREET_NAME = 'Weg';
  * NEVER USE IN PRODUCTIVE CODE!
  * ONLY FOR TESTING!
  */
-export const getFurtwangenFriedrichStreetToIlbenStreetWalkSteps = (): WalkStep[] => {
+export const getExampleWalkSteps = (): WalkStep[] => {
   return [
     getFriedrichStreetWalkStep(),
     getLuisenStreetWalkStep()

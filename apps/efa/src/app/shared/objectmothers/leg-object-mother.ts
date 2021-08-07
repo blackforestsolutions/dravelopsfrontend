@@ -12,6 +12,7 @@ import {
 import { getSuedbadenTravelProvider } from './travel-provider-object-mother';
 import { Leg, VehicleType } from '@dravelopsfrontend/generated-content';
 import { getExampleWaypoints } from './footpath-object-mother';
+import { getExampleWalkSteps } from './walk-step-object-mother';
 
 /**
  * NEVER USE IN PRODUCTIVE CODE!
@@ -57,7 +58,8 @@ const getGrosshausbergToFurtwangenIlbenstreetBaseLeg = (): Leg => {
     waypoints: getExampleWaypoints(),
     vehicleNumber: '',
     vehicleName: '',
-    intermediateStops: []
+    intermediateStops: [],
+    walkSteps: getExampleWalkSteps()
   };
 };
 
@@ -273,7 +275,8 @@ const getWaldkirchKastelberghalleToSickBaseLeg = (): Leg => {
     waypoints: getExampleWaypoints(),
     vehicleNumber: '',
     vehicleName: '',
-    intermediateStops: []
+    intermediateStops: [],
+    walkSteps: getExampleWalkSteps()
   };
 };
 
