@@ -14,7 +14,7 @@ describe('OriginPointPipe', () => {
     expect(pipeUnderTest).toBeTruthy();
   });
 
-  it('should return correct message walkStep street name is generated and nextWalkStep is null', () => {
+  it('should return correct message walkStep when street name is generated and nextWalkStep is null', () => {
     const testWalkStep: WalkStep = {
       isStreetNameGenerated: true
     };
@@ -25,7 +25,7 @@ describe('OriginPointPipe', () => {
     expect(result).toBe('Start nach Norden');
   });
 
-  it('should return correct message walkStep street name is generated and nextWalkStep street name is generated', () => {
+  it('should return correct message when walkStep street name is generated and nextWalkStep street name is generated', () => {
     const testWalkStep: WalkStep = {
       isStreetNameGenerated: true
     };
@@ -38,32 +38,32 @@ describe('OriginPointPipe', () => {
     expect(result).toBe('Start nach Norden');
   });
 
-  it('should return correct message walkStep street name is generated and nextWalkStep street name is not generated', () => {
+  it('should return correct message when walkStep street name is generated and nextWalkStep street name is not generated', () => {
     const testWalkStep: WalkStep = {
       isStreetNameGenerated: true
     };
     const testNextWalkStep: WalkStep = {
       isStreetNameGenerated: false,
-      streetName: 'Tanneck 1B'
+      streetName: 'Tanneck'
     };
 
     const result: string = pipeUnderTest.transform(testWalkStep, testNextWalkStep);
 
-    expect(result).toBe('Start nach Norden Richtung Tanneck 1B');
+    expect(result).toBe('Start nach Norden Richtung Tanneck');
   });
 
-  it('should return correct message walkStep street name is not generated and nextWalkStep street name is not generated', () => {
+  it('should return correct message when walkStep street name is not generated and nextWalkStep street name is not generated', () => {
     const testWalkStep: WalkStep = {
       isStreetNameGenerated: false,
       streetName: 'Eiderstraße'
     };
     const testNextWalkStep: WalkStep = {
       isStreetNameGenerated: false,
-      streetName: 'Tanneck 1B'
+      streetName: 'Tanneck'
     };
 
     const result: string = pipeUnderTest.transform(testWalkStep, testNextWalkStep);
 
-    expect(result).toBe('Start auf Eiderstraße nach Norden Richtung Tanneck 1B');
+    expect(result).toBe('Start auf Eiderstraße nach Norden Richtung Tanneck');
   });
 });
