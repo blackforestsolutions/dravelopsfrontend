@@ -23,7 +23,9 @@ export class LeafletService {
     return marker([geoJson[INDEX_ZERO][INDEX_ONE], geoJson[INDEX_ZERO][INDEX_ZERO]], {
       icon: icon({
         iconSize: [iconWidth, iconHeight],
-        iconUrl: `assets/${customerDirectory}/departure_icon.svg`
+        iconUrl: `assets/${customerDirectory}/departure_icon.svg`,
+        // className for Cypress testing
+        className: 'departure-icon'
       })
     });
   }
@@ -37,7 +39,9 @@ export class LeafletService {
       {
         icon: icon({
           iconSize: [iconWidth, iconHeight],
-          iconUrl: `assets/${customerDirectory}/arrival_icon.svg`
+          iconUrl: `assets/${customerDirectory}/arrival_icon.svg`,
+          // className for Cypress testing
+          className: 'arrival-icon'
         })
       });
   }
