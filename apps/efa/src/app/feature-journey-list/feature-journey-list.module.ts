@@ -24,6 +24,7 @@ import { NoJourneyResultComponent } from './no-journey-result/no-journey-result.
 import { JourneyListHeaderComponent } from './journey-list-header/journey-list-header.component';
 import { JourneyMapComponent } from './journey-map/journey-map.component';
 import { VehicleTypeIconPipe } from './pipes/vehicle-type-icon-pipe/vehicle-type-icon.pipe';
+import { IntermediateStopsListComponent } from './intermediate-stops-list/intermediate-stops-list.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { VehicleTypeIconPipe } from './pipes/vehicle-type-icon-pipe/vehicle-type
     NoJourneyResultComponent,
     JourneyListHeaderComponent,
     JourneyMapComponent,
-    VehicleTypeIconPipe
+    VehicleTypeIconPipe,
+    IntermediateStopsListComponent
   ],
   providers: [
     JourneyListService,
