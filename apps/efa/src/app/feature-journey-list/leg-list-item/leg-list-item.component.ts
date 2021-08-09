@@ -4,8 +4,6 @@ import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-const THIRD_GRID_ROW = 3;
-
 @Component({
   selector: 'dravelopsefafrontend-leg-list-item',
   templateUrl: './leg-list-item.component.html',
@@ -38,12 +36,8 @@ export class LegListItemComponent implements OnInit {
   }
 
   positionArrivalTime(): string {
-    if (this.showFootpathMap) {
+    if (this.showFootpathMap || this.showIntermediateStops) {
       return '4 / 5';
-    }
-    if (this.showIntermediateStops) {
-      const minGridRow: number = THIRD_GRID_ROW + this.leg.intermediateStops.length;
-      return `${minGridRow} / ${minGridRow + 1}`;
     }
     return '3 / 4';
   }

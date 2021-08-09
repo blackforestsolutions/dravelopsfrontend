@@ -44,31 +44,14 @@
   grid-column: 2 / 3;
 }
 
-.footpath:hover {
-  cursor: pointer;
-}
-
-.intermediateStops:hover {
-  cursor: pointer;
-}
-
 .duration {
   grid-row: 2 / 3;
   grid-column: 4 / 5;
   justify-self: right;
 }
 
-.intermediateStopIcon {
-  grid-column: 1 / 2;
-}
-
-.intermediateStopName {
-  grid-column: 2 / 4;
-}
-
-.intermediateStopArrivalTime {
-  grid-column: 4 / 5;
-  justify-self: right;
+.intermediateStopsContainer {
+  grid-column: 1 / 5;
 }
 
 .mapIcon {
@@ -106,7 +89,7 @@
 }
 
 .delay {
-  color: red;
+  color: $warn-color;
 }
 
 .flex-container {
@@ -116,6 +99,10 @@
 
 .intermediateStops, .footpath {
   text-decoration: underline;
+}
+
+.intermediateStops:hover, .footpath:hover, .expandIcon:hover {
+  cursor: pointer;
 }
 
 .divider {
@@ -133,7 +120,7 @@
     grid-template-columns: 15% 40% repeat(4, 11.25%);
   }
 
-  .departureName--long, .arrivalName--long, .intermediateStopName {
+  .departureName--long, .arrivalName--long {
     grid-column: 2 / 3;
   }
 
@@ -141,7 +128,7 @@
     grid-column: 4 / 5;
   }
 
-  .departureTime, .arrivalTime, .intermediateStopArrivalTime, .duration {
+  .departureTime, .arrivalTime, .duration {
     grid-column: 3 / 4;
     justify-self: left;
   }
@@ -153,6 +140,10 @@
 
   .map {
     grid-column: 2 / 7;
+  }
+
+  .intermediateStopsContainer {
+    grid-column: 1 / 7;
   }
 }
 
