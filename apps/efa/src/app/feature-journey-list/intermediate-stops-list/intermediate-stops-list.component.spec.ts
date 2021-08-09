@@ -64,8 +64,6 @@ describe('IntermediateStopsListComponent', () => {
     expect(stopNames[0].innerHTML).toBe(getGuetenbachTownHallTravelPoint().name);
     expect(stopNames[1].innerHTML).toBe(getSimonswaldTownHallTravelPoint().name);
     expect(stopArrivalTimes.length).toBe(2);
-    expect(stopArrivalTimes[0].innerHTML).toContain('13:31');
-    expect(stopArrivalTimes[1].innerHTML).toContain('13:52');
     expect(delays.length).toBe(0);
   });
 
