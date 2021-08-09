@@ -239,7 +239,8 @@ describe('LegListItemComponent', () => {
       fixture.whenStable().then(() => {
         const footpathMapComponent: FootpathMapComponent = fixture.debugElement.query(By.directive(FootpathMapComponent)).componentInstance;
         expect(footpathMapComponent).toBeDefined();
-        expect(footpathMapComponent.waypoints.length).toBe(getWaldkirchKastelberghalleToSickLeg().waypoints.length);
+        expect(footpathMapComponent.waypoints).toEqual(getWaldkirchKastelberghalleToSickLeg().waypoints);
+        expect(footpathMapComponent.walkSteps).toEqual(getWaldkirchKastelberghalleToSickLeg().walkSteps);
       });
     }));
 
@@ -252,7 +253,8 @@ describe('LegListItemComponent', () => {
       fixture.whenStable().then(() => {
         const footpathMapComponent: FootpathMapComponent = fixture.debugElement.query(By.directive(FootpathMapComponent)).componentInstance;
         expect(footpathMapComponent).toBeDefined();
-        expect(footpathMapComponent.waypoints.length).toBe(getWaldkirchKastelberghalleToSickLeg().waypoints.length);
+        expect(footpathMapComponent.waypoints).toEqual(getWaldkirchKastelberghalleToSickLeg().waypoints);
+        expect(footpathMapComponent.walkSteps).toEqual(getWaldkirchKastelberghalleToSickLeg().walkSteps);
       });
     });
 

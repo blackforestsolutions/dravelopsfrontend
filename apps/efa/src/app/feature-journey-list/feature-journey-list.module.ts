@@ -24,7 +24,13 @@ import { NoJourneyResultComponent } from './no-journey-result/no-journey-result.
 import { JourneyListHeaderComponent } from './journey-list-header/journey-list-header.component';
 import { JourneyMapComponent } from './journey-map/journey-map.component';
 import { VehicleTypeIconPipe } from './pipes/vehicle-type-icon-pipe/vehicle-type-icon.pipe';
-
+import { WalkStepListComponent } from './walk-step-list/walk-step-list.component';
+import { WalkStepArrowIconPipe } from './pipes/walk-step-arrow-icon-pipe/walk-step-arrow-icon.pipe';
+import { WalkStepDescriptionPipe } from './pipes/walk-step-description-pipe/walk-step-description.pipe';
+import { CompassDirectionPipe } from './pipes/compass-direction-pipe/compass-direction.pipe';
+import { WalkingDirectionPipe } from './pipes/walking-direction-pipe/walking-direction.pipe';
+import { OriginPointPipe } from './pipes/origin-point-pipe/origin-point.pipe';
+import { DestinationPointPipe } from './pipes/destination-point-pipe/destination-point.pipe';
 
 @NgModule({
   declarations: [
@@ -47,7 +53,14 @@ import { VehicleTypeIconPipe } from './pipes/vehicle-type-icon-pipe/vehicle-type
     NoJourneyResultComponent,
     JourneyListHeaderComponent,
     JourneyMapComponent,
-    VehicleTypeIconPipe
+    VehicleTypeIconPipe,
+    WalkStepListComponent,
+    WalkStepArrowIconPipe,
+    WalkStepDescriptionPipe,
+    CompassDirectionPipe,
+    WalkingDirectionPipe,
+    OriginPointPipe,
+    DestinationPointPipe,
   ],
   providers: [
     JourneyListService,
@@ -57,7 +70,11 @@ import { VehicleTypeIconPipe } from './pipes/vehicle-type-icon-pipe/vehicle-type
     SortJourneyPipe,
     IsJourneyInPastPipe,
     IsOnlyFootpathPipe,
-    VehicleTypePipe
+    VehicleTypePipe,
+    WalkingDirectionPipe,
+    OriginPointPipe,
+    DestinationPointPipe,
+    CompassDirectionPipe
   ],
   imports: [
     CommonModule,

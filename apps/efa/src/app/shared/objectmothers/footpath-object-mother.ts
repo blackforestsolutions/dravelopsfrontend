@@ -1,5 +1,6 @@
 import { geoJSON, GeoJSON } from 'leaflet';
 import { Point, PointFragment } from '@dravelopsfrontend/generated-content';
+import { getFriedrichStreetWalkStep } from './walk-step-object-mother';
 
 /**
  * NEVER USE IN PRODUCTIVE CODE!
@@ -229,5 +230,22 @@ export const getJourneyWaypointsGeoJson = (): GeoJSON => {
         ...getFurtwangenFriedrichStreetToIlbenStreetGeoJsonArray()
       ]
     } as never
-  )
-}
+  );
+};
+
+/**
+ * NEVER USE IN PRODUCTIVE CODE!
+ * ONLY FOR TESTING!
+ */
+export const getFurtwangenFriedrichStreetGeoJson = (): GeoJSON => {
+  return geoJSON(
+    {
+      type: 'LineString',
+      coordinates: [
+        [getFriedrichStreetWalkStep().startPoint.x, getFriedrichStreetWalkStep().startPoint.y],
+        ...getFurtwangenFriedrichStreetToIlbenStreetGeoJsonArray().slice(0, 5),
+        [getFriedrichStreetWalkStep().endPoint.x, getFriedrichStreetWalkStep().endPoint.y]
+      ]
+    } as never
+  );
+};

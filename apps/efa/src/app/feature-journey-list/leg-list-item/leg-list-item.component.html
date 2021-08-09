@@ -4,7 +4,7 @@
 
   <!-- first row -->
   <div class='departureIcon'>
-  <mat-icon>trip_origin</mat-icon>
+  <mat-icon>place</mat-icon>
   </div>
   <div [ngClass]='leg.departure.platform.length === 0 ? "departureName--long" : "departureName--short"' class='departureName'>
     {{ leg.departure.name }}
@@ -70,14 +70,14 @@
       <mat-icon>map</mat-icon>
     </div>
     <div class='map'>
-      <dravelopsefafrontend-footpath-map [waypoints]='leg.waypoints'></dravelopsefafrontend-footpath-map>
+      <dravelopsefafrontend-footpath-map [waypoints]='leg.waypoints' [walkSteps]='leg.walkSteps'></dravelopsefafrontend-footpath-map>
     </div>
   </ng-container>
 
 
   <!-- fourth row -->
   <div class='arrivalIcon'>
-    <mat-icon>stop_circle</mat-icon>
+    <mat-icon>place</mat-icon>
   </div>
   <div [ngClass]='leg.arrival.platform.length === 0 ? "arrivalName--long" : "arrivalName--short"' class='arrivalName'>
     {{ leg.arrival.name }}

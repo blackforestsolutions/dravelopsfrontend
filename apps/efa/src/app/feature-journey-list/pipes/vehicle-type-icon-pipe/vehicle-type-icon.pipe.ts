@@ -6,7 +6,7 @@ import { VehicleType } from '@dravelopsfrontend/generated-content';
 })
 export class VehicleTypeIconPipe implements PipeTransform {
 
-  transform(value: string ): string {
+  transform(value: string): string {
     const vehicleType: VehicleType = VehicleType[value];
 
     if (vehicleType === VehicleType.WALK || vehicleType === VehicleType.TRANSIT) {

@@ -3,8 +3,10 @@
   <div leaflet
        [leafletOptions]='waypoints | mapOptions'
        [leafletLayers]='buildLayers()'
-       [leafletFitBounds]='geoJson.getBounds()'
+       [leafletFitBounds]='getZoomBy(geoJson)'
        [leafletMinZoom]='3'
        class='map'>
   </div>
 </ng-container>
+<dravelopsefafrontend-walk-step-list [walkSteps]='walkSteps' (walkStepSelectedEvent)='handleShowWalkStepEvent($event)'>
+</dravelopsefafrontend-walk-step-list>
