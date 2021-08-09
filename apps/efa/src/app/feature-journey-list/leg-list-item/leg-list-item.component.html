@@ -4,7 +4,7 @@
 
   <!-- first row -->
   <div class='departureIcon'>
-  <mat-icon>trip_origin</mat-icon>
+    <mat-icon>trip_origin</mat-icon>
   </div>
   <div [ngClass]='leg.departure.platform.length === 0 ? "departureName--long" : "departureName--short"' class='departureName'>
     {{ leg.departure.name }}
@@ -27,9 +27,9 @@
       <span class='footpath' (click)='toggleFootpathMap()'>
         {{ leg.distanceInKilometers }} km
       </span>
-      <button id='footpathMapToggleButton' mat-icon-button (click)='toggleFootpathMap()'>
-        <mat-icon>{{ showFootpathMap ? 'expand_more' : 'chevron_left' }}</mat-icon>
-      </button>
+      <mat-icon (click)='toggleFootpathMap()' class='expandIcon'>
+        {{ showFootpathMap ? 'expand_more' : 'chevron_left' }}
+      </mat-icon>
     </ng-container>
     <ng-container *ngIf='leg.vehicleType !== "WALK" && leg.intermediateStops.length > 0'>
       <span class='intermediateStops' (click)='toggleIntermediateStops()'>
@@ -41,9 +41,9 @@
           <span class='intermediateStopsText'>{{ leg.intermediateStops.length }} Zwischenhalte</span>
         </ng-template>
       </span>
-      <button mat-icon-button (click)='toggleIntermediateStops()'>
-        <mat-icon>{{ showIntermediateStops ? 'expand_more' : 'chevron_left' }}</mat-icon>
-      </button>
+      <mat-icon (click)='toggleIntermediateStops()' class='expandIcon'>
+        {{ showIntermediateStops ? 'expand_more' : 'chevron_left' }}
+      </mat-icon>
     </ng-container>
   </div>
   <div class='duration'>
@@ -51,19 +51,9 @@
   </div>
 
   <!-- possible third row intermediateStops -->
-  <ng-container *ngIf='showIntermediateStops'>
-    <ng-container *ngFor='let intermediateStop of leg.intermediateStops'>
-      <div class='intermediateStopIcon'>
-        <mat-icon>arrow_downward</mat-icon>
-      </div>
-      <div class='intermediateStopName'>{{ intermediateStop.name }}</div>
-      <div class='intermediateStopArrivalTime'>
-        {{ intermediateStop.arrivalTime | date: 'shortTime' }}
-        <span *ngIf='leg.delayInMinutes > 0' class='delay'> +{{ leg.delayInMinutes }}</span>
-      </div>
-    </ng-container>
-  </ng-container>
-
+  <div *ngIf='showIntermediateStops' class='intermediateStopsContainer'>
+    <dravelopsefafrontend-intermediate-stops-list [leg]='leg'></dravelopsefafrontend-intermediate-stops-list>
+  </div>
   <!-- possible third row map-->
   <ng-container *ngIf='showFootpathMap'>
     <div class='mapIcon'>

@@ -3,7 +3,6 @@ import { LegListItemComponent } from './leg-list-item.component';
 import { VehicleTypePipe } from '../pipes/vehicle-type-pipe/vehicle-type.pipe';
 import { DurationPipe } from '../pipes/duration-pipe/duration.pipe';
 import { HarnessLoader } from '@angular/cdk/testing';
-import { MatButtonHarness } from '@angular/material/button/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
@@ -16,8 +15,9 @@ import {
 import { LegFragment } from '@dravelopsfrontend/generated-content';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
 import { VehicleTypeIconPipe } from '../pipes/vehicle-type-icon-pipe/vehicle-type-icon.pipe';
+import { IntermediateStopsListComponent } from '../intermediate-stops-list/intermediate-stops-list.component';
+import { MatIconHarness } from '@angular/material/icon/testing';
 
 describe('LegListItemComponent', () => {
   let componentUnderTest: LegListItemComponent;
@@ -32,12 +32,12 @@ describe('LegListItemComponent', () => {
           MockPipe(VehicleTypePipe, value => `mock:${value}`),
           MockPipe(DurationPipe, value => `mock:${value}`),
           MockPipe(VehicleTypeIconPipe, value => `mock:${value}`),
-          MockComponent(FootpathMapComponent)
+          MockComponent(FootpathMapComponent),
+          MockComponent(IntermediateStopsListComponent)
         ],
         imports: [
           MatDividerModule,
-          MatIconModule,
-          MatButtonModule
+          MatIconModule
         ]
       })
         .compileComponents();
@@ -70,35 +70,27 @@ describe('LegListItemComponent', () => {
       expect(componentUnderTest.showIntermediateStops).toBeFalsy();
     });
 
-    it('should show one intermediateStops when intermediateStopIconButton is toggled', waitForAsync(() => {
-      const expectedLeg: LegFragment = getFurtwangenIlbenstreetToBleibachLeg();
-      const intermediateStopsButton = fixture.nativeElement.querySelector('button');
+    it('should show intermediateStops when intermediateStopIconButton is toggled', waitForAsync(() => {
+      const intermediateStopsButton = fixture.nativeElement.querySelector('.expandIcon');
 
       intermediateStopsButton.click();
 
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        const intermediateStopName = fixture.nativeElement.querySelector('.intermediateStopName');
-        const intermediateStopArrivalTime = fixture.nativeElement.querySelector('.intermediateStopArrivalTime');
-        expect(intermediateStopName.innerHTML).toBe(expectedLeg.intermediateStops[0].name);
-        expect(intermediateStopArrivalTime.innerHTML).not.toBe('');
-      });
+      const intermediateStopList: DebugElement = fixture.debugElement.query(By.directive(IntermediateStopsListComponent));
+      expect(intermediateStopList).toBeDefined();
+      expect(intermediateStopList.componentInstance.leg).toEqual(getFurtwangenIlbenstreetToBleibachLeg());
     }));
 
 
     it('should show one intermediateStops when intermediateStopText is toggled', waitForAsync(() => {
-      const expectedLeg: LegFragment = getFurtwangenIlbenstreetToBleibachLeg();
       const intermediateStopText = fixture.nativeElement.querySelector('.intermediateStops');
 
       intermediateStopText.click();
 
       fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        const intermediateStopName = fixture.nativeElement.querySelector('.intermediateStopName');
-        const intermediateStopArrivalTime = fixture.nativeElement.querySelector('.intermediateStopArrivalTime');
-        expect(intermediateStopName.innerHTML).toBe(expectedLeg.intermediateStops[0].name);
-        expect(intermediateStopArrivalTime.innerHTML).not.toBe('');
-      });
+      const intermediateStopList: DebugElement = fixture.debugElement.query(By.directive(IntermediateStopsListComponent));
+      expect(intermediateStopList).toBeDefined();
+      expect(intermediateStopList.componentInstance.leg).toEqual(getFurtwangenIlbenstreetToBleibachLeg());
     }));
 
     it('should not show delayInMinutes when value is zero ', () => {
@@ -106,21 +98,6 @@ describe('LegListItemComponent', () => {
 
       expect(delaySpans.length).toBe(0);
     });
-
-    it('should show four delay elements when delayInMinutes is greater than zero and intermediateStops are allowed to show', waitForAsync(() => {
-      componentUnderTest.showIntermediateStops = true;
-      componentUnderTest.leg.delayInMinutes = 1;
-
-      fixture.detectChanges();
-      fixture.whenStable().then(() => {
-        const delaySpans: DebugElement[] = fixture.debugElement.queryAll(By.css('.delay'));
-        expect(delaySpans.length).toBe(4);
-        expect(delaySpans[0].nativeElement.innerHTML).toBe(' +1');
-        expect(delaySpans[1].nativeElement.innerHTML).toBe(' +1');
-        expect(delaySpans[2].nativeElement.innerHTML).toBe(' +1');
-        expect(delaySpans[3].nativeElement.innerHTML).toBe(' +1');
-      });
-    }));
 
     it('should show "vehicleType" and "vehicleName" if intermediate stops and vehicleDescriptions are available', () => {
       const vehicleNumber: string = fixture.nativeElement.querySelector('.vehicleNumber').innerHTML;
@@ -139,23 +116,26 @@ describe('LegListItemComponent', () => {
       expect(intermediateStopText).toBe('2 Zwischenhalte');
     });
 
-    it('should show the intermediateStopButton when intermediateStops are greater than zero', async () => {
+    it('should show the intermediateStopIcon when intermediateStops are greater than zero', async () => {
 
-      const intermediateStopsButton: MatButtonHarness = await loader.getHarness<MatButtonHarness>(MatButtonHarness);
+      const intermediateStopsIcons: MatIconHarness[] = await loader.getAllHarnesses(MatIconHarness.with({
+        selector: '.expandIcon'
+      }));
 
-      const buttonText: string = await intermediateStopsButton.getText();
-      expect(buttonText).toBe('chevron_left');
+      expect(intermediateStopsIcons.length).toBe(1);
+      expect(await intermediateStopsIcons[0].getName()).toBe('chevron_left');
     });
 
-    it('should not show the intermediateStopButton when intermediateStops are zero', waitForAsync(() => {
+    it('should not show the intermediateStopIcon and intermediateStopText when intermediateStops are zero', waitForAsync(() => {
       componentUnderTest.leg.intermediateStops = [];
 
-      const intermediateStopsButton = fixture.nativeElement.querySelector('button');
-      expect(intermediateStopsButton).toBeInstanceOf(HTMLButtonElement);
       fixture.detectChanges();
+
       fixture.whenStable().then(() => {
-        const intermediateStopsButton = fixture.nativeElement.querySelector('button');
-        expect(intermediateStopsButton).toBeNull();
+        const intermediateStopsIcon = fixture.nativeElement.querySelector('.expandIcon');
+        expect(intermediateStopsIcon).toBeNull();
+        const intermediateStopsText = fixture.nativeElement.querySelector('.intermediateStops');
+        expect(intermediateStopsText).toBeNull();
       });
     }));
 
@@ -183,7 +163,7 @@ describe('LegListItemComponent', () => {
 
       const result: string = componentUnderTest.positionArrivalTime();
 
-      expect(result).toBe('5 / 6');
+      expect(result).toBe('4 / 5');
     });
   });
 
@@ -195,12 +175,12 @@ describe('LegListItemComponent', () => {
           MockPipe(VehicleTypePipe, value => `mock:${value}`),
           MockPipe(DurationPipe, value => `mock:${value}`),
           MockPipe(VehicleTypeIconPipe, value => `mock:${value}`),
-          MockComponent(FootpathMapComponent)
+          MockComponent(FootpathMapComponent),
+          MockComponent(IntermediateStopsListComponent)
         ],
         imports: [
           MatDividerModule,
-          MatIconModule,
-          MatButtonModule
+          MatIconModule
         ]
       })
         .compileComponents();
@@ -230,10 +210,10 @@ describe('LegListItemComponent', () => {
       expect(componentUnderTest.showFootpathMap).toBeTruthy();
     });
 
-    it('should show FootpathComponent when footpathMapIconButton is toggled', waitForAsync(() => {
-      const footpathMapIconButton = fixture.nativeElement.querySelector('#footpathMapToggleButton');
+    it('should show FootpathComponent when footpathMapIcon is toggled', waitForAsync(() => {
+      const footpathMapIcon = fixture.nativeElement.querySelector('.expandIcon');
 
-      footpathMapIconButton.click();
+      footpathMapIcon.click();
 
       fixture.detectChanges();
       fixture.whenStable().then(() => {
@@ -256,24 +236,27 @@ describe('LegListItemComponent', () => {
       });
     });
 
-    it('should show the footpathMapIconButton and footpathMapDistanceInKilometersText when waypoints are greater than zero', async () => {
-      const footpathMapIconButton: MatButtonHarness = await loader.getHarness<MatButtonHarness>(MatButtonHarness);
+    it('should show the footpathMapIcon and footpathMapDistanceInKilometersText when waypoints are greater than zero', async () => {
+      const footpathMapIcons: MatIconHarness[] = await loader.getAllHarnesses(MatIconHarness.with({
+        selector: '.expandIcon'
+      }));
       const footpathMapDistanceInKilometersText = fixture.nativeElement.querySelector('.footpath');
 
-      const buttonText: string = await footpathMapIconButton.getText();
-      expect(buttonText).toBe('chevron_left');
+      expect(footpathMapIcons.length).toBe(1);
+      expect(await footpathMapIcons[0].getName()).toBe('chevron_left');
       expect(footpathMapDistanceInKilometersText.innerHTML).toBe(' 0.445 km ');
     });
 
-    it('should not show the footpathMapIconButton when waypoints are zero', waitForAsync(() => {
+    it('should not show the footpathMapIcon and footpathMapDistanceInKilometersText when waypoints are zero', waitForAsync(() => {
       componentUnderTest.leg.waypoints = [];
 
-      const footpathMapIconButton = fixture.nativeElement.querySelector('#footpathMapToggleButton');
-      expect(footpathMapIconButton).toBeInstanceOf(HTMLButtonElement);
       fixture.detectChanges();
+
       fixture.whenStable().then(() => {
-        const footpathMapIconButton = fixture.nativeElement.querySelector('#footpathMapToggleButton');
-        expect(footpathMapIconButton).toBeNull();
+        const footpathMapIcon = fixture.nativeElement.querySelector('.expandIcon');
+        expect(footpathMapIcon).toBeNull();
+        const footpathMapDistanceInKilometersText = fixture.nativeElement.querySelector('.footpath');
+        expect(footpathMapDistanceInKilometersText).toBeNull();
       });
     }));
 
