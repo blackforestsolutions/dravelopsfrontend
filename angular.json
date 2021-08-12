@@ -3,7 +3,7 @@
   "cli": {
     "defaultCollection": "@nrwl/angular"
   },
-  "defaultProject": "shell",
+  "defaultProject": "hvv",
   "schematics": {
     "@nrwl/angular": {
       "application": {
@@ -32,438 +32,298 @@
     }
   },
   "projects": {
-    "shell": {
-      "projectType": "application",
-      "root": "apps/shell",
-      "sourceRoot": "apps/shell/src",
-      "prefix": "dravelopsfrontendshell",
+    "booking": {
+      "projectType": "library",
+      "root": "libs/booking",
+      "sourceRoot": "libs/booking/src",
+      "prefix": "dravelopsbookingfrontend",
       "architect": {
-        "build": {
-          "builder": "@angular-builders/custom-webpack:browser",
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/booking"
+          ],
           "options": {
-            "customWebpackConfig": {
-              "path": "./apps/shell/webpack.config.js"
-            },
-            "outputPath": "dist/apps/shell",
-            "index": "apps/shell/src/index.html",
-            "main": "apps/shell/src/main.ts",
-            "polyfills": "apps/shell/src/polyfills.ts",
-            "tsConfig": "apps/shell/tsconfig.app.json",
-            "assets": [
-              "apps/shell/src/favicon.ico",
-              "apps/shell/src/assets",
-              {
-                "glob": "**/*",
-                "input": "./libs/shared-styles/src/assets",
-                "output": "/assets"
-              }
-            ],
-            "styles": [
-              "libs/shared-styles/src/assets/styles/global.scss",
-              "./node_modules/leaflet/dist/leaflet.css"
-            ],
-            "scripts": [],
-            "vendorChunk": true,
-            "extractLicenses": false,
-            "buildOptimizer": false,
-            "sourceMap": true,
-            "optimization": false,
-            "namedChunks": true,
-            "commonChunk": false
-          },
-          "configurations": {
-            "production": {
-              "customWebpackConfig": {
-                "path": "./apps/shell/webpack.config.js"
-              },
-              "fileReplacements": [
-                {
-                  "replace": "apps/shell/src/environments/environment.ts",
-                  "with": "apps/shell/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "100kb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-builders/custom-webpack:dev-server",
-          "options": {
-            "browserTarget": "shell:build",
-            "port": 8096
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "shell:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "shell:build"
+            "jestConfig": "libs/booking/jest.config.js",
+            "passWithNoTests": true
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "apps/shell/src/**/*.ts",
-              "apps/shell/src/**/*.html"
+              "libs/booking/src/**/*.ts",
+              "libs/booking/src/**/*.html"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/shell"],
-          "options": {
-            "jestConfig": "apps/shell/jest.config.js",
-            "passWithNoTests": true
           }
         }
       }
     },
-    "shell-e2e": {
-      "root": "apps/shell-e2e",
-      "sourceRoot": "apps/shell-e2e/src",
+    "bw": {
       "projectType": "application",
+      "root": "apps/bw",
+      "sourceRoot": "apps/bw/src",
+      "prefix": "dravelopsfrontend",
       "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": [
+            "{options.outputPath}"
+          ],
           "options": {
-            "cypressConfig": "apps/shell-e2e/cypress.json",
-            "tsConfig": "apps/shell-e2e/tsconfig.e2e.json",
-            "devServerTarget": "shell:serve"
+            "outputPath": "dist/apps/bw",
+            "index": "apps/bw/src/index.html",
+            "main": "apps/bw/src/main.ts",
+            "polyfills": "apps/bw/src/polyfills.ts",
+            "tsConfig": "apps/bw/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/bw/src/assets"
+            ],
+            "styles": [
+              "./node_modules/leaflet/dist/leaflet.css",
+              "apps/bw/src/styles.scss"
+            ],
+            "scripts": []
           },
           "configurations": {
             "production": {
-              "devServerTarget": "shell:serve:production"
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1500kb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/bw/src/environments/environment.ts",
+                  "with": "apps/bw/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "bw:build:production"
+            },
+            "development": {
+              "browserTarget": "bw:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "bw:build"
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/shell-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "apps/bw/src/**/*.ts",
+              "apps/bw/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/apps/bw"
+          ],
+          "options": {
+            "jestConfig": "apps/bw/jest.config.js",
+            "passWithNoTests": true
           }
         }
       }
     },
     "efa": {
-      "projectType": "application",
-      "root": "apps/efa",
-      "sourceRoot": "apps/efa/src",
+      "projectType": "library",
+      "root": "libs/efa",
+      "sourceRoot": "libs/efa/src",
       "prefix": "dravelopsefafrontend",
       "architect": {
-        "build": {
-          "builder": "@angular-builders/custom-webpack:browser",
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/efa"
+          ],
           "options": {
-            "customWebpackConfig": {
-              "path": "./apps/efa/webpack.config.js"
-            },
-            "outputPath": "dist/apps/efa",
-            "index": "apps/efa/src/index.html",
-            "main": "apps/efa/src/main.ts",
-            "polyfills": "apps/efa/src/polyfills.ts",
-            "tsConfig": "apps/efa/tsconfig.app.json",
+            "jestConfig": "libs/efa/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/efa/src/**/*.ts",
+              "libs/efa/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "hvv": {
+      "projectType": "application",
+      "root": "apps/hvv",
+      "sourceRoot": "apps/hvv/src",
+      "prefix": "dravelopsfrontend",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": [
+            "{options.outputPath}"
+          ],
+          "options": {
+            "outputPath": "dist/apps/hvv",
+            "index": "apps/hvv/src/index.html",
+            "main": "apps/hvv/src/main.ts",
+            "polyfills": "apps/hvv/src/polyfills.ts",
+            "tsConfig": "apps/hvv/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
             "assets": [
-              "apps/efa/src/favicon.ico",
-              "apps/efa/src/assets",
-              {
-                "glob": "**/*",
-                "input": "./libs/shared-styles/src/assets",
-                "output": "/assets"
-              }
+              "apps/hvv/src/assets"
             ],
             "styles": [
               "./node_modules/leaflet/dist/leaflet.css",
-              "libs/shared-styles/src/assets/styles/global.scss"
+              "apps/hvv/src/styles.scss"
             ],
-            "scripts": [],
-            "vendorChunk": true,
-            "extractLicenses": false,
-            "buildOptimizer": false,
-            "sourceMap": true,
-            "optimization": false,
-            "namedChunks": true,
-            "commonChunk": false
+            "scripts": []
           },
           "configurations": {
             "production": {
-              "customWebpackConfig": {
-                "path": "./apps/efa/webpack.config.js"
-              },
-              "fileReplacements": [
-                {
-                  "replace": "apps/efa/src/environments/environment.ts",
-                  "with": "apps/efa/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
+                  "maximumWarning": "500kb",
+                  "maximumError": "1500kb"
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "100kb"
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
                 }
-              ]
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/hvv/src/environments/environment.ts",
+                  "with": "apps/hvv/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-builders/custom-webpack:dev-server",
-          "options": {
-            "browserTarget": "efa:build",
-            "port": 8094
-          },
+          "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "efa:build:production"
+              "browserTarget": "hvv:build:production"
+            },
+            "development": {
+              "browserTarget": "hvv:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "efa:build"
+            "browserTarget": "hvv:build"
           }
         },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "apps/efa/src/**/*.ts",
-              "apps/efa/src/**/*.html"
+              "apps/hvv/src/**/*.ts",
+              "apps/hvv/src/**/*.html"
             ]
           }
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/efa"],
+          "outputs": [
+            "coverage/apps/hvv"
+          ],
           "options": {
-            "jestConfig": "apps/efa/jest.config.js",
+            "jestConfig": "apps/hvv/jest.config.js",
             "passWithNoTests": true
           }
         }
       }
     },
-    "efa-e2e": {
-      "root": "apps/efa-e2e",
-      "sourceRoot": "apps/efa-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/efa-e2e/cypress.json",
-            "tsConfig": "apps/efa-e2e/tsconfig.e2e.json",
-            "devServerTarget": "efa:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "efa:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/efa-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "booking": {
-      "projectType": "application",
-      "root": "apps/booking",
-      "sourceRoot": "apps/booking/src",
-      "prefix": "dravelopsbookingfrontend",
-      "architect": {
-        "build": {
-          "builder": "@angular-builders/custom-webpack:browser",
-          "options": {
-            "customWebpackConfig": {
-              "path": "./apps/booking/webpack.config.js"
-            },
-            "outputPath": "dist/apps/booking",
-            "index": "apps/booking/src/index.html",
-            "main": "apps/booking/src/main.ts",
-            "polyfills": "apps/booking/src/polyfills.ts",
-            "tsConfig": "apps/booking/tsconfig.app.json",
-            "assets": [
-              "apps/booking/src/favicon.ico",
-              "apps/booking/src/assets",
-              {
-                "glob": "**/*",
-                "input": "./libs/shared-styles/src/assets",
-                "output": "/assets"
-              }
-            ],
-            "styles": ["libs/shared-styles/src/assets/styles/global.scss"],
-            "scripts": [],
-            "commonChunk": false
-          },
-          "configurations": {
-            "customWebpackConfig": {
-              "path": "./apps/booking/webpack.config.js"
-            },
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/booking/src/environments/environment.ts",
-                  "with": "apps/booking/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "100kb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "builder": "@angular-builders/custom-webpack:dev-server",
-          "options": {
-            "browserTarget": "booking:build",
-            "port": 8095
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "booking:build:production"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "booking:build"
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/booking/src/**/*.ts",
-              "apps/booking/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/booking"],
-          "options": {
-            "jestConfig": "apps/booking/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "booking-e2e": {
-      "root": "apps/booking-e2e",
-      "sourceRoot": "apps/booking-e2e/src",
-      "projectType": "application",
-      "architect": {
-        "e2e": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/booking-e2e/cypress.json",
-            "tsConfig": "apps/booking-e2e/tsconfig.e2e.json",
-            "devServerTarget": "booking:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "booking:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["apps/booking-e2e/**/*.{js,ts}"]
-          }
-        }
-      }
-    },
-    "shared-styles": {
+    "shared": {
       "projectType": "library",
-      "root": "libs/shared-styles",
-      "sourceRoot": "libs/shared-styles/src",
-      "prefix": "dravelopsfrontend",
+      "root": "libs/shared",
+      "sourceRoot": "libs/shared/src",
+      "prefix": "dravelopssharedfrontend",
       "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": [
+            "coverage/libs/shared"
+          ],
+          "options": {
+            "jestConfig": "libs/shared/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
         "lint": {
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/shared-styles/src/**/*.ts",
-              "libs/shared-styles/src/**/*.html"
+              "libs/shared/src/**/*.ts",
+              "libs/shared/src/**/*.html"
             ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared-styles"],
-          "options": {
-            "jestConfig": "libs/shared-styles/jest.config.js",
-            "passWithNoTests": true
           }
         }
       }
     },
-    "generated-content": {
+    "shell": {
       "projectType": "library",
-      "root": "libs/generated-content",
-      "sourceRoot": "libs/generated-content/src",
-      "prefix": "dravelopsfrontend",
+      "root": "libs/shell",
+      "sourceRoot": "libs/shell/src",
+      "prefix": "dravelopsfrontendshell",
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/generated-content"],
+          "outputs": [
+            "coverage/libs/shell"
+          ],
           "options": {
-            "jestConfig": "libs/generated-content/jest.config.js",
+            "jestConfig": "libs/shell/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -471,8 +331,8 @@
           "builder": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/generated-content/src/**/*.ts",
-              "libs/generated-content/src/**/*.html"
+              "libs/shell/src/**/*.ts",
+              "libs/shell/src/**/*.html"
             ]
           }
         }
