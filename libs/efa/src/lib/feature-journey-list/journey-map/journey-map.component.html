@@ -1,0 +1,8 @@
+<dravelopssharedfrontend-theme-emitter #theme></dravelopssharedfrontend-theme-emitter>
+<div leaflet
+     [leafletOptions]='journey | mapOptions'
+     [leafletLayers]='buildDynamicLayers()'
+     [leafletFitBounds]='createJourneyWaypointLayer().getBounds()'
+     [leafletMinZoom]='3'
+     class='map'>
+</div>

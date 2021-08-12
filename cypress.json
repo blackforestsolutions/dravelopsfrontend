@@ -1,0 +1,7 @@
+{
+  "baseUrl": "http://localhost:4200",
+  "videoCompression": 0,
+  "travelProvider": "hvv",
+  "backendUrl": "http://localhost:8085/graphql",
+  "defaultCommandTimeout": 10000
+}

@@ -1,0 +1,19 @@
+@import "libs/shared/src/assets/styles/breakpoints";
+
+html, body {
+  height: 100vh;
+  width: 100%;
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+}
+
+@media (min-width: $bp-max) {
+  body {
+    margin: 0 auto;
+    max-width: $bp-max;
+  }
+}

@@ -1,0 +1,58 @@
+@use 'sass:map';
+@use '~@angular/material' as mat;
+
+$mat-primary-scheme: (
+  100: #b4cee4,
+  500: #055ba6,
+  700: #03408b,
+  contrast: (
+    100: #ffffff,
+    500: #ffffff,
+    700: #ffffff,
+  )
+);
+$mat-accent-scheme: (
+  100: #ffffff,
+  500: #ffffff,
+  700: #ffffff,
+  contrast: (
+    100: #f4b4bf,
+    500: #d9042b,
+    700: #ca021a,
+  )
+);
+$mat-warn-scheme: (
+  100: #f4b4bf,
+  500: #d9042b,
+  700: #ca021a,
+  contrast: (
+    100: #ffffff,
+    500: #ffffff,
+    700: #ffffff,
+  )
+);
+
+$mat-primary-palette: mat.define-palette($mat-primary-scheme);
+$mat-accent-palette: mat.define-palette($mat-accent-scheme);
+$mat-warn-palette: mat.define-palette($mat-warn-scheme);
+
+$theme: mat.define-light-theme($mat-primary-palette, $mat-accent-palette, $mat-warn-palette);
+
+@include mat.all-component-themes($theme);
+
+@include mat.core();
+
+$color-config: mat.get-color-config($theme);
+
+:root {
+  --primary-color: #{mat.get-color-from-palette(map.get($color-config, 'primary'), 500)};
+  --primary-background-color: #{mat.get-contrast-color-from-palette(map.get($color-config, 'primary'), 500)};
+  --primary-color-with-opacity: #{mat.get-color-from-palette(map.get($color-config, 'primary'), 500)}b3;
+  --accent-color: #{mat.get-color-from-palette(map.get($color-config, 'accent'), 500)};
+  --accent-background-color: #{mat.get-contrast-color-from-palette(map.get($color-config, 'accent'), 500)};
+  --accent-color-with-opacity: #{mat.get-color-from-palette(map.get($color-config, 'accent'), 500)}b3;
+  --warn-color: #{mat.get-color-from-palette(map.get($color-config, 'warn'), 500)};
+  --warn-background-color: #{mat.get-contrast-color-from-palette(map.get($color-config, 'warn'), 500)};
+  --warn-color-with-opacity: #{mat.get-color-from-palette(map.get($color-config, 'warn'), 500)}b3;
+  --background-color: #{map.get(map.get($theme, 'background'), 'background')};
+}

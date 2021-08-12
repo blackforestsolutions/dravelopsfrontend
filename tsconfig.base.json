@@ -15,10 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@dravelopsfrontend/shared-styles": ["libs/shared-styles/src/index.ts"],
-      "@dravelopsfrontend/generated-content": [
-        "libs/generated-content/src/index.ts"
-      ]
+      "@dravelopsfrontend/booking": ["libs/booking/src/index.ts"],
+      "@dravelopsfrontend/efa": ["libs/efa/src/index.ts"],
+      "@dravelopsfrontend/shared": ["libs/shared/src/index.ts"],
+      "@dravelopsfrontend/shell": ["libs/shell/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
