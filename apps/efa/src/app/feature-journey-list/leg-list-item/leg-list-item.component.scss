@@ -55,11 +55,11 @@
 }
 
 .mapIcon {
-  grid-column: 1 / 2;
+  display: none;
 }
 
 .map {
-  grid-column: 2 / 5;
+  grid-column: 1 / 5;
 }
 
 .arrivalIcon {
@@ -133,6 +133,15 @@
     justify-self: left;
   }
 
+  .mapIcon {
+    display: unset;
+    grid-column: 1 / 2;
+  }
+
+  .map {
+    grid-column: 2 / 7;
+  } 
+    
   .intermediateStopsContainer {
     grid-column: 1 / 7;
   }

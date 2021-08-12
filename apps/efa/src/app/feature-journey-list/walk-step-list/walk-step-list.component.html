@@ -1,0 +1,12 @@
+<div class='walk-step-container'>
+  <ng-container *ngFor='let walkStep of walkSteps; index as index'>
+    <div class='flex-container'>
+      <mat-icon class='icon'>{{ walkStep | walkStepArrowIcon }}</mat-icon>
+      <span class='text'>{{ walkStep | walkStepDescription: walkSteps[index + 1] }}</span>
+    </div>
+    <div class='flex-container' *ngIf='!walkStep.isOriginPoint && !walkStep.isDestinationPoint'>
+      <mat-icon class='icon distance-icon' (click)='emitWalkStepSelectedEvent(walkStep)'>directions_walk</mat-icon>
+      <span class='text distance' (click)='emitWalkStepSelectedEvent(walkStep)'>{{ walkStep.distanceInKilometers * 1000 }} m gehen</span>
+    </div>
+  </ng-container>
+</div>
