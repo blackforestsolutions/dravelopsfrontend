@@ -31,6 +31,7 @@ import { CompassDirectionPipe } from './pipes/compass-direction-pipe/compass-dir
 import { WalkingDirectionPipe } from './pipes/walking-direction-pipe/walking-direction.pipe';
 import { OriginPointPipe } from './pipes/origin-point-pipe/origin-point.pipe';
 import { DestinationPointPipe } from './pipes/destination-point-pipe/destination-point.pipe';
+import { IntermediateStopsListComponent } from './intermediate-stops-list/intermediate-stops-list.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { DestinationPointPipe } from './pipes/destination-point-pipe/destination
     WalkingDirectionPipe,
     OriginPointPipe,
     DestinationPointPipe,
+    IntermediateStopsListComponent
   ],
   providers: [
     JourneyListService,

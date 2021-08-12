@@ -49,6 +49,11 @@ export class MapSearchComponent implements OnInit, OnDestroy {
 
   onMapReadyEvent(leafletMap: Map): void {
     this.leafletMap = leafletMap;
+    // helpful code for identifying a css x and y values for a given latitude and longitude with Cypress
+    // let latLng = new LatLng(53.58770956582312, 9.900264143943788);
+    // latLng = this.leafletMap.layerPointToLatLng(point(231, 267));
+    // console.log(latLng);
+    // this.setMarker(latLng);
     this.setMarkerOnPageReload();
   }
 

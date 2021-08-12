@@ -186,7 +186,7 @@ describe('JourneySearchFormComponent', () => {
     const testSearchTerm = 'Berlin';
 
     componentUnderTest.departureInput$.next(testSearchTerm);
-    tick();
+    tick(50);
 
     expect(travelPointApiService.getAddressesBy).toHaveBeenCalledTimes(1);
     expect(travelPointApiService.getAddressesBy).toHaveBeenCalledWith(expect.stringContaining(testSearchTerm));
@@ -196,7 +196,7 @@ describe('JourneySearchFormComponent', () => {
     const testSearchTerm = 'Berlin';
 
     componentUnderTest.arrivalInput$.next(testSearchTerm);
-    tick();
+    tick(50);
 
     expect(travelPointApiService.getAddressesBy).toHaveBeenCalledTimes(1);
     expect(travelPointApiService.getAddressesBy).toHaveBeenCalledWith(expect.stringContaining(testSearchTerm));
@@ -251,7 +251,7 @@ describe('JourneySearchFormComponent', () => {
   it('should should be called "displayTravelPointName" when new option is selected in departureInput', async () => {
     const displayTravelPointNameSpy = spyOn(componentUnderTest, 'displayTravelPointName');
     const inputElement = fixture.nativeElement.querySelector('#departureInput');
-    inputElement.value = 'Am';
+    inputElement.value = 'Ho';
     inputElement.dispatchEvent(new KeyboardEvent(
       'keyup', { bubbles: true, cancelable: true, shiftKey: false }
     ));
@@ -268,6 +268,7 @@ describe('JourneySearchFormComponent', () => {
   it('should should be called "displayTravelPointName" when new option is selected in arrivalInput', async () => {
     const displayTravelPointNameSpy = spyOn(componentUnderTest, 'displayTravelPointName');
     const inputElement = fixture.nativeElement.querySelector('#arrivalInput');
+    inputElement.value = 'Ho';
     inputElement.dispatchEvent(new KeyboardEvent(
       'keyup', { bubbles: true, cancelable: true, shiftKey: false }
     ));

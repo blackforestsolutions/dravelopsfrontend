@@ -8,7 +8,9 @@ export const getDepartureMarker = (): Marker => {
   return marker([48.05532, 8.20426], {
     icon: icon({
       iconSize: [31.25, 51.25],
-      iconUrl: 'assets/bw/departure_icon.svg'
+      iconUrl: 'assets/bw/departure_icon.svg',
+      // className for Cypress testing
+      className: 'departure-icon'
     })
   });
 };
@@ -21,7 +23,9 @@ export const getArrivalMarker = (): Marker => {
   return marker([48.05939, 8.20257], {
     icon: icon({
       iconSize: [31.25, 51.25],
-      iconUrl: 'assets/bw/arrival_icon.svg'
+      iconUrl: 'assets/bw/arrival_icon.svg',
+      // className for Cypress testing
+      className: 'arrival-icon'
     })
   });
 };

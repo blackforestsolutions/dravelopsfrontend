@@ -1,0 +1,12 @@
+<div class='grid-container'>
+  <ng-container *ngFor='let intermediateStop of leg.intermediateStops'>
+    <div class='intermediateStopIcon'>
+      <mat-icon>arrow_downward</mat-icon>
+    </div>
+    <div class='intermediateStopName'>{{ intermediateStop.name }}</div>
+    <div class='intermediateStopArrivalTime'>
+      {{ intermediateStop.arrivalTime | date: 'shortTime' }}
+      <span *ngIf='leg.delayInMinutes > 0' class='delay'> +{{ leg.delayInMinutes }}</span>
+    </div>
+  </ng-container>
+</div>
