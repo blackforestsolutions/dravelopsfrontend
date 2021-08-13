@@ -40,9 +40,7 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/booking"
-          ],
+          "outputs": ["coverage/libs/booking"],
           "options": {
             "jestConfig": "libs/booking/jest.config.js",
             "passWithNoTests": true
@@ -59,105 +57,6 @@
         }
       }
     },
-    "bw": {
-      "projectType": "application",
-      "root": "apps/bw",
-      "sourceRoot": "apps/bw/src",
-      "prefix": "dravelopsfrontend",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "outputs": [
-            "{options.outputPath}"
-          ],
-          "options": {
-            "outputPath": "dist/apps/bw",
-            "index": "apps/bw/src/index.html",
-            "main": "apps/bw/src/main.ts",
-            "polyfills": "apps/bw/src/polyfills.ts",
-            "tsConfig": "apps/bw/tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "apps/bw/src/assets"
-            ],
-            "styles": [
-              "./node_modules/leaflet/dist/leaflet.css",
-              "apps/bw/src/styles.scss"
-            ],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1500kb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
-                }
-              ],
-              "fileReplacements": [
-                {
-                  "replace": "apps/bw/src/environments/environment.ts",
-                  "with": "apps/bw/src/environments/environment.prod.ts"
-                }
-              ],
-              "outputHashing": "all"
-            },
-            "development": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "configurations": {
-            "production": {
-              "browserTarget": "bw:build:production"
-            },
-            "development": {
-              "browserTarget": "bw:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "bw:build"
-          }
-        },
-        "lint": {
-          "builder": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/bw/src/**/*.ts",
-              "apps/bw/src/**/*.html"
-            ]
-          }
-        },
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/bw"
-          ],
-          "options": {
-            "jestConfig": "apps/bw/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "efa": {
       "projectType": "library",
       "root": "libs/efa",
@@ -166,9 +65,7 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/efa"
-          ],
+          "outputs": ["coverage/libs/efa"],
           "options": {
             "jestConfig": "libs/efa/jest.config.js",
             "passWithNoTests": true
@@ -193,9 +90,7 @@
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
-          "outputs": [
-            "{options.outputPath}"
-          ],
+          "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/hvv",
             "index": "apps/hvv/src/index.html",
@@ -203,9 +98,7 @@
             "polyfills": "apps/hvv/src/polyfills.ts",
             "tsConfig": "apps/hvv/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "apps/hvv/src/assets"
-            ],
+            "assets": ["apps/hvv/src/assets"],
             "styles": [
               "./node_modules/leaflet/dist/leaflet.css",
               "apps/hvv/src/styles.scss"
@@ -274,9 +167,7 @@
         },
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/hvv"
-          ],
+          "outputs": ["coverage/apps/hvv"],
           "options": {
             "jestConfig": "apps/hvv/jest.config.js",
             "passWithNoTests": true
@@ -292,9 +183,7 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/shared"
-          ],
+          "outputs": ["coverage/libs/shared"],
           "options": {
             "jestConfig": "libs/shared/jest.config.js",
             "passWithNoTests": true
@@ -319,9 +208,7 @@
       "architect": {
         "test": {
           "builder": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/shell"
-          ],
+          "outputs": ["coverage/libs/shell"],
           "options": {
             "jestConfig": "libs/shell/jest.config.js",
             "passWithNoTests": true
