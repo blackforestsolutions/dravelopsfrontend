@@ -32,7 +32,7 @@ describe('MapSearch', () => {
   beforeEach(() => cy.visit('/'));
 
   it('should show map with polygon when map search tab is clicked', () => {
-    cy.intercept('POST', Cypress.config(`backendUrl`), req => aliasPolygonQuery(req, GET_OPERATING_AREA_OPERATION_NAME));
+    cy.intercept('POST', Cypress.env(`backendUrl`), req => aliasPolygonQuery(req, GET_OPERATING_AREA_OPERATION_NAME));
     getMap().should('not.exist');
     getSearchMapTab().click();
 
@@ -55,7 +55,7 @@ describe('MapSearch', () => {
   it('should create departure marker on map click and show departure in departure field when nearest address is selected', () => {
     getSearchMapTab().click();
 
-    cy.fixture(Cypress.config('travelProvider')).then(travelProvider => {
+    cy.fixture(Cypress.env('travelProvider')).then(travelProvider => {
       getMap().click(travelProvider.departureMapLongitude, travelProvider.departureMapLatitude);
       getFirstNearestTravelPointResult().click();
       getDepartureAutocompleteField().should('include.value', travelProvider.departure);
@@ -66,7 +66,7 @@ describe('MapSearch', () => {
   it('should not set departure marker on map click and departure field when no nearest address is selected and new departure search is possible', () => {
     getSearchMapTab().click();
 
-    cy.fixture(Cypress.config('travelProvider')).then(travelProvider => {
+    cy.fixture(Cypress.env('travelProvider')).then(travelProvider => {
       getMap().click(travelProvider.departureMapLongitude, travelProvider.departureMapLatitude);
       getDepartureIconPath().should('equal', getDepartureIconAsset());
       cy.get('.cdk-overlay-backdrop').click(ZERO_X_COORDINATE, ZERO_Y_COORDINATE, { force: true });
@@ -81,7 +81,7 @@ describe('MapSearch', () => {
   it('should create arrival marker on map click and show arrival in arrival field when nearest address is selected and departureMarker is set', () => {
     getSearchMapTab().click();
 
-    cy.fixture(Cypress.config('travelProvider')).then(travelProvider => {
+    cy.fixture(Cypress.env('travelProvider')).then(travelProvider => {
       getMap().click(travelProvider.departureMapLongitude, travelProvider.departureMapLatitude);
       getFirstNearestTravelPointResult().click();
       getDepartureAutocompleteField().should('include.value', travelProvider.departure);
@@ -96,7 +96,7 @@ describe('MapSearch', () => {
   it('should not set arrival marker on map click and arrival field when no nearest address is selected and new arrival search is possible', () => {
     getSearchMapTab().click();
 
-    cy.fixture(Cypress.config('travelProvider')).then(travelProvider => {
+    cy.fixture(Cypress.env('travelProvider')).then(travelProvider => {
       getMap().click(travelProvider.departureMapLongitude, travelProvider.departureMapLatitude);
       getFirstNearestTravelPointResult().click();
       getDepartureAutocompleteField().should('include.value', travelProvider.departure);
@@ -113,7 +113,7 @@ describe('MapSearch', () => {
   });
 
   it('should include correct url params for departure point, isRoundTrip and isArrivalDateTime when journey form is submitted correctly for single journey', () => {
-    cy.fixture(Cypress.config('travelProvider')).then(travelProvider => cy.intercept('POST', Cypress.config('backendUrl'), req => aliasNearestAddressQuery(
+    cy.fixture(Cypress.env('travelProvider')).then(travelProvider => cy.intercept('POST', Cypress.env('backendUrl'), req => aliasNearestAddressQuery(
       req,
       GET_NEAREST_ADDRESSES_OPERATION_NAME,
       travelProvider.departureLongitude,
@@ -122,7 +122,7 @@ describe('MapSearch', () => {
     )));
     getSearchMapTab().click();
 
-    cy.fixture(Cypress.config('travelProvider')).then(travelProvider => {
+    cy.fixture(Cypress.env('travelProvider')).then(travelProvider => {
       getMap().click(travelProvider.departureMapLongitude, travelProvider.departureMapLatitude);
       getDepartureIconPath().should('equal', getDepartureIconAsset());
       getFirstNearestTravelPointResult().click();
@@ -140,7 +140,7 @@ describe('MapSearch', () => {
       getSubmitButton().click();
     });
 
-    cy.fixture(Cypress.config('travelProvider'))
+    cy.fixture(Cypress.env('travelProvider'))
       .then(travelProvider => {
         cy.wait('@departure')
           .its('response.body.data.getNearestAddressesBy')
@@ -155,7 +155,7 @@ describe('MapSearch', () => {
   });
 
   it('should include correct url params for arrival point when journey form is submitted correctly for single journey', () => {
-    cy.fixture(Cypress.config('travelProvider')).then(travelProvider => cy.intercept('POST', Cypress.config('backendUrl'), req => aliasNearestAddressQuery(
+    cy.fixture(Cypress.env('travelProvider')).then(travelProvider => cy.intercept('POST', Cypress.env('backendUrl'), req => aliasNearestAddressQuery(
       req,
       GET_NEAREST_ADDRESSES_OPERATION_NAME,
       travelProvider.arrivalLongitude,
@@ -164,7 +164,7 @@ describe('MapSearch', () => {
     )));
     getSearchMapTab().click();
 
-    cy.fixture(Cypress.config('travelProvider')).then(travelProvider => {
+    cy.fixture(Cypress.env('travelProvider')).then(travelProvider => {
       getMap().click(travelProvider.departureMapLongitude, travelProvider.departureMapLatitude);
       getFirstNearestTravelPointResult().click();
       getDepartureAutocompleteField().should('include.value', travelProvider.departure);
@@ -186,7 +186,7 @@ describe('MapSearch', () => {
   it('should be possible to search departure point per map and arrival point per text search', () => {
     getSearchMapTab().click();
 
-    cy.fixture(Cypress.config('travelProvider')).then(travelProvider => {
+    cy.fixture(Cypress.env('travelProvider')).then(travelProvider => {
       getMap().click(travelProvider.departureMapLongitude, travelProvider.departureMapLatitude);
       getFirstNearestTravelPointResult().click();
       getArrivalAutocompleteField().type('a');
@@ -202,7 +202,7 @@ describe('MapSearch', () => {
   it('should be possible to search arrival point per map and departure point per text search', () => {
     getSearchMapTab().click();
 
-    cy.fixture(Cypress.config('travelProvider')).then(travelProvider => {
+    cy.fixture(Cypress.env('travelProvider')).then(travelProvider => {
       getMap().click(travelProvider.departureMapLongitude, travelProvider.departureMapLatitude);
       getFirstNearestTravelPointResult().click();
       getDepartureAutocompleteField().focus().clear().type('a');

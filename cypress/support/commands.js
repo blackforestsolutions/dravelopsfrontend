@@ -44,13 +44,13 @@ function searchForm(apiToken) {
   if (apiToken && apiToken.departure) {
     getDepartureAutocompleteField().type(apiToken.departure);
   } else {
-    cy.fixture(Cypress.config('travelProvider')).then(travelProvider => getDepartureAutocompleteField().type(travelProvider.departure));
+    cy.fixture(Cypress.env('travelProvider')).then(travelProvider => getDepartureAutocompleteField().type(travelProvider.departure));
     getDepartureAutocompleteOption().click();
   }
   if (apiToken && apiToken.arrival) {
     getArrivalAutocompleteField().type(apiToken.arrival);
   } else {
-    cy.fixture(Cypress.config('travelProvider')).then(travelProvider => getArrivalAutocompleteField().type(travelProvider.arrival));
+    cy.fixture(Cypress.env('travelProvider')).then(travelProvider => getArrivalAutocompleteField().type(travelProvider.arrival));
     getArrivalAutocompleteOption().click();
   }
   if (apiToken && apiToken.outwardJourney && apiToken.outwardJourney.dateTime) {

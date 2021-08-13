@@ -62,7 +62,7 @@ describe('JourneySearchForm', () => {
     });
 
     it('should include correct url params for departure point when journey form is submitted correctly for single journey', () => {
-      cy.fixture(Cypress.config('travelProvider')).then(travelProvider => cy.intercept('POST', Cypress.config('backendUrl'), req => aliasAutocompleteQuery(
+      cy.fixture(Cypress.env('travelProvider')).then(travelProvider => cy.intercept('POST', Cypress.env('backendUrl'), req => aliasAutocompleteQuery(
         req,
         GET_AUTOCOMPLETE_OPERATION_NAME,
         travelProvider.departure,
@@ -148,7 +148,7 @@ describe('JourneySearchForm', () => {
     });
 
     it('should include correct url params for arrival point when journey form is submitted correctly for single journey', () => {
-      cy.fixture(Cypress.config('travelProvider')).then(travelProvider => cy.intercept('POST', Cypress.config('backendUrl'), req => aliasAutocompleteQuery(
+      cy.fixture(Cypress.env('travelProvider')).then(travelProvider => cy.intercept('POST', Cypress.env('backendUrl'), req => aliasAutocompleteQuery(
         req,
         GET_AUTOCOMPLETE_OPERATION_NAME,
         travelProvider.arrival,
@@ -197,7 +197,7 @@ describe('JourneySearchForm', () => {
 
       cy.reload();
 
-      cy.fixture(Cypress.config('travelProvider'))
+      cy.fixture(Cypress.env('travelProvider'))
         .then(travelProvider => {
           getDepartureAutocompleteField().should('include.value', travelProvider.departure);
           getArrivalAutocompleteField().should('include.value', travelProvider.arrival);

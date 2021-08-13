@@ -6,22 +6,13 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8094:80"
+      - 8094:80
   hvv:
     image: blackforestsolutions/dravelopsfrontend:${VERSION_TAG}-hvv
     build:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "8094:80"
+      - 8094:80
     environment:
       - CUSTOMER=hvv
-  bw:
-    image: blackforestsolutions/dravelopsfrontend:${VERSION_TAG}-bw
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "8094:80"
-    environment:
-      - CUSTOMER=bw
