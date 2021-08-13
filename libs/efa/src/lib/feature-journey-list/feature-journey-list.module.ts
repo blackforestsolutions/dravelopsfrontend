@@ -63,7 +63,6 @@ import { IntermediateStopsListComponent } from './intermediate-stops-list/interm
     WalkingDirectionPipe,
     OriginPointPipe,
     DestinationPointPipe,
-    VehicleTypeIconPipe,
     IntermediateStopsListComponent
   ],
   providers: [
