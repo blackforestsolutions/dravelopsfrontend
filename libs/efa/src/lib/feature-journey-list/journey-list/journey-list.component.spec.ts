@@ -113,7 +113,7 @@ describe('JourneyListComponent ', () => {
     }));
 
     it('should be called "handleOutwardJourneySelectedEvent" when "journeySelectedEvent " is emitted', () => {
-      const handleOutwardJourneySelectedEventSpy = spyOn(componentUnderTest, 'handleOutwardJourneySelectedEvent');
+      const handleOutwardJourneySelectedEventSpy = jest.spyOn(componentUnderTest, 'handleOutwardJourneySelectedEvent');
       const journeyListOutward: JourneyListOutwardComponent = fixture.debugElement
         .query(By.directive(JourneyListOutwardComponent)).componentInstance;
 
@@ -150,7 +150,7 @@ describe('JourneyListComponent ', () => {
     it('should be called "handleBackwardJourneySelectedEvent" when "journeySelectedEvent " is emitted', () => {
       componentUnderTest.selectedOutwardJourney = getFurtwangenToWaldkirchJourney();
       fixture.detectChanges();
-      const handleBackwardJourneySelectedEventSpy = spyOn(componentUnderTest, 'handleBackwardJourneySelectedEvent');
+      const handleBackwardJourneySelectedEventSpy = jest.spyOn(componentUnderTest, 'handleBackwardJourneySelectedEvent');
       const journeyListBackward: JourneyListBackwardComponent = fixture.debugElement
         .query(By.directive(JourneyListBackwardComponent)).componentInstance;
 

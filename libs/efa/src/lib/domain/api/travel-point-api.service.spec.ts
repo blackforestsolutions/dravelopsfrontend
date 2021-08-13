@@ -1,11 +1,15 @@
-import { TestBed } from '@angular/core/testing';
-
 import { TravelPointApiService } from './travel-point-api.service';
 import {
   AutocompleteAddressFragment,
   GetAddressesGQL,
+  GetAddressesQuery,
+  GetAddressesQueryVariables,
   GetNearestAddressesGQL,
+  GetNearestAddressesQuery,
+  GetNearestAddressesQueryVariables,
   GetNearestStationsGQL,
+  GetNearestStationsQuery,
+  GetNearestStationsQueryVariables,
   NearestTravelPointFragment
 } from '../model/generated';
 import {
@@ -18,23 +22,24 @@ import {
 } from '../objectmothers/travel-point-object-mother';
 import { of } from 'rxjs';
 import { expect } from '@jest/globals';
+import { QueryRef } from 'apollo-angular';
 
 
 describe('TravelPointApiService', () => {
-  let getAddressesGQLSpy: jasmine.Spy;
-  let getNearestAddressesGQLSpy: jasmine.Spy;
-  let getNearestStationsGQLSpy: jasmine.Spy;
+  let getAddressesGQLSpy: jest.SpyInstance;
+  let getNearestAddressesGQLSpy: jest.SpyInstance;
+  let getNearestStationsGQLSpy: jest.SpyInstance;
+
   let classUnderTest: TravelPointApiService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    const getAddressesGQL: GetAddressesGQL = TestBed.inject(GetAddressesGQL);
-    classUnderTest = TestBed.inject(TravelPointApiService);
-    const getNearestAddressesGQl: GetNearestAddressesGQL = TestBed.inject(GetNearestAddressesGQL);
-    classUnderTest = TestBed.inject(TravelPointApiService);
-    const getNearestStationsGQL: GetNearestStationsGQL = TestBed.inject(GetNearestStationsGQL);
+    const getAddressesGQL: GetAddressesGQL = { watch: jest.fn() } as unknown as GetAddressesGQL;
+    const getNearestAddressesGQl: GetNearestAddressesGQL = { watch: jest.fn() } as unknown as GetNearestAddressesGQL;
+    const getNearestStationsGQL: GetNearestStationsGQL = { watch: jest.fn() } as unknown as GetNearestStationsGQL;
 
-    getAddressesGQLSpy = spyOn(getAddressesGQL, 'watch').and.returnValue(
+    classUnderTest = new TravelPointApiService(getAddressesGQL, getNearestAddressesGQl, getNearestStationsGQL);
+
+    getAddressesGQLSpy = jest.spyOn(getAddressesGQL, 'watch').mockReturnValue(
       {
         valueChanges: of({
           data: {
@@ -44,10 +49,10 @@ describe('TravelPointApiService', () => {
             ]
           }
         })
-      }
+      } as QueryRef<GetAddressesQuery, GetAddressesQueryVariables>
     );
 
-    getNearestAddressesGQLSpy = spyOn(getNearestAddressesGQl, 'watch').and.returnValue(
+    getNearestAddressesGQLSpy = jest.spyOn(getNearestAddressesGQl, 'watch').mockReturnValue(
       {
         valueChanges: of({
           data: {
@@ -60,10 +65,10 @@ describe('TravelPointApiService', () => {
             ]
           }
         })
-      }
+      } as QueryRef<GetNearestAddressesQuery, GetNearestAddressesQueryVariables>
     );
 
-    getNearestStationsGQLSpy = spyOn(getNearestStationsGQL, 'watch').and.returnValue(
+    getNearestStationsGQLSpy = jest.spyOn(getNearestStationsGQL, 'watch').mockReturnValue(
       {
         valueChanges: of({
           data: {
@@ -76,7 +81,7 @@ describe('TravelPointApiService', () => {
             ]
           }
         })
-      }
+      } as QueryRef<GetNearestStationsQuery, GetNearestStationsQueryVariables>
     );
   });
 

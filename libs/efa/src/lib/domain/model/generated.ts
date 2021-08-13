@@ -210,103 +210,25 @@ export enum WalkingDirection {
 }
 
 
-export type JourneyFragment = (
-  { __typename?: 'Journey' }
-  & Pick<Journey, 'id'>
-  & { legs?: Maybe<Array<Maybe<(
-    { __typename?: 'Leg' }
-    & LegFragment
-  )>>>, prices?: Maybe<Array<Maybe<(
-    { __typename?: 'Price' }
-    & PriceFragment
-  )>>> }
-);
+export type JourneyFragment = { __typename?: 'Journey', id?: Maybe<string>, legs?: Maybe<Array<Maybe<{ __typename?: 'Leg', delayInMinutes?: Maybe<number>, distanceInKilometers?: Maybe<number>, vehicleType?: Maybe<VehicleType>, vehicleNumber?: Maybe<string>, vehicleName?: Maybe<string>, departure?: Maybe<{ __typename?: 'TravelPoint', name?: Maybe<string>, arrivalTime?: Maybe<Date>, departureTime?: Maybe<Date>, platform?: Maybe<string>, point?: Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }> }>, arrival?: Maybe<{ __typename?: 'TravelPoint', name?: Maybe<string>, arrivalTime?: Maybe<Date>, departureTime?: Maybe<Date>, platform?: Maybe<string>, point?: Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }> }>, waypoints?: Maybe<Array<Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }>>>, travelProvider?: Maybe<{ __typename?: 'TravelProvider', name?: Maybe<string>, url?: Maybe<string> }>, intermediateStops?: Maybe<Array<Maybe<{ __typename?: 'TravelPoint', name?: Maybe<string>, arrivalTime?: Maybe<Date>, departureTime?: Maybe<Date>, platform?: Maybe<string>, point?: Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }> }>>>, walkSteps?: Maybe<Array<Maybe<{ __typename?: 'WalkStep', streetName?: Maybe<string>, distanceInKilometers?: Maybe<number>, walkingDirection?: Maybe<WalkingDirection>, compassDirection?: Maybe<CompassDirection>, isStreetNameGenerated?: Maybe<boolean>, isOriginPoint?: Maybe<boolean>, isDestinationPoint?: Maybe<boolean>, circleExit?: Maybe<string>, startPoint?: Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }>, endPoint?: Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }> }>>> }>>>, prices?: Maybe<Array<Maybe<{ __typename?: 'Price', priceType?: Maybe<PriceType>, currencyCode?: Maybe<string>, smallestCurrencyValue?: Maybe<number> }>>> };
 
-export type LegFragment = (
-  { __typename?: 'Leg' }
-  & Pick<Leg, 'delayInMinutes' | 'distanceInKilometers' | 'vehicleType' | 'vehicleNumber' | 'vehicleName'>
-  & { departure?: Maybe<(
-    { __typename?: 'TravelPoint' }
-    & TravelPointFragment
-  )>, arrival?: Maybe<(
-    { __typename?: 'TravelPoint' }
-    & TravelPointFragment
-  )>, waypoints?: Maybe<Array<Maybe<(
-    { __typename?: 'Point' }
-    & PointFragment
-  )>>>, travelProvider?: Maybe<(
-    { __typename?: 'TravelProvider' }
-    & TravelProviderFragment
-  )>, intermediateStops?: Maybe<Array<Maybe<(
-    { __typename?: 'TravelPoint' }
-    & TravelPointFragment
-  )>>>, walkSteps?: Maybe<Array<Maybe<(
-    { __typename?: 'WalkStep' }
-    & WalkStepFragment
-  )>>> }
-);
+export type LegFragment = { __typename?: 'Leg', delayInMinutes?: Maybe<number>, distanceInKilometers?: Maybe<number>, vehicleType?: Maybe<VehicleType>, vehicleNumber?: Maybe<string>, vehicleName?: Maybe<string>, departure?: Maybe<{ __typename?: 'TravelPoint', name?: Maybe<string>, arrivalTime?: Maybe<Date>, departureTime?: Maybe<Date>, platform?: Maybe<string>, point?: Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }> }>, arrival?: Maybe<{ __typename?: 'TravelPoint', name?: Maybe<string>, arrivalTime?: Maybe<Date>, departureTime?: Maybe<Date>, platform?: Maybe<string>, point?: Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }> }>, waypoints?: Maybe<Array<Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }>>>, travelProvider?: Maybe<{ __typename?: 'TravelProvider', name?: Maybe<string>, url?: Maybe<string> }>, intermediateStops?: Maybe<Array<Maybe<{ __typename?: 'TravelPoint', name?: Maybe<string>, arrivalTime?: Maybe<Date>, departureTime?: Maybe<Date>, platform?: Maybe<string>, point?: Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }> }>>>, walkSteps?: Maybe<Array<Maybe<{ __typename?: 'WalkStep', streetName?: Maybe<string>, distanceInKilometers?: Maybe<number>, walkingDirection?: Maybe<WalkingDirection>, compassDirection?: Maybe<CompassDirection>, isStreetNameGenerated?: Maybe<boolean>, isOriginPoint?: Maybe<boolean>, isDestinationPoint?: Maybe<boolean>, circleExit?: Maybe<string>, startPoint?: Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }>, endPoint?: Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }> }>>> };
 
-export type PriceFragment = (
-  { __typename?: 'Price' }
-  & Pick<Price, 'priceType' | 'currencyCode' | 'smallestCurrencyValue'>
-);
+export type PriceFragment = { __typename?: 'Price', priceType?: Maybe<PriceType>, currencyCode?: Maybe<string>, smallestCurrencyValue?: Maybe<number> };
 
-export type TravelPointFragment = (
-  { __typename?: 'TravelPoint' }
-  & Pick<TravelPoint, 'name' | 'arrivalTime' | 'departureTime' | 'platform'>
-  & { point?: Maybe<(
-    { __typename?: 'Point' }
-    & PointFragment
-  )> }
-);
+export type TravelPointFragment = { __typename?: 'TravelPoint', name?: Maybe<string>, arrivalTime?: Maybe<Date>, departureTime?: Maybe<Date>, platform?: Maybe<string>, point?: Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }> };
 
-export type TravelProviderFragment = (
-  { __typename?: 'TravelProvider' }
-  & Pick<TravelProvider, 'name' | 'url'>
-);
+export type TravelProviderFragment = { __typename?: 'TravelProvider', name?: Maybe<string>, url?: Maybe<string> };
 
-export type WalkStepFragment = (
-  { __typename?: 'WalkStep' }
-  & Pick<WalkStep, 'streetName' | 'distanceInKilometers' | 'walkingDirection' | 'compassDirection' | 'isStreetNameGenerated' | 'isOriginPoint' | 'isDestinationPoint' | 'circleExit'>
-  & { startPoint?: Maybe<(
-    { __typename?: 'Point' }
-    & PointFragment
-  )>, endPoint?: Maybe<(
-    { __typename?: 'Point' }
-    & PointFragment
-  )> }
-);
+export type WalkStepFragment = { __typename?: 'WalkStep', streetName?: Maybe<string>, distanceInKilometers?: Maybe<number>, walkingDirection?: Maybe<WalkingDirection>, compassDirection?: Maybe<CompassDirection>, isStreetNameGenerated?: Maybe<boolean>, isOriginPoint?: Maybe<boolean>, isDestinationPoint?: Maybe<boolean>, circleExit?: Maybe<string>, startPoint?: Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }>, endPoint?: Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }> };
 
-export type AutocompleteAddressFragment = (
-  { __typename?: 'TravelPoint' }
-  & Pick<TravelPoint, 'name'>
-  & { point?: Maybe<(
-    { __typename?: 'Point' }
-    & PointFragment
-  )> }
-);
+export type AutocompleteAddressFragment = { __typename?: 'TravelPoint', name?: Maybe<string>, point?: Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }> };
 
-export type NearestTravelPointFragment = (
-  { __typename?: 'TravelPoint' }
-  & Pick<TravelPoint, 'name' | 'distanceInKilometers'>
-  & { point?: Maybe<(
-    { __typename?: 'Point' }
-    & PointFragment
-  )> }
-);
+export type NearestTravelPointFragment = { __typename?: 'TravelPoint', name?: Maybe<string>, distanceInKilometers?: Maybe<number>, point?: Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }> };
 
-export type PolygonFragment = (
-  { __typename?: 'Polygon' }
-  & { points?: Maybe<Array<Maybe<(
-    { __typename?: 'Point' }
-    & PointFragment
-  )>>> }
-);
+export type PolygonFragment = { __typename?: 'Polygon', points?: Maybe<Array<Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }>>> };
 
-export type PointFragment = (
-  { __typename?: 'Point' }
-  & Pick<Point, 'x' | 'y'>
-);
+export type PointFragment = { __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> };
 
 export type GetAllJourneysQueryVariables = Exact<{
   departureLatitude: Scalars['Float'];
@@ -318,13 +240,7 @@ export type GetAllJourneysQueryVariables = Exact<{
 }>;
 
 
-export type GetAllJourneysQuery = (
-  { __typename?: 'Query' }
-  & { getJourneysBy?: Maybe<Array<Maybe<(
-    { __typename?: 'Journey' }
-    & JourneyFragment
-  )>>> }
-);
+export type GetAllJourneysQuery = { __typename?: 'Query', getJourneysBy?: Maybe<Array<Maybe<{ __typename?: 'Journey', id?: Maybe<string>, legs?: Maybe<Array<Maybe<{ __typename?: 'Leg', delayInMinutes?: Maybe<number>, distanceInKilometers?: Maybe<number>, vehicleType?: Maybe<VehicleType>, vehicleNumber?: Maybe<string>, vehicleName?: Maybe<string>, departure?: Maybe<{ __typename?: 'TravelPoint', name?: Maybe<string>, arrivalTime?: Maybe<Date>, departureTime?: Maybe<Date>, platform?: Maybe<string>, point?: Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }> }>, arrival?: Maybe<{ __typename?: 'TravelPoint', name?: Maybe<string>, arrivalTime?: Maybe<Date>, departureTime?: Maybe<Date>, platform?: Maybe<string>, point?: Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }> }>, waypoints?: Maybe<Array<Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }>>>, travelProvider?: Maybe<{ __typename?: 'TravelProvider', name?: Maybe<string>, url?: Maybe<string> }>, intermediateStops?: Maybe<Array<Maybe<{ __typename?: 'TravelPoint', name?: Maybe<string>, arrivalTime?: Maybe<Date>, departureTime?: Maybe<Date>, platform?: Maybe<string>, point?: Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }> }>>>, walkSteps?: Maybe<Array<Maybe<{ __typename?: 'WalkStep', streetName?: Maybe<string>, distanceInKilometers?: Maybe<number>, walkingDirection?: Maybe<WalkingDirection>, compassDirection?: Maybe<CompassDirection>, isStreetNameGenerated?: Maybe<boolean>, isOriginPoint?: Maybe<boolean>, isDestinationPoint?: Maybe<boolean>, circleExit?: Maybe<string>, startPoint?: Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }>, endPoint?: Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }> }>>> }>>>, prices?: Maybe<Array<Maybe<{ __typename?: 'Price', priceType?: Maybe<PriceType>, currencyCode?: Maybe<string>, smallestCurrencyValue?: Maybe<number> }>>> }>>> };
 
 export type GetJourneysSubscriptionVariables = Exact<{
   departureLatitude: Scalars['Float'];
@@ -336,13 +252,7 @@ export type GetJourneysSubscriptionVariables = Exact<{
 }>;
 
 
-export type GetJourneysSubscription = (
-  { __typename?: 'Subscription' }
-  & { getJourneysBy?: Maybe<(
-    { __typename?: 'Journey' }
-    & JourneyFragment
-  )> }
-);
+export type GetJourneysSubscription = { __typename?: 'Subscription', getJourneysBy?: Maybe<{ __typename?: 'Journey', id?: Maybe<string>, legs?: Maybe<Array<Maybe<{ __typename?: 'Leg', delayInMinutes?: Maybe<number>, distanceInKilometers?: Maybe<number>, vehicleType?: Maybe<VehicleType>, vehicleNumber?: Maybe<string>, vehicleName?: Maybe<string>, departure?: Maybe<{ __typename?: 'TravelPoint', name?: Maybe<string>, arrivalTime?: Maybe<Date>, departureTime?: Maybe<Date>, platform?: Maybe<string>, point?: Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }> }>, arrival?: Maybe<{ __typename?: 'TravelPoint', name?: Maybe<string>, arrivalTime?: Maybe<Date>, departureTime?: Maybe<Date>, platform?: Maybe<string>, point?: Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }> }>, waypoints?: Maybe<Array<Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }>>>, travelProvider?: Maybe<{ __typename?: 'TravelProvider', name?: Maybe<string>, url?: Maybe<string> }>, intermediateStops?: Maybe<Array<Maybe<{ __typename?: 'TravelPoint', name?: Maybe<string>, arrivalTime?: Maybe<Date>, departureTime?: Maybe<Date>, platform?: Maybe<string>, point?: Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }> }>>>, walkSteps?: Maybe<Array<Maybe<{ __typename?: 'WalkStep', streetName?: Maybe<string>, distanceInKilometers?: Maybe<number>, walkingDirection?: Maybe<WalkingDirection>, compassDirection?: Maybe<CompassDirection>, isStreetNameGenerated?: Maybe<boolean>, isOriginPoint?: Maybe<boolean>, isDestinationPoint?: Maybe<boolean>, circleExit?: Maybe<string>, startPoint?: Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }>, endPoint?: Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }> }>>> }>>>, prices?: Maybe<Array<Maybe<{ __typename?: 'Price', priceType?: Maybe<PriceType>, currencyCode?: Maybe<string>, smallestCurrencyValue?: Maybe<number> }>>> }> };
 
 export type GetNearestAddressesQueryVariables = Exact<{
   longitude: Scalars['Float'];
@@ -351,13 +261,7 @@ export type GetNearestAddressesQueryVariables = Exact<{
 }>;
 
 
-export type GetNearestAddressesQuery = (
-  { __typename?: 'Query' }
-  & { getNearestAddressesBy?: Maybe<Array<Maybe<(
-    { __typename?: 'TravelPoint' }
-    & NearestTravelPointFragment
-  )>>> }
-);
+export type GetNearestAddressesQuery = { __typename?: 'Query', getNearestAddressesBy?: Maybe<Array<Maybe<{ __typename?: 'TravelPoint', name?: Maybe<string>, distanceInKilometers?: Maybe<number>, point?: Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }> }>>> };
 
 export type GetNearestStationsQueryVariables = Exact<{
   longitude: Scalars['Float'];
@@ -366,37 +270,19 @@ export type GetNearestStationsQueryVariables = Exact<{
 }>;
 
 
-export type GetNearestStationsQuery = (
-  { __typename?: 'Query' }
-  & { getNearestStationsBy?: Maybe<Array<Maybe<(
-    { __typename?: 'TravelPoint' }
-    & NearestTravelPointFragment
-  )>>> }
-);
+export type GetNearestStationsQuery = { __typename?: 'Query', getNearestStationsBy?: Maybe<Array<Maybe<{ __typename?: 'TravelPoint', name?: Maybe<string>, distanceInKilometers?: Maybe<number>, point?: Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }> }>>> };
 
 export type GetOperatingAreaQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetOperatingAreaQuery = (
-  { __typename?: 'Query' }
-  & { getOperatingArea?: Maybe<(
-    { __typename?: 'Polygon' }
-    & PolygonFragment
-  )> }
-);
+export type GetOperatingAreaQuery = { __typename?: 'Query', getOperatingArea?: Maybe<{ __typename?: 'Polygon', points?: Maybe<Array<Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }>>> }> };
 
 export type GetAddressesQueryVariables = Exact<{
   text: Scalars['String'];
 }>;
 
 
-export type GetAddressesQuery = (
-  { __typename?: 'Query' }
-  & { getAutocompleteAddressesBy?: Maybe<Array<Maybe<(
-    { __typename?: 'TravelPoint' }
-    & AutocompleteAddressFragment
-  )>>> }
-);
+export type GetAddressesQuery = { __typename?: 'Query', getAutocompleteAddressesBy?: Maybe<Array<Maybe<{ __typename?: 'TravelPoint', name?: Maybe<string>, point?: Maybe<{ __typename?: 'Point', x?: Maybe<number>, y?: Maybe<number> }> }>>> };
 
 export const PointFragmentDoc = gql`
     fragment point on Point {

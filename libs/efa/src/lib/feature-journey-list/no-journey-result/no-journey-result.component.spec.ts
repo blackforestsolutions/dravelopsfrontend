@@ -81,7 +81,7 @@ describe('NoJourneyResultComponent', () => {
   });
 
   it('should call "buyOutwardJourney" when outward journey button is clicked and "isBackwardJourney" is true', async () => {
-    const buyOutwardJourneySpy = spyOn(componentUnderTest, 'buyOutwardJourney');
+    const buyOutwardJourneySpy = jest.spyOn(componentUnderTest, 'buyOutwardJourney');
     componentUnderTest.isBackwardJourney = true;
     fixture.detectChanges();
     const outwardJourneyButton: MatButtonHarness = await loader.getHarness(MatButtonHarness.with({

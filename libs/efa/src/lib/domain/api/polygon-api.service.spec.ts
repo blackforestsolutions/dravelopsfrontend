@@ -1,28 +1,35 @@
-import { TestBed } from '@angular/core/testing';
-
 import { PolygonApiService } from './polygon-api.service';
-import { GetOperatingAreaGQL, PolygonFragment } from '../model/generated';
+import {
+  GetOperatingAreaGQL,
+  GetOperatingAreaQuery,
+  GetOperatingAreaQueryVariables,
+  PolygonFragment
+} from '../model/generated';
 import { of } from 'rxjs';
 import { getHvvOperatingArea } from '../objectmothers/polygon-object-mother';
 import { expect } from '@jest/globals';
+import { QueryRef } from 'apollo-angular';
 
 describe('PolygonApiService', () => {
-  let getOperatingAreaGQLSpy: jasmine.Spy;
+  let getOperatingAreaGQLSpy: jest.SpyInstance;
+
   let classUnderTest: PolygonApiService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    classUnderTest = TestBed.inject(PolygonApiService);
-    const getOperatingAreaGQL = TestBed.inject(GetOperatingAreaGQL);
+    const getOperatingAreaGQL: GetOperatingAreaGQL = {
+      watch: jest.fn()
+    } as unknown as GetOperatingAreaGQL;
 
-    getOperatingAreaGQLSpy = spyOn(getOperatingAreaGQL, 'watch').and.returnValue(
+    classUnderTest = new PolygonApiService(getOperatingAreaGQL);
+
+    getOperatingAreaGQLSpy = jest.spyOn(getOperatingAreaGQL, 'watch').mockReturnValue(
       {
         valueChanges: of({
           data: {
             getOperatingArea: getHvvOperatingArea()
           }
         })
-      }
+      } as QueryRef<GetOperatingAreaQuery, GetOperatingAreaQueryVariables>
     );
   });
 

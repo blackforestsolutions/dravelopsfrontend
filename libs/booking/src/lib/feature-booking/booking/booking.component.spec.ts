@@ -79,7 +79,7 @@ describe('BookingComponent', () => {
     });
 
     it('should be called "logIsRoundTrip" when change detection is triggered', waitForAsync(() => {
-      const logIsRoundTripSpy = spyOn(componentUnderTest, 'logIsRoundTrip');
+      const logIsRoundTripSpy = jest.spyOn(componentUnderTest, 'logIsRoundTrip');
 
       fixture.detectChanges();
 
@@ -89,7 +89,7 @@ describe('BookingComponent', () => {
     }));
 
     it('should be called "logOutwardJourneyId" when change detection is triggered', waitForAsync(() => {
-      const logOutwardJourneyIdSpy = spyOn(componentUnderTest, 'logOutwardJourneyId');
+      const logOutwardJourneyIdSpy = jest.spyOn(componentUnderTest, 'logOutwardJourneyId');
 
       fixture.detectChanges();
 
@@ -99,7 +99,7 @@ describe('BookingComponent', () => {
     }));
 
     it('should should be called "logBackwardJourneyId" when change detection is triggered', waitForAsync(() => {
-      const logBackwardJourneyIdSpy = spyOn(componentUnderTest, 'logBackwardJourneyId');
+      const logBackwardJourneyIdSpy = jest.spyOn(componentUnderTest, 'logBackwardJourneyId');
 
       fixture.detectChanges();
 

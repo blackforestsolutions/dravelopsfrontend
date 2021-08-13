@@ -1,47 +1,47 @@
-import { TestBed } from '@angular/core/testing';
-
 import { JourneyApiService } from './journey-api.service';
-import { GetAllJourneysGQL, GetJourneysGQL } from '../model/generated';
+import {
+  GetAllJourneysGQL,
+  GetAllJourneysQuery,
+  GetAllJourneysQueryVariables,
+  GetJourneysGQL
+} from '../model/generated';
 import { getFurtwangenToWaldkirchJourney } from '../objectmothers/journey-object-mother';
 import { ApiToken } from '../model/api-token';
 import {
   getAllJourneysQueryVariablesWithNoEmptyField,
   getOutwardJourneyApiToken
 } from '../objectmothers/api-token-object-mother';
-import { MockProvider } from 'ng-mocks';
-import { LOCALE_ID } from '@angular/core';
-import { registerLocaleData } from '@angular/common';
-import localeDe from '@angular/common/locales/de';
 import { of } from 'rxjs';
 import { expect } from '@jest/globals';
+import { QueryRef } from 'apollo-angular';
+import { registerLocaleData } from '@angular/common';
+import localeDe from '@angular/common/locales/de';
 
 describe('JourneyApiService', () => {
-  let getAllJourneysGQLSpy: jasmine.Spy;
-  let getJourneysGQLSpy: jasmine.Spy;
+  let getAllJourneysGQLSpy: jest.SpyInstance;
+  let getJourneysGQLSpy: jest.SpyInstance;
+
   let classUnderTest: JourneyApiService;
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-        MockProvider(LOCALE_ID, 'de')
-      ]
-    });
-    registerLocaleData(localeDe);
-    const getAllJourneysGQL: GetAllJourneysGQL = TestBed.inject(GetAllJourneysGQL);
-    const getJourneysGQL: GetJourneysGQL = TestBed.inject(GetJourneysGQL);
-    classUnderTest = TestBed.inject(JourneyApiService);
+  beforeEach(() => registerLocaleData(localeDe));
 
-    getAllJourneysGQLSpy = spyOn(getAllJourneysGQL, 'watch').and.returnValue(
+  beforeEach(() => {
+    const getAllJourneysGQL: GetAllJourneysGQL = { watch: jest.fn() } as unknown as GetAllJourneysGQL;
+    const getJourneysGQL: GetJourneysGQL = { subscribe: jest.fn() } as unknown as GetJourneysGQL;
+
+    classUnderTest = new JourneyApiService(getAllJourneysGQL, getJourneysGQL, 'de');
+
+    getAllJourneysGQLSpy = jest.spyOn(getAllJourneysGQL, 'watch').mockReturnValue(
       {
         valueChanges: of({
           data: {
             getJourneysBy: [getFurtwangenToWaldkirchJourney(), getFurtwangenToWaldkirchJourney()]
           }
         })
-      }
+      } as QueryRef<GetAllJourneysQuery, GetAllJourneysQueryVariables>
     );
 
-    getJourneysGQLSpy = spyOn(getJourneysGQL, 'subscribe').and.returnValue(of({
+    getJourneysGQLSpy = jest.spyOn(getJourneysGQL, 'subscribe').mockReturnValue(of({
         data: {
           getJourneysBy: getFurtwangenToWaldkirchJourney()
         }
@@ -77,7 +77,7 @@ describe('JourneyApiService', () => {
 
   it('"getAllJourneysBy" apiToken should GET a list of empty journeys when no journey is found by backend', (done) => {
     const testApiToken: ApiToken = getOutwardJourneyApiToken();
-    getAllJourneysGQLSpy.and.returnValue(
+    getAllJourneysGQLSpy.mockReturnValue(
       {
         valueChanges: of({
           data: {

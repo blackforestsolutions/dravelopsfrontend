@@ -93,7 +93,7 @@ describe('JourneySearchFormComponent', () => {
     fixture.detectChanges();
 
     travelPointApiService = TestBed.inject(TravelPointApiService);
-    spyOn(travelPointApiService, 'getAddressesBy').and.returnValue(of([{ ...getFurtwangenUniversityTravelPoint() }]));
+    jest.spyOn(travelPointApiService, 'getAddressesBy').mockReturnValue(of([{ ...getFurtwangenUniversityTravelPoint() }]));
   });
 
   it('should create', () => {
@@ -249,7 +249,7 @@ describe('JourneySearchFormComponent', () => {
   });
 
   it('should should be called "displayTravelPointName" when new option is selected in departureInput', async () => {
-    const displayTravelPointNameSpy = spyOn(componentUnderTest, 'displayTravelPointName');
+    const displayTravelPointNameSpy = jest.spyOn(componentUnderTest, 'displayTravelPointName');
     const inputElement = fixture.nativeElement.querySelector('#departureInput');
     inputElement.value = 'Ho';
     inputElement.dispatchEvent(new KeyboardEvent(
@@ -266,7 +266,7 @@ describe('JourneySearchFormComponent', () => {
   });
 
   it('should should be called "displayTravelPointName" when new option is selected in arrivalInput', async () => {
-    const displayTravelPointNameSpy = spyOn(componentUnderTest, 'displayTravelPointName');
+    const displayTravelPointNameSpy = jest.spyOn(componentUnderTest, 'displayTravelPointName');
     const inputElement = fixture.nativeElement.querySelector('#arrivalInput');
     inputElement.value = 'Ho';
     inputElement.dispatchEvent(new KeyboardEvent(
@@ -313,7 +313,7 @@ describe('JourneySearchFormComponent', () => {
   });
 
   it('should be called "getTravelPointSearchIcon" fourth when dom is updated', () => {
-    const getTravelPointSearchIconSpy = spyOn(componentUnderTest, 'getTravelPointSearchIcon');
+    const getTravelPointSearchIconSpy = jest.spyOn(componentUnderTest, 'getTravelPointSearchIcon');
 
     fixture.detectChanges();
 
@@ -343,7 +343,7 @@ describe('JourneySearchFormComponent', () => {
   });
 
   it('should be called "submitForm" when form is submitted', () => {
-    const submitFormSpy = spyOn(componentUnderTest, 'submitForm');
+    const submitFormSpy = jest.spyOn(componentUnderTest, 'submitForm');
     const submitButton = fixture.nativeElement.querySelector('button');
 
     submitButton.click();
@@ -352,7 +352,7 @@ describe('JourneySearchFormComponent', () => {
   });
 
   it('should not be called "submitApiTokenEvent" when form is invalid', () => {
-    const submitApiTokenEventSpy = spyOn(componentUnderTest.submitApiTokenEvent, 'emit');
+    const submitApiTokenEventSpy = jest.spyOn(componentUnderTest.submitApiTokenEvent, 'emit');
     const submitButton = fixture.nativeElement.querySelector('button');
 
     submitButton.click();
@@ -361,7 +361,7 @@ describe('JourneySearchFormComponent', () => {
   });
 
   it('should be passed a new value to "departureInput$" when new departureInput is triggered', () => {
-    const departureInputSpy = spyOn(componentUnderTest.departureInput$, 'next');
+    const departureInputSpy = jest.spyOn(componentUnderTest.departureInput$, 'next');
 
     const inputElement = fixture.nativeElement.querySelector('#departureInput');
     inputElement.value = 'H';
@@ -374,7 +374,7 @@ describe('JourneySearchFormComponent', () => {
   });
 
   it('should be passed a new value to "arrivalInput$" when new arrivalInput is triggered', () => {
-    const arrivalInputSpy = spyOn(componentUnderTest.arrivalInput$, 'next');
+    const arrivalInputSpy = jest.spyOn(componentUnderTest.arrivalInput$, 'next');
 
     const inputElement = fixture.nativeElement.querySelector('#arrivalInput');
     inputElement.value = 'H';

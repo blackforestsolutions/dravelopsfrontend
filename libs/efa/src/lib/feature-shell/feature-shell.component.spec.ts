@@ -72,7 +72,7 @@ describe('FeatureShellContainerComponent', () => {
   });
 
   it('should be called "handleApiTokenEvent" on "submitApiTokenEvent"', () => {
-    const handleApiTokenEventSpy = spyOn(componentUnderTest, 'handleApiTokenEvent');
+    const handleApiTokenEventSpy = jest.spyOn(componentUnderTest, 'handleApiTokenEvent');
     const journeySearchComponent: JourneySearchComponent = fixture.debugElement
       .query(By.directive(JourneySearchComponent)).componentInstance;
 

@@ -24,7 +24,7 @@ describe('WalkStepDescriptionPipe', () => {
 
   it('should be called "destinationPointPipe" when isDestinationPoint = true, isOriginPoint = true', () => {
     const testMessage = 'Ziel scharf links';
-    const destinationPointPipeSpy = spyOn(destinationPointPipe, 'transform').and.returnValue(testMessage);
+    const destinationPointPipeSpy = jest.spyOn(destinationPointPipe, 'transform').mockReturnValue(testMessage);
     const testWalkStep: WalkStep = {
       isDestinationPoint: true,
       isOriginPoint: true
@@ -40,7 +40,7 @@ describe('WalkStepDescriptionPipe', () => {
 
   it('should be called "originPointPipe" when isDestinationPoint = false, isOriginPoint = true', () => {
     const testMessage = 'Ziel nach Norden Richtung Tanneck';
-    const originPointPipeSpy = spyOn(originPointPipe, 'transform').and.returnValue(testMessage);
+    const originPointPipeSpy = jest.spyOn(originPointPipe, 'transform').mockReturnValue(testMessage);
     const testWalkStep: WalkStep = {
       isDestinationPoint: false,
       isOriginPoint: true
@@ -56,7 +56,7 @@ describe('WalkStepDescriptionPipe', () => {
 
   it('should be called "walkingDirectionPipe" when isDestinationPoint = false, isOriginPoint = false', () => {
     const testMessage = 'Weiter auf Eiderstraße';
-    const walkingDirectionPipeSpy = spyOn(walkingDirectionPipe, 'transform').and.returnValue(testMessage);
+    const walkingDirectionPipeSpy = jest.spyOn(walkingDirectionPipe, 'transform').mockReturnValue(testMessage);
     const testWalkStep: WalkStep = {
       isDestinationPoint: false,
       isOriginPoint: false

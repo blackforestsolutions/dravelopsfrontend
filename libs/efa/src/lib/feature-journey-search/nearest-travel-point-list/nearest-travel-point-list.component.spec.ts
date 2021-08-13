@@ -92,7 +92,7 @@ describe('NearestTravelPointListComponent', () => {
     });
 
     it('should return "nearestTravelPoint$" when component is initialized', (done) => {
-      spyOn(travelPointService, 'getNearestAddressesBy').and.returnValue(of([
+      jest.spyOn(travelPointService, 'getNearestAddressesBy').mockReturnValue(of([
         getFurtwangenSupermarketTravelPoint(),
         getFurtwangenKindergardenTravelPoint(),
         getFurtwangenFriedrichStreetOneTravelPoint()
@@ -110,7 +110,7 @@ describe('NearestTravelPointListComponent', () => {
     });
 
     it('should execute "travelPointApiService" correctly when component is initialized', (done) => {
-      spyOn(travelPointService, 'getNearestAddressesBy').and.returnValue(of([
+      jest.spyOn(travelPointService, 'getNearestAddressesBy').mockReturnValue(of([
         getFurtwangenSupermarketTravelPoint(),
         getFurtwangenKindergardenTravelPoint(),
         getFurtwangenFriedrichStreetOneTravelPoint()
@@ -126,7 +126,7 @@ describe('NearestTravelPointListComponent', () => {
     });
 
     it('should show three nearest-travel-point-list-items with correct params and two dividers when component is initialized', async () => {
-      spyOn(travelPointService, 'getNearestAddressesBy').and.returnValue(of([
+      jest.spyOn(travelPointService, 'getNearestAddressesBy').mockReturnValue(of([
         getFurtwangenSupermarketTravelPoint(),
         getFurtwangenKindergardenTravelPoint(),
         getFurtwangenFriedrichStreetOneTravelPoint()
@@ -144,7 +144,7 @@ describe('NearestTravelPointListComponent', () => {
     });
 
     it('should show no result text and no nearest-travel-point-list-items when no nearestTravelPoints are found', () => {
-      spyOn(travelPointService, 'getNearestAddressesBy').and.returnValue(of([]));
+      jest.spyOn(travelPointService, 'getNearestAddressesBy').mockReturnValue(of([]));
 
       componentUnderTest.ngOnInit();
 
@@ -153,12 +153,12 @@ describe('NearestTravelPointListComponent', () => {
       expect(nearestTravelPointListItems.length).toBe(0);
       const noResultTextElement = fixture.nativeElement.querySelector('.no-result');
       expect(noResultTextElement).not.toBeNull();
-      expect(noResultTextElement.innerHTML).toContain(TEST_RADIUS_IN_KILOMETERS);
+      expect(noResultTextElement.innerHTML).toContain(`${TEST_RADIUS_IN_KILOMETERS}`);
     });
 
     it('should be called "getNoResultMessage" when no nearestTravelPoints are found', () => {
-      spyOn(travelPointService, 'getNearestAddressesBy').and.returnValue(of([]));
-      const getNoResultMessageSpy = spyOn(componentUnderTest, 'getNoResultMessage');
+      jest.spyOn(travelPointService, 'getNearestAddressesBy').mockReturnValue(of([]));
+      const getNoResultMessageSpy = jest.spyOn(componentUnderTest, 'getNoResultMessage');
 
       componentUnderTest.ngOnInit();
 
@@ -167,8 +167,8 @@ describe('NearestTravelPointListComponent', () => {
     });
 
     it('should be called "handleNearestTravelPointSelectEvent" when list-option is selected', async () => {
-      const handleNearestTravelPointSpy = spyOn(componentUnderTest, 'handleNearestTravelPointSelectEvent');
-      spyOn(travelPointService, 'getNearestAddressesBy').and.returnValue(of([
+      const handleNearestTravelPointSpy = jest.spyOn(componentUnderTest, 'handleNearestTravelPointSelectEvent');
+      jest.spyOn(travelPointService, 'getNearestAddressesBy').mockReturnValue(of([
         getFurtwangenSupermarketTravelPoint()
       ]));
       componentUnderTest.ngOnInit();
@@ -236,7 +236,7 @@ describe('NearestTravelPointListComponent', () => {
     });
 
     it('should return "nearestTravelPoint$" when component is initialized', (done) => {
-      spyOn(travelPointService, 'getNearestStationsBy').and.returnValue(of([
+      jest.spyOn(travelPointService, 'getNearestStationsBy').mockReturnValue(of([
         getFurtwangenSupermarketTravelPoint(),
         getFurtwangenKindergardenTravelPoint(),
         getFurtwangenFriedrichStreetOneTravelPoint()
@@ -254,7 +254,7 @@ describe('NearestTravelPointListComponent', () => {
     });
 
     it('should execute "travelPointApiService" correctly when component is initialized', (done) => {
-      spyOn(travelPointService, 'getNearestStationsBy').and.returnValue(of([
+      jest.spyOn(travelPointService, 'getNearestStationsBy').mockReturnValue(of([
         getFurtwangenSupermarketTravelPoint(),
         getFurtwangenKindergardenTravelPoint(),
         getFurtwangenFriedrichStreetOneTravelPoint()

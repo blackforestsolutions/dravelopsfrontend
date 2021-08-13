@@ -55,8 +55,8 @@ describe('WalkStepListComponent', () => {
     expect(await matIcons[1].getName()).toBe('directions_walk');
     expect(await matIcons[3].getName()).toBe('directions_walk');
     expect(fixture.nativeElement.querySelectorAll('.distance').length).toBe(2);
-    expect(fixture.nativeElement.querySelectorAll('.distance')[0].innerHTML).toContain(getExampleWalkSteps()[0].distanceInKilometers * CONVERT_KILOMETERS_TO_METERS);
-    expect(fixture.nativeElement.querySelectorAll('.distance')[1].innerHTML).toContain(getExampleWalkSteps()[1].distanceInKilometers * CONVERT_KILOMETERS_TO_METERS);
+    expect(fixture.nativeElement.querySelectorAll('.distance')[0].innerHTML).toContain(`${getExampleWalkSteps()[0].distanceInKilometers * CONVERT_KILOMETERS_TO_METERS}`);
+    expect(fixture.nativeElement.querySelectorAll('.distance')[1].innerHTML).toContain(`${getExampleWalkSteps()[1].distanceInKilometers * CONVERT_KILOMETERS_TO_METERS}`);
   });
 
   it('should show three rows with two walkSteps when isOriginPoint is true and isDestinationPoint is false', async () => {
@@ -96,7 +96,7 @@ describe('WalkStepListComponent', () => {
   });
 
   it('should be called "emitWalkStepSelectedEvent" when distance icon is clicked', () => {
-    const emitWalkStepSelectedEventSpy = spyOn(componentUnderTest, 'emitWalkStepSelectedEvent');
+    const emitWalkStepSelectedEventSpy = jest.spyOn(componentUnderTest, 'emitWalkStepSelectedEvent');
     componentUnderTest.walkSteps = getExampleWalkSteps();
     fixture.detectChanges();
     const firstDistanceIcon = fixture.nativeElement.querySelector('.distance-icon');
@@ -108,7 +108,7 @@ describe('WalkStepListComponent', () => {
   });
 
   it('should be called "emitWalkStepSelectedEvent" when distance text is clicked', () => {
-    const emitWalkStepSelectedEventSpy = spyOn(componentUnderTest, 'emitWalkStepSelectedEvent');
+    const emitWalkStepSelectedEventSpy = jest.spyOn(componentUnderTest, 'emitWalkStepSelectedEvent');
     componentUnderTest.walkSteps = getExampleWalkSteps();
     fixture.detectChanges();
     const firstDistanceIcon = fixture.nativeElement.querySelector('.distance-icon');

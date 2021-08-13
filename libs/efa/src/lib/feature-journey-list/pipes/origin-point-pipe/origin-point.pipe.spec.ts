@@ -8,7 +8,7 @@ describe('OriginPointPipe', () => {
 
   const pipeUnderTest: OriginPointPipe = new OriginPointPipe(compassDirectionPipe);
 
-  beforeEach(() => spyOn(compassDirectionPipe, 'transform').and.returnValue('Norden'));
+  beforeEach(() => jest.spyOn(compassDirectionPipe, 'transform').mockReturnValue('Norden'));
 
   it('create an instance', () => {
     expect(pipeUnderTest).toBeTruthy();

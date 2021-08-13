@@ -140,7 +140,7 @@ describe('JourneyListItemComponent', () => {
   });
 
   it('should be called "emitJourneySelectedEvent" when select button is clicked', () => {
-    const emitJourneySelectedEventSpy = spyOn(componentUnderTest, 'emitJourneySelectedEvent');
+    const emitJourneySelectedEventSpy = jest.spyOn(componentUnderTest, 'emitJourneySelectedEvent');
     const selectButton = fixture.nativeElement.querySelector('.buying-button');
 
     selectButton.click();
@@ -158,7 +158,7 @@ describe('JourneyListItemComponent', () => {
   });
 
   it('should be called "emitJourneyExpandedEvent" when expansion panel is expand', async () => {
-    const emitJourneyExpandedEventSpy = spyOn(componentUnderTest, 'emitJourneyExpandedEvent');
+    const emitJourneyExpandedEventSpy = jest.spyOn(componentUnderTest, 'emitJourneyExpandedEvent');
     const expansionPanel: MatExpansionPanelHarness = await loader.getHarness(MatExpansionPanelHarness);
 
     await expansionPanel.expand();

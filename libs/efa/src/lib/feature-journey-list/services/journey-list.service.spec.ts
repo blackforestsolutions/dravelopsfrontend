@@ -1,14 +1,8 @@
-import { TestBed } from '@angular/core/testing';
-
 import { JourneyListService } from './journey-list.service';
-import { MockProvider } from 'ng-mocks';
 import { JourneyApiService } from '../../domain/api/journey-api.service';
 import { EMPTY, Observable, of } from 'rxjs';
 import { getFurtwangenToWaldkirchJourney } from '../../domain/objectmothers/journey-object-mother';
 import { GetAllJourneysQuery, JourneyFragment } from '../../domain/model/generated';
-import { LOCALE_ID } from '@angular/core';
-import { registerLocaleData } from '@angular/common';
-import localeDe from '@angular/common/locales/de';
 import { convertToParamMap, ParamMap } from '@angular/router';
 import {
   getApiTokenParamMapWithIsRoundTripAsTrue,
@@ -23,36 +17,33 @@ import { SortJourneyPipe } from '../pipes/sort-journey-pipe/sort-journey.pipe';
 import { FilterEqualJourneysPipe } from '../pipes/filter-equal-journey-pipe/filter-equal-journeys.pipe';
 
 describe('JourneyListService', () => {
-  let journeyApiService: JourneyApiService;
-  let getJourneysBySpy: jasmine.Spy;
-  let getAllJourneysBySpy: jasmine.Spy;
+
+  let getJourneysBySpy: jest.SpyInstance;
+  let getAllJourneysBySpy: jest.SpyInstance;
 
   let classUnderTest: JourneyListService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [
-        JourneyListService,
-        MockProvider(LOCALE_ID, 'de'),
-        FilterEqualJourneysPipe,
-        SortJourneyPipe
-      ]
-    });
+    const journeyApiService: JourneyApiService = {
+      getJourneysBy: jest.fn(),
+      getAllJourneysBy: jest.fn()
+    } as unknown as JourneyApiService;
+    const filterEqualJourneysPipe: FilterEqualJourneysPipe = new FilterEqualJourneysPipe();
+    const sortJourneysPipe: SortJourneyPipe = new SortJourneyPipe();
 
-    registerLocaleData(localeDe);
-  });
+    classUnderTest = new JourneyListService(
+      journeyApiService,
+      filterEqualJourneysPipe,
+      sortJourneysPipe
+    );
 
-  beforeEach(() => {
-    journeyApiService = TestBed.inject(JourneyApiService);
-    classUnderTest = TestBed.inject(JourneyListService);
-
-    getJourneysBySpy = spyOn(journeyApiService, 'getJourneysBy').and.returnValue(of({
+    getJourneysBySpy = jest.spyOn(journeyApiService, 'getJourneysBy').mockReturnValue(of({
       data: {
         getJourneysBy: getFurtwangenToWaldkirchJourney()
       }
     }));
 
-    getAllJourneysBySpy = spyOn(journeyApiService, 'getAllJourneysBy').and.returnValue(of({
+    getAllJourneysBySpy = jest.spyOn(journeyApiService, 'getAllJourneysBy').mockReturnValue(of({
       data: {
         getJourneysBy: [getFurtwangenToWaldkirchJourney()]
       },
@@ -117,8 +108,8 @@ describe('JourneyListService', () => {
   });
 
   it('"getJourneys" with apiToken and loading returns an empty array when no results are found in backend', () => {
-    getJourneysBySpy.and.returnValue(EMPTY);
-    getAllJourneysBySpy.and.returnValue(of({
+    getJourneysBySpy.mockReturnValue(EMPTY);
+    getAllJourneysBySpy.mockReturnValue(of({
       data: {
         getJourneysBy: []
       },
@@ -142,7 +133,8 @@ describe('JourneyListService', () => {
   it('"getOutwardJourneysBy" apiToken and loading calls "getJourneys" correctly and with correct params', (done) => {
     const testParamMap: ParamMap = convertToParamMap(getApiTokenParamMapWithIsRoundTripAsTrue());
     const testSetLoading: (loading: boolean) => void = loading => loading;
-    const getJourneysSpy = spyOn(classUnderTest, 'getJourneys').and.returnValue(of(getFurtwangenToWaldkirchJourney()));
+    const getJourneysSpy = jest.spyOn(classUnderTest, 'getJourneys')
+      .mockReturnValue(of(getFurtwangenToWaldkirchJourney()));
 
     const result$: Observable<JourneyFragment | JourneyFragment[]> = classUnderTest.getOutwardJourneysBy(testParamMap, testSetLoading);
 
@@ -158,7 +150,8 @@ describe('JourneyListService', () => {
   it('"getBackwardJourneysBy" apiToken and loading call "getJourneys" correctly and with correct params', (done) => {
     const testParamMap: ParamMap = convertToParamMap(getApiTokenParamMapWithIsRoundTripAsTrue());
     const testSetLoading: (loading: boolean) => void = loading => loading;
-    const getJourneysSpy = spyOn(classUnderTest, 'getJourneys').and.returnValue(of(getFurtwangenToWaldkirchJourney()));
+    const getJourneysSpy = jest.spyOn(classUnderTest, 'getJourneys')
+      .mockReturnValue(of(getFurtwangenToWaldkirchJourney()));
 
     const result$: Observable<JourneyFragment | JourneyFragment[]> = classUnderTest.getBackwardJourneysBy(testParamMap, testSetLoading);
 
@@ -175,7 +168,8 @@ describe('JourneyListService', () => {
     const testParamMap: ParamMap = convertToParamMap(getApiTokenParamMapWithIsRoundTripAsTrue());
     const testSetLoading: (loading: boolean) => void = loading => loading;
     const testCurrentJourneys: JourneyFragment[] = [getFurtwangenToWaldkirchJourney()];
-    const getJourneysSpy = spyOn(classUnderTest, 'getJourneys').and.returnValue(of(getFurtwangenToWaldkirchJourney()));
+    const getJourneysSpy = jest.spyOn(classUnderTest, 'getJourneys')
+      .mockReturnValue(of(getFurtwangenToWaldkirchJourney()));
 
     const result$: Observable<JourneyFragment | JourneyFragment[]> = classUnderTest.getEarlierJourneysBy(
       testParamMap,
@@ -202,7 +196,7 @@ describe('JourneyListService', () => {
     const testParamMap: ParamMap = convertToParamMap(getApiTokenParamMapWithIsRoundTripAsTrue());
     const testSetLoading: (loading: boolean) => void = loading => loading;
     const testCurrentJourneys: JourneyFragment[] = [getFurtwangenToWaldkirchJourney()];
-    const getJourneysSpy = spyOn(classUnderTest, 'getJourneys').and.returnValue(of(getFurtwangenToWaldkirchJourney()));
+    const getJourneysSpy = jest.spyOn(classUnderTest, 'getJourneys').mockReturnValue(of(getFurtwangenToWaldkirchJourney()));
 
     const result$: Observable<JourneyFragment | JourneyFragment[]> = classUnderTest.getLaterJourneysBy(
       testParamMap,

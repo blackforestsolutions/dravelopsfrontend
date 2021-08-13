@@ -190,7 +190,7 @@ describe('JourneyListBackwardComponent', () => {
   });
 
   it('should return "journeys$" when component is initialized', () => {
-    spyOn(journeyListService, 'getBackwardJourneysBy').and.returnValue(of(
+    jest.spyOn(journeyListService, 'getBackwardJourneysBy').mockReturnValue(of(
       [getFurtwangenToWaldkirchJourney()],
       getFurtwangenToWaldkirchJourney()
     ));
@@ -210,8 +210,8 @@ describe('JourneyListBackwardComponent', () => {
 
   it('should be called "getBackwardJourneysBy" from journeyListService with right params', (done) => {
     let counter = 0;
-    const journeyListServiceSpy = spyOn(journeyListService, 'getBackwardJourneysBy')
-      .and.returnValue(of([getFurtwangenToWaldkirchJourney()]));
+    const journeyListServiceSpy = jest.spyOn(journeyListService, 'getBackwardJourneysBy')
+      .mockReturnValue(of([getFurtwangenToWaldkirchJourney()]));
 
     componentUnderTest.journeys$.subscribe({
       next: () => {
@@ -259,7 +259,7 @@ describe('JourneyListBackwardComponent', () => {
   });
 
   it('should call "passJourneySelectedEvent" with right param when journeySelectedEvent is emitted', () => {
-    const passJourneySelectedEventSpy = spyOn(componentUnderTest, 'passJourneySelectedEvent');
+    const passJourneySelectedEventSpy = jest.spyOn(componentUnderTest, 'passJourneySelectedEvent');
     componentUnderTest.journeys$.next([getFurtwangenToWaldkirchJourney()]);
     fixture.detectChanges();
     const journeyListItem: JourneyListItemComponent = fixture.debugElement.query(By.directive(JourneyListItemComponent)).componentInstance;
@@ -271,7 +271,7 @@ describe('JourneyListBackwardComponent', () => {
   });
 
   it('should be called "setExpandedJourney" when "journeyExpandedEvent" is emitted', () => {
-    const setExpandedJourneySpy = spyOn(componentUnderTest, 'setExpandedJourney');
+    const setExpandedJourneySpy = jest.spyOn(componentUnderTest, 'setExpandedJourney');
     componentUnderTest.journeys$.next([getFurtwangenToWaldkirchJourney()]);
     fixture.detectChanges();
     const journeyListItem: JourneyListItemComponent = fixture.debugElement
