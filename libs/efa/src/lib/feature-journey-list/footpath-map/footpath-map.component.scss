@@ -1,0 +1,12 @@
+@import "libs/shared/src/assets/styles/breakpoints";
+
+.map {
+  height: 20em;
+  width: 100%;
+}
+
+@media (min-width: $bp-tablet) {
+  .map {
+    height: 25em;
+  }
+}

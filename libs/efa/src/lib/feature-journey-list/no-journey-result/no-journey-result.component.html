@@ -1,0 +1,11 @@
+<div class='container'>
+  <h1 class='no-result-message'>Es wurde keine {{ noResultMessage }} gefunden.</h1>
+  <div class='button-container'>
+    <button dravelopssharedfrontendScrollTop mat-raised-button color='primary' [hiddenOnStartPage]='false' class='new-search'>
+      Neue Suche
+    </button>
+    <button *ngIf='isBackwardJourney' (click)='buyOutwardJourney()' mat-raised-button color='primary' class='outward-journey'>
+      Hinfahrt kaufen
+    </button>
+  </div>
+</div>

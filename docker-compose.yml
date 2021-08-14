@@ -1,35 +1,18 @@
 version: "3.7"
 services:
-  frontendshell:
-    image: blackforestsolutions/dravelopsfrontendshell:latest
+  frontend:
+    image: blackforestsolutions/dravelopsfrontend:latest
     build:
       context: .
-      dockerfile: frontend.shell.Dockerfile
-    ports:
-      - 8096:4000
-  efafrontend:
-    image: blackforestsolutions/dravelopsefafrontend:latest
-    build:
-      context: .
-      dockerfile: frontend.efa.Dockerfile
+      dockerfile: Dockerfile
     ports:
       - 8094:80
-  bookingfrontend:
-    image: blackforestsolutions/dravelopsbookingfrontend:latest
+  hvv:
+    image: blackforestsolutions/dravelopsfrontend:${VERSION_TAG}-hvv
     build:
       context: .
-      dockerfile: frontend.booking.Dockerfile
+      dockerfile: Dockerfile
     ports:
-      - 8095:80
-  versionedfrontendshell:
-    extends:
-      service: frontendshell
-    image: blackforestsolutions/dravelopsfrontendshell:${VERSION_TAG}
-  versionedefafrontend:
-    extends:
-      service: efafrontend
-    image: blackforestsolutions/dravelopsefafrontend:${VERSION_TAG}
-  versionendbookingfrontend:
-    extends:
-      service: bookingfrontend
-    image: blackforestsolutions/dravelopsbookingfrontend:${VERSION_TAG}
+      - 8094:80
+    environment:
+      - CUSTOMER=hvv

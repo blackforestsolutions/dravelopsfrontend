@@ -1,0 +1,28 @@
+@media (min-width: 850px) {
+  .layer {
+    position: absolute;
+    background-color: var(--primary-color-with-opacity);
+    right: 0;
+    width: 45rem;
+    height: 100%;
+  }
+
+  .container {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 35rem;
+    background-color: var(--background-color);
+  }
+}
+
+@media (min-width: 1100px) {
+  .layer {
+    width: 55rem;
+  }
+
+  .container {
+    max-width: 45rem;
+  }
+}
