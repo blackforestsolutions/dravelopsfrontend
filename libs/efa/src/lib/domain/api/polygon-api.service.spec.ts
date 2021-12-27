@@ -47,7 +47,6 @@ describe('PolygonApiService', () => {
   it('should be called "getOperatingAreaGQL" correctly and with right params', (done) => {
     classUnderTest.getOperatingArea().subscribe(() => {
       expect(getOperatingAreaGQLSpy).toHaveBeenCalledTimes(1);
-      expect(getOperatingAreaGQLSpy).toHaveBeenCalledWith();
       done();
     });
   });
