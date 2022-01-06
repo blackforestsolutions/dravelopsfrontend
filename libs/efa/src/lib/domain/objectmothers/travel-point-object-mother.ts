@@ -241,3 +241,18 @@ export const getFurtwangenFriedrichStreetThreeTravelPoint = (): TravelPoint => {
     distanceInKilometers: 0.230
   };
 };
+
+/**
+ * NEVER USE IN PRODUCTIVE CODE!
+ * ONLY FOR TESTING!
+ */
+export const getFurtwangenFriedrichStreetFourTravelPoint = (): TravelPoint => {
+  return {
+    name: 'Friedrichstraße 4, Furtwangen im Schwarwald, Baden-Württemberg, Deutschland',
+    point: {
+      x: 8.207591,
+      y: 48.051395
+    },
+    distanceInKilometers: 0.235
+  };
+};
