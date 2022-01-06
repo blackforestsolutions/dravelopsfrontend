@@ -1,12 +1,12 @@
 import { Directive, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
-import { TABLET_BREAKPOINT } from '../../../index';
+import { TOUCH_BREAKPOINT } from '../../../index';
 import { map } from 'rxjs/operators';
 
 @Directive({
-  selector: '[dravelopssharedfrontendIfTabletView]'
+  selector: '[dravelopssharedfrontendIfTouchView]'
 })
-export class IfTabletViewDirective implements OnInit {
+export class IfTouchViewDirective implements OnInit {
 
   constructor(
     private readonly templateRef: TemplateRef<unknown>,
@@ -16,17 +16,16 @@ export class IfTabletViewDirective implements OnInit {
   }
 
   ngOnInit(): void {
-    this.breakpointObserver.observe(`(min-width: ${TABLET_BREAKPOINT}px)`)
+    this.breakpointObserver.observe(`(min-width: ${TOUCH_BREAKPOINT}px)`)
       .pipe(map((breakPointState: BreakpointState) => breakPointState.matches))
-      .subscribe((isTabletView: boolean) => this.displayHost(isTabletView));
+      .subscribe((isTouchView: boolean) => this.displayHost(isTouchView));
   }
 
-  private displayHost(isTabletView: boolean): void {
-    if (isTabletView) {
+  private displayHost(isTouchView: boolean): void {
+    if (isTouchView) {
       this.viewContainerRef.createEmbeddedView(this.templateRef);
     } else {
       this.viewContainerRef.clear();
     }
   }
-
 }
