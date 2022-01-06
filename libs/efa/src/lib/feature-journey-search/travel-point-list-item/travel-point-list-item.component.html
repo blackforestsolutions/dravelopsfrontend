@@ -1,0 +1,7 @@
+<div class='flex-container'>
+  <mat-icon *dravelopssharedfrontendIfTouchView class='right-space'>place</mat-icon>
+  <div data-cy='travel-point-list-item'>
+    <span id='travel-point-name'>{{ travelPoint.name }}</span>
+    <span *ngIf='travelPointSearchType === "map"' id='distance-in-metres'>&nbsp;({{ travelPoint | distanceInMetres }})</span>
+  </div>
+</div>
