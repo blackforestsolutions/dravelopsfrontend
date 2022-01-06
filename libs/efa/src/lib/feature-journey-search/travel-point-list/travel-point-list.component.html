@@ -1,0 +1,17 @@
+<mat-selection-list
+  [multiple]='false'
+  (selectionChange)='handleTravelPointSelectEvent($event.options[0].value)'
+  data-cy='nearest-travel-point-list'>
+  <mat-list-option
+    *ngFor='let travelPoint of travelPoints | travelPointTouchFilter; index as index; last as isLast'
+    [value]='travelPoint'>
+    <dravelopsefafrontend-travel-point-list-item
+      [travelPoint]='travelPoint'
+      [travelPointSearchType]='travelPointSearchType'>
+    </dravelopsefafrontend-travel-point-list-item>
+    <mat-divider *ngIf='!isLast'></mat-divider>
+  </mat-list-option>
+  <mat-list-option *ngIf='!travelPoints.length && !isLoading' disabled disableRipple class='no-result-message' data-cy='no-travel-point-result'>
+    {{ noResultMessage }}
+  </mat-list-option>
+</mat-selection-list>

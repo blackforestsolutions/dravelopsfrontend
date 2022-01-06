@@ -256,3 +256,12 @@ export const getFurtwangenFriedrichStreetFourTravelPoint = (): TravelPoint => {
     distanceInKilometers: 0.235
   };
 };
+
+export const getNearestTravelPoints = (): TravelPoint[] => [
+  getFurtwangenSupermarketTravelPoint(),
+  getFurtwangenKindergardenTravelPoint(),
+  getFurtwangenFriedrichStreetOneTravelPoint(),
+  getFurtwangenFriedrichStreetTwoTravelPoint(),
+  getFurtwangenFriedrichStreetThreeTravelPoint(),
+  getFurtwangenFriedrichStreetFourTravelPoint(),
+];
