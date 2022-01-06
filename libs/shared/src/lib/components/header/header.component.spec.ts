@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { HeaderComponent } from './header.component';
-import { HEADER_TITLE } from '@dravelopsfrontend/shared';
+import { HEADER_TITLE } from '../../../index';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Component } from '@angular/core';
 import { Location } from '@angular/common';
