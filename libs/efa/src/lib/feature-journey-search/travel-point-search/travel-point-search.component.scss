@@ -1,0 +1,61 @@
+@use '~@angular/material/toolbar/_toolbar-variables.scss' as toolbar-variables;
+@import "libs/shared/src/assets/styles/breakpoints";
+
+$counted-toolbars: 2;
+
+/**
+  Height in child component must be changed by parent component as map height
+  depends on toolbar height in touch view. Touch view can't be changed with property bindings
+  as toolbar size is only available after view has been initialized.
+ */
+:host ::ng-deep dravelopsefafrontend-map-search .map-wrapper {
+  height: calc(100% - (#{$counted-toolbars} * #{toolbar-variables.$height-mobile})) !important;
+}
+
+.toolbar-wrapper {
+  padding: 0 3%;
+  background-color: var(--primary-color);
+}
+
+.mat-toolbar-single-row {
+  padding: 0;
+}
+
+.left-close-button {
+  visibility: hidden;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.menu-title, .material-icons {
+  font-weight: normal;
+}
+
+.menu-title {
+  font-size: 1.6rem;
+  font-weight: normal;
+}
+
+@media (min-width: $bp-handy) {
+  .material-icons {
+    font-size: 3.3rem;
+    margin-right: 1.6rem;
+  }
+
+  .menu-title {
+    font-size: 2.0rem;
+  }
+}
+
+@media (min-width: 600px) {
+  /**
+  Height in child component must be changed by parent component as map height
+  depends on toolbar height in touch view. Touch view can't be changed with property bindings
+  as toolbar size is only available after view has been initialized.
+ */
+  :host ::ng-deep dravelopsefafrontend-map-search .map-wrapper {
+    height: calc(100% - (#{$counted-toolbars} * #{toolbar-variables.$height-desktop})) !important;
+  }
+}

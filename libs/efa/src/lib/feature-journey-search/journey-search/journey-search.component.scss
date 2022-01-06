@@ -1,4 +1,6 @@
-@media (min-width: 850px) {
+@import 'libs/shared/src/assets/styles/breakpoints';
+
+@media (min-width: $bp-touch) {
   .layer {
     position: absolute;
     background-color: var(--primary-color-with-opacity);

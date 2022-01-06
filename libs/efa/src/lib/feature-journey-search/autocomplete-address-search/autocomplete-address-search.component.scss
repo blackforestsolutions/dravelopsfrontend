@@ -1,0 +1,19 @@
+.form-container {
+  width: 94%;
+  padding: 3% 3% 0 3%;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-form-field, :host ::ng-deep .mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+
+.travel-point-list-container {
+  width: calc(94% - 2.1rem);
+  padding: 0 calc(3% + 1.05rem) 3% calc(3% + 1.05rem);
+}
+
+

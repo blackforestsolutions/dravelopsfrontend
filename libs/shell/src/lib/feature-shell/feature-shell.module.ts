@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FeatureShellRoutingModule } from './feature-shell-routing.module';
 import { FeatureShellComponent } from './feature-shell.component';
-import { FeatureHeaderModule } from '../feature-header/feature-header.module';
 import { EfaModule } from '@dravelopsfrontend/efa';
+import { SharedModule } from '@dravelopsfrontend/shared';
 
 @NgModule({
   declarations: [FeatureShellComponent],
@@ -14,7 +14,7 @@ import { EfaModule } from '@dravelopsfrontend/efa';
     CommonModule,
     EfaModule,
     FeatureShellRoutingModule,
-    FeatureHeaderModule
+    SharedModule
   ]
 })
 export class FeatureShellModule {

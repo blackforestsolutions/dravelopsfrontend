@@ -7,6 +7,7 @@ import {
   HOST,
   MAX_FUTURE_DAYS_IN_CALENDAR,
   MAX_PAST_DAYS_IN_CALENDAR,
+  MAX_TRAVEL_POINTS_IN_SMALL_VIEW,
   PORT,
   RADIUS_IN_KILOMETERS,
   SHOW_JOURNEY_RESULT_MAP,
@@ -72,6 +73,10 @@ export class ShellModule {
         {
           provide: SHOW_JOURNEY_RESULT_MAP,
           useValue: environment.showJourneyResultMap
+        },
+        {
+          provide: MAX_TRAVEL_POINTS_IN_SMALL_VIEW,
+          useValue: environment.maxTravelPointsInSmallView
         }
       ]
     };

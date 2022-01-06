@@ -1,22 +1,16 @@
+@import 'libs/shared/src/assets/styles/breakpoints';
+
 .map, .map-wrapper {
   width: 100%;
-  height: 100vh;
+  height: 100%;
 }
 
-.custom-bottom-sheet {
-  width: auto;
-}
-
-@media (min-width: 850px) {
+@media (min-width: $bp-touch) {
   .map-wrapper {
     position: absolute;
     top: 0;
     left: 0;
     width: calc(100% - 45rem);
-  }
-
-  .map, .map-wrapper {
-    height: 100%;
   }
 }
 

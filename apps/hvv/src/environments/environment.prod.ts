@@ -9,5 +9,6 @@ export const environment: AppEnvironment = {
   radiusInKilometers: 5,
   maxFutureDaysInCalendar: 365,
   maxPastDaysInCalendar: 0,
-  showJourneyResultMap: true
+  showJourneyResultMap: true,
+  maxTravelPointsInSmallView: 5
 };
