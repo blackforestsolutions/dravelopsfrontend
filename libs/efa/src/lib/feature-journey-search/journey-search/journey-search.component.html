@@ -8,7 +8,7 @@
       </mat-tab>
       <mat-tab label='Kartensuche'>
         <dravelopsefafrontend-journey-search-form
-          [isMapSearch]='true'
+          travelPointSearchType='map'
           [departureTravelPoint]='selectedDeparture'
           [arrivalTravelPoint]='selectedArrival'
           (submitApiTokenEvent)='passSubmitApiTokenEvent($event)'
@@ -19,7 +19,7 @@
   </div>
 </div>
 
-<ng-container [ngSwitch]='selectedTabIndex'>
+<ng-container *ngIf='isDesktopView$ | async; else this.startPage' [ngSwitch]='selectedTabIndex'>
   <dravelopsefafrontend-startpage *ngSwitchCase='0'></dravelopsefafrontend-startpage>
   <dravelopsefafrontend-map-search
     *ngSwitchCase='1'
@@ -29,3 +29,7 @@
 
   </dravelopsefafrontend-map-search>
 </ng-container>
+
+<ng-template #startPage>
+  <dravelopsefafrontend-startpage></dravelopsefafrontend-startpage>
+</ng-template>
