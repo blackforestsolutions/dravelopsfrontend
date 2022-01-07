@@ -11,7 +11,7 @@
     </dravelopsefafrontend-travel-point-list-item>
     <mat-divider *ngIf='!isLast'></mat-divider>
   </mat-list-option>
-  <mat-list-option *ngIf='!travelPoints.length && !isLoading' disabled disableRipple class='no-result-message' data-cy='no-travel-point-result'>
+  <mat-list-option *ngIf='!travelPoints.length' disabled disableRipple class='no-result-message' data-cy='no-travel-point-result'>
     {{ noResultMessage }}
   </mat-list-option>
 </mat-selection-list>

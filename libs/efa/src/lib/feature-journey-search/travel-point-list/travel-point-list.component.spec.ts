@@ -130,9 +130,8 @@ describe('TravelPointListComponent', () => {
       fixture.detectChanges();
     });
 
-    it('should show no result message when no travel points are found and isLoading is false', async () => {
+    it('should show no result message when no travel points are found', async () => {
       componentUnderTest.travelPoints = [];
-      componentUnderTest.isLoading = false;
       componentUnderTest.noResultMessage = 'Test';
 
       fixture.detectChanges();

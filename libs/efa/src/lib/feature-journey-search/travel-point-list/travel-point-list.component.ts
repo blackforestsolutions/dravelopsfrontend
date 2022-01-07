@@ -11,7 +11,6 @@ export class TravelPointListComponent {
   @Input() travelPoints: AutocompleteAddressFragment[] | NearestTravelPointFragment[];
   @Input() travelPointSearchType: TravelPointSearchType;
   @Input() noResultMessage: string;
-  @Input() isLoading = false;
   @Output() travelPointSelectEvent = new EventEmitter<AutocompleteAddressFragment | NearestTravelPointFragment>();
 
   handleTravelPointSelectEvent(travelPoint: AutocompleteAddressFragment | NearestTravelPointFragment): void {
