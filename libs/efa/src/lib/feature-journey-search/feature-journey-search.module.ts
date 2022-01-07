@@ -15,9 +15,9 @@ import { TravelPointListComponent } from './travel-point-list/travel-point-list.
 import { TravelPointListItemComponent } from './travel-point-list-item/travel-point-list-item.component';
 import { DistanceInMetresPipe } from './pipes/distance-in-metres-pipe/distance-in-metres.pipe';
 import { NearestTravelPointSearchComponent } from './nearest-travel-point-search/nearest-travel-point-search.component';
-import { MapHeightDirective } from './directives/map-height/map-height.directive';
 import { TravelPointSearchTitlePipe } from './pipes/travel-point-search-title/travel-point-search-title.pipe';
-import { TravelPointHandyFilterPipe } from './pipes/travel-point-handy-filter-pipe/travel-point-handy-filter-.pipe';
+import { TravelPointTouchFilterPipe } from './pipes/travel-point-touch-filter-pipe/travel-point-touch-filter-.pipe';
+import { TravelPointSearchNoResultMessagePipe } from './pipes/travel-point-search-no-result-message-pipe/travel-point-search-no-result-message.pipe';
 
 @NgModule({
   declarations: [
@@ -33,9 +33,9 @@ import { TravelPointHandyFilterPipe } from './pipes/travel-point-handy-filter-pi
     TravelPointListItemComponent,
     DistanceInMetresPipe,
     NearestTravelPointSearchComponent,
-    MapHeightDirective,
     TravelPointSearchTitlePipe,
-    TravelPointHandyFilterPipe,
+    TravelPointTouchFilterPipe,
+    TravelPointSearchNoResultMessagePipe,
   ],
   imports: [
     CommonModule,

@@ -3,6 +3,7 @@ import { LegFragment } from '../../domain/model/generated';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { TABLET_BREAKPOINT } from '@dravelopsfrontend/shared';
 
 @Component({
   selector: 'dravelopsefafrontend-leg-list-item',
@@ -22,7 +23,7 @@ export class LegListItemComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isTabletView$ = this.breakpointObserver.observe('(min-width: 720px)').pipe(
+    this.isTabletView$ = this.breakpointObserver.observe(`(min-width: ${TABLET_BREAKPOINT}px)`).pipe(
       map((breakPointState: BreakpointState) => breakPointState.matches)
     );
   }

@@ -6,6 +6,8 @@ export * from './lib/components/fab-button/fab-button.component';
 export * from './lib/components/loading/loading.component';
 export * from './lib/components/theme-emitter/theme-emitter.component';
 export * from './lib/directives/scroll-top/scroll-top.directive';
+export * from './lib/directives/autofocus/autofocus.directive';
+export * from './lib/components/header/header.component';
 
 export const MIN_WGS_84_LONGITUDE = -180;
 export const MAX_WGS_84_LONGITUDE = 180;

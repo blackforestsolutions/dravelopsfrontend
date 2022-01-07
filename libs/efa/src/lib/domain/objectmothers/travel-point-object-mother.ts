@@ -263,5 +263,13 @@ export const getNearestTravelPoints = (): TravelPoint[] => [
   getFurtwangenFriedrichStreetOneTravelPoint(),
   getFurtwangenFriedrichStreetTwoTravelPoint(),
   getFurtwangenFriedrichStreetThreeTravelPoint(),
-  getFurtwangenFriedrichStreetFourTravelPoint(),
+  getFurtwangenFriedrichStreetFourTravelPoint()
+];
+
+export const getAutocompleteTravelPoints = (): TravelPoint[] => [
+  getFurtwangenUniversityTravelPoint(),
+  getFurtwangenUniversityTravelPoint(),
+  getFurtwangenUniversityTravelPoint(),
+  getFurtwangenUniversityTravelPoint(),
+  getFurtwangenUniversityTravelPoint()
 ];
