@@ -2,18 +2,18 @@
   <div class='container'>
     <mat-tab-group [(selectedIndex)]='selectedTabIndex' mat-stretch-tabs backgroundColor='primary' animationDuration='0ms'>
       <mat-tab label='Verbindungssuche'>
-        <dravelopsefafrontend-journey-search-form (submitApiTokenEvent)='passSubmitApiTokenEvent($event)'>
+        <dravelopsefafrontend-journey-search-form-container (submitApiTokenEvent)='passSubmitApiTokenEvent($event)'>
 
-        </dravelopsefafrontend-journey-search-form>
+        </dravelopsefafrontend-journey-search-form-container>
       </mat-tab>
       <mat-tab label='Kartensuche'>
-        <dravelopsefafrontend-journey-search-form
+        <dravelopsefafrontend-journey-search-form-container
           travelPointSearchType='map'
           [departureTravelPoint]='selectedDeparture'
           [arrivalTravelPoint]='selectedArrival'
           (submitApiTokenEvent)='passSubmitApiTokenEvent($event)'
         >
-        </dravelopsefafrontend-journey-search-form>
+        </dravelopsefafrontend-journey-search-form-container>
       </mat-tab>
     </mat-tab-group>
   </div>

@@ -4,7 +4,7 @@ import { JourneySearchComponent } from './journey-search.component';
 import { MockComponent } from 'ng-mocks';
 import { StartpageComponent } from '../startpage/startpage.component';
 import { MapSearchComponent } from '../map-search/map-search.component';
-import { JourneySearchFormComponent } from '../journey-search-form/journey-search-form.component';
+import { JourneySearchFormContainerComponent } from '../journey-search-form-container/journey-search-form-container.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NearestTravelPointFragment } from '../../domain/model/generated';
 import { getFurtwangenKindergardenTravelPoint } from '../../domain/objectmothers/travel-point-object-mother';
@@ -48,7 +48,7 @@ describe('JourneySearchComponent', () => {
         JourneySearchComponent,
         MockComponent(StartpageComponent),
         MockComponent(MapSearchComponent),
-        MockComponent(JourneySearchFormComponent)
+        MockComponent(JourneySearchFormContainerComponent)
       ],
       imports: [
         MatTabsModule,
@@ -142,7 +142,7 @@ describe('JourneySearchComponent', () => {
     expect(startPageComponent).not.toBeNull();
   });
 
-  it('should update "departureTravelPoint" from JourneySearchFormComponent when MapSearchComponent triggers departureSelectEvent', async () => {
+  it('should update "departureTravelPoint" from JourneySearchFormContainerComponent when MapSearchComponent triggers departureSelectEvent', async () => {
     jest.spyOn(breakpointObserver, 'observe').mockReturnValue(of(testDesktopView));
     componentUnderTest.ngOnInit();
     const selectedTestValue: NearestTravelPointFragment = getFurtwangenKindergardenTravelPoint();
@@ -153,11 +153,11 @@ describe('JourneySearchComponent', () => {
     mapSearchComponent.departureSelectEvent.emit(selectedTestValue);
 
     fixture.detectChanges();
-    const journeySearchFormComponent: JourneySearchFormComponent = fixture.debugElement.query(By.directive(JourneySearchFormComponent)).componentInstance;
-    expect(journeySearchFormComponent.departureTravelPoint).toEqual(selectedTestValue);
+    const journeySearchFormContainerComponent: JourneySearchFormContainerComponent = fixture.debugElement.query(By.directive(JourneySearchFormContainerComponent)).componentInstance;
+    expect(journeySearchFormContainerComponent.departureTravelPoint).toEqual(selectedTestValue);
   });
 
-  it('should update "arrivalTravelPoint" from JourneySearchFormComponent when MapSearchComponent triggers arrivalSelectEvent', async () => {
+  it('should update "arrivalTravelPoint" from JourneySearchFormContainerComponent when MapSearchComponent triggers arrivalSelectEvent', async () => {
     jest.spyOn(breakpointObserver, 'observe').mockReturnValue(of(testDesktopView));
     componentUnderTest.ngOnInit();
     const selectedTestValue: NearestTravelPointFragment = getFurtwangenKindergardenTravelPoint();
@@ -168,7 +168,7 @@ describe('JourneySearchComponent', () => {
     mapSearchComponent.arrivalSelectEvent.emit(selectedTestValue);
 
     fixture.detectChanges();
-    const journeySearchFormComponent: JourneySearchFormComponent = fixture.debugElement.query(By.directive(JourneySearchFormComponent)).componentInstance;
-    expect(journeySearchFormComponent.arrivalTravelPoint).toEqual(selectedTestValue);
+    const journeySearchFormContainerComponent: JourneySearchFormContainerComponent = fixture.debugElement.query(By.directive(JourneySearchFormContainerComponent)).componentInstance;
+    expect(journeySearchFormContainerComponent.arrivalTravelPoint).toEqual(selectedTestValue);
   });
 });
