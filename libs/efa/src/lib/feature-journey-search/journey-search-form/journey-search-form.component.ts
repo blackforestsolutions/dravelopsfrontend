@@ -1,41 +1,32 @@
 import { Component, EventEmitter, Inject, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
-import { ApiToken, Point, TravelTime } from '../../domain/model/api-token';
+import { ApiToken } from '../../domain/model/api-token';
 import { CustomErrorStateMatcher } from '../validators/custom-error-state-matcher';
 import { Observable, Subject } from 'rxjs';
 import { AutocompleteAddressFragment, NearestTravelPointFragment } from '../../domain/model/generated';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {
-  MAX_FUTURE_DAYS_IN_CALENDAR,
-  MAX_PAST_DAYS_IN_CALENDAR,
-  RADIUS_IN_KILOMETERS
-} from '@dravelopsfrontend/shared';
+import { RADIUS_IN_KILOMETERS } from '@dravelopsfrontend/shared';
 import { TravelPointApiService } from '../../domain/api/travel-point-api.service';
 import { TravelPointValidators } from '../validators/travel-point-validators';
 import { DateTimeValidators } from '../validators/date-time-validators';
-import { debounceTime, distinctUntilChanged, filter, switchMap, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
-
-type TravelTimeFormValue = {
-  date: Date,
-  time: Date,
-  isArrivalDateTime: boolean
-};
+import { LocationType, TravelPointSearchType } from '../travel-point-search/travel-point-search.component';
+import { JourneySearchFormService } from '../services/journey-search-form.service';
 
 @Component({
   selector: 'dravelopsefafrontend-journey-search-form',
   templateUrl: './journey-search-form.component.html',
-  styleUrls: ['./journey-search-form.component.scss']
+  styleUrls: ['./journey-search-form.component.scss'],
+  providers: [JourneySearchFormService]
 })
 export class JourneySearchFormComponent implements OnChanges, OnInit, OnDestroy {
-
-  @Input() isMapSearch: boolean;
+  @Input() travelPointSearchType: TravelPointSearchType = 'autocomplete';
   @Input() departureTravelPoint: NearestTravelPointFragment;
   @Input() arrivalTravelPoint: NearestTravelPointFragment;
   @Output() readonly submitApiTokenEvent = new EventEmitter<ApiToken>();
+  @Output() readonly openTravelPointSearchEvent = new EventEmitter<LocationType>();
 
   readonly customErrorStateMatcher = new CustomErrorStateMatcher();
-  readonly departureInput$ = new Subject<string>();
-  readonly arrivalInput$ = new Subject<string>();
   departureTravelPoints$: Observable<AutocompleteAddressFragment[]>;
   arrivalTravelPoints$: Observable<AutocompleteAddressFragment[]>;
   apiTokenForm: FormGroup;
@@ -44,11 +35,10 @@ export class JourneySearchFormComponent implements OnChanges, OnInit, OnDestroy 
 
   constructor(
     @Inject(RADIUS_IN_KILOMETERS) private readonly radiusInKilometers: number,
-    @Inject(MAX_FUTURE_DAYS_IN_CALENDAR) private readonly maxFutureDaysInCalendar: number,
-    @Inject(MAX_PAST_DAYS_IN_CALENDAR) private readonly maxPastDaysInCalendar: number,
+    public readonly journeySearchFormService: JourneySearchFormService,
+    private readonly travelPointApiService: TravelPointApiService,
     private readonly fb: FormBuilder,
-    private readonly route: ActivatedRoute,
-    private readonly travelPointApiService: TravelPointApiService
+    private readonly route: ActivatedRoute
   ) {
   }
 
@@ -62,8 +52,12 @@ export class JourneySearchFormComponent implements OnChanges, OnInit, OnDestroy 
   }
 
   ngOnInit(): void {
-    this.initDepartureTravelPoints();
-    this.initArrivalTravelPoints();
+    this.departureTravelPoints$ = this.journeySearchFormService.searchDepartureTravelPoints();
+    // working with mock data
+    // this.departureTravelPoints$ = of([{...getFurtwangenUniversityTravelPoint()}, {...getFurtwangenUniversityTravelPoint()}]);
+    this.arrivalTravelPoints$ = this.journeySearchFormService.searchArrivalTravelPoints();
+    // working with mock data
+    // this.arrivalTravelPoints$ = of([{...getFurtwangenUniversityTravelPoint()}, {...getFurtwangenUniversityTravelPoint()}]);
     this.initForm();
     this.initFormOnPageReload();
   }
@@ -72,49 +66,8 @@ export class JourneySearchFormComponent implements OnChanges, OnInit, OnDestroy 
     this.destroy$.next();
   }
 
-  private initDepartureTravelPoints(): void {
-    this.departureTravelPoints$ = this.departureInput$
-      .pipe(
-        takeUntil(this.destroy$),
-        filter(term => term.length >= 1),
-        debounceTime(50),
-        distinctUntilChanged(),
-        switchMap((searchTerm: string) => this.travelPointApiService.getAddressesBy(searchTerm))
-      );
-    // working with mock data
-    // this.departureTravelPoints$ = of([{...getFurtwangenUniversityTravelPoint()}, {...getFurtwangenUniversityTravelPoint()}]);
-  }
-
-  private initArrivalTravelPoints(): void {
-    this.arrivalTravelPoints$ = this.arrivalInput$
-      .pipe(
-        takeUntil(this.destroy$),
-        filter(term => term.length >= 1),
-        debounceTime(50),
-        distinctUntilChanged(),
-        switchMap((searchTerm: string) => this.travelPointApiService.getAddressesBy(searchTerm))
-      );
-    // working with mock data
-    // this.arrivalTravelPoints$ = of([{...getFurtwangenUniversityTravelPoint()}, {...getFurtwangenUniversityTravelPoint()}]);
-  }
-
-  initMinDate(): Date {
-    const today = new Date();
-    today.setDate(today.getDate() - this.maxPastDaysInCalendar);
-    return today;
-  }
-
-  initMaxDate(): Date {
-    const today = new Date();
-    today.setDate(today.getDate() + this.maxFutureDaysInCalendar);
-    return today;
-  }
-
-  displayTravelPointName(travelPoint: AutocompleteAddressFragment): string {
-    if (travelPoint && travelPoint.name) {
-      return travelPoint.name;
-    }
-    return '';
+  openTravelPointSearch(locationType: LocationType): void {
+    this.openTravelPointSearchEvent.emit(locationType);
   }
 
   private initForm(): void {
@@ -235,13 +188,6 @@ export class JourneySearchFormComponent implements OnChanges, OnInit, OnDestroy 
     return false;
   }
 
-  getTravelPointSearchIcon(): string {
-    if (this.isMapSearch) {
-      return 'map';
-    }
-    return 'location_on';
-  }
-
   submitForm(): void {
     this.apiTokenForm.get('backwardJourney').get('date').updateValueAndValidity();
     this.apiTokenForm.get('backwardJourney').get('time').updateValueAndValidity();
@@ -249,62 +195,7 @@ export class JourneySearchFormComponent implements OnChanges, OnInit, OnDestroy 
       return;
     }
 
-    const newApiToken: ApiToken = this.convertFormToApiToken();
+    const newApiToken: ApiToken = this.journeySearchFormService.convertFormToApiToken(this.apiTokenForm);
     this.submitApiTokenEvent.emit(newApiToken);
   }
-
-  private convertFormToApiToken(): ApiToken {
-    const formValue = this.apiTokenForm.value;
-    const isRoundTrip: boolean = formValue.isRoundTrip;
-    const departureLatitude: number = formValue.departureTravelPoint.point.y;
-    const departureLongitude: number = formValue.departureTravelPoint.point.x;
-    const departureCoordinate: Point = this.buildPointWith(departureLongitude, departureLatitude);
-    const arrivalLatitude: number = formValue.arrivalTravelPoint.point.y;
-    const arrivalLongitude: number = formValue.arrivalTravelPoint.point.x;
-    const arrivalCoordinate: Point = this.buildPointWith(arrivalLongitude, arrivalLatitude);
-    const outwardJourney: TravelTime = this.extractTravelTimeFrom(formValue.outwardJourney);
-
-    if (isRoundTrip) {
-      const backwardJourney: TravelTime = this.extractTravelTimeFrom(formValue.backwardJourney);
-      return {
-        isRoundTrip,
-        departureCoordinate,
-        arrivalCoordinate,
-        outwardJourney,
-        backwardJourney
-      };
-    }
-    return {
-      isRoundTrip,
-      departureCoordinate,
-      arrivalCoordinate,
-      outwardJourney
-    };
-  }
-
-  private extractTravelTimeFrom(travelTimeFormValue: TravelTimeFormValue): TravelTime {
-    const dateTime: Date = this.mergeToDateTime(travelTimeFormValue.date, travelTimeFormValue.time);
-    const isArrivalDateTime: boolean = travelTimeFormValue.isArrivalDateTime;
-
-    return {
-      dateTime,
-      isArrivalDateTime
-    };
-  }
-
-  private mergeToDateTime(date: Date, time: Date): Date {
-    const dateTime: Date = new Date(date);
-    dateTime.setHours(time.getHours());
-    dateTime.setMinutes(time.getMinutes());
-    dateTime.setSeconds(time.getSeconds());
-    return dateTime;
-  }
-
-  private buildPointWith(longitude: number, latitude: number): Point {
-    return {
-      longitude,
-      latitude
-    };
-  }
-
 }

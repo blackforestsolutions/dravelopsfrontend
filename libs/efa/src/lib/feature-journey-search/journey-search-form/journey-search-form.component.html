@@ -4,14 +4,21 @@
     <mat-radio-button data-cy='round-trip-radio-button' [value]='true'>Hin- und Rückfahrt</mat-radio-button>
   </mat-radio-group>
 
-  <mat-form-field appearance='outline' class='start'>
+  <mat-form-field appearance='outline' class='start' (click)='openTravelPointSearch("departure")'>
     <mat-label>Start</mat-label>
-    <input type='text' matInput [matAutocomplete]='departureAutocomplete' id='departureInput' data-cy='departure-input'
-           (keyup)='departureInput$.next($event.target.value)' formControlName='departureTravelPoint'
-           [errorStateMatcher]='customErrorStateMatcher'>
-    <mat-icon matSuffix>{{ getTravelPointSearchIcon() }}</mat-icon>
+    <input
+      type='text'
+      matInput
+      [matAutocomplete]='departureAutocomplete'
+      id='departureInput'
+      data-cy='departure-input'
+      (keyup)='journeySearchFormService.departureInput$.next($event.target.value)'
+      formControlName='departureTravelPoint'
+      [errorStateMatcher]='customErrorStateMatcher'
+    >
+    <mat-icon matSuffix>{{ journeySearchFormService.getTravelPointSearchIcon(travelPointSearchType) }}</mat-icon>
     <mat-error data-cy='departure-input-error'>Bitte wähle einen Ort aus</mat-error>
-    <mat-autocomplete #departureAutocomplete [displayWith]='displayTravelPointName'>
+    <mat-autocomplete #departureAutocomplete [displayWith]='journeySearchFormService.displayTravelPointName'>
       <mat-option *ngFor='let travelPoint of departureTravelPoints$ | async; index as departureTravelPointIndex'
                   [value]='travelPoint' [attr.data-cy]="'departure-input-option-' + departureTravelPointIndex">
         {{ travelPoint.name }}
@@ -19,14 +26,20 @@
     </mat-autocomplete>
   </mat-form-field>
 
-  <mat-form-field appearance='outline' class='destination'>
+  <mat-form-field appearance='outline' class='destination' (click)='openTravelPointSearch("arrival")'>
     <mat-label>Ziel</mat-label>
-    <input type='text' matInput [matAutocomplete]='arrivalAutocomplete' id='arrivalInput' data-cy='arrival-input'
-           (keyup)='arrivalInput$.next($event.target.value)' formControlName='arrivalTravelPoint'
-           [errorStateMatcher]='customErrorStateMatcher'>
-    <mat-icon matSuffix>{{ getTravelPointSearchIcon() }}</mat-icon>
+    <input type='text'
+           matInput
+           [matAutocomplete]='arrivalAutocomplete'
+           id='arrivalInput'
+           data-cy='arrival-input'
+           (keyup)='journeySearchFormService.arrivalInput$.next($event.target.value)'
+           formControlName='arrivalTravelPoint'
+           [errorStateMatcher]='customErrorStateMatcher'
+    >
+    <mat-icon matSuffix>{{ journeySearchFormService.getTravelPointSearchIcon(travelPointSearchType) }}</mat-icon>
     <mat-error data-cy='arrival-input-error'>Bitte wähle einen Ort aus</mat-error>
-    <mat-autocomplete #arrivalAutocomplete [displayWith]='displayTravelPointName'>
+    <mat-autocomplete #arrivalAutocomplete [displayWith]='journeySearchFormService.displayTravelPointName'>
       <mat-option *ngFor='let travelPoint of arrivalTravelPoints$ | async; index as arrivalTravelPointIndex'
                   [value]='travelPoint' [attr.data-cy]="'arrival-input-option-' + arrivalTravelPointIndex">
         {{ travelPoint.name }}
@@ -38,9 +51,16 @@
     <mat-form-field appearance='outline' class='outward-date' (click)='this.outwardJourneyDatePicker.open()'
                     data-cy='outward-date'>
       <mat-label>Datum (Hin.)</mat-label>
-      <input matInput [min]='initMinDate()' [max]='initMaxDate()' [matDatepicker]='this.outwardJourneyDatePicker'
-             formControlName='date' [errorStateMatcher]='customErrorStateMatcher' id='outwardJourneyDate'
-             data-cy='outward-journey-date'>
+      <input
+        matInput
+        [min]='journeySearchFormService.initMinDate()'
+        [max]='journeySearchFormService.initMaxDate()'
+        [matDatepicker]='this.outwardJourneyDatePicker'
+        formControlName='date'
+        [errorStateMatcher]='customErrorStateMatcher'
+        id='outwardJourneyDate'
+        data-cy='outward-journey-date'
+      >
       <mat-icon matSuffix>calendar_today</mat-icon>
       <mat-error data-cy='outward-journey-date-error'>Bitte wähle ein Datum aus</mat-error>
       <mat-datepicker touchUi #outwardJourneyDatePicker></mat-datepicker>
@@ -65,8 +85,16 @@
                     data-cy='backward-date'>
       <mat-label>Datum (Rück.)</mat-label>
       <mat-icon matSuffix>calendar_today</mat-icon>
-      <input matInput [min]='initMinDate()' [max]='initMaxDate()' [matDatepicker]='this.backwardJourneyDatePicker'
-             formControlName='date' [errorStateMatcher]='customErrorStateMatcher' id='backwardJourneyDate' data-cy='backward-journey-date'>
+      <input
+        matInput
+        [min]='journeySearchFormService.initMinDate()'
+        [max]='journeySearchFormService.initMaxDate()'
+        [matDatepicker]='this.backwardJourneyDatePicker'
+        formControlName='date'
+        [errorStateMatcher]='customErrorStateMatcher'
+        id='backwardJourneyDate'
+        data-cy='backward-journey-date'
+      >
       <mat-error *ngIf='this.apiTokenForm.get("backwardJourney").get("date").hasError("required")'
                  data-cy='backward-journey-date-error'>
         Bitte wähle ein Datum aus
