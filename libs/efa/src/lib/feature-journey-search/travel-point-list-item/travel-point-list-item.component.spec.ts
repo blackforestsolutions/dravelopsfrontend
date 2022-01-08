@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TravelPointListItemComponent } from './travel-point-list-item.component';
 import { MockDirective, MockPipe } from 'ng-mocks';
-import { IfTouchViewDirective } from '../../../../../shared/src/lib/directives/if-touch-view/if-touch-view.directive';
+import { IfTouchViewDirective } from '@dravelopsfrontend/shared';
 import { MatIconModule } from '@angular/material/icon';
 import {
   getFurtwangenSupermarketTravelPoint,

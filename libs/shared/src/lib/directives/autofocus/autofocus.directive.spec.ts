@@ -12,7 +12,6 @@ class TestComponent {
 }
 
 describe('AutofocusDirective', () => {
-  let testComponent: TestComponent;
   let testFixture: ComponentFixture<TestComponent>;
 
   let directiveUnderTest: AutofocusDirective;
@@ -28,7 +27,6 @@ describe('AutofocusDirective', () => {
 
   beforeEach(() => {
     testFixture = TestBed.createComponent(TestComponent);
-    testComponent = testFixture.componentInstance;
     directiveUnderTest = testFixture.debugElement.query(By.directive(AutofocusDirective)).componentInstance;
     testFixture.detectChanges();
   });

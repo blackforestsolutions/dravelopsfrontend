@@ -8,6 +8,7 @@ export * from './lib/components/theme-emitter/theme-emitter.component';
 export * from './lib/directives/scroll-top/scroll-top.directive';
 export * from './lib/directives/autofocus/autofocus.directive';
 export * from './lib/components/header/header.component';
+export * from './lib/directives/if-touch-view/if-touch-view.directive';
 
 export const MIN_WGS_84_LONGITUDE = -180;
 export const MAX_WGS_84_LONGITUDE = 180;

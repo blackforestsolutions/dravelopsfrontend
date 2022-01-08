@@ -49,7 +49,6 @@ const MAX_PAST_DAYS_IN_CALENDAR_TEST_VALUE = 7305;
 describe('JourneySearchFormComponent', () => {
   let componentUnderTest: JourneySearchFormComponent;
   let travelPointApiService: TravelPointApiService;
-  let journeySearchFormService: JourneySearchFormService;
   let fixture: ComponentFixture<JourneySearchFormComponent>;
   let loader: HarnessLoader;
 
@@ -92,7 +91,6 @@ describe('JourneySearchFormComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(JourneySearchFormComponent);
-    journeySearchFormService = TestBed.inject(JourneySearchFormService);
     travelPointApiService = TestBed.inject(TravelPointApiService);
     componentUnderTest = fixture.componentInstance;
     loader = TestbedHarnessEnvironment.loader(fixture);
