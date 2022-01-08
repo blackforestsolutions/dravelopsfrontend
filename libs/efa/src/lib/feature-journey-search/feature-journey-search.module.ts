@@ -18,6 +18,7 @@ import { NearestTravelPointSearchComponent } from './nearest-travel-point-search
 import { TravelPointSearchTitlePipe } from './pipes/travel-point-search-title/travel-point-search-title.pipe';
 import { TravelPointTouchFilterPipe } from './pipes/travel-point-touch-filter-pipe/travel-point-touch-filter-.pipe';
 import { TravelPointSearchNoResultMessagePipe } from './pipes/travel-point-search-no-result-message-pipe/travel-point-search-no-result-message.pipe';
+import { JourneySearchFormContainerComponent } from './journey-search-form-container/journey-search-form-container.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { TravelPointSearchNoResultMessagePipe } from './pipes/travel-point-searc
     TravelPointSearchTitlePipe,
     TravelPointTouchFilterPipe,
     TravelPointSearchNoResultMessagePipe,
+    JourneySearchFormContainerComponent,
   ],
   imports: [
     CommonModule,
