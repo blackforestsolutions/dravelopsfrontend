@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FeatureShellComponent } from './feature-shell.component';
 import { MockComponent } from 'ng-mocks';
-import { HeaderComponent } from '../feature-header/header/header.component';
+import { HeaderComponent } from '@dravelopsfrontend/shared';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Title } from '@angular/platform-browser';
 import { HEADER_TITLE } from '@dravelopsfrontend/shared';

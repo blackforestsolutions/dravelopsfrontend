@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "start": "ng serve --port 8094",
     "update:model": "graphql-codegen --config libs/efa/src/lib/domain/model/codegen.yml",
     "all:test": "nx run-many --target=test --all",
     "all:lint": "nx run-many --target=lint --all --max-warnings=0",

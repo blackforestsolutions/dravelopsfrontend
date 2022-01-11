@@ -3,11 +3,11 @@ import { latLng, LatLng, Map, Marker } from 'leaflet';
 import { PolygonApiService } from '../../domain/api/polygon-api.service';
 import { Observable, Subject } from 'rxjs';
 import { NearestTravelPointFragment, PointFragment, PolygonFragment } from '../../domain/model/generated';
-import { MatBottomSheet, MatBottomSheetRef } from '@angular/material/bottom-sheet';
-import { NearestTravelPointListComponent } from '../nearest-travel-point-list/nearest-travel-point-list.component';
+import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { takeUntil } from 'rxjs/operators';
 import { ActivatedRoute } from '@angular/router';
 import { LeafletService } from '../../domain/util/leaflet.service';
+import { NearestTravelPointSearchComponent } from '../nearest-travel-point-search/nearest-travel-point-search.component';
 
 const ICON_WIDTH = 45;
 const ICON_HEIGHT = 73.8;
@@ -111,12 +111,13 @@ export class MapSearchComponent implements OnInit, OnDestroy {
   }
 
   private openBottomSheet(latLng: LatLng): void {
-    const matBottomSheetRef: MatBottomSheetRef = this.matBottomSheet.open(NearestTravelPointListComponent, {
-      panelClass: '.custom-bottom-sheet',
-      closeOnNavigation: true,
-      data: latLng
-    });
-    matBottomSheetRef.afterDismissed()
+    this.matBottomSheet
+      .open<NearestTravelPointSearchComponent, LatLng>(NearestTravelPointSearchComponent, {
+        closeOnNavigation: true,
+        data: latLng,
+        panelClass: 'nearest-travel-point-search-desktop'
+      })
+      .afterDismissed()
       .pipe(takeUntil(this.destroy$))
       .subscribe((nearestTravelPoint: NearestTravelPointFragment) => this.handleBottomSheetCloseEvent(nearestTravelPoint));
   }

@@ -1,0 +1,20 @@
+<form class='form-container'>
+  <mat-form-field appearance='outline'>
+    <mat-label>{{ inputLabel }}</mat-label>
+    <input type='text'
+           matInput
+           autocomplete='off'
+           dravelopssharedfrontendAutofocus
+           (keyup)='input$.next($event.target.value)'
+    >
+  </mat-form-field>
+</form>
+<div class='travel-point-list-container' *ngIf='autocompleteTravelPoints$ | async as autocompleteTravelPoints'>
+  <dravelopsefafrontend-travel-point-list
+    [travelPoints]='autocompleteTravelPoints'
+    travelPointSearchType='autocomplete'
+    noResultMessage='Keine Adresse gefunden.'
+    (travelPointSelectEvent)='handleTravelPointSelectEvent($event)'
+  >
+  </dravelopsefafrontend-travel-point-list>
+</div>

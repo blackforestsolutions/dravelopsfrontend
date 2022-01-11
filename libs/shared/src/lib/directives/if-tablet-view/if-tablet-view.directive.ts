@@ -1,8 +1,7 @@
 import { Directive, OnInit, TemplateRef, ViewContainerRef } from '@angular/core';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
+import { TABLET_BREAKPOINT } from '../../../index';
 import { map } from 'rxjs/operators';
-
-const MIN_VIEW_FOR_TABLET = '720px';
 
 @Directive({
   selector: '[dravelopssharedfrontendIfTabletView]'
@@ -17,7 +16,7 @@ export class IfTabletViewDirective implements OnInit {
   }
 
   ngOnInit(): void {
-    this.breakpointObserver.observe(`(min-width: ${MIN_VIEW_FOR_TABLET})`)
+    this.breakpointObserver.observe(`(min-width: ${TABLET_BREAKPOINT}px)`)
       .pipe(map((breakPointState: BreakpointState) => breakPointState.matches))
       .subscribe((isTabletView: boolean) => this.displayHost(isTabletView));
   }

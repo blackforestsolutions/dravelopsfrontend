@@ -1,4 +1,4 @@
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { JourneySearchFormComponent } from './journey-search-form.component';
 import { TravelPointApiService } from '../../domain/api/travel-point-api.service';
@@ -12,7 +12,6 @@ import {
   RADIUS_IN_KILOMETERS
 } from '@dravelopsfrontend/shared';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
-import { of } from 'rxjs';
 import {
   getFurtwangenKindergardenTravelPoint,
   getFurtwangenUniversityTravelPoint
@@ -23,7 +22,6 @@ import {
   getApiTokenWithIsRoundTripAsFalse,
   getApiTokenWithIsRoundTripAsTrue
 } from '../../domain/objectmothers/api-token-object-mother';
-import { AutocompleteAddressFragment } from '../../domain/model/generated';
 import { MatAutocompleteHarness } from '@angular/material/autocomplete/testing';
 import { MatFormFieldHarness } from '@angular/material/form-field/testing';
 import { MatRadioButtonHarness, MatRadioGroupHarness } from '@angular/material/radio/testing';
@@ -40,6 +38,10 @@ import { MatTimepickerModule } from 'mat-timepicker';
 import { MatButtonModule } from '@angular/material/button';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
+import { JourneySearchFormService } from '../services/journey-search-form.service';
+import { expect } from '@jest/globals';
+import { of } from 'rxjs';
+import { LocationType } from '../travel-point-search/travel-point-search.component';
 
 const MAX_FUTURE_DAYS_IN_CALENDAR_TEST_VALUE = 365;
 const MAX_PAST_DAYS_IN_CALENDAR_TEST_VALUE = 7305;
@@ -69,6 +71,7 @@ describe('JourneySearchFormComponent', () => {
       ],
       providers: [
         MockProvider(TravelPointApiService),
+        JourneySearchFormService,
         {
           provide: MAX_FUTURE_DAYS_IN_CALENDAR,
           useValue: MAX_FUTURE_DAYS_IN_CALENDAR_TEST_VALUE
@@ -88,12 +91,10 @@ describe('JourneySearchFormComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(JourneySearchFormComponent);
+    travelPointApiService = TestBed.inject(TravelPointApiService);
     componentUnderTest = fixture.componentInstance;
     loader = TestbedHarnessEnvironment.loader(fixture);
     fixture.detectChanges();
-
-    travelPointApiService = TestBed.inject(TravelPointApiService);
-    jest.spyOn(travelPointApiService, 'getAddressesBy').mockReturnValue(of([{ ...getFurtwangenUniversityTravelPoint() }]));
   });
 
   it('should create', () => {
@@ -158,129 +159,36 @@ describe('JourneySearchFormComponent', () => {
     expect(componentUnderTest.apiTokenForm.get('arrivalTravelPoint').value).toBeNull();
   });
 
-  it('should return "departureTravelPoints$" when next search term for "departureInput$" is emitted', (done) => {
-    const testSearchTerm = 'Berlin';
+  it('should be called "openTravelPointSearch" when departure form field is clicked', () => {
+    const openTravelPointSearchSpy = jest.spyOn(componentUnderTest, 'openTravelPointSearch');
 
-    componentUnderTest.departureTravelPoints$.subscribe(travelPoints => {
-      expect(travelPoints.length).toBe(1);
-      expect(travelPoints[0]).toEqual(getFurtwangenUniversityTravelPoint());
-      done();
+    const departureFormField = fixture.nativeElement.querySelector('.start');
+    departureFormField.click();
+
+    expect(openTravelPointSearchSpy).toHaveBeenCalledTimes(1);
+    expect(openTravelPointSearchSpy).toHaveBeenCalledWith('departure');
+  });
+
+  it('should be called "openTravelPointSearch" when arrival form field is clicked', () => {
+    const openTravelPointSearchSpy = jest.spyOn(componentUnderTest, 'openTravelPointSearch');
+
+    const departureFormField = fixture.nativeElement.querySelector('.destination');
+    departureFormField.click();
+
+    expect(openTravelPointSearchSpy).toHaveBeenCalledTimes(1);
+    expect(openTravelPointSearchSpy).toHaveBeenCalledWith('arrival');
+  });
+
+  it('should emit "openTravelPointSearchEvent" when "openTravelPointSearch" is called', () => {
+    const testLocationType: LocationType = 'departure';
+    let expectedLocationType: LocationType;
+    componentUnderTest.openTravelPointSearchEvent.subscribe((locationType: LocationType) => {
+      expectedLocationType = locationType;
     });
 
-    componentUnderTest.departureInput$.next(testSearchTerm);
-  });
+    componentUnderTest.openTravelPointSearch(testLocationType);
 
-  it('should return "arrivalTravelPoints$" when next search term for "arrivalInput$" is emitted', (done) => {
-    const testSearchTerm = 'Berlin';
-
-    componentUnderTest.arrivalTravelPoints$.subscribe(travelPoints => {
-      expect(travelPoints.length).toBe(1);
-      expect(travelPoints[0]).toEqual(getFurtwangenUniversityTravelPoint());
-      done();
-    });
-
-    componentUnderTest.arrivalInput$.next(testSearchTerm);
-  });
-
-  it('should execute "travelPointApiService" correctly when next search term for "departureInput$" is emitted', fakeAsync(() => {
-    const testSearchTerm = 'Berlin';
-
-    componentUnderTest.departureInput$.next(testSearchTerm);
-    tick(50);
-
-    expect(travelPointApiService.getAddressesBy).toHaveBeenCalledTimes(1);
-    expect(travelPointApiService.getAddressesBy).toHaveBeenCalledWith(expect.stringContaining(testSearchTerm));
-  }));
-
-  it('should execute "travelPointApiService" correctly when next search term for "arrivalInput$" is emitted', fakeAsync(() => {
-    const testSearchTerm = 'Berlin';
-
-    componentUnderTest.arrivalInput$.next(testSearchTerm);
-    tick(50);
-
-    expect(travelPointApiService.getAddressesBy).toHaveBeenCalledTimes(1);
-    expect(travelPointApiService.getAddressesBy).toHaveBeenCalledWith(expect.stringContaining(testSearchTerm));
-  }));
-
-  it('"initMinDate" should return current date', () => {
-    const expectedDate: Date = new Date();
-    expectedDate.setDate(expectedDate.getDate() - MAX_PAST_DAYS_IN_CALENDAR_TEST_VALUE);
-
-    const result: Date = componentUnderTest.initMinDate();
-
-    expect(result.toDateString()).toEqual(expectedDate.toDateString());
-  });
-
-  it('"initMaxDate" should return current date plus one year', () => {
-    const expectedDate = new Date();
-    expectedDate.setDate(expectedDate.getDate() + MAX_FUTURE_DAYS_IN_CALENDAR_TEST_VALUE);
-
-    const result: Date = componentUnderTest.initMaxDate();
-
-    expect(result.getFullYear()).toEqual(expectedDate.getFullYear());
-    expect(result.getDate()).toEqual(expectedDate.getDate());
-    expect(result.getMonth()).toEqual(expectedDate.getMonth());
-  });
-
-  it('should return name of travelPoint object', () => {
-
-    const result: string = componentUnderTest.displayTravelPointName(getFurtwangenUniversityTravelPoint());
-
-    expect(result).toEqual(getFurtwangenUniversityTravelPoint().name);
-  });
-
-  it('should return empty string when travelPointName is null', () => {
-    const testTravelPoint: AutocompleteAddressFragment = {
-      ...getFurtwangenUniversityTravelPoint(),
-      name: null
-    };
-
-    const result: string = componentUnderTest.displayTravelPointName(testTravelPoint);
-
-    expect(result).toEqual('');
-  });
-
-  it('should return empty string when travelPoint is null', () => {
-    const testTravelPoint: AutocompleteAddressFragment = null;
-
-    const result: string = componentUnderTest.displayTravelPointName(testTravelPoint);
-
-    expect(result).toEqual('');
-  });
-
-  it('should should be called "displayTravelPointName" when new option is selected in departureInput', async () => {
-    const displayTravelPointNameSpy = jest.spyOn(componentUnderTest, 'displayTravelPointName');
-    const inputElement = fixture.nativeElement.querySelector('#departureInput');
-    inputElement.value = 'Ho';
-    inputElement.dispatchEvent(new KeyboardEvent(
-      'keyup', { bubbles: true, cancelable: true, shiftKey: false }
-    ));
-
-    const matAutocomplete = await loader.getHarness<MatAutocompleteHarness>(MatAutocompleteHarness);
-    await matAutocomplete.selectOption({
-      text: 'Hochschule Furtwangen'
-    });
-
-    expect(displayTravelPointNameSpy).toHaveBeenCalledTimes(1);
-    expect(displayTravelPointNameSpy).toHaveBeenCalledWith(getFurtwangenUniversityTravelPoint());
-  });
-
-  it('should should be called "displayTravelPointName" when new option is selected in arrivalInput', async () => {
-    const displayTravelPointNameSpy = jest.spyOn(componentUnderTest, 'displayTravelPointName');
-    const inputElement = fixture.nativeElement.querySelector('#arrivalInput');
-    inputElement.value = 'Ho';
-    inputElement.dispatchEvent(new KeyboardEvent(
-      'keyup', { bubbles: true, cancelable: true, shiftKey: false }
-    ));
-
-    const matAutocomplete = await loader.getAllHarnesses<MatAutocompleteHarness>(MatAutocompleteHarness)
-      .then(autocompletes => autocompletes[1]);
-    await matAutocomplete.selectOption({
-      text: 'Hochschule Furtwangen'
-    });
-
-    expect(displayTravelPointNameSpy).toHaveBeenCalledTimes(1);
-    expect(displayTravelPointNameSpy).toHaveBeenCalledWith(getFurtwangenUniversityTravelPoint());
+    expect(expectedLocationType).toBe(testLocationType);
   });
 
   it('should be shown backwardJourneyFormGroup when "isRoundTrip" is true', async () => {
@@ -294,30 +202,6 @@ describe('JourneySearchFormComponent', () => {
     expect(backwardJourneyDate).not.toBeNull();
     expect(backwardJourneyTime).not.toBeNull();
     expect(backwardJourneyIsArrivalTime).not.toBeNull();
-  });
-
-  it('should be returned map icon when "isMapSearch" = true', () => {
-    componentUnderTest.isMapSearch = true;
-
-    const result: string = componentUnderTest.getTravelPointSearchIcon();
-
-    expect(result).toBe('map');
-  });
-
-  it('should be returned location icon when "isMapSearch" = false', () => {
-    componentUnderTest.isMapSearch = false;
-
-    const result: string = componentUnderTest.getTravelPointSearchIcon();
-
-    expect(result).toBe('location_on');
-  });
-
-  it('should be called "getTravelPointSearchIcon" fourth when dom is updated', () => {
-    const getTravelPointSearchIconSpy = jest.spyOn(componentUnderTest, 'getTravelPointSearchIcon');
-
-    fixture.detectChanges();
-
-    expect(getTravelPointSearchIconSpy).toHaveBeenCalledTimes(4);
   });
 
   it('should return an apiToken with backwardJourney and trigger the "submitApiTokenEvent" when submitForm is called', () => {
@@ -360,32 +244,6 @@ describe('JourneySearchFormComponent', () => {
     expect(submitApiTokenEventSpy).not.toHaveBeenCalled();
   });
 
-  it('should be passed a new value to "departureInput$" when new departureInput is triggered', () => {
-    const departureInputSpy = jest.spyOn(componentUnderTest.departureInput$, 'next');
-
-    const inputElement = fixture.nativeElement.querySelector('#departureInput');
-    inputElement.value = 'H';
-    inputElement.dispatchEvent(new KeyboardEvent(
-      'keyup', { bubbles: true, cancelable: true, shiftKey: false }
-    ));
-
-    expect(departureInputSpy).toHaveBeenCalledTimes(1);
-    expect(departureInputSpy).toHaveBeenCalledWith('H');
-  });
-
-  it('should be passed a new value to "arrivalInput$" when new arrivalInput is triggered', () => {
-    const arrivalInputSpy = jest.spyOn(componentUnderTest.arrivalInput$, 'next');
-
-    const inputElement = fixture.nativeElement.querySelector('#arrivalInput');
-    inputElement.value = 'H';
-    inputElement.dispatchEvent(new KeyboardEvent(
-      'keyup', { bubbles: true, cancelable: true, shiftKey: false }
-    ));
-
-    expect(arrivalInputSpy).toHaveBeenCalledTimes(1);
-    expect(arrivalInputSpy).toHaveBeenCalledWith('H');
-  });
-
   it('should be synchronized "isRoundTrip" when new value is selected', async () => {
     const radioButtonHarnesses = await loader.getHarness<MatRadioButtonHarness>(MatRadioButtonHarness.with({
       label: 'Hin- und Rückfahrt'
@@ -397,6 +255,7 @@ describe('JourneySearchFormComponent', () => {
   });
 
   it('should be synchronized departureTravelPoint when new value is selected', async () => {
+    jest.spyOn(travelPointApiService, 'getAddressesBy').mockReturnValue(of([{ ...getFurtwangenUniversityTravelPoint() }]));
     const autocompleteHarnesses = await loader.getAllHarnesses<MatAutocompleteHarness>(MatAutocompleteHarness);
     await autocompleteHarnesses[0].enterText('B');
 
@@ -406,6 +265,7 @@ describe('JourneySearchFormComponent', () => {
   });
 
   it('should be synchronized arrivalTravelPoint when new value is selected', async () => {
+    jest.spyOn(travelPointApiService, 'getAddressesBy').mockReturnValue(of([{ ...getFurtwangenUniversityTravelPoint() }]));
     const autocompleteHarnesses = await loader.getAllHarnesses<MatAutocompleteHarness>(MatAutocompleteHarness);
     await autocompleteHarnesses[1].enterText('B');
 

@@ -1,0 +1,17 @@
+@import "libs/shared/src/assets/styles/breakpoints";
+
+:host ::ng-deep .mat-list-option, :host ::ng-deep .mat-list-item-content {
+  min-height: 48px;
+  height: auto !important;
+}
+
+.no-result-message {
+  text-align: center;
+  background-color: #FFFFFF;
+}
+
+@media (max-width: $bp-touch) {
+  :host ::ng-deep .mat-list-item-content, :host ::ng-deep .mat-list-text, :host ::ng-deep .mat-selection-list {
+    padding: 0 !important;
+  }
+}

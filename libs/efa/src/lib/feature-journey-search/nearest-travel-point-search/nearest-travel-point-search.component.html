@@ -1,0 +1,11 @@
+<dravelopsefafrontend-travel-point-list
+  *ngIf='nearestTravelPoints$ | async as nearestTravelPoints; else this.loading'
+  [travelPoints]='nearestTravelPoints'
+  travelPointSearchType='map'
+  [noResultMessage]='null | travelPointSearchNoResultMessage'
+  (travelPointSelectEvent)='handleNearestTravelPointSelectEvent($event)'>
+</dravelopsefafrontend-travel-point-list>
+
+<ng-template #loading>
+  <dravelopssharedfrontend-loading></dravelopssharedfrontend-loading>
+</ng-template>

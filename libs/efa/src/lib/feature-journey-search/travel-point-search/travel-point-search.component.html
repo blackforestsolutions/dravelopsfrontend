@@ -1,0 +1,35 @@
+<dravelopssharedfrontend-header></dravelopssharedfrontend-header>
+<div class='toolbar-wrapper'>
+  <mat-toolbar color='primary'>
+    <button class='left-close-button' mat-icon-button disableRipple>
+      <mat-icon>close</mat-icon>
+    </button>
+    <span class='example-spacer'></span>
+    <span class='menu-title'>{{ dialogParams | travelPointSearchTitle }}</span>
+    <span class='example-spacer'></span>
+    <button mat-icon-button disableRipple mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-toolbar>
+</div>
+
+<dravelopsefafrontend-map-search
+  *ngIf='dialogParams.searchType === "map"; else this.departureAutocompleteSearch'
+  (departureSelectEvent)='departure$.next($event)'
+  (arrivalSelectEvent)='arrival$.next($event)'>
+</dravelopsefafrontend-map-search>
+
+<ng-template #departureAutocompleteSearch>
+  <dravelopsefafrontend-autocomplete-search
+    *ngIf='dialogParams.locationType === "departure"; else this.arrivalAutocompleteSearch'
+    [inputLabel]='dialogParams | travelPointSearchTitle'
+    (selectAddressEvent)='departure$.next($event)'>
+  </dravelopsefafrontend-autocomplete-search>
+</ng-template>
+
+<ng-template #arrivalAutocompleteSearch>
+  <dravelopsefafrontend-autocomplete-search
+    [inputLabel]='dialogParams | travelPointSearchTitle'
+    (selectAddressEvent)='arrival$.next($event)'>
+  </dravelopsefafrontend-autocomplete-search>
+</ng-template>

@@ -1,20 +1,15 @@
 @import "libs/shared/src/assets/styles/breakpoints";
 
+.toolbar-wrapper {
+  padding: 0 3%;
+}
+
+.mat-toolbar-single-row {
+  padding: 0;
+}
+
 .example-spacer {
   flex: 1 1 auto;
-}
-
-.logo {
-  max-width: 33%;
-  height: auto;
-}
-
-.logo:hover {
-  cursor: pointer;
-}
-
-.title, .material-icons {
-  font-weight: normal;
 }
 
 .material-icons {
@@ -26,8 +21,21 @@
   font-weight: normal;
 }
 
+.title, .material-icons {
+  font-weight: normal;
+}
+
 .title {
   display: none;
+}
+
+.logo {
+  max-width: 33%;
+  height: auto;
+}
+
+.logo:hover {
+  cursor: pointer;
 }
 
 @media (min-width: $bp-handy) {
@@ -37,13 +45,25 @@
   }
 
   .menu-title {
-    font-size: 1.8rem;
+    font-size: 2.0rem;
+  }
+
+  .logo {
+    max-width: 25%;
   }
 }
 
-@media (min-width: $bp-tablet) {
+@media (min-width: $bp-touch) {
+  .toolbar-wrapper {
+    padding: 0.5em 2%;
+  }
+
   .menu-title {
     display: none;
+  }
+
+  .title {
+    display: unset;
   }
 
   .title, .material-icons {
@@ -53,18 +73,10 @@
   .logo {
     max-width: 16%;
   }
-
-  .title {
-    display: unset;
-  }
-
-  .toolbar-wrapper {
-    padding: 0.5em 0.5rem;
-  }
 }
 
 @media (min-width: $bp-laptop) {
   .toolbar-wrapper {
-    padding: 1em 1rem;
+    padding: 1em 1.5%;
   }
 }

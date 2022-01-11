@@ -11,6 +11,17 @@ body {
   margin: 0;
 }
 
+.nearest-travel-point-search-desktop {
+  min-width: 0 !important;
+}
+
+.nearest-travel-point-search-touch {
+  .mat-dialog-container {
+    border-radius: 0 !important;
+    padding: 0 !important;
+  }
+}
+
 @media (min-width: $bp-max) {
   body {
     margin: 0 auto;

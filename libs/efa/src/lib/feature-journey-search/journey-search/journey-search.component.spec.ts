@@ -4,7 +4,7 @@ import { JourneySearchComponent } from './journey-search.component';
 import { MockComponent } from 'ng-mocks';
 import { StartpageComponent } from '../startpage/startpage.component';
 import { MapSearchComponent } from '../map-search/map-search.component';
-import { JourneySearchFormComponent } from '../journey-search-form/journey-search-form.component';
+import { JourneySearchFormContainerComponent } from '../journey-search-form-container/journey-search-form-container.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NearestTravelPointFragment } from '../../domain/model/generated';
 import { getFurtwangenKindergardenTravelPoint } from '../../domain/objectmothers/travel-point-object-mother';
@@ -17,9 +17,27 @@ import { MatTabGroupHarness } from '@angular/material/tabs/testing';
 import { HarnessLoader } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
 import { MatTabsModule } from '@angular/material/tabs';
+import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
+import { of } from 'rxjs';
+
+const testDesktopView: BreakpointState = {
+  matches: true,
+  breakpoints: {
+    '850px': true
+  }
+};
+
+const testTouchView: BreakpointState = {
+  matches: false,
+  breakpoints: {
+    '850px': false
+  }
+};
 
 
 describe('JourneySearchComponent', () => {
+  let breakpointObserver: BreakpointObserver;
+
   let componentUnderTest: JourneySearchComponent;
   let fixture: ComponentFixture<JourneySearchComponent>;
   let loader: HarnessLoader;
@@ -30,7 +48,7 @@ describe('JourneySearchComponent', () => {
         JourneySearchComponent,
         MockComponent(StartpageComponent),
         MockComponent(MapSearchComponent),
-        MockComponent(JourneySearchFormComponent)
+        MockComponent(JourneySearchFormContainerComponent)
       ],
       imports: [
         MatTabsModule,
@@ -43,6 +61,7 @@ describe('JourneySearchComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(JourneySearchComponent);
     loader = TestbedHarnessEnvironment.loader(fixture);
+    breakpointObserver = TestBed.inject(BreakpointObserver);
     componentUnderTest = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -78,64 +97,78 @@ describe('JourneySearchComponent', () => {
     componentUnderTest.passSubmitApiTokenEvent(testApiToken);
   });
 
-  it('should show StartPageComponent and not MapSearchComponent when component is initialized', () => {
-    const mapSearchComponent: DebugElement = fixture.debugElement.query(By.directive(MapSearchComponent));
-    const startPageComponent: DebugElement = fixture.debugElement.query(By.directive(StartpageComponent));
+  it('should show StartPageComponent when component is initialized with touch view', () => {
+    jest.spyOn(breakpointObserver, 'observe').mockReturnValue(of(testTouchView));
 
-    expect(mapSearchComponent).toBeNull();
-    expect(startPageComponent).not.toBeNull();
+    componentUnderTest.ngOnInit();
+
+    expect(fixture.debugElement.query(By.directive(MapSearchComponent))).toBeNull();
+    expect(fixture.debugElement.query(By.directive(StartpageComponent))).toBeTruthy();
   });
 
-  it('should show MapSearchComponent and not StartPageComponent when tab label "Kartensuche" is pressed', async () => {
-    const matTabGroup: MatTabGroupHarness = await loader.getHarness(MatTabGroupHarness);
+  it('should show StartPageComponent when component is initialized with desktop view', () => {
+    jest.spyOn(breakpointObserver, 'observe').mockReturnValue(of(testDesktopView));
 
+    componentUnderTest.ngOnInit();
+
+    expect(fixture.debugElement.query(By.directive(MapSearchComponent))).toBeNull();
+    expect(fixture.debugElement.query(By.directive(StartpageComponent))).toBeTruthy();
+  });
+
+  it('should show MapSearchComponent when tab label "Kartensuche" is pressed in desktop view', async () => {
+    jest.spyOn(breakpointObserver, 'observe').mockReturnValue(of(testDesktopView));
+    componentUnderTest.ngOnInit();
+
+    const matTabGroup: MatTabGroupHarness = await loader.getHarness(MatTabGroupHarness);
     await matTabGroup.selectTab({ label: 'Kartensuche' });
 
-    fixture.detectChanges();
     const mapSearchComponent: DebugElement = fixture.debugElement.query(By.directive(MapSearchComponent));
     const startPageComponent: DebugElement = fixture.debugElement.query(By.directive(StartpageComponent));
     expect(mapSearchComponent).not.toBeNull();
     expect(startPageComponent).toBeNull();
   });
 
-  it('should show StartPageComponent and not MapSearchComponent when tab label "Kartensuche" is pressed', async () => {
-    const matTabGroup: MatTabGroupHarness = await loader.getHarness(MatTabGroupHarness);
+  it('should show StartPageComponent when tab label "Verbindungssuche" is pressed in touch view', async () => {
+    jest.spyOn(breakpointObserver, 'observe').mockReturnValue(of(testDesktopView));
+    componentUnderTest.ngOnInit();
 
+    const matTabGroup: MatTabGroupHarness = await loader.getHarness(MatTabGroupHarness);
     await matTabGroup.selectTab({ label: 'Kartensuche' });
     await matTabGroup.selectTab({ label: 'Verbindungssuche' });
 
-    fixture.detectChanges();
     const mapSearchComponent: DebugElement = fixture.debugElement.query(By.directive(MapSearchComponent));
     const startPageComponent: DebugElement = fixture.debugElement.query(By.directive(StartpageComponent));
     expect(mapSearchComponent).toBeNull();
     expect(startPageComponent).not.toBeNull();
   });
 
-  it('should update "departureTravelPoint" from JourneySearchFormComponent when MapSearchComponent triggers departureSelectEvent', async () => {
+  it('should update "departureTravelPoint" from JourneySearchFormContainerComponent when MapSearchComponent triggers departureSelectEvent', async () => {
+    jest.spyOn(breakpointObserver, 'observe').mockReturnValue(of(testDesktopView));
+    componentUnderTest.ngOnInit();
     const selectedTestValue: NearestTravelPointFragment = getFurtwangenKindergardenTravelPoint();
     const matTabGroup: MatTabGroupHarness = await loader.getHarness(MatTabGroupHarness);
     await matTabGroup.selectTab({ label: 'Kartensuche' });
-    fixture.detectChanges();
     const mapSearchComponent: MapSearchComponent = fixture.debugElement.query(By.directive(MapSearchComponent)).componentInstance;
 
     mapSearchComponent.departureSelectEvent.emit(selectedTestValue);
 
     fixture.detectChanges();
-    const journeySearchFormComponent: JourneySearchFormComponent = fixture.debugElement.query(By.directive(JourneySearchFormComponent)).componentInstance;
-    expect(journeySearchFormComponent.departureTravelPoint).toEqual(selectedTestValue);
+    const journeySearchFormContainerComponent: JourneySearchFormContainerComponent = fixture.debugElement.query(By.directive(JourneySearchFormContainerComponent)).componentInstance;
+    expect(journeySearchFormContainerComponent.departureTravelPoint).toEqual(selectedTestValue);
   });
 
-  it('should update "arrivalTravelPoint" from JourneySearchFormComponent when MapSearchComponent triggers arrivalSelectEvent', async () => {
+  it('should update "arrivalTravelPoint" from JourneySearchFormContainerComponent when MapSearchComponent triggers arrivalSelectEvent', async () => {
+    jest.spyOn(breakpointObserver, 'observe').mockReturnValue(of(testDesktopView));
+    componentUnderTest.ngOnInit();
     const selectedTestValue: NearestTravelPointFragment = getFurtwangenKindergardenTravelPoint();
     const matTabGroup: MatTabGroupHarness = await loader.getHarness(MatTabGroupHarness);
     await matTabGroup.selectTab({ label: 'Kartensuche' });
-    fixture.detectChanges();
     const mapSearchComponent: MapSearchComponent = fixture.debugElement.query(By.directive(MapSearchComponent)).componentInstance;
 
     mapSearchComponent.arrivalSelectEvent.emit(selectedTestValue);
 
     fixture.detectChanges();
-    const journeySearchFormComponent: JourneySearchFormComponent = fixture.debugElement.query(By.directive(JourneySearchFormComponent)).componentInstance;
-    expect(journeySearchFormComponent.arrivalTravelPoint).toEqual(selectedTestValue);
+    const journeySearchFormContainerComponent: JourneySearchFormContainerComponent = fixture.debugElement.query(By.directive(JourneySearchFormContainerComponent)).componentInstance;
+    expect(journeySearchFormContainerComponent.arrivalTravelPoint).toEqual(selectedTestValue);
   });
 });

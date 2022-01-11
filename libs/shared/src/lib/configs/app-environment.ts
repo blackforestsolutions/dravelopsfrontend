@@ -8,4 +8,5 @@ export interface AppEnvironment {
   maxFutureDaysInCalendar: number;
   maxPastDaysInCalendar: number;
   showJourneyResultMap: boolean;
+  maxTravelPointsInSmallView: number;
 }

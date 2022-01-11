@@ -4,6 +4,7 @@ import { IsOnlyFootpathPipe } from '../pipes/is-only-footpath-pipe/is-only-footp
 import { Observable } from 'rxjs';
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 import { map } from 'rxjs/operators';
+import { TABLET_BREAKPOINT } from '@dravelopsfrontend/shared';
 
 const FOOTPATH_PRICE = 0;
 const DEFAULT_MOCK_PRICE = 10;
@@ -30,7 +31,7 @@ export class JourneyListItemComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.isTabletView$ = this.breakpointObserver.observe('(min-width: 720px)').pipe(
+    this.isTabletView$ = this.breakpointObserver.observe(`(min-width: ${TABLET_BREAKPOINT}px)`).pipe(
       map((breakPointState: BreakpointState) => breakPointState.matches)
     );
   }

@@ -8,7 +8,7 @@ import { LoadingComponent, ThemeEmitterComponent } from '@dravelopsfrontend/shar
 import { LeafletDirective, LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { PolygonApiService } from '../../domain/api/polygon-api.service';
 import { expect } from '@jest/globals';
-import { NearestTravelPointListComponent } from '../nearest-travel-point-list/nearest-travel-point-list.component';
+import { NearestTravelPointSearchComponent } from '../nearest-travel-point-search/nearest-travel-point-search.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { LeafletService } from '../../domain/util/leaflet.service';
@@ -23,7 +23,7 @@ describe('MapSearchComponent', () => {
         MapSearchComponent,
         MockComponent(ThemeEmitterComponent),
         MockComponent(LoadingComponent),
-        MockComponent(NearestTravelPointListComponent),
+        MockComponent(NearestTravelPointSearchComponent),
         MockDirective(LeafletDirective),
         PolygonPipe,
         MapOptionsPipe

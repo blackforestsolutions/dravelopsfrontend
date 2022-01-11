@@ -6,7 +6,7 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
+import { MatNativeDateModule, MatRippleModule } from '@angular/material/core';
 import { MAT_RADIO_DEFAULT_OPTIONS, MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTimepickerModule } from 'mat-timepicker';
@@ -25,6 +25,11 @@ import { LoadingComponent } from './components/loading/loading.component';
 import { FabButtonComponent } from './components/fab-button/fab-button.component';
 import { ScrollTopDirective } from './directives/scroll-top/scroll-top.directive';
 import { IfTabletViewDirective } from './directives/if-tablet-view/if-tablet-view.directive';
+import { MatDialogModule } from '@angular/material/dialog';
+import { AutofocusDirective } from './directives/autofocus/autofocus.directive';
+import { HeaderComponent } from './components/header/header.component';
+import { RouterModule } from '@angular/router';
+import { IfTouchViewDirective } from './directives/if-touch-view/if-touch-view.directive';
 
 const modules = [
   MatProgressSpinnerModule,
@@ -47,23 +52,29 @@ const modules = [
   MatTabsModule,
   MatBottomSheetModule,
   MatCardModule,
-  MatToolbarModule
+  MatToolbarModule,
+  MatDialogModule,
+  MatRippleModule
 ];
 
 const components = [
   ThemeEmitterComponent,
   LoadingComponent,
-  FabButtonComponent
+  FabButtonComponent,
+  HeaderComponent
 ];
 
 const directives = [
   ScrollTopDirective,
-  IfTabletViewDirective
+  IfTabletViewDirective,
+  AutofocusDirective,
+  IfTouchViewDirective
 ];
 
 @NgModule({
   imports: [
     CommonModule,
+    RouterModule,
     ...modules
   ],
   declarations: [
