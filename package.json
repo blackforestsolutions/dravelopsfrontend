@@ -1,7 +1,7 @@
 {
   "name": "dravelopsfrontend",
   "version": "0.0.0",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "scripts": {
     "start": "ng serve --port 8094",
     "update:model": "graphql-codegen --config libs/efa/src/lib/domain/model/codegen.yml",
